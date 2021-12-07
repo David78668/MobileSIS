@@ -10,7 +10,7 @@ import CustomTabNavigation from './Components/CustomNavbar';
 export default function App() {
   return (
     <NavigationContainer>
-      <CustomTabNavigation></CustomTabNavigation>
+      <CustomTabNavigation/>
     </NavigationContainer>
   );
 }

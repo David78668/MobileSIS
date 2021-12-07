@@ -7,7 +7,6 @@ import Grades from '../Pages/Grades';
 import Absence from '../Pages/Absence';
 import Profile from '../Pages/Profile';
 
-
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation(){
   return(
@@ -22,7 +21,6 @@ export default function CustomTabNavigation(){
       <Tab.Screen name="Profile" component={Profile} options={{tabBarIcon:ProfileIcon}}/>
     </Tab.Navigator>
   );
-  
 }
 
 const HomeIcon = ({focused}:any) =>{
@@ -117,10 +115,3 @@ const styles = StyleSheet.create({
     top:10,
   }
 });
-
-
-
-
-
-
-

@@ -1,19 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import CarouselCards from '../Components/NextSubjectCarousel';
+
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-        <Text>Home</Text>
-    </View>
+    <SafeAreaView>
+      <CarouselCards/>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 50
     },
   });
