@@ -1,4 +1,6 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import {useAssets, Asset} from 'expo-asset'
+import AbsenceIco from '../assets/absence'
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Pages/Home';
@@ -7,12 +9,15 @@ import Grades from '../Pages/Grades';
 import Absence from '../Pages/Absence';
 import Profile from '../Pages/Profile';
 
+ 
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation(){
+  
   return(
     <Tab.Navigator  screenOptions={{headerShown:false, tabBarShowLabel:false, tabBarStyle:{
       position:'absolute',
-      flex:1
+      height:'10%',
+      
     }}} >
       <Tab.Screen name="Home" component={Home} options={{tabBarIcon:HomeIcon}}/>
       <Tab.Screen name="Schedule" component={Schedule} options={{tabBarIcon:ScheduleIcon}}/>
@@ -24,14 +29,16 @@ export default function CustomTabNavigation(){
 }
 
 const HomeIcon = ({focused}:any) =>{
+ const asset = useAssets(require('../assets/HomeIcon.svg'))
   return(
   <View style={styles.IconContainer}>
     <Image
       source={require('../assets/HomeIcon.svg')}
       resizeMode='contain'
       style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
-    <Text style={
+    <Text   style={
       {
+        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Domů</Text>
@@ -48,6 +55,7 @@ const ScheduleIcon = ({focused}:any) =>{
       style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
     <Text style={
       {
+        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Rozvrh</Text>
@@ -64,6 +72,7 @@ const GradesIcon = ({focused}:any) =>{
       style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
     <Text style={
       {
+        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Známky</Text>
@@ -74,12 +83,12 @@ const GradesIcon = ({focused}:any) =>{
 const AbsenceIcon = ({focused}:any) =>{
   return(
   <View style={styles.IconContainer}>
-    <Image
-      source={require('../assets/AbsenceIcon.svg')}
-      resizeMode='contain'
-      style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
+    
+    <AbsenceIco />
+         
     <Text style={
       {
+        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Absence</Text>
@@ -96,6 +105,7 @@ const ProfileIcon = ({focused}:any) =>{
       style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
     <Text style={
       {
+        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Profil</Text>
@@ -109,9 +119,11 @@ const styles = StyleSheet.create({
   height:25
  },
 
+ 
   IconContainer:{
     alignItems:'center',
     justifyContent:'center',
+    
     top:10,
   }
 });

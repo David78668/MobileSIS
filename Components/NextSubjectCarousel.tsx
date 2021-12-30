@@ -1,173 +1,20 @@
 import React from 'react'
-import { View } from "react-native"
+
+import CustomPaging from './Paging'
+import { View,StyleSheet } from "react-native"
+import { Text } from 'react-native'
+import { SafeAreaView } from 'react-native'
 import Carousel, {Pagination} from 'react-native-snap-carousel'
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
+import { Dimensions } from 'react-native'
+import data from '../data.json'
 
 
-const CreateDictionary = (dayAmount:number) => {
-  const data = {
-    "Days":[
-        {
-            "Date":"2021-12-07",
-            "Lessons":[
-                {
-                   "Id":2,
-                   "Name":"Matematika",
-                   "ShortName":"MAT",
-                   "Teacher":"Zlata Karpiskova",
-                   "TeacherShortName":"KR",
-                   "StartTime":"08:30",
-                   "Classroom":"205",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":90,
-                   "Name":"Základy elektrotechniky",
-                   "ShortName":"ZEL",
-                   "Teacher":"Jiří Špičan",
-                   "TeacherShortName":"ŠP",
-                   "StartTime":"09:30",
-                   "Classroom":"309",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":69,
-                   "Name":"Výpočetní technika",
-                   "ShortName":"VYT",
-                   "Teacher":"Jarda Hývl",
-                   "TeacherShortName":"HB",
-                   "StartTime":"10:30",
-                   "Classroom":"388",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":88,
-                   "Name":"Technické kreslení",
-                   "ShortName":"TEK",
-                   "Teacher":"Richard Rejthar",
-                   "TeacherShortName":"RR",
-                   "StartTime":"11:30",
-                   "Classroom":"205",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                }
-            ]
-        },
-  {
-            "Date":"2021-12-08",
-            "Lessons":[
-                {
-                   "Id":2,
-                   "Name":"Fyzika",
-                   "ShortName":"FYZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"07:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Fyzika",
-                   "ShortName":"FYZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"08:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Fyzika",
-                   "ShortName":"FYZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"09:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Fyzika",
-                   "ShortName":"FYZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"10:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                }
-            ]
-        },
-  {
-            "Date":"2021-12-09",
-            "Lessons":[
-                {
-                   "Id":2,
-                   "Name":"Eltektrotechnická zařízení",
-                   "ShortName":"ELZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"07:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Eltektrotechnická zařízení",
-                   "ShortName":"ELZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"08:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Eltektrotechnická zařízení",
-                   "ShortName":"ELZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"09:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                },
-    {
-                   "Id":2,
-                   "Name":"Eltektrotechnická zařízení",
-                   "ShortName":"ELZ",
-                   "Teacher":"Jan Lang",
-                   "TeacherShortName":"LN",
-                   "StartTime":"10:30",
-                   "Classroom":"206",
-                   "Group":"p",
-                   "LessonType":"",
-                   "Url":"Meet"
-                }
-            ]
-        }
-    ]
-  }
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+/*const CreateDictionary = (dayAmount:number) => {
+ 
     const dict = [];
     for (let i = 0; i < dayAmount; i++) {
         dict.push({
@@ -179,33 +26,73 @@ const CreateDictionary = (dayAmount:number) => {
     
 }
 
-const schedule : any = CreateDictionary(3);
+const schedule : any = CreateDictionary(3);*/
 const CarouselCards = () => {
   
-
+  const [currentIndex, setIndex] = React.useState(0);
+  const settings = {
+    onSnapToItem: (index : any) => setIndex(index),  
+  };
   const date = new Date();
   const readableDate = date.toISOString().split('T')[0];
   
   const isCarousel = React.useRef(null)
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
+      
+      <View style={styles.contentHolder}>
+      <Text style={styles.header}>Pondělí, 17.listopadu</Text>
       <Carousel
-        layout="tinder"
-        layoutCardOffset={9}
+        layout="stack"
+        layoutCardOffset={0}
         ref={isCarousel}
-        data={schedule[readableDate]}
+        data={data.Days[0].Lessons}
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
         inactiveSlideShift={0}
         useScrollView={true}
+        {...settings}
       />
       
-    </View>
+     </View>
+     <CustomPaging data={data} activeSlide={currentIndex}/>
+    </SafeAreaView>
 
   )
 }
+
+const styles = StyleSheet.create({
+  header: {
+    fontFamily: "SF Pro Text",
+    flexDirection:'row',
+    width: '100%',
+    marginBottom: 10,
+    fontWeight: "700",
+    color:"#FFFFFF",
+    fontSize: 30,
+  },
+  container: {
+    width:"100%",
+    backgroundColor: '#E9671E',
+    justifyContent:'flex-end',
+    alignItems:'center',
+    height:"37.7%"
+  },
+  contentHolder: {
+    width: windowWidth - 44,
+    height:windowHeight*0.377*0.5 + 60,
+    justifyContent: 'flex-end',
+    alignItems:'center',
+   
+    
+  }
+
+  
+    
+
+});
 
 
 

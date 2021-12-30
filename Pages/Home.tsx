@@ -5,9 +5,7 @@ import CarouselCards from '../Components/NextSubjectCarousel';
 
 export default function Home() {
   return (
-    <SafeAreaView>
       <CarouselCards/>
-    </SafeAreaView>
   );
 }
 
