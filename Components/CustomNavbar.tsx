@@ -1,6 +1,10 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import {useAssets, Asset} from 'expo-asset'
 import AbsenceIco from '../assets/absence'
+import GradesIco from '../assets/grades';
+import HomeIco from '../assets/home';
+import ProfileIco from '../assets/profile';
+import ScheduleIco from '../assets/schedule';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../Pages/Home';
@@ -29,13 +33,11 @@ export default function CustomTabNavigation(){
 }
 
 const HomeIcon = ({focused}:any) =>{
- const asset = useAssets(require('../assets/HomeIcon.svg'))
   return(
   <View style={styles.IconContainer}>
-    <Image
-      source={require('../assets/HomeIcon.svg')}
-      resizeMode='contain'
-      style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
+     <HomeIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+}]}/> 
     <Text   style={
       {
         width:"100%",
@@ -49,10 +51,9 @@ const HomeIcon = ({focused}:any) =>{
 const ScheduleIcon = ({focused}:any) =>{
   return(
   <View style={styles.IconContainer}>
-    <Image
-      source={require('../assets/ScheduleIcon.svg')}
-      resizeMode='contain'
-      style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
+   <ScheduleIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+}]}/> 
     <Text style={
       {
         width:"100%",
@@ -66,10 +67,9 @@ const ScheduleIcon = ({focused}:any) =>{
 const GradesIcon = ({focused}:any) =>{
   return(
   <View style={styles.IconContainer}>
-    <Image
-      source={require('../assets/GradesIcon.svg')}
-      resizeMode='contain'
-      style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
+      <GradesIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+}]}/>
     <Text style={
       {
         width:"100%",
@@ -84,7 +84,9 @@ const AbsenceIcon = ({focused}:any) =>{
   return(
   <View style={styles.IconContainer}>
     
-    <AbsenceIco />
+    <AbsenceIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+    }]}/>
          
     <Text style={
       {
@@ -99,10 +101,9 @@ const AbsenceIcon = ({focused}:any) =>{
 const ProfileIcon = ({focused}:any) =>{
   return(
   <View style={styles.IconContainer}>
-    <Image
-      source={require('../assets/ProfileIcon.svg')}
-      resizeMode='contain'
-      style={[{tintColor: focused ? "#de6830" : "#c7c7cc",}, styles.Icon]} />      
+    <ProfileIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+}]}/>
     <Text style={
       {
         width:"100%",
@@ -123,7 +124,5 @@ const styles = StyleSheet.create({
   IconContainer:{
     alignItems:'center',
     justifyContent:'center',
-    
-    top:10,
   }
 });
