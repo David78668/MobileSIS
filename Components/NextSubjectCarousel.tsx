@@ -43,6 +43,7 @@ const windowHeight = Dimensions.get('window').height;
 }
 
 const schedule : any = CreateDictionary(3);*/
+
 const CarouselCards = () => {
   
   const [currentIndex, setIndex] = React.useState(0);
@@ -111,85 +112,7 @@ const styles = StyleSheet.create({
 
 
 
-export default CarouselCards
-    const dict = [];
-    for (let i = 0; i < dayAmount; i++) {
-        dict.push({
-            key:   data['Days'][i]['Date'],
-            value: data['Days'][i]['Lessons']
-        });
-    } 
-    return dict;
-    
-}
 
-const schedule : any = CreateDictionary(3);*/
-const CarouselCards = () => {
-  
-  const [currentIndex, setIndex] = React.useState(0);
-  const settings = {
-    onSnapToItem: (index : any) => setIndex(index),  
-  };
-  const date = new Date();
-  const readableDate = date.toISOString().split('T')[0];
-  
-  const isCarousel = React.useRef(null)
-
-  return (
-    <SafeAreaView style={styles.container}>
-      
-      <View style={styles.contentHolder}>
-      <Text style={styles.header}>Pondělí, 17.listopadu</Text>
-      <Carousel
-        layout="stack"
-        layoutCardOffset={0}
-        ref={isCarousel}
-        data={data.Days[0].Lessons}
-        renderItem={CarouselCardItem}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={ITEM_WIDTH}
-        inactiveSlideShift={0}
-        useScrollView={true}
-        {...settings}
-      />
-      
-     </View>
-     <CustomPaging data={data} activeSlide={currentIndex}/>
-    </SafeAreaView>
-
-  )
-}
-
-const styles = StyleSheet.create({
-  header: {
-    fontFamily: "SF Pro Text",
-    flexDirection:'row',
-    width: '100%',
-    marginBottom: 10,
-    fontWeight: "700",
-    color:"#FFFFFF",
-    fontSize: 30,
-  },
-  container: {
-    width:"100%",
-    backgroundColor: '#E9671E',
-    justifyContent:'flex-end',
-    alignItems:'center',
-    height:"37.7%"
-  },
-  contentHolder: {
-    width: windowWidth - 44,
-    height:windowHeight*0.377*0.5 + 60,
-    justifyContent: 'flex-end',
-    alignItems:'center',
-   
-    
-  }
-
-  
-    
-
-});
 
 
 
