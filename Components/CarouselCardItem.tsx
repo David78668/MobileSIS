@@ -1,4 +1,6 @@
 import React from 'react'
+import RoomIco from '../assets/room';
+import TeacherIco from '../assets/teacher';
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
 
 const windowHeight = Dimensions.get('window').height;
@@ -19,11 +21,11 @@ export const ITEM_WIDTH = Math.round(windowWidth - 44)
         <Text style={styles.basicLabel}>{index == 0 ? "Právě probíhá" : "Následuje"}</Text>
         <Text style={styles.subjectLabel}>{item.Name}</Text>
         <View style={styles.paralel}>
-          
+          <RoomIco style={styles.icon}/>
           <Text>{item.Classroom}</Text>
         </View>
         <View style={styles.paralel}>
-          
+          <TeacherIco style={styles.icon}/>
           <Text>{item.Teacher}</Text>
         </View>
         <View>
@@ -35,7 +37,11 @@ export const ITEM_WIDTH = Math.round(windowWidth - 44)
 }
 
 const styles = StyleSheet.create({
- 
+ icon:{
+   width: 12,
+   height: 12,
+   marginRight: 6,
+ },
 
  divider:{
   borderRadius:10,
@@ -47,6 +53,7 @@ const styles = StyleSheet.create({
 
  paralel:{
    flexDirection:'row',
+   alignItems:'center',
    flexWrap:'nowrap',
  },
 
@@ -58,7 +65,6 @@ const styles = StyleSheet.create({
    flexDirection:'row',
     backgroundColor: "#FFFFFF",
     borderRadius:10,
-
  },
 
  timeContainer:{
