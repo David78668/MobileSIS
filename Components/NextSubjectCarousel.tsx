@@ -50,16 +50,18 @@ const CarouselCards = () => {
   const settings = {
     onSnapToItem: (index : any) => setIndex(index),  
   };
+  const days = ["", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"]
+  const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"]
   const date = new Date();
-  const readableDate = date.toISOString().split('T')[0];
+ 
   
   const isCarousel = React.useRef(null)
-
+  
   return (
     <SafeAreaView style={styles.container}>
       
       <View style={styles.contentHolder}>
-      <Text style={styles.header}>Pondělí, 17.listopadu</Text>
+      <Text style={styles.header}>{days[date.getDay()]}, {date.getDate()}. {months[date.getMonth()]}</Text>
       <Carousel
         layout="stack"
         layoutCardOffset={0}
