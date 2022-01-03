@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-
+const date = new Date();
 export const SLIDER_WIDTH = windowWidth - 44;
 export const ITEM_WIDTH = Math.round(windowWidth - 44)
 
@@ -23,6 +23,63 @@ function computeTime(time:string, lenght:number){
   )
 }
 
+function labelChange(time:string, duration:number, subject:string){
+  let splitTime = time.split(':')
+  let hours = isNaN(Number(splitTime[0])) ? 0 : Number(splitTime[0]);
+  let minutes = isNaN(Number(splitTime[1])) ? 0 : Number(splitTime[1]);
+  let startTime = hours*60 + minutes;
+  let endTime = startTime + duration;
+  let currentTime = date.getHours()*60 + date.getMinutes();
+  if(currentTime < startTime){
+    switch(subject[subject.length-1]){
+      case 'y':
+        return "Proběhnou"
+      break;
+
+      case 'ě':
+        return "Proběhnou"
+      break;
+
+      default:
+        return "Proběhne"
+      break;
+    }
+  }
+  if(currentTime >= startTime && currentTime <= endTime){
+    switch(subject[subject.length-1]){
+      case 'y':
+        return "Probíhají"
+      break;
+      case 'ě':
+        return "Probíhají"
+      break;
+      default:
+        return "Proběhlo"
+      break;
+    }
+  }
+  if(currentTime > endTime){
+    switch(subject[subject.length-1]){
+      case 'a':
+        return "Proběhla"
+      break;
+
+      case 'y':
+        return "Proběhly"
+      break;
+
+      case 'ě':
+        return "Proběhly"
+      break;
+
+      default:
+        return "Proběhlo"
+      break;
+    }
+    
+  }
+}
+
  const CarouselCardItem = ({item, index}:any) => {
   return (
     <View style={styles.container} key={index}>
@@ -32,7 +89,7 @@ function computeTime(time:string, lenght:number){
       </View>
       <View style={styles.divider}></View>
       <View style={styles.cardBody}>
-        <Text style={styles.basicLabel}>{index == 0 ? "Právě probíhá" : "Následuje"}</Text>
+        <Text style={styles.basicLabel}>{labelChange(item.StartTime, 45, item.Name)}</Text>
         <Text style={styles.subjectLabel}>{item.Name}</Text>
         <View style={styles.paralel}>
           <RoomIco style={styles.icon}/>

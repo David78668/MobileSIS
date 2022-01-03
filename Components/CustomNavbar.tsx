@@ -82,15 +82,13 @@ const GradesIcon = ({focused}:any) =>{
 
 const AbsenceIcon = ({focused}:any) =>{
   return(
-  <View style={styles.IconContainer}>
-    
+    <View style={styles.IconContainer}>
     <AbsenceIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
-    }]}/>
-         
+}]}/>
     <Text style={
       {
-        width:"100%",
+        width:'100%',
         color: focused ? "#de6830" : "#c7c7cc",
       }
     }>Absence</Text>
@@ -122,6 +120,7 @@ const styles = StyleSheet.create({
 
  
   IconContainer:{
+    position:'absolute',
     alignItems:'center',
     justifyContent:'center',
   }

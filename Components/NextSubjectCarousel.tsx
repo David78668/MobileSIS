@@ -1,7 +1,7 @@
 import React from 'react'
 
 import CustomPaging from './Paging'
-import { View,StyleSheet } from "react-native"
+import { View,StyleSheet, ImageBackground } from "react-native"
 import { Text } from 'react-native'
 import { SafeAreaView } from 'react-native'
 import Carousel, {Pagination} from 'react-native-snap-carousel'
@@ -58,8 +58,8 @@ const CarouselCards = () => {
   const isCarousel = React.useRef(null)
   
   return (
-    <SafeAreaView style={styles.container}>
-      
+   
+      <ImageBackground source={require("../assets/carousel.png")} resizeMode='cover' style={styles.container}>
       <View style={styles.contentHolder}>
       <Text style={styles.header}>{days[date.getDay()]}, {date.getDate()}. {months[date.getMonth()]}</Text>
       <Carousel
@@ -77,8 +77,7 @@ const CarouselCards = () => {
       
      </View>
      <CustomPaging data={data.Days[0].Lessons} activeSlide={currentIndex}/>
-    </SafeAreaView>
-
+     </ImageBackground>
   )
 }
 
@@ -93,11 +92,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   container: {
+    opacity:15,
     width:"100%",
     backgroundColor: '#E9671E',
     justifyContent:'flex-end',
     alignItems:'center',
-    height:"37.7%"
+    height:"37.7%",
+    
   },
   contentHolder: {
     width: windowWidth - 44,
