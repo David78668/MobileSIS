@@ -13,36 +13,6 @@ import data from '../data.json'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-/*const CreateDictionary = (dayAmount:number) => {
- import React from 'react'
-
-import CustomPaging from './Paging'
-import { View,StyleSheet } from "react-native"
-import { Text } from 'react-native'
-import { SafeAreaView } from 'react-native'
-import Carousel, {Pagination} from 'react-native-snap-carousel'
-import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
-import { Dimensions } from 'react-native'
-import data from '../data.json'
-
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
-/*const CreateDictionary = (dayAmount:number) => {
- 
-    const dict = [];
-    for (let i = 0; i < dayAmount; i++) {
-        dict.push({
-            key:   data['Days'][i]['Date'],
-            value: data['Days'][i]['Lessons']
-        });
-    } 
-    return dict;
-    
-}
-
-const schedule : any = CreateDictionary(3);*/
 
 const CarouselCards = () => {
   
@@ -58,7 +28,7 @@ const CarouselCards = () => {
   const isCarousel = React.useRef(null)
   
   return (
-   
+    
       <ImageBackground source={require("../assets/carousel.png")} resizeMode='cover' style={styles.container}>
       <View style={styles.contentHolder}>
       <Text style={styles.header}>{days[date.getDay()]}, {date.getDate()}. {months[date.getMonth()]}</Text>
@@ -66,7 +36,7 @@ const CarouselCards = () => {
         layout="stack"
         layoutCardOffset={0}
         ref={isCarousel}
-        data={data.Days[0].Lessons}
+        data={data.Days[date.getDay()-1].Lessons}
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
@@ -76,7 +46,7 @@ const CarouselCards = () => {
       />
       
      </View>
-     <CustomPaging data={data.Days[0].Lessons} activeSlide={currentIndex}/>
+     <CustomPaging data={data.Days[date.getDay()-1].Lessons} activeSlide={currentIndex}/>
      </ImageBackground>
   )
 }

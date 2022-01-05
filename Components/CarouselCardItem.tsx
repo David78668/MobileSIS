@@ -33,15 +33,15 @@ function labelChange(time:string, duration:number, subject:string){
   if(currentTime < startTime){
     switch(subject[subject.length-1]){
       case 'y':
-        return "Proběhnou"
+        return "Proběhnou" 
       break;
 
       case 'ě':
-        return "Proběhnou"
+        return "Proběhnou"  
       break;
 
       default:
-        return "Proběhne"
+        return "Proběhne" 
       break;
     }
   }
@@ -52,6 +52,9 @@ function labelChange(time:string, duration:number, subject:string){
       break;
       case 'ě':
         return "Probíhají"
+      break;
+      case 'a':
+      return "Probíhá"
       break;
       default:
         return "Proběhlo"
@@ -93,11 +96,11 @@ function labelChange(time:string, duration:number, subject:string){
         <Text style={styles.subjectLabel}>{item.Name}</Text>
         <View style={styles.paralel}>
           <RoomIco style={styles.icon}/>
-          <Text>{item.Classroom}</Text>
+          <Text style={styles.basicLabel}>{item.Classroom}</Text>
         </View>
         <View style={styles.paralel}>
           <TeacherIco style={styles.icon}/>
-          <Text>{item.Teacher}</Text>
+          <Text style={styles.basicLabel}>{item.Teacher}</Text>
         </View>
         <View>
         </View>
@@ -109,8 +112,8 @@ function labelChange(time:string, duration:number, subject:string){
 
 const styles = StyleSheet.create({
  icon:{
-   width: 12,
-   height: 12,
+   width: (windowHeight*0.377*0.5)/10.75,
+   height: (windowHeight*0.377*0.5)/10.75,
    marginRight: 6,
  },
 
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
   height:"61%",
   width:"1%",
   backgroundColor:"#DE6830",
-  marginRight:11,
+  marginRight:(windowWidth - 44)/30.1,
  },
 
  paralel:{
@@ -139,31 +142,33 @@ const styles = StyleSheet.create({
  },
 
  timeContainer:{
-  marginLeft:15,
-  marginRight:12,
+  marginLeft:(windowWidth - 44)/22.1,
+  marginRight:(windowWidth - 44)/25.5,
+  
  },
 
  basicLabel:{
   fontWeight:"500",
-  fontSize:14,
-  lineHeight:17,
+  fontSize:(windowHeight*0.377*0.5)/9.20,
   letterSpacing:-0.24,
   
  },
 
  subjectLabel:{
-  fontSize:21,
+  fontSize:(windowHeight*0.377*0.5)/6.14,
   fontWeight:"600",
  },
 
  endTimeLabel:{
   fontWeight:"500",
+  fontSize:(windowHeight*0.377*0.5)/9.20,
   color:"#C7C7CC"
  },
 
  cardBody:{
- 
-  
+  paddingVertical: 5,
+  height:"61%",
+  justifyContent:'center',
  },
 
 });
