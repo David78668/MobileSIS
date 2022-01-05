@@ -1,5 +1,4 @@
 import React from 'react'
-
 import CustomPaging from './Paging'
 import { View,StyleSheet, ImageBackground } from "react-native"
 import { Text } from 'react-native'
@@ -9,13 +8,10 @@ import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
 import { Dimensions } from 'react-native'
 import data from '../data.json'
 
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-
 const CarouselCards = () => {
-  
   const [currentIndex, setIndex] = React.useState(0);
   const settings = {
     onSnapToItem: (index : any) => setIndex(index),  
@@ -23,12 +19,8 @@ const CarouselCards = () => {
   const days = ["", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"]
   const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"]
   const date = new Date();
- 
-  
   const isCarousel = React.useRef(null)
-  
   return (
-    
       <ImageBackground source={require("../assets/carousel.png")} resizeMode='cover' style={styles.container}>
       <View style={styles.contentHolder}>
       <Text style={styles.header}>{days[date.getDay()]}, {date.getDate()}. {months[date.getMonth()]}</Text>
@@ -44,7 +36,6 @@ const CarouselCards = () => {
         useScrollView={true}
         {...settings}
       />
-      
      </View>
      <CustomPaging data={data.Days[date.getDay()-1].Lessons} activeSlide={currentIndex}/>
      </ImageBackground>
@@ -59,8 +50,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "700",
     color:"#FFFFFF",
-    fontSize: 30,
+    fontSize: (windowHeight*0.377)/10,
   },
+
   container: {
     opacity:15,
     width:"100%",
@@ -68,26 +60,14 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end',
     alignItems:'center',
     height:"37.7%",
-    
   },
+
   contentHolder: {
     width: windowWidth - 44,
-    height:windowHeight*0.377*0.5 + 50,
     justifyContent: 'flex-end',
     alignItems:'center',
   }
 
-  
-    
-
 });
-
-
-
-
-
-
-
-
 
 export default CarouselCards

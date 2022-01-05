@@ -1,6 +1,8 @@
 import React from 'react'
 import { Pagination } from 'react-native-snap-carousel';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 export default function CustomPaging({ data, activeSlide }:any) {
   const settings : any = {
@@ -20,23 +22,22 @@ export default function CustomPaging({ data, activeSlide }:any) {
 
 const styles = StyleSheet.create({
     dottingContainer: {
-      marginHorizontal:2,
+      marginHorizontal:windowWidth/187.5,
     },
 
     dotContainer: {
       width: '20%',
-      paddingVertical: 22,
+      paddingVertical: (windowHeight*0.337)/13.54,
       },
       dotStyle: {
         
-        width: 6,
-        height: 6,
+        width: (windowHeight*0.337)/50,
+        height: (windowHeight*0.337)/50,
         backgroundColor: '#FFFFFF',
       },
       inactiveDotStyle: {
-        marginHorizontal:0,
-        width: 6,
-        height: 6,
+        width: (windowHeight*0.337)/50,
+        height: (windowHeight*0.337)/50,
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
       },
 })
