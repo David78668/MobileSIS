@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
 import {useAssets, Asset} from 'expo-asset'
 import AbsenceIco from '../assets/absence'
 import GradesIco from '../assets/grades';
@@ -13,15 +13,16 @@ import Grades from '../Pages/Grades';
 import Absence from '../Pages/Absence';
 import Profile from '../Pages/Profile';
 
- 
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+const navbarHeight = windowHeight/10;
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation(){
   
   return(
     <Tab.Navigator  screenOptions={{headerShown:false, tabBarShowLabel:false, tabBarStyle:{
       position:'absolute',
-      height:'10%',
-      
+      height:navbarHeight,
     }}} >
       <Tab.Screen name="Home" component={Home} options={{tabBarIcon:HomeIcon}}/>
       <Tab.Screen name="Schedule" component={Schedule} options={{tabBarIcon:ScheduleIcon}}/>
@@ -38,11 +39,10 @@ const HomeIcon = ({focused}:any) =>{
      <HomeIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
 }]}/> 
-    <Text   style={
+    <Text  style={[
       {
-        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
-      }
+      }, styles.Label]
     }>Domů</Text>
   </View>
   )
@@ -54,11 +54,10 @@ const ScheduleIcon = ({focused}:any) =>{
    <ScheduleIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
 }]}/> 
-    <Text style={
+   <Text  style={[
       {
-        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
-      }
+      }, styles.Label]
     }>Rozvrh</Text>
   </View>
   )
@@ -70,11 +69,10 @@ const GradesIcon = ({focused}:any) =>{
       <GradesIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
 }]}/>
-    <Text style={
+    <Text  style={[
       {
-        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
-      }
+      }, styles.Label]
     }>Známky</Text>
   </View>
   )
@@ -86,11 +84,10 @@ const AbsenceIcon = ({focused}:any) =>{
     <AbsenceIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
 }]}/>
-    <Text style={
+    <Text  style={[
       {
-        width:'100%',
         color: focused ? "#de6830" : "#c7c7cc",
-      }
+      }, styles.Label]
     }>Absence</Text>
   </View>
   )
@@ -102,11 +99,10 @@ const ProfileIcon = ({focused}:any) =>{
     <ProfileIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
 }]}/>
-    <Text style={
+    <Text  style={[
       {
-        width:"100%",
         color: focused ? "#de6830" : "#c7c7cc",
-      }
+      }, styles.Label]
     }>Profil</Text>
   </View>
   )
@@ -114,10 +110,14 @@ const ProfileIcon = ({focused}:any) =>{
 
 const styles = StyleSheet.create({
  Icon:{
-  width:25,
-  height:25
+  width:navbarHeight/3,
+  height:navbarHeight/3,
  },
 
+ Label:{
+  width:"100%",
+  fontSize:navbarHeight/5.5,
+ },
  
   IconContainer:{
     position:'absolute',
