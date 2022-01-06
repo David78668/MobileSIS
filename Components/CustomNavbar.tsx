@@ -1,13 +1,8 @@
-import { View, Text, StyleSheet, Image, Dimensions } from 'react-native';
-import {useAssets, Asset} from 'expo-asset'
-import AbsenceIco from '../assets/absence'
-import GradesIco from '../assets/grades';
-import HomeIco from '../assets/home';
-import ProfileIco from '../assets/profile';
-import ScheduleIco from '../assets/schedule';
-import React from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { HomeIcon, ScheduleIcon, GradesIcon, AbsenceIcon, ProfileIcon } from '../assets/navbarIcons';
 import Home from '../Pages/Home';
+import React from 'react';
 import Schedule from '../Pages/Schedule';
 import Grades from '../Pages/Grades';
 import Absence from '../Pages/Absence';
@@ -15,113 +10,115 @@ import Profile from '../Pages/Profile';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-const navbarHeight = windowHeight/10;
+const navbarHeight = windowHeight / 10;
 const Tab = createBottomTabNavigator();
-export default function CustomTabNavigation(){
-  
-  return(
-    <Tab.Navigator  screenOptions={{headerShown:false, tabBarShowLabel:false, tabBarStyle:{
-      position:'absolute',
-      height:navbarHeight,
-    }}} >
-      <Tab.Screen name="Home" component={Home} options={{tabBarIcon:HomeIcon}}/>
-      <Tab.Screen name="Schedule" component={Schedule} options={{tabBarIcon:ScheduleIcon}}/>
-      <Tab.Screen name="Grades" component={Grades} options={{tabBarIcon:GradesIcon}} />
-      <Tab.Screen name="Absence" component={Absence} options={{tabBarIcon:AbsenceIcon}} />
-      <Tab.Screen name="Profile" component={Profile} options={{tabBarIcon:ProfileIcon}}/>
+export default function CustomTabNavigation() {
+
+  return (
+    <Tab.Navigator screenOptions={{
+      headerShown: false, tabBarShowLabel: false, tabBarStyle: {
+        position: 'absolute',
+        height: navbarHeight,
+      }
+    }} >
+      <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIco }} />
+      <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIco }} />
+      <Tab.Screen name="Grades" component={Grades} options={{ tabBarIcon: GradesIco }} />
+      <Tab.Screen name="Absence" component={Absence} options={{ tabBarIcon: AbsenceIco }} />
+      <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon: ProfileIco }} />
     </Tab.Navigator>
   );
 }
 
-const HomeIcon = ({focused}:any) =>{
-  return(
-  <View style={styles.IconContainer}>
-     <HomeIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-
-}]}/> 
-    <Text  style={[
-      {
-        color: focused ? "#de6830" : "#c7c7cc",
-      }, styles.Label]
-    }>Domů</Text>
-  </View>
-  )
-}
-
-const ScheduleIcon = ({focused}:any) =>{
-  return(
-  <View style={styles.IconContainer}>
-   <ScheduleIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-
-}]}/> 
-   <Text  style={[
-      {
-        color: focused ? "#de6830" : "#c7c7cc",
-      }, styles.Label]
-    }>Rozvrh</Text>
-  </View>
-  )
-}
-
-const GradesIcon = ({focused}:any) =>{
-  return(
-  <View style={styles.IconContainer}>
-      <GradesIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-
-}]}/>
-    <Text  style={[
-      {
-        color: focused ? "#de6830" : "#c7c7cc",
-      }, styles.Label]
-    }>Známky</Text>
-  </View>
-  )
-}
-
-const AbsenceIcon = ({focused}:any) =>{
-  return(
+const HomeIco = ({ focused }: any) => {
+  return (
     <View style={styles.IconContainer}>
-    <AbsenceIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+      <HomeIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
-}]}/>
-    <Text  style={[
-      {
-        color: focused ? "#de6830" : "#c7c7cc",
-      }, styles.Label]
-    }>Absence</Text>
-  </View>
+      }]} />
+      <Text style={[
+        {
+          color: focused ? "#de6830" : "#c7c7cc",
+        }, styles.Label]
+      }>Domů</Text>
+    </View>
   )
 }
 
-const ProfileIcon = ({focused}:any) =>{
-  return(
-  <View style={styles.IconContainer}>
-    <ProfileIco tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+const ScheduleIco = ({ focused }: any) => {
+  return (
+    <View style={styles.IconContainer}>
+      <ScheduleIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
 
-}]}/>
-    <Text  style={[
-      {
-        color: focused ? "#de6830" : "#c7c7cc",
-      }, styles.Label]
-    }>Profil</Text>
-  </View>
+      }]} />
+      <Text style={[
+        {
+          color: focused ? "#de6830" : "#c7c7cc",
+        }, styles.Label]
+      }>Rozvrh</Text>
+    </View>
+  )
+}
+
+const GradesIco = ({ focused }: any) => {
+  return (
+    <View style={styles.IconContainer}>
+      <GradesIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+      }]} />
+      <Text style={[
+        {
+          color: focused ? "#de6830" : "#c7c7cc",
+        }, styles.Label]
+      }>Známky</Text>
+    </View>
+  )
+}
+
+const AbsenceIco = ({ focused }: any) => {
+  return (
+    <View style={styles.IconContainer}>
+      <AbsenceIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+      }]} />
+      <Text style={[
+        {
+          color: focused ? "#de6830" : "#c7c7cc",
+        }, styles.Label]
+      }>Absence</Text>
+    </View>
+  )
+}
+
+const ProfileIco = ({ focused }: any) => {
+  return (
+    <View style={styles.IconContainer}>
+      <ProfileIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+
+      }]} />
+      <Text style={[
+        {
+          color: focused ? "#de6830" : "#c7c7cc",
+        }, styles.Label]
+      }>Profil</Text>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
- Icon:{
-  width:navbarHeight/3,
-  height:navbarHeight/3,
- },
+  Icon: {
+    width: navbarHeight / 3,
+    height: navbarHeight / 3,
+  },
 
- Label:{
-  width:"100%",
-  fontSize:navbarHeight/5.5,
- },
- 
-  IconContainer:{
-    position:'absolute',
-    alignItems:'center',
-    justifyContent:'center',
+  Label: {
+    width: "100%",
+    fontSize: navbarHeight / 5.5,
+  },
+
+  IconContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
