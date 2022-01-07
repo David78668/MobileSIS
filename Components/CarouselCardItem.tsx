@@ -31,55 +31,13 @@ function labelChange(time: string, duration: number, subject: string) {
   let endTime = startTime + duration;
   let currentTime = date.getHours() * 60 + date.getMinutes();
   if (currentTime < startTime) {
-    switch (subject[subject.length - 1]) {
-      case 'y':
-        return "Proběhnou"
-        break;
-
-      case 'ě':
-        return "Proběhnou"
-        break;
-
-      default:
-        return "Proběhne"
-        break;
-    }
+    return "Proběhne";
   }
   if (currentTime >= startTime && currentTime <= endTime) {
-    switch (subject[subject.length - 1]) {
-      case 'y':
-        return "Probíhají"
-        break;
-      case 'ě':
-        return "Probíhají"
-        break;
-      case 'a':
-        return "Probíhá"
-        break;
-      default:
-        return "Proběhlo"
-        break;
-    }
+    return "Právě Probíhá";
   }
   if (currentTime > endTime) {
-    switch (subject[subject.length - 1]) {
-      case 'a':
-        return "Proběhla"
-        break;
-
-      case 'y':
-        return "Proběhly"
-        break;
-
-      case 'ě':
-        return "Proběhly"
-        break;
-
-      default:
-        return "Proběhlo"
-        break;
-    }
-
+    return "Proběhlo";
   }
 }
 
