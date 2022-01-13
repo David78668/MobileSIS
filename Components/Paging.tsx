@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
   dotContainer: {
     width: '20%',
-    paddingVertical: (windowHeight * 0.337) / 13.54,
+    paddingVertical: windowHeight *  0.027,
   },
   dotStyle: {
 

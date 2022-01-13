@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontWeight: "700",
     color: "#FFFFFF",
-    fontSize: (windowHeight * 0.377) / 10,
+    fontSize: windowHeight * 0.037,
   },
 
   container: {
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E9671E',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    height: "37.7%",
+    height: windowHeight * 0.37,
   },
 
   contentHolder: {

@@ -10,7 +10,7 @@ import Profile from '../Pages/Profile';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-const navbarHeight = windowHeight / 10;
+const navbarHeight = windowHeight / 8;
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation() {
 
