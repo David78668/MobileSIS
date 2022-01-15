@@ -49,7 +49,6 @@ const CarouselCards = () => {
 
 const styles = StyleSheet.create({
   header: {
-    fontFamily: "SF Pro Text",
     flexDirection: 'row',
     width: '100%',
     marginBottom: 10,
