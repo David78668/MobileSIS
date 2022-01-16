@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <View>
       <CarouselCards/>
+      
       <HomeSwitchView/>
     </View>
   );

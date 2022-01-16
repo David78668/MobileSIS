@@ -107,13 +107,13 @@ const ProfileIco = ({ focused }: any) => {
 
 const styles = StyleSheet.create({
   Icon: {
-    width: navbarHeight / 3,
-    height: navbarHeight / 3,
+    width: windowWidth * 0.059,
+    height: windowWidth * 0.059,
   },
 
   Label: {
     width: "100%",
-    fontSize: navbarHeight / 5.5,
+    fontSize: 10,
   },
 
   IconContainer: {

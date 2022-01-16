@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
     container: {
     flexDirection:"row",
     height: containerHeight,
+    justifyContent:'space-around',
+    alignItems:'center',
     marginBottom:0,
     marginTop:'auto',
     borderRadius:10,
@@ -65,18 +67,17 @@ const styles = StyleSheet.create({
     },
 
     graphContainer:{
-      
+
       marginTop: 'auto',
       marginBottom: 'auto',
-      marginLeft: windowWidth*0.048,
-      marginRight: windowWidth*0.059,
-      width: containerHeight * 0.74,
-      height: containerHeight * 0.74,
+      
+      width: windowWidth * 0.288,
+      height: windowWidth * 0.288,
     },
     graphLegend:{
       borderRadius:containerHeight * 0.08 * 0.21,
-      width: containerHeight * 0.08,
-      height: containerHeight * 0.08,
+      width: windowWidth * 0.032,
+      height: windowWidth * 0.032,
       marginRight: windowWidth * 0.016,
       marginLeft:0,
     },
@@ -87,14 +88,13 @@ const styles = StyleSheet.create({
       backgroundColor:"white",
     },
     graphLabelText:{
-      fontSize: containerHeight * 0.096
+      fontSize: 14
     },
     graphLabelTextContainer:{
      
     },
     graphLegendContainer:{
-      marginLeft: 'auto',
-      marginRight: windowWidth * 0.085,
+      
       justifyContent:'space-around',
       
     },

@@ -5,19 +5,20 @@ const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 // Simply put, these are the dots under the carousel
-export default function CustomPaging({ data, activeSlide }: any) {
+export default function CustomPaging({ data, activeSlide, refC}: any) {
   const settings: any = {
     dotsLength: data.length,
     activeDotIndex: activeSlide,
     containerStyle: styles.dotContainer,
     dotContainerStyle: styles.dottingContainer,
     dotStyle: styles.dotStyle,
+    carouselRef: {refC},
     inactiveDotStyle: styles.inactiveDotStyle,
     inactiveDotOpacity: 1,
     inactiveDotScale: 1,
   };
   return (
-    <Pagination {...settings} />
+    <Pagination {...settings} tappableDots={true} />
   );
 }
 

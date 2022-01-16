@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
  },
   switches:{
     flexDirection: 'row',
-    height: windowHeight*0.027,
   },
   leftText:{
     marginLeft: windowWidth*0.059,
@@ -45,11 +44,10 @@ const styles = StyleSheet.create({
   },
 
   text:{
-    
     marginRight: windowWidth*0.043,
     fontWeight: 'bold',
     height: "100%",
-    fontSize: windowHeight*0.022,
+    fontSize: 18,
   }
 
 });

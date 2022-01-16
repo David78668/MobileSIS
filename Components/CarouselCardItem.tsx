@@ -19,14 +19,14 @@ function computeTime(time: string, lenght: number) {
     minutes -= 60
   }
   return (
-    `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes}`
+    `${hours}:${minutes < 10 ? "0" + minutes : minutes}`
   )
 }
 
 function labelChange(time: string, duration: number, subject: string) {
   let splitTime = time.split(':')
-  let hours = isNaN(Number(splitTime[0])) ? 0 : Number(splitTime[0]);
-  let minutes = isNaN(Number(splitTime[1])) ? 0 : Number(splitTime[1]);
+  let hours = Number(splitTime[0]);
+  let minutes = Number(splitTime[1]);
   let startTime = hours * 60 + minutes;
   let endTime = startTime + duration;
   let currentTime = date.getHours() * 60 + date.getMinutes();
@@ -45,7 +45,7 @@ const CarouselCardItem = ({ item, index }: any) => {
   return (
     <View style={styles.container} key={index}>
       <View style={styles.timeContainer}>
-        <Text style={styles.basicLabel}>{item.StartTime}</Text>
+        <Text style={[styles.basicLabel, {textAlign:'right'}]}>{item.StartTime[0] != 0 ? item.StartTime : item.StartTime.slice(1,5)}</Text>
         <Text style={styles.endTimeLabel}>{computeTime(item.StartTime, 45)}</Text>
       </View>
       <View style={styles.divider}></View>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     height: "61%",
     width: "1%",
     backgroundColor: "#DE6830",
-    marginRight: (windowWidth - 44) / 30.1,
+    marginRight: '3.3%',
   },
 
   paralel: {
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
   },
 
   container: {
-
     height: windowHeight * 0.377 * 0.5,
     alignItems: "center",
     justifyContent: "flex-start",
@@ -100,27 +99,23 @@ const styles = StyleSheet.create({
   },
 
   timeContainer: {
-    marginLeft: (windowWidth - 44) / 22.1,
-    marginRight: (windowWidth - 44) / 25.5,
-
+    marginLeft: '4.5%',
+    marginRight: '4%',
   },
 
   basicLabel: {
-    fontWeight: "500",
-    fontSize: (windowHeight * 0.377 * 0.5) / 9.20,
-    letterSpacing: -0.24,
-
+    textAlign:'left',
+    fontSize: 14,
   },
 
   subjectLabel: {
-    fontSize: (windowHeight * 0.377 * 0.5) / 6.14,
+    fontSize: 21,
     fontWeight: "600",
   },
 
   endTimeLabel: {
-    fontWeight: "500",
-    fontSize: (windowHeight * 0.377 * 0.5) / 9.20,
-    color: "#C7C7CC"
+    fontSize: 14,
+    color: "#C7C7CC",
   },
 
   cardBody: {
