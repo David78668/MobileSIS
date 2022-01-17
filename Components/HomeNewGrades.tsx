@@ -15,21 +15,21 @@ function daysInMonth (month:number, year:number) {
 
 function convertToDays(date:string) {
   let splitDate = date.split('-');
-  return Number(splitDate[0]) * 365 + daysInMonth(Number(splitDate[1]), Number(splitDate[0]) + Number(splitDate[2]))
+  let days1 = Number(splitDate[0]) * 365 + daysInMonth(Number(splitDate[1]), Number(splitDate[0]));
+  return Number(days1 + Number(splitDate[2]))
 }
 
 export default function HomeNewGrades() {
   let grades = [];
   let year = date.getFullYear() - 2000;
   let currentDate = convertToDays(`${year}-${date.getMonth()}-${date.getDate()}`);
-  let keys = 0;
   for(let i = 0; i < data.Subjects.length; i++){
       for(let k=0; k < data.Subjects[i].Marks.length; k++){
-        if(currentDate - convertToDays(data.Subjects[i].Marks[k].Date) < 48){
+        if(currentDate - convertToDays(data.Subjects[i].Marks[k].Date) < 2){
           grades.push(HomeNewGradeBox({
             subjectName:data.Subjects[i].ShortName,
             grade:String(data.Subjects[i].Marks[k].Value),
-            date:data.Subjects[i].Marks[k].Date,
+            date:String(data.Subjects[i].Marks[k].Date),
           }));
         }
     }
