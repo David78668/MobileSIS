@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
-import CustomTabNavigation from './Components/CustomNavbar';
+import CustomTabNavigation from './components/CustomNavbar';
 
 
 

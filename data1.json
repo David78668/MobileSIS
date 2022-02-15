@@ -1,0 +1,52 @@
+{
+    "Subjects":[
+        {
+            "Id":2,
+            "Name":"Matematika",
+            "ShortName":"MAT",
+            "Teacher":"Zlata Karpiskova",
+            "TeacherShortName":"KR",
+            "Marks":[
+                {
+                    "Id":2,
+                    "Date":"22-12-4",
+                    "Value":5,
+                    "Weight":10,
+                    "Type":"Z",
+                    "Name":"Pisemka",
+                    "Comment":"Comment",
+                    "AverageClassMark": 2.3
+                },
+		{
+                    "Id":5,
+                    "Date":"21-12-5",
+                    "Value":1,
+                    "Weight":10,
+                    "Type":"Z",
+                    "Name":"Oprava písemky",
+                    "Comment":"Moc mu to šlo",
+                    "AverageClassMark": 1
+                }
+            ]
+        },
+	{
+            "Id":3,
+            "Name":"Elektrotechnická zařízení",
+            "ShortName":"ELZ",
+            "Teacher":"Jiří Špičan",
+            "TeacherShortName":"ŠP",
+            "Marks":[
+                {
+                    "Id":5,
+                    "Date":"22-11-23",
+                    "Value":3,
+                    "Weight":10,
+                    "Type":"Z",
+                    "Name":"Pisemka",
+                    "Comment":"Neslo mu to",
+                    "AverageClassMark": 2.4
+                }
+            ]
+        }
+    ]
+}

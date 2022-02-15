@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeIcon, ScheduleIcon, GradesIcon, AbsenceIcon, ProfileIcon } from '../assets/navbarIcons';
-import Home from '../Pages/Home';
+import Home from '../pages/Home';
 import React from 'react';
-import Schedule from '../Pages/Schedule';
-import Grades from '../Pages/Grades';
-import Absence from '../Pages/Absence';
-import Profile from '../Pages/Profile';
+import Schedule from '../pages/Schedule';
+import Grades from '../pages/Grades';
+import Absence from '../pages/Absence';
+import Profile from '../pages/Profile';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;

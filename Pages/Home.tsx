@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import HomeAbsence from '../Components/HomeAbsence';
-import HomeSwitchView from '../Components/HomeSwitchView';
-import CarouselCards from '../Components/NextSubjectCarousel';
-import ScheduleChanges from '../Components/ScheduleChanges';
+import HomeAbsence from '../components/HomeAbsence';
+import HomeSwitchView from '../components/HomeSwitchView';
+import CarouselCards from '../components/NextSubjectCarousel';
+import ScheduleChanges from '../components/ScheduleChanges';
 
 
 export default function Home() {
