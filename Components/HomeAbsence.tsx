@@ -19,7 +19,6 @@ export default function HomeAbsence() {
           <DonutChart attended={attended} missed={missed} notExcused={notExcused}/>
         </View>
       </View>
-      
       <View style={styles.graphLegendContainer}>
         <View style={styles.graphLabel}>
           <View style={[styles.graphLegend, {backgroundColor:'#DE6830'}]}></View>
@@ -43,7 +42,6 @@ export default function HomeAbsence() {
           </View>
         </View>                      
       </View>
-      
     </View>
   );
 }
@@ -63,7 +61,6 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 0},
     shadowRadius: 10,
     shadowOpacity: 1,
-    elevation:1,
     },
 
     graphContainer:{

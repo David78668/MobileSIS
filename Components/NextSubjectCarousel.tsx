@@ -13,6 +13,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const date = new Date();
 
+
 function getCurrentClass(duration: number, data:any) {
  
   for(let i = 0; i < data.length; i++){
@@ -38,7 +39,6 @@ const CarouselCards = () => {
   };
   const days = ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", ]
   const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"]
-  
   const c = useRef(null);
   const index = getCurrentClass(45, schedule);
 

@@ -1,0 +1,52 @@
+{
+    "Subjects":[
+        {
+            "Id":2,
+            "Name":"Matematika",
+            "ShortName":"MAT",
+            "Teacher":"Zlata Karpiskova",
+            "TeacherShortName":"KR",
+            "Marks":[
+                {
+                    "Id":2,
+                    "Date":"22-01-16",
+                    "Value":2,
+                    "Weight":1,
+                    "Type":"Z",
+                    "Name":"Pisemka",
+                    "Comment":"Comment",
+                    "AverageClassMark": 2.3
+                },
+                {
+                    "Id":3,
+                    "Date":"22-01-13",
+                    "Value":1,
+                    "Weight":1,
+                    "Type":"Z",
+                    "Name":"Pisemka",
+                    "Comment":"Comment",
+                    "AverageClassMark": 2.3
+                }
+            ]
+        },
+        {
+            "Id":3,
+            "Name":"Základy Elektrotechniky",
+            "ShortName":"ZEL",
+            "Teacher":"Jiří Špičan",
+            "TeacherShortName":"SP",
+            "Marks":[
+                {
+                    "Id":2,
+                    "Date":"22-01-14",
+                    "Value":5,
+                    "Weight":10,
+                    "Type":"Z",
+                    "Name":"Pisemka",
+                    "Comment":"Comment",
+                    "AverageClassMark": 2.3
+                }
+            ]
+        }
+    ]
+}

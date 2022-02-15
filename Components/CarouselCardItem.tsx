@@ -16,7 +16,7 @@ function computeTime(time: string, lenght: number) {
   minutes += lenght;
   while (minutes >= 60) {
     hours++;
-    minutes -= 60
+    minutes -= 60;
   }
   return (
     `${hours}:${minutes < 10 ? "0" + minutes : minutes}`
