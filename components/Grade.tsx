@@ -13,13 +13,13 @@ export default function App(item:any) {
         if (select) {
             return (
                 <View>
-                    {item.Marks.map((item:any) => (
+                    {item.map((item:any) => (
                         <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingTop:1,paddingRight:5}}>
-                            <View style={{backgroundColor:"#EB7221",height:55,width:55,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:30,color:'white'}}>{item.Value}</Text></View>
-                            <Text>{item.Name}</Text>
+                            <View style={{backgroundColor:"#EB7221",height:55,width:55,justifyContent:'center',alignItems:'center'}}><Text style={{fontSize:30,color:'white'}}>{item.value}</Text></View>
+                            <Text>{item.comment}</Text>
                             <View style={{flexDirection:'column'}}>
-                                <Text style={{fontSize:20}}>{toDate(item.Date)}</Text>
-                                <Text style={{textAlign:'center',color:'#EB7221'}}>Váha: {item.Weight}</Text>
+                                <Text style={{fontSize:20}}>{toDate(item.date)}</Text>
+                                <Text style={{textAlign:'center',color:'#EB7221'}}>Váha: {item.weight}</Text>
                             </View>
                         </View>
                     ))

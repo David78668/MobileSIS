@@ -7,6 +7,7 @@ import Schedule from '../pages/Schedule';
 import Grades from '../pages/Grades';
 import Absence from '../pages/Absence';
 import Profile from '../pages/Profile';
+import Login from '../pages/Login';
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -21,7 +22,8 @@ export default function CustomTabNavigation() {
         height: navbarHeight,
       }
     }} >
-      <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIco }} />
+      {/*<Tab.Screen name="Login" component={Login} options={{ headerShown:false}} />
+      <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIco }} />*/}
       <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIco }} />
       <Tab.Screen name="Grades" component={Grades} options={{ tabBarIcon: GradesIco }} />
       <Tab.Screen name="Absence" component={Absence} options={{ tabBarIcon: AbsenceIco }} />

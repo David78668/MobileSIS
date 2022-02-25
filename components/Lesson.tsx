@@ -7,25 +7,25 @@ export default function App(item:any) {
 return (
 <View style={styles.change}>
         <View style={styles.changeleft}>
-            <Text style={styles.classstart}>{item.StartTime}</Text>
-            <Text style={styles.classend}>{item.StartTime}</Text>
+            <Text style={styles.classstart}>{item.date}</Text>
+            <Text style={styles.classend}>{item.date}</Text>
         </View>
 
         <View style={styles.changeright}>
             <View style={styles.top}>            
-            <Text style={styles.lesson}>{item.ShortName}</Text>
+            <Text style={styles.lesson}>{item.subject.name}</Text>
         </View>
 
         
         <View style={styles.bottom}>
             <View style={styles.classroom}>
             <Ionicons color="#DE6830" size={15} name="easel"></Ionicons>
-            <Text style={styles.classroomtext}>{item.Classroom}</Text>
+            <Text style={styles.classroomtext}>{item.classroom}</Text>
             </View>
 
             <View style={styles.teacher}>
                 <Ionicons color="#DE6830" size={15} name="person-circle"></Ionicons>
-                <Text style={styles.teachertext}>{item.Teacher}</Text>
+                <Text style={styles.teachertext}>{item.subject.teacher.shortName}</Text>
             </View>
         </View>
         </View>
