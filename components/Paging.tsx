@@ -4,43 +4,39 @@ import { StyleSheet, Dimensions } from 'react-native';
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
-// Simply put, these are the dots under the carousel
-export default function CustomPaging({ data, activeSlide, refC}: any) {
-  const settings: any = {
-    dotsLength: data.length,
-    activeDotIndex: activeSlide,
-    containerStyle: styles.dotContainer,
-    dotContainerStyle: styles.dottingContainer,
-    dotStyle: styles.dotStyle,
-    carouselRef: {refC},
-    inactiveDotStyle: styles.inactiveDotStyle,
-    inactiveDotOpacity: 1,
-    inactiveDotScale: 1,
-  };
-  return (
-    <Pagination {...settings} tappableDots={true} />
-  );
+export default function CustomPaging({ data, activeSlide, refC }: any) {
+	const settings: any = {
+		dotsLength: data.length,
+		activeDotIndex: activeSlide,
+		containerStyle: styles.dotContainer,
+		dotContainerStyle: styles.dottingContainer,
+		dotStyle: styles.dotStyle,
+		carouselRef: { refC },
+		inactiveDotStyle: styles.inactiveDotStyle,
+		inactiveDotOpacity: 1,
+		inactiveDotScale: 1,
+	};
+	return (
+		<Pagination {...settings} tappableDots={true} />
+	);
 }
 
 const styles = StyleSheet.create({
-  dottingContainer: {
-    marginHorizontal: windowWidth / 187.5,
-  },
-
-  dotContainer: {
-    width: '20%',
-    paddingVertical: windowHeight *  0.027,
-  },
-  dotStyle: {
-
-    width: (windowHeight * 0.337) / 50,
-    height: (windowHeight * 0.337) / 50,
-    backgroundColor: '#FFFFFF',
-  },
-  inactiveDotStyle: {
-    width: (windowHeight * 0.337) / 50,
-    height: (windowHeight * 0.337) / 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
-  },
+	dottingContainer: {
+		marginHorizontal: windowWidth / 187.5,
+	},
+	dotContainer: {
+		width: '20%',
+		paddingVertical: windowHeight * 0.027,
+	},
+	dotStyle: {
+		width: (windowHeight * 0.337) / 50,
+		height: (windowHeight * 0.337) / 50,
+		backgroundColor: '#FFFFFF',
+	},
+	inactiveDotStyle: {
+		width: (windowHeight * 0.337) / 50,
+		height: (windowHeight * 0.337) / 50,
+		backgroundColor: 'rgba(255, 255, 255, 0.5)',
+	},
 })
-
