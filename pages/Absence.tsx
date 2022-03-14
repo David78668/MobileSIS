@@ -1,14 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import Heading from '../components/Heading';
 
 export default function Absence() {
   return (
     <View style={styles.container}>
-        <ImageBackground source={require('../assets/carousel.png')} resizeMode="cover" style={styles.profileContainer}>
-        <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>Absence</Text>
-        </View>
-        </ImageBackground>
+        <Heading headerText='Absence'/>
     </View>
   );
 }
@@ -34,9 +31,7 @@ const styles = StyleSheet.create({
     },
     headerContainer:{
       flexDirection:'row',
-      justifyContent:'space-between',
       width:'88%',
-      
     },
   });
 

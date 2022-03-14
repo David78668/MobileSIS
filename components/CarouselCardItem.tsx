@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
 
   container: {
-    height: windowHeight * 0.377 * 0.5,
+    height: 130,
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: 'row',

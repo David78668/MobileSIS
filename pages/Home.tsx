@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import Heading from '../components/Heading';
 import HomeAbsence from '../components/HomeAbsence';
 import HomeSwitchView from '../components/HomeSwitchView';
 import CarouselCards from '../components/NextSubjectCarousel';

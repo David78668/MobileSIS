@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+
+const windowHeight = Dimensions.get('window').height;
 
 interface ProfileBoxProps {
     FirstName:string,
@@ -23,16 +25,13 @@ export default function ProfileBox(props:ProfileBoxProps){
 }
 
 const styles = StyleSheet.create({
-   
-   
     profileBox:{
-      marginTop:'4%',
       backgroundColor:'white',
       justifyContent:'center',
       alignItems:'center',
       borderRadius:10,
-      width:'88%',
-      height:'62.5%',
+      width:Dimensions.get('window').width * 0.88,
+      height: Dimensions.get('window').height * 0.257,
     },
     profilePicture:{
       height:60,

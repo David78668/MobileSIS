@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import Heading from '../components/Heading';
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground,Dimensions} from 'react-native';
 import Grade from '../components/Grade';
@@ -8,9 +9,7 @@ export default function App() {
 
   return (
     <View>
-            <ImageBackground source={require('../assets/carousel.png')} resizeMode="cover" style={styles.image}>
-              <Text style={{color:'white',fontSize:25,fontWeight:'700'}}>Známky</Text>
-            </ImageBackground>
+        <Heading headerText='Známky'/>
         <View style={{alignItems:'center'}}>
         {Grade(data.Subjects[0])}
         {Grade(data.Subjects[1])}

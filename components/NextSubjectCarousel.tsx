@@ -5,6 +5,7 @@ import { Text } from 'react-native'
 import Carousel, { CarouselProperties } from 'react-native-snap-carousel'
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCardItem'
 import { Dimensions } from 'react-native'
+import Heading from './Heading'
 import data from '../data.json'
 
 let schedule = data.Days[0].Lessons;
@@ -41,12 +42,11 @@ const CarouselCards = () => {
   const months = ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"]
   const c = useRef(null);
   const index = getCurrentClass(45, schedule);
-
+  
   return (
-    <ImageBackground source={require("../assets/carousel.png")} resizeMode='cover' style={styles.container}>
-      <View style={styles.contentHolder}>
-        <Text style={styles.header}>{days[date.getDay()]}, {date.getDate()}. {months[date.getMonth()]}</Text>
-        <Carousel
+      <Heading headerText={`${days[date.getDay()]}, ${date.getDate()}. ${months[date.getMonth()]}`}
+      style={{justifyContent:'center', alignItems:'center'}}>
+         <Carousel
           layout="stack"
           layoutCardOffset={0}
           ref={c}
@@ -56,41 +56,20 @@ const CarouselCards = () => {
           itemWidth={ITEM_WIDTH}
           inactiveSlideShift={0}
           firstItem={currentIndex}
+          containerCustomStyle={styles.CarouselContainer}
           useScrollView={true}
-          
           {...settings}
         />
-      </View>
-      <CustomPaging data={schedule} activeSlide={currentIndex}/>
-    </ImageBackground>
+        <CustomPaging data={schedule} activeSlide={currentIndex}/>
+      </Heading>
+   
   )
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    width: '100%',
-    marginBottom: 10,
-    fontWeight: "700",
-    color: "#FFFFFF",
-    fontSize: 21,
+  CarouselContainer:{
+    flexGrow: 0,
   },
-
-  container: {
-    opacity: 15,
-    width: "100%",
-    backgroundColor: '#E9671E',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    height: windowHeight * 0.37,
-  },
-
-  contentHolder: {
-    width: windowWidth - 44,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  }
-
 });
 
 export default CarouselCards
