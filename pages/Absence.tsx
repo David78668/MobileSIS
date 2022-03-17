@@ -1,19 +1,17 @@
 import React from 'react';
 import { StyleSheet, View, } from 'react-native';
+import Container from '../components/Container';
 import Heading from '../components/Heading';
 
 export default function Absence() {
 	return (
-		<View style={styles.container}>
+		<Container>
 			<Heading headerText='Absence' />
-		</View>
+		</Container>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
 	headerText: {
 		fontSize: 30,
 		color: 'white',

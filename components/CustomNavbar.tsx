@@ -9,7 +9,7 @@ import Absence from '../pages/Absence';
 import Profile from '../pages/Profile';
 
 const windowWidth = Dimensions.get('window').width;
-const navbarHeight = 65;
+export const navbarHeight = 65;
 const Tab = createBottomTabNavigator();
 
 export default function CustomTabNavigation() {

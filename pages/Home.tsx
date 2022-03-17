@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, } from 'react-native';
+import Container from '../components/Container';
 import HomeSwitchView from '../components/HomeSwitchView';
 import CarouselCards from '../components/NextSubjectCarousel';
 import ScheduleChanges from '../components/ScheduleChanges';
@@ -7,19 +8,10 @@ import ScheduleChanges from '../components/ScheduleChanges';
 
 export default function Home() {
 	return (
-		<View>
+		<Container>
 			<CarouselCards />
 			<ScheduleChanges />
 			<HomeSwitchView />
-		</View>
+		</Container>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 50
-	},
-});

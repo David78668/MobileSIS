@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Heading from '../components/Heading';
+import Container from '../components/Container';
 import { userid, bareer } from "../components/Token";
 
 export default function Schedule() {
@@ -14,7 +15,7 @@ export default function Schedule() {
 	}
 	const [page, setPage] = React.useState(0);
 	return (
-		<View style={styles.container}>
+		<Container style={styles.container}>
 			<Heading headerText='Rozvrh'>
 				{/*
            		{data.map((item:any,index:number) => 
@@ -36,13 +37,12 @@ export default function Schedule() {
         			))}*/}
 				</ScrollView>
 			</View>
-		</View>
+		</Container>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
 		backgroundColor: '#e5e5e5',
 	},
 	image: {

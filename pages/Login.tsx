@@ -16,7 +16,7 @@ const redirectUri = AuthSession.makeRedirectUri({
 
 
 
-export default function App({ navigation }) {
+export default function App({ navigation }:any) {
 	const discovery = {
 		authorizationEndpoint: "https://auth.kyberna.cz/connect/authorize",
 		tokenEndpoint: "https://auth.kyberna.cz/connect/token",

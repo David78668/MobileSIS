@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, } from 'react-native';
 import Heading from '../components/Heading';
+import Container from '../components/Container';
 import HomeSwitchView from '../components/HomeSwitchView';
 import ProfileBox from '../components/ProfileBox';
 
 export default function Profile() {
 	return (
-		<View style={styles.container}>
+		<Container>
 			<Heading headerText='Profil' iconName='settings-sharp' style={styles.headerContainer}>
 				<ProfileBox
 					FirstName='Jakub'
@@ -16,14 +17,12 @@ export default function Profile() {
 			<View style={styles.switchHolder}>
 				<HomeSwitchView />
 			</View>
-		</View>
+		</Container>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
+
 	headerContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
