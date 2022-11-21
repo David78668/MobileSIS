@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, ViewStyle} from 'react-native';
-import { Shadow } from 'react-native-shadow-2';
 
 interface FancyBoxProps {
 	children?: React.ReactNode,

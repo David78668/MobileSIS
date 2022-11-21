@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground, ViewStyle } from "react-native";
+import { View, Text, StyleSheet, ViewStyle, Platform } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface HeadingProps {
 	headerText: string,
@@ -10,36 +11,35 @@ interface HeadingProps {
 
 export default function Heading(props: HeadingProps) {
 	return (
-		<ImageBackground source={require('../../assets/carousel.png')} resizeMode="cover" style={styles.container}>
+		<SafeAreaView style={styles.background}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.headerText}>{props.headerText}</Text>
 				{props.headerComponent}
 			</View>
+
 			<View style={props.style}>
 				{props.children}
 			</View>
-		</ImageBackground>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		minWidth: '100%',
-		alignItems: 'center',
-		paddingTop: 35,
+	background: {
+		backgroundColor: '#E9671E',
+		paddingHorizontal: 22,
+		paddingTop: 40,
+		paddingBottom: Platform.OS == 'android' ? 20 : 0
 	},
 	headerText: {
 		fontSize: 30,
 		color: 'white',
-		fontWeight: 'bold',
-		marginLeft: 22,
+		fontWeight: '900'
 	},
 	headerContainer: {
-		paddingBottom: '4%',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		flexWrap: 'nowrap',
 		width: '100%',
-	},
-	
+	}
 })

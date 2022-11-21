@@ -16,10 +16,12 @@ interface HomeAbsenceProps {
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
 	const colors = props.chartColors != null ?
-	props.chartColors : {attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E"}
+		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" }
+	
 	const attended = props.absence.attended;
 	const missed = props.absence.missed;
 	const notExcused = props.absence.notExcused;
+
 	return (
 	<FancyBox style={[styles.container]}>
 			<View>
@@ -27,6 +29,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 					<DonutChart absence={props.absence} chartColors={colors}/>
 				</View>
 			</View>
+
 			<View style={styles.graphLegendContainer}>
 				<View style={styles.graphLabel}>
 					<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
@@ -61,10 +64,9 @@ const styles = StyleSheet.create({
 		height: containerHeight,
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		marginBottom: 0,
-		marginTop: 'auto',
+		marginTop: 10,
 		borderRadius: 10,
-		marginHorizontal: "5.9%",
+		marginHorizontal: 20,
 		backgroundColor: 'white',
 		shadowColor: 'rgba(0, 0, 0, 0.1)',
 		shadowOffset: { width: 0, height: 0 },

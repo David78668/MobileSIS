@@ -5,10 +5,12 @@ import ScheduleChangeBox from './ScheduleChangeBox';
 
 export default function ScheduleChanges() {
 	const data = require("../../../assets/testData.json");
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>2 změny v rozvrhu</Text>
-			<ScrollView horizontal showsHorizontalScrollIndicator={false}>
+			
+			<ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.changes}>
 				{data.Days[0].Lessons.map((item: any) => (
 					item.LessonType == "LessonChanged" ?
 						<ScheduleChangeBox
@@ -24,12 +26,13 @@ export default function ScheduleChanges() {
 
 const styles = StyleSheet.create({
 	container: {
-		height: 180,
-		marginLeft: "5.9%",
+		padding: 20
 	},
 	title: {
-		marginTop: 15,
-		fontWeight: '600',
+		fontWeight: 'bold',
 		fontSize: 18,
 	},
+	changes: {
+		marginTop: 10
+	}
 });
