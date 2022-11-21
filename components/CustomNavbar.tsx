@@ -13,7 +13,6 @@ import FirstPage from '../pages/AAFirstPage';
 const windowWidth = Dimensions.get('window').width;
 export const navbarHeight = 65;
 const Tab = createBottomTabNavigator();
-
 export default function CustomTabNavigation() {
     return (
         <Tab.Navigator screenOptions={{

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native';
 import Heading from '../components/general/Heading';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
@@ -9,13 +9,17 @@ import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import ProfileBox from '../components/profile/ProfileBox';
 import * as SecureStore from 'expo-secure-store';
+import FetchData from '../tools/ApiRequest';
 import { Ionicons } from "@expo/vector-icons";
 
 export default function Profile() {
 	const [data, setData] = useState<any>();
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
-	let GetProfileInfo = async () => {
+	const [Absence, setAbsence] = useState<any>();
+	const [AbsenceLoaded, setAbsenceLoaded] = useState(false);
+	const [AbsenceError, setAbsenceError] = useState(false);
+	/*let GetProfileInfo = async () => {
 		fetch('https://api.sis.kyberna.cz/api/user', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
 		  .then(res => {return(res.json())})
 		  .then(
@@ -32,9 +36,33 @@ export default function Profile() {
 				setLoaded(true);
 			}
 		)
+	}*/
+	let GetAbsenceInfo = async () => {
+		fetch('https://api.sis.kyberna.cz/api/absence/stats', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
+		  .then(res => {return(res.json())})
+		  .then(
+			(result) => {
+				//console.log(result);
+				setAbsence(result);
+				//alert(result[0].name);
+			},
+			
+			(error) => {
+				//alert(error);
+				setAbsenceError(true);
+				setAbsenceLoaded(true);
+			}
+		)
 	}
 	useEffect(() => {
-		GetProfileInfo();
+		//GetProfileInfo();
+		FetchData({
+			requestUrl: "https://api.sis.kyberna.cz/api/user",
+			setDataFunction: setData,
+			setLoadedFunction: setLoaded,
+			setErrorFunction: setError
+		});
+		GetAbsenceInfo();
 	  }, []) 
 	return (
 		<Container>
@@ -49,10 +77,12 @@ export default function Profile() {
 				
 			</Heading>
 			<Body>
+			{error == false && loaded == true && 
 			<HomeSwitchView 
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{attended:400, missed:32, notExcused: 5}}/>, <HomeNewGrades/>]}
+					components={[<HomeAbsence absence={{attended:Absence.lessons, missed:Absence.missedLessons, notExcused: Absence.unexcusedLessons}}/>, <HomeNewGrades/>]}
 				/>
+			}
 			</Body>
 		</Container>
 	);
