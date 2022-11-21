@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, SafeAreaView, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
 import Heading from '../components/general/Heading';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as AuthSession from 'expo-auth-session';
@@ -6,7 +6,7 @@ import * as WebBrowser from 'expo-web-browser';
 import * as SecureStore from 'expo-secure-store';
 import React from 'react';
 import { bareer } from "../components/Token"
-//import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 WebBrowser.maybeCompleteAuthSession();
 

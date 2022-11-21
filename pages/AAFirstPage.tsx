@@ -8,7 +8,7 @@ export default function DefaultPage({ navigation }: any) {
     var dateexp = new Date(Number(jwtexpiration) * 1000);
     if (dateexp !== null) {
         if (dateexp) {
-            navigation.navigate("Home");
+            navigation.navigate("Login");
         }
     } else {
         navigation.navigate("Home");
