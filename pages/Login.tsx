@@ -60,6 +60,8 @@ export default function App({ navigation }: any) {
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.content}>
+
+                {/* Headings and illustration */}
                 <View style={{alignItems: 'center'}}>
                     <View style={styles.header}>
                         <Image source={require('../assets/logo_white.png')} style={{height: 25, width: 30}} />
@@ -72,21 +74,14 @@ export default function App({ navigation }: any) {
                     <Text style={styles.paragraph}>Tato aplikace zahrnuje Váš týdenní rozvrh, průběžné známky, absenci nebo jiné ruzné statistiky. Pokračujte s přihlášením níže.</Text>
                 </View>
 
-                <View>
-                    <View style={{ alignItems: 'center', paddingTop: 30 }}>{LoginButton()}</View>
-                </View>
+                {/* Log in button */}
+                <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
+                    <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
+                    <Text style={{ fontWeight: '600', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
-
-    function LoginButton() {
-        return (
-            <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
-                <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
-                <Text style={{ fontWeight: '600', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
-            </TouchableOpacity>
-        );
-    }
 }
 
 const styles = StyleSheet.create({

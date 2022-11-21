@@ -13,7 +13,8 @@ import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 export default function Home() {
 	return (
 		<Container>
-			<Heading headerText='Home'/>
+			<Heading headerText='Home' />
+			
 			<Body>
 				<ScheduleChanges />
 				<HomeSwitchView 

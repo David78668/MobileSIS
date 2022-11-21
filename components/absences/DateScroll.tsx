@@ -12,18 +12,20 @@ export default function Datescroll() {
     <View style={styles.dateWrapper}>
     	<TouchableWithoutFeedback onPress={() => currentDate > 0 ? SetCurrentDate(currentDate - 1):null}>
     		<View style={styles.arrowWrapper}>
-          		<Ionicons  color="white" size={20} name="chevron-back-outline"></Ionicons>
-        	</View>
-		</TouchableWithoutFeedback>
-      	<View style={styles.datetextWrapper}>
+          <Ionicons  color="white" size={20} name="chevron-back-outline"></Ionicons>
+        </View>
+      </TouchableWithoutFeedback>
+      
+      <View style={styles.datetextWrapper}>
         	<Text style={styles.headerDate}>{dates[currentDate]}</Text>
-		</View>
-      	<TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? SetCurrentDate(currentDate + 1):null}>
-        	<View style={styles.arrowWrapper}>
-        		<Ionicons  color="white" size={20} name="chevron-forward-outline"></Ionicons>
-      		</View>
-    	</TouchableWithoutFeedback>
-	</View>
+      </View>
+        
+      <TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? SetCurrentDate(currentDate + 1):null}>
+        <View style={styles.arrowWrapper}>
+          <Ionicons  color="white" size={20} name="chevron-forward-outline"></Ionicons>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
@@ -33,22 +35,18 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
-	alignSelf:'flex-end',
+	  alignSelf:'flex-end',
   },
-
   arrowWrapper: {
-	justifyContent:'center',
-	padding:'4%',
-	paddingHorizontal:'2%',
+	  justifyContent:'center',
+	  padding:'4%',
   },
-
   datetextWrapper: {
     alignItems:'center',
     flex:1,
   },
-
   headerDate: {
-    fontSize:21,
+    fontSize:17,
     color:'white',
     fontWeight:'500',
     padding:0,

@@ -30,12 +30,11 @@ export default function HomeSwitchView(props: HomeSwitchViewProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		height: viewHeight,
-		marginVertical: 15,
+		marginTop: 20
 	},
 	switches: {
 		flexDirection: 'row',
-		marginLeft: windowWidth * 0.059,
+		paddingHorizontal: 20,
 	},
 	textActive: {
 		color: '#050505',

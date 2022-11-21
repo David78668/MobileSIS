@@ -7,10 +7,10 @@ interface BodyProps {
 	style?: ViewStyle | Array<ViewStyle>,
 }
 
-export default function Body(props:BodyProps){
+export default function Body(props: BodyProps){
 	return(
 		<ScrollView
-		contentContainerStyle = {{flexGrow:1, paddingBottom: navbarHeight}}
+		contentContainerStyle = {{flexGrow:1}}
 		style={StyleSheet.compose({ flexGrow:1, overflow:'scroll'}, props.style)}>
 			{props.children}
 		</ScrollView>
