@@ -1,20 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
-import Heading from '../components/general/Heading';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Animated } from "react-native";
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import * as SecureStore from 'expo-secure-store';
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { bareer } from "../components/Token"
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Ionicons, Feather } from "@expo/vector-icons";
 
 WebBrowser.maybeCompleteAuthSession();
 
 const useProxy = false;
 
-const redirectUri = AuthSession.makeRedirectUri({
-    useProxy,
-});
+const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 export default function App({ navigation }: any) {
     navigation.setOptions({ tabBarStyle: { display: 'none' } });
@@ -33,7 +30,7 @@ export default function App({ navigation }: any) {
             scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
     }, discovery);
     
-    React.useEffect(() => {
+    useEffect(() => {
         async function getToken() {
             if (result && result.type === 'success') {
 
@@ -57,28 +54,49 @@ export default function App({ navigation }: any) {
         getToken();
     }, [result])
     
+    const [fade1] = useState(new Animated.Value(0));
+    const [fade2] = useState(new Animated.Value(0));
+    const [fade3] = useState(new Animated.Value(0));
+    const [fade4] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        Animated.timing(fade1, { toValue: 1, duration: 1000, useNativeDriver: true }).start();
+        Animated.timing(fade2, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 500 }).start();
+        Animated.timing(fade3, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 1000 }).start();
+        Animated.timing(fade4, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 1500 }).start();
+    }, []);
+
     return (
         <SafeAreaView style={styles.background}>
             <View style={styles.content}>
 
                 {/* Headings and illustration */}
                 <View style={{alignItems: 'center'}}>
-                    <View style={styles.header}>
+                    <Animated.View style={{ ...styles.header, opacity: fade1 }}>
                         <Image source={require('../assets/logo_white.png')} style={{height: 25, width: 30}} />
                         <Text style={styles.heading}>Kyberna</Text>
-                    </View>
+                    </Animated.View>
 
-                    <Image source={require('../assets/illustration.png')} style={styles.illustration} />
+                    <Animated.Image source={require('../assets/illustration.png')} style={{ ...styles.illustration, opacity: fade2 }} />
 
-                    <Text style={styles.subheading}>Vítejte v aplikaci školy Kyberna</Text>
-                    <Text style={styles.paragraph}>Tato aplikace zahrnuje Váš týdenní rozvrh, průběžné známky, absenci nebo jiné ruzné statistiky. Pokračujte s přihlášením níže.</Text>
+                    <Animated.View style={{ opacity: fade3, paddingHorizontal: 40, alignItems: 'center' }}>
+                        <Text style={styles.subheading}>Vítejte v aplikaci školy Kyberna</Text>
+                        <Text style={styles.paragraph}>Tato aplikace zahrnuje Váš týdenní rozvrh, průběžné známky, absenci nebo statistiky.</Text>
+                        
+                        <View style={styles.loginBelow}>
+                            <Text style={styles.paragraph}>Pokračujte s přihlášením níže</Text>
+                            <Feather name='chevron-right' size={16} color={'white'} style={{ opacity: 0.8, marginLeft: 3 }} />
+                        </View>
+                    </Animated.View>    
                 </View>
 
                 {/* Log in button */}
-                <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
-                    <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
-                    <Text style={{ fontWeight: '600', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
-                </TouchableOpacity>
+                <Animated.View style={{ opacity: fade4 }}>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
+                        <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
+                        <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
+                    </TouchableOpacity>
+                </Animated.View>
             </View>
         </SafeAreaView>
     );
@@ -104,15 +122,13 @@ const styles = StyleSheet.create({
     subheading: {
         color: 'white',
         marginTop: 80,
-        paddingHorizontal: 40,
-        fontWeight: '700',
+        marginBottom: 10,
+        fontWeight: '800',
         fontSize: 20,
         textAlign: 'center'
     },
     paragraph: {
         color: 'white',
-        marginTop: 10,
-        paddingHorizontal: 40,
         opacity: 0.8,
         textAlign: 'center'
     },
@@ -132,5 +148,11 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: 300,
         marginTop: 50
+    },
+    loginBelow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20,
+        opacity: 0.5
     }
 });
