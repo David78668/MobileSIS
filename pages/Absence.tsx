@@ -41,5 +41,11 @@ const styles = StyleSheet.create({
 	graphContainer: {
 		marginTop: 10,
 		marginBottom: 20
+	},
+	absenceBoxContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 10,
+		marginBottom: 20
 	}
 });

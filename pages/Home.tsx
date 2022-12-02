@@ -12,7 +12,6 @@ import moment from 'moment';
 import "moment/locale/cs";
 
 export default function Home() {
-	
 	// date
 	moment.locale('cs');
 	const format = moment().format('dddd, D. MMMM').toString();

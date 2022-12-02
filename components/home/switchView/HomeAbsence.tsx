@@ -69,7 +69,10 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1
 	},
 	graphContainer: {
+		marginTop: 'auto',
+		marginBottom: 'auto',
 		width: 100
+
 	},
 	graphLegend: {
 		borderRadius: 3,
