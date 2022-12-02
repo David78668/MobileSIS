@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import Body from '../components/general/Body';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
@@ -15,16 +14,13 @@ import "moment/locale/cs";
 export default function Home() {
 	// date
 	moment.locale('cs');
-	const date = moment().format('dddd, DD. MMM.');
+	const format = moment().format('dddd, D. MMMM').toString();
+	const date = format[0].toUpperCase() + format.slice(1);
 
 	return (
 		<Container>
-			<Heading headerText={date.toString()}>
-			{/* <ScrollView style={{height:50, backgroundColor:'red'}}>
-			<Text> Test </Text>
-			</ScrollView> */}
-			<Carousel/>
-			</Heading>
+			<Heading headerText={date} />
+			
 			<Body>
 				<ScheduleChanges />
 				<HomeSwitchView 
