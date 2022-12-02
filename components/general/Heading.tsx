@@ -28,14 +28,13 @@ const styles = StyleSheet.create({
 	background: {
 		backgroundColor: '#E9671E',
 		paddingHorizontal: 22,
-		paddingTop: 40,
-		paddingBottom: Platform.OS == 'android' ? 20 : 0
+		paddingTop: 20,
+		paddingBottom: Platform.OS == 'android' ? 10 : 0
 	},
 	headerText: {
 		fontSize: 30,
 		color: 'white',
-		fontWeight: '900',
-		textTransform: 'capitalize'
+		fontWeight: '900'
 	},
 	headerContainer: {
 		flexDirection: 'row',

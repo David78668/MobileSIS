@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeIcon, ScheduleIcon, GradesIcon, AbsenceIcon, ProfileIcon } from '../assets/navbarIcons';
 import Home from '../pages/Home';
@@ -12,13 +12,15 @@ import FirstPage from '../pages/AAFirstPage';
 
 const windowWidth = Dimensions.get('window').width;
 export const navbarHeight = 65;
+
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation() {
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                 position: 'absolute',
-                height: navbarHeight,
+                height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
+                paddingTop: Platform.OS == 'android' ? 0 : 20
             }
         }} >
             <Tab.Screen name="FirstPage" component={FirstPage} options={{tabBarItemStyle:{display:'none'}}} /> 

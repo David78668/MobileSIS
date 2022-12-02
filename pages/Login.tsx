@@ -1,17 +1,14 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Animated } from "react-native";
+import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Image, Dimensions, Animated } from "react-native";
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import * as SecureStore from 'expo-secure-store';
 import {useState, useEffect} from 'react';
 import { bareer } from "../components/Token"
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 WebBrowser.maybeCompleteAuthSession();
-
 const useProxy = false;
-
-const redirectUri = AuthSession.makeRedirectUri({ useProxy });
 
 export default function App({ navigation }: any) {
     navigation.setOptions({ tabBarStyle: { display: 'none' } });
@@ -21,13 +18,13 @@ export default function App({ navigation }: any) {
         tokenEndpoint: "https://auth.kyberna.cz/connect/token",
     };
 
-    const [request, result, promptAsync] = AuthSession.useAuthRequest( {
-            clientId: 'mvc',
-            clientSecret: 'secret',
-            redirectUri: AuthSession.makeRedirectUri(({useProxy: true})),
-            responseType: AuthSession.ResponseType.Code,
-            usePKCE: true,
-            scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
+    const [request, result, promptAsync] = AuthSession.useAuthRequest({
+        clientId: 'mvc',
+        clientSecret: 'secret',
+        redirectUri: AuthSession.makeRedirectUri(({ useProxy: true })),
+        responseType: AuthSession.ResponseType.Code,
+        usePKCE: true,
+        scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
     }, discovery);
     
     useEffect(() => {
@@ -38,7 +35,7 @@ export default function App({ navigation }: any) {
                     clientId: 'mvc',
                     clientSecret: 'secret',
                     code: result.params.code,
-                    redirectUri: AuthSession.makeRedirectUri(({useProxy: true})),
+                    redirectUri: AuthSession.makeRedirectUri(({ useProxy: true })),
                     scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz'],
                     extraParams: { 'code_verifier': request?.codeVerifier ?? "" },
 
@@ -54,53 +51,55 @@ export default function App({ navigation }: any) {
         getToken();
     }, [result])
     
-    const [fade1] = useState(new Animated.Value(0));
-    const [fade2] = useState(new Animated.Value(0));
-    const [fade3] = useState(new Animated.Value(0));
-    const [fade4] = useState(new Animated.Value(0));
+    var animated: any[] = [];
+    for (var i = 0; i < 3; i++) {
+        const [fade] = useState(new Animated.Value(0));
+        animated.push(fade);
+    }
 
     useEffect(() => {
-        Animated.timing(fade1, { toValue: 1, duration: 1000, useNativeDriver: true }).start();
-        Animated.timing(fade2, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 500 }).start();
-        Animated.timing(fade3, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 1000 }).start();
-        Animated.timing(fade4, { toValue: 1, duration: 1000, useNativeDriver: true, delay: 1500 }).start();
+        for (var i = 0; i < 3; i++) {
+            Animated.timing(animated[i], {
+                toValue: 1, duration: 1000, delay: 500 * i, useNativeDriver: true
+            }).start();
+        }
     }, []);
 
     return (
-        <ScrollView>
-        <SafeAreaView style={styles.background}>
-            <View style={styles.content}>
+        <SafeAreaView style={styles.background}>    
+            <ScrollView>
+                <View style={styles.content}>
+                    
+                    {/* Headings and illustration */}
+                    <View style={{alignItems: 'center'}}>
+                        <Animated.View style={{ ...styles.header, opacity: animated[0] }}>
+                            <Image source={require('../assets/logo_white.png')} style={{height: 25, width: 30}} />
+                            <Text style={styles.heading}>Kyberna</Text>
+                        </Animated.View>
 
-                {/* Headings and illustration */}
-                <View style={{alignItems: 'center'}}>
-                    <Animated.View style={{ ...styles.header, opacity: fade1 }}>
-                        <Image source={require('../assets/logo_white.png')} style={{height: 25, width: 30}} />
-                        <Text style={styles.heading}>Kyberna</Text>
+                        <Animated.Image source={require('../assets/illustration.png')} style={{ ...styles.illustration, opacity: animated[0] }} />
+
+                        <Animated.View style={{ opacity: animated[1], paddingHorizontal: 40, alignItems: 'center' }}>
+                            <Text style={styles.subheading}>Vítejte v aplikaci školy Kyberna</Text>
+                            <Text style={styles.paragraph}>Tato aplikace zahrnuje Váš týdenní rozvrh, průběžné známky, absenci nebo statistiky.</Text>
+                            
+                            <View style={styles.loginBelow}>
+                                <Text style={styles.paragraph}>Pokračujte s přihlášením níže</Text>
+                                <Feather name='chevron-right' size={16} color={'white'} style={{ opacity: 0.8, marginLeft: 3 }} />
+                            </View>
+                        </Animated.View>    
+                    </View>
+
+                    {/* Log in button */}
+                    <Animated.View style={{ opacity: animated[2] }}>
+                        <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
+                            <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
+                            <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
+                        </TouchableOpacity>
                     </Animated.View>
-
-                    <Animated.Image source={require('../assets/illustration.png')} style={{ ...styles.illustration, opacity: fade2 }} />
-
-                    <Animated.View style={{ opacity: fade3, paddingHorizontal: 40, alignItems: 'center' }}>
-                        <Text style={styles.subheading}>Vítejte v aplikaci školy Kyberna</Text>
-                        <Text style={styles.paragraph}>Tato aplikace zahrnuje Váš týdenní rozvrh, průběžné známky, absenci nebo statistiky.</Text>
-                        
-                        <View style={styles.loginBelow}>
-                            <Text style={styles.paragraph}>Pokračujte s přihlášením níže</Text>
-                            <Feather name='chevron-right' size={16} color={'white'} style={{ opacity: 0.8, marginLeft: 3 }} />
-                        </View>
-                    </Animated.View>    
                 </View>
-
-                {/* Log in button */}
-                <Animated.View style={{ opacity: fade4 }}>
-                    <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
-                        <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
-                        <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
-                    </TouchableOpacity>
-                </Animated.View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
-        </ScrollView>
     );
 }
 
@@ -135,6 +134,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     loginButton: {
+        marginTop: 50,
         paddingHorizontal: 20,
         paddingVertical: 10,
         flexDirection: 'row',
