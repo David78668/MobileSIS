@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
 	headerText: {
 		fontSize: 30,
 		color: 'white',
-		fontWeight: '900'
+		fontWeight: '900',
+		textTransform: 'capitalize'
 	},
 	headerContainer: {
 		flexDirection: 'row',
