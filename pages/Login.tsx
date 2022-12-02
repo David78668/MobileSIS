@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, ScrollView } from "react-native";
 import Heading from '../components/general/Heading';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as AuthSession from 'expo-auth-session';
@@ -58,6 +58,7 @@ export default function App({ navigation }: any) {
     }, [result])
     
     return (
+        <ScrollView>
         <SafeAreaView style={styles.background}>
             <View style={styles.content}>
 
@@ -81,6 +82,7 @@ export default function App({ navigation }: any) {
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
+        </ScrollView>
     );
 }
 
