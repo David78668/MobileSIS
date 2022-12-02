@@ -9,17 +9,23 @@ import ScheduleChanges from '../components/home/scheduleChanges/ScheduleChanges'
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 
+import moment from 'moment';
+import "moment/locale/cs";
 
 export default function Home() {
+	// date
+	moment.locale('cs');
+	const date = moment().format('dddd, DD. MMM.');
+
 	return (
 		<Container>
-			<Heading headerText='Home' />
+			<Heading headerText={date.toString()} />
 			
 			<Body>
 				<ScheduleChanges />
 				<HomeSwitchView 
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{attended:400, missed:32, notExcused: 5}}/>, <HomeNewGrades/>]}
+					components={[<HomeAbsence absence={{ attended:400, missed:32, notExcused: 5 }}/>, <HomeNewGrades/>]}
 				/>
 			</Body>
 		</Container>
