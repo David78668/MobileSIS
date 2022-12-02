@@ -10,6 +10,12 @@ import { Feather } from "@expo/vector-icons";
 WebBrowser.maybeCompleteAuthSession();
 const useProxy = false;
 
+const redirectUri = AuthSession.makeRedirectUri({
+    useProxy,
+});
+
+
+
 export default function App({ navigation }: any) {
     navigation.setOptions({ tabBarStyle: { display: 'none' } });
     
@@ -18,15 +24,17 @@ export default function App({ navigation }: any) {
         tokenEndpoint: "https://auth.kyberna.cz/connect/token",
     };
 
-    const [request, result, promptAsync] = AuthSession.useAuthRequest({
-        clientId: 'mvc',
-        clientSecret: 'secret',
-        redirectUri: AuthSession.makeRedirectUri(({ useProxy: true })),
-        responseType: AuthSession.ResponseType.Code,
-        usePKCE: true,
-        scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
-    }, discovery);
-    
+    const [request, result, promptAsync] = AuthSession.useAuthRequest(
+        {
+            clientId: 'mvc',
+            clientSecret: 'secret',
+            redirectUri,
+            responseType: AuthSession.ResponseType.Code,
+            usePKCE: true,
+            scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
+        },
+        discovery
+    );
     useEffect(() => {
         async function getToken() {
             if (result && result.type === 'success') {
@@ -35,7 +43,7 @@ export default function App({ navigation }: any) {
                     clientId: 'mvc',
                     clientSecret: 'secret',
                     code: result.params.code,
-                    redirectUri: AuthSession.makeRedirectUri(({ useProxy: true })),
+                    redirectUri,
                     scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz'],
                     extraParams: { 'code_verifier': request?.codeVerifier ?? "" },
 
@@ -47,9 +55,9 @@ export default function App({ navigation }: any) {
                 navigation.navigate('Home')
             }
         }
-
         getToken();
-    }, [result])
+    }
+, [result])
     
     var animated: any[] = [];
     for (var i = 0; i < 3; i++) {

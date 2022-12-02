@@ -38,7 +38,7 @@ export default function Carousel() {
           {data.map((image, imageIndex) => {
             return (
               <View
-                style={{ width: windowWidth, height: 250, backgroundColor:'red' }}
+                style={{ width: 100, height: 100, backgroundColor:'red' }}
                 key={imageIndex}
               >
                 
