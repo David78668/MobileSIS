@@ -12,6 +12,7 @@ import moment from 'moment';
 import "moment/locale/cs";
 
 export default function Home() {
+	
 	// date
 	moment.locale('cs');
 	const format = moment().format('dddd, D. MMMM').toString();
@@ -25,7 +26,7 @@ export default function Home() {
 				<ScheduleChanges />
 				<HomeSwitchView 
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{ attended:400, missed:32, notExcused: 5 }}/>, <HomeNewGrades/>]}
+					components={[<HomeAbsence absence={{ attended: 400, missed: 32, notExcused: 5 }}/>, <HomeNewGrades/>]}
 				/>
 			</Body>
 		</Container>

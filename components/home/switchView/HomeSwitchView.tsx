@@ -19,7 +19,9 @@ export default function HomeSwitchView(props: HomeSwitchViewProps) {
 			<View style={styles.switches}>
 				{props.headerTexts.map((item, index)=>{
 					return(
-						<TouchableWithoutFeedback onPress={() => setView(index)}><Text style={[styles.text, currentView == index ? styles.textActive : styles.textDisabled]}>{item}</Text></TouchableWithoutFeedback>
+						<TouchableWithoutFeedback onPress={() => setView(index)}>
+							<Text style={[styles.text, currentView == index ? styles.textActive : styles.textDisabled]}>{item}</Text>
+						</TouchableWithoutFeedback>
 					);
 				})}
 			</View>
@@ -37,16 +39,16 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 	},
 	textActive: {
-		color: '#050505',
 		borderBottomWidth: 2,
 	},
 	textDisabled: {
-		color: '#C7C7CC',
+		opacity: 0.3,
+		fontWeight: 'regular',
 	},
 	text: {
-		marginRight: windowWidth * 0.043,
+		color: 'black',
+		marginRight: 20,
 		fontWeight: 'bold',
 		fontSize: 18,
 	}
 });
-

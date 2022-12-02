@@ -10,17 +10,15 @@ import AbsenceBox from '../components/absences/AbsenceBox';
 export default function Absence() {
 	return (
 		<Container>
-			<Heading headerText='Absence' headerComponent={<Datescroll/>}>
-				
-			</Heading>
+			<Heading headerText='Absence' headerComponent={<Datescroll />} />
+			
 			<Body>
 				<View style={styles.graphContainer}>
-					<HomeAbsence
-						absence={{attended:400, missed:32, notExcused: 5}}
-					/>
+					<HomeAbsence absence={{ attended: 400, missed: 32, notExcused: 5 }} />
 				</View>
-				<View style={styles.absenceBoxContainer}>
-					<AbsenceBox/>
+
+				<View>
+					<AbsenceBox />
 				</View>
 			</Body>
 		</Container>
@@ -28,12 +26,6 @@ export default function Absence() {
 }
 
 const styles = StyleSheet.create({
-	headerText: {
-		fontSize: 30,
-		color: 'white',
-		fontWeight: 'bold',
-		marginBottom: 15,
-	},
 	profileContainer: {
 		maxHeight: '13%',
 		minWidth: '100%',
@@ -47,12 +39,7 @@ const styles = StyleSheet.create({
 		width: '88%',
 	},
 	graphContainer: {
-		marginVertical: 15,
-	},
-	absenceBoxContainer: {
-		justifyContent:'center',
-		alignItems: 'center',
+		marginTop: 10,
+		marginBottom: 20
 	}
-
 });
-

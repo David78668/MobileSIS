@@ -1,28 +1,41 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
 import { useState } from 'react';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import moment from 'moment';
+import "moment/locale/cs";
 
 export default function Datescroll() {
+  moment.locale('cs');
 
-  const dates = ["Leden 2021","Únor 2021", "Březen 2021", "Duben 2021", "Červen 2021", "Červenec 2021", "Srpen 2021", "Září 2021", "Říjen 2021", "Listopad 2021", "Prosinec 2021"]
-  const [currentDate, SetCurrentDate] = useState(5)
+  var month = moment(`${moment().get('year')}-09-01`);
+
+  var dates: string[] = [];
+  for (let i = 0; i < 10; i++) {
+    const date = month.format('MMM. YYYY');
+
+    dates.push(date[0].toUpperCase() + date.slice(1));
+    month.add(1, 'month');
+  }
+
+  const currentMonth = dates.find(e => e.toLowerCase().includes(moment().format('MMM')))!;
+  const [currentDate, setCurrentDate] = useState(dates.indexOf(currentMonth));
 
   return (
     <View style={styles.dateWrapper}>
-    	<TouchableWithoutFeedback onPress={() => currentDate > 0 ? SetCurrentDate(currentDate - 1):null}>
-    		<View style={styles.arrowWrapper}>
-          <Ionicons  color="white" size={20} name="chevron-back-outline"></Ionicons>
+    	<TouchableWithoutFeedback onPress={() => currentDate > 0 ? setCurrentDate(currentDate - 1) : null}>
+        <View style={styles.arrowWrapper}>
+          <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.5 }} />
         </View>
       </TouchableWithoutFeedback>
       
       <View style={styles.datetextWrapper}>
         	<Text style={styles.headerDate}>{dates[currentDate]}</Text>
       </View>
-        
-      <TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? SetCurrentDate(currentDate + 1):null}>
+
+      <TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? setCurrentDate(currentDate + 1) : null}>
         <View style={styles.arrowWrapper}>
-          <Ionicons  color="white" size={20} name="chevron-forward-outline"></Ionicons>
+          <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.5 }}/>
         </View>
       </TouchableWithoutFeedback>
     </View>
@@ -31,24 +44,23 @@ export default function Datescroll() {
 
 const styles = StyleSheet.create({
   dateWrapper:{
-    width:'55%',
+    width: '45%',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
-	  alignSelf:'flex-end',
   },
   arrowWrapper: {
-	  justifyContent:'center',
-	  padding:'4%',
+    justifyContent: 'center',
+    padding: 5
   },
   datetextWrapper: {
     alignItems:'center',
-    flex:1,
+    flex: 1,
   },
   headerDate: {
-    fontSize:17,
-    color:'white',
-    fontWeight:'500',
-    padding:0,
+    fontSize: 17,
+    color: 'white',
+    fontWeight: '500',
+    padding: 0,
   },
 });
