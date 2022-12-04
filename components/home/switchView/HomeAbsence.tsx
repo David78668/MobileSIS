@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, ViewStyle } from 'react-native';
 import { Absences, ChartColors } from '../../../declarations/types';
-import FancyBox from '../../general/FancyBox';
 import DonutChart from './CustomPieChart';
 
 const windowWidth = Dimensions.get('window').width;
@@ -16,31 +15,35 @@ interface HomeAbsenceProps {
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
 	const colors = props.chartColors != null ?
-		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" }
+		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" };
 	
 	const attended = props.absence.attended;
 	const missed = props.absence.missed;
 	const notExcused = props.absence.notExcused;
 
 	return (
-		<FancyBox style={[styles.container]}>
-			<View style={styles.graphContainer}>
-				<DonutChart absence={props.absence} chartColors={colors}/>
+		<View style={styles.container}>
+			<View>
+				<View style={styles.graphContainer}>
+					<DonutChart absence={props.absence} chartColors={colors}/>
+				</View>
 			</View>
 
-			<View style={styles.graphLegendContainer}>
+			<View>
 				<View style={styles.graphLabel}>
 					<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
 					<View style={styles.graphLabelTextContainer}>
 						<Text>{attended} zúčastnených</Text>
 					</View>
 				</View>
+
 				<View style={styles.graphLabel}>
 					<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
 					<View style={styles.graphLabelTextContainer}>
 						<Text>{missed} zameškaných</Text>
 					</View>
 				</View>
+
 				<View style={styles.graphLabel}>
 					<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
 					<View style={styles.graphLabelTextContainer}>
@@ -48,7 +51,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 					</View>
 				</View>
 			</View>
-		</FancyBox>
+		</View>
 	);
 }
 
@@ -56,7 +59,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: "row",
-		height: containerHeight,
+		paddingVertical: 20,
 		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		marginTop: 10,
@@ -71,8 +74,8 @@ const styles = StyleSheet.create({
 	graphContainer: {
 		marginTop: 'auto',
 		marginBottom: 'auto',
-		width: 100
-
+		width: 90,
+		height: 90,
 	},
 	graphLegend: {
 		borderRadius: 3,
@@ -88,8 +91,5 @@ const styles = StyleSheet.create({
 	},
 	graphLabelTextContainer: {
 		paddingVertical: 5
-	},
-	graphLegendContainer: {
-		justifyContent: 'space-around',
-	},
+	}
 });

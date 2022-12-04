@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
 import Heading from '../components/general/Heading';
@@ -14,10 +14,12 @@ export default function Absence() {
 			
 			<Body>
 				<View style={styles.graphContainer}>
+					<Text style={styles.title}>Celková absence</Text>
 					<HomeAbsence absence={{ attended: 400, missed: 32, notExcused: 5 }} />
 				</View>
 
-				<View>
+				<View style={styles.dates}>
+					<Text style={styles.title}>Absence tento měsíc</Text>
 					<AbsenceBox />
 				</View>
 			</Body>
@@ -26,21 +28,20 @@ export default function Absence() {
 }
 
 const styles = StyleSheet.create({
-	profileContainer: {
-		maxHeight: '13%',
-		minWidth: '100%',
-		backgroundColor: 'red',
-		flex: 1,
-		justifyContent: 'flex-end',
-		alignItems: 'center',
+	title: {
+		fontWeight: 'bold',
+		fontSize: 18,
+		marginLeft: 20
+	},
+	dates: {
+		marginVertical: 20
 	},
 	headerContainer: {
 		flexDirection: 'row',
 		width: '88%',
 	},
 	graphContainer: {
-		marginTop: 10,
-		marginBottom: 20
+		marginVertical: 20
 	},
 	absenceBoxContainer: {
 		justifyContent: 'center',

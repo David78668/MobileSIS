@@ -85,8 +85,7 @@ export default function DonutChart(props: DonutProps) {
 								strokeLinecap="butt"
 							/>
 						</>
-					)
-					}
+					)}
 				</G>
 			</Svg>
 		</View>
@@ -96,8 +95,7 @@ export default function DonutChart(props: DonutProps) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		color: "red",
-		height: "100%",
-		width: "100%",
+		height: "auto",
+		width: "auto"
 	}
 })

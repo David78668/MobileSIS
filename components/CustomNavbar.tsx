@@ -20,9 +20,11 @@ export default function CustomTabNavigation() {
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                 position: 'absolute',
                 height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
-                paddingTop: Platform.OS == 'android' ? 0 : 20
+                paddingTop: Platform.OS == 'android' ? 0 : 20,
+                borderTopColor: '#eaeaf1',
+                borderTopWidth: 3
             }
-        }} >
+        }}>
             <Tab.Screen name="FirstPage" component={FirstPage} options={{tabBarItemStyle:{display:'none'}}} /> 
             <Tab.Screen name="Login" component={Login} options={{tabBarItemStyle:{display:'none'}}} /> 
             <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIco }} />

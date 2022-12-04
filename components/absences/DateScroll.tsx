@@ -20,7 +20,7 @@ export default function Datescroll() {
 
   const currentMonth = dates.find(e => e.toLowerCase().includes(moment().format('MMM')))!;
   const [currentDate, setCurrentDate] = useState(dates.indexOf(currentMonth));
-
+  
   return (
     <View style={styles.dateWrapper}>
     	<TouchableWithoutFeedback onPress={() => currentDate > 0 ? setCurrentDate(currentDate - 1) : null}>
@@ -30,7 +30,7 @@ export default function Datescroll() {
       </TouchableWithoutFeedback>
       
       <View style={styles.datetextWrapper}>
-        	<Text style={styles.headerDate}>{dates[currentDate]}</Text>
+        <Text style={styles.headerDate}>{dates[currentDate]}</Text>
       </View>
 
       <TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? setCurrentDate(currentDate + 1) : null}>

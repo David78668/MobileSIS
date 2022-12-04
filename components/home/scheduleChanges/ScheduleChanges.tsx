@@ -1,6 +1,5 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import FancyBox from '../../general/FancyBox';
 import ScheduleChangeBox from './ScheduleChangeBox';
 
 export default function ScheduleChanges() {
@@ -8,7 +7,7 @@ export default function ScheduleChanges() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>2 změny v rozvrhu</Text>
+			<Text style={styles.title}>Změny v rozvrhu (1)</Text>
 			
 			<ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.changes}>
 				{data.Days[0].Lessons.map((item: any) => (
@@ -33,6 +32,7 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 	},
 	changes: {
-		marginTop: 10
+		marginTop: 10,
+		overflow: 'visible'
 	}
 });

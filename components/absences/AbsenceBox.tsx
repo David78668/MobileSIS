@@ -14,9 +14,9 @@ export default function AbsenceBox() {
 				<Text>18:00-19:00</Text>
 			</View>
 
-			<View style={styles.percentWrapper}>
-				<Text style={styles.value}>Absence</Text>
-				<Text>6.9%</Text>
+			<View style={styles.wrapper}>
+				<Text style={styles.value}>Důvod</Text>
+				<Text>Rodinné důvody</Text>
 			</View>
 		</View>
 	);
@@ -27,7 +27,8 @@ export default function AbsenceBox() {
 		flexDirection:'row',
 		backgroundColor: '#fff',
 		justifyContent:'space-around',
-		margin: 20,
+		 marginHorizontal: 20,
+		marginVertical: 10,
 		borderRadius: 10
 	},
 	wrapper:{
@@ -35,11 +36,6 @@ export default function AbsenceBox() {
 		alignItems: 'flex-start',
 		paddingTop: '2%',
 		paddingBottom: '2%'
-	},
-	percentWrapper:{
-		flexDirection:'column',
-		paddingTop:'2%',
-		paddingBottom:'2%'
 	},
 	value: {
 		fontWeight:'bold'
