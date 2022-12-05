@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet, Pressable } from 'react-native';
 import Body from '../components/general/Body';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
@@ -11,7 +12,7 @@ import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import moment from 'moment';
 import "moment/locale/cs";
 
-export default function Home() {
+export default function Home({ navigation }: any) {
 	// date
 	moment.locale('cs');
 	const format = moment().format('dddd, D. MMMM').toString();
@@ -23,11 +24,16 @@ export default function Home() {
 			
 			<Body>
 				<ScheduleChanges />
-				<HomeSwitchView 
+
+				<HomeSwitchView
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }}/>, <HomeNewGrades/>]}
+					components={[<Pressable onPress={() => navigation.navigate('Absence')}>
+						<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />
+					</Pressable>, <HomeNewGrades />]}
 				/>
 			</Body>
 		</Container>
 	);
 }
+
+const styles = StyleSheet.create({});

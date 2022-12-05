@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
 import moment from 'moment';
 import "moment/locale/cs";
 
@@ -18,7 +18,7 @@ interface AbsenceProps {
 
 export default function AbsenceBox(props: AbsenceProps) {
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			<FlatList
 				data={props.data}
 				renderItem={renderAbsence}
@@ -26,7 +26,7 @@ export default function AbsenceBox(props: AbsenceProps) {
 				ListHeaderComponent={header}
 				keyExtractor={(item, index) => index.toString()}
 			/>
-		</View>
+		</ScrollView>
 	);
 };
 
@@ -34,15 +34,15 @@ function renderAbsence({ item }: { item: AbsenceData }) {
 	return (
 		<View style={styles.item}>
 			<View style={styles.wrapper}>
-				<Text>{moment(item.date).format('D. MMMM')}</Text>
+				<Text style={styles.reasonText}>{moment(item.date).format('D. MMMM')}</Text>
 			</View>
 
 			<View style={styles.wrapper}>
-				<Text>{item.start}-{item.end}</Text>
+				<Text style={styles.reasonText}>{item.start}-{item.end}</Text>
 			</View>
 
 			<View style={styles.wrapper}>
-				<Text>{item.reason}</Text>
+				<Text style={styles.reasonText}>{item.reason}</Text>
 			</View>
 		</View>
 	);
@@ -84,16 +84,20 @@ function separator() {
 	},
 	bold: {
 		fontWeight: 'bold',
-		fontSize: 14
+		opacity: 0.8
+	},
+	reasonText: {
+		opacity: 0.8
 	},
 	separator: {
 		backgroundColor: 'lightgray',
 		opacity: 0.5,
-		height: 1,
-		width: '100%'
+		width: '100%',
+		borderRadius: 1,
+		height: 1
 	},
 	container: {
-		marginTop: 10,
+		marginTop: 20,
 		backgroundColor: 'white',
 		marginHorizontal: 20,
 		paddingHorizontal: 20,

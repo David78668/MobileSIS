@@ -39,7 +39,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 						</View>
 					</View>
 
-					<View style={{...styles.graphLabel, marginLeft: 30 }}>
+					<View style={{...styles.graphLabel, marginLeft: 20 }}>
 						<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
 						<View style={styles.graphLabelTextContainer}>
 							<Text style={styles.graphLabelText}>Zameškané</Text>
@@ -49,7 +49,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 				</View>
 
 				<View>
-					<View style={styles.graphLabel}>
+					<View style={{...styles.graphLabel, marginTop: 5 }}>
 						<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
 						<View style={styles.graphLabelTextContainer}>
 							<Text style={styles.graphLabelText}>Neomluvené</Text>
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		paddingVertical: 15,
 		paddingHorizontal: 20,
-		justifyContent: 'space-between',
-		marginTop: 10,
+		justifyContent: 'space-around',
+		marginTop: 20,
 		borderRadius: 10,
 		marginHorizontal: 20,
 		backgroundColor: 'white',
@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
 	graphContainer: {
 		marginTop: 'auto',
 		marginBottom: 'auto',
-		width: 90,
-		height: 90,
+		width: 80,
+		height: 80,
 	},
 	graphLegend: {
 		borderRadius: 3,
-		width: 5,
+		width: 3,
 		height: 20,
 		marginRight: 8
 	},
@@ -98,11 +98,13 @@ const styles = StyleSheet.create({
 		paddingVertical: 3
 	},
 	graphLabelText: {
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		opacity: 0.8
 	},
 	graphLabelValue: {
 		opacity: 0.5,
-		fontSize: 13
+		fontSize: 13,
+		fontWeight: '500'
 	},
 	graphLabels: {
 		flexDirection: 'column',

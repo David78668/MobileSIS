@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import HomeAbsence from './HomeAbsence';
 import HomeNewGrades from './HomeNewGrades';
-import { View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback } from "react-native"
+import { View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback, FlatList } from "react-native"
 
 const windowHeight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -14,17 +14,32 @@ interface HomeSwitchViewProps {
 
 export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	const [currentView, setView] = useState(0);
+
+	function renderSwitch({ item, index }: any) {
+		return (
+			<View style={currentView == index ? styles.underline : null}>
+				<TouchableWithoutFeedback onPress={() => setView(index)}>
+					<Text style={{ ...styles.text, opacity: currentView == index ? 0.8 : 0.3 }}>{item}</Text>
+				</TouchableWithoutFeedback>
+			</View>
+		);
+	}
+
+	function separator() {
+		return <View style={{ width: 15 }}></View>;
+	}
+
 	return (
 		<View style={styles.container}>
-			<View style={styles.switches}>
-				{props.headerTexts.map((item, index)=>{
-					return(
-						<TouchableWithoutFeedback onPress={() => setView(index)}>
-							<Text style={[styles.text, currentView == index ? styles.textActive : styles.textDisabled]}>{item}</Text>
-						</TouchableWithoutFeedback>
-					);
-				})}
-			</View>
+			<FlatList
+				data={props.headerTexts}
+				renderItem={renderSwitch}
+				ItemSeparatorComponent={separator}
+				style={styles.switches}
+				scrollEnabled={false}
+				horizontal
+			/>
+			
 			{props.components[currentView]}
 		</View>
 	)
@@ -36,19 +51,16 @@ const styles = StyleSheet.create({
 	},
 	switches: {
 		flexDirection: 'row',
-		paddingHorizontal: 20,
-	},
-	textActive: {
-		borderBottomWidth: 2,
-	},
-	textDisabled: {
-		opacity: 0.3,
-		fontWeight: 'regular',
+		paddingHorizontal: 20
 	},
 	text: {
 		color: 'black',
-		marginRight: 20,
 		fontWeight: 'bold',
 		fontSize: 18,
+		paddingBottom: 3
+	},
+	underline: {
+		borderBottomWidth: 2,
+		borderBottomColor: 'lightgray'
 	}
 });

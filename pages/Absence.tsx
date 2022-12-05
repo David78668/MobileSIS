@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
 	title: {
 		fontWeight: 'bold',
 		fontSize: 18,
-		marginLeft: 20
+		marginLeft: 20,
+		opacity: 0.8
 	},
 	dates: {
 		marginVertical: 20

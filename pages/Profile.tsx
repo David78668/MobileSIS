@@ -66,22 +66,23 @@ export default function Profile() {
 	  }, []) 
 	return (
 		<Container>
-			<Heading headerText='Profil' style={styles.headerContainer} headerComponent={<Settings/>}>
+			<Heading
+				headerText='Profil'
+				style={styles.headerContainer}
+				headerComponent={<Settings />} />
+			
 				{error == false && loaded == true && 
 					<ProfileBox
-					FirstName={data.name}
-					LastName={data.surname}
-					Class={data.groups[0].name}
-				/>
-				}
+						FirstName={data.name}
+						LastName={data.surname}
+						Class={data.groups[0].name}
+					/>}
 				
-			</Heading>
 			<Body>
-			{error == false && loaded == true && 
-			<HomeSwitchView 
-					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{attended:Absence.lessons, missed:Absence.missedLessons, notExcused: Absence.unexcusedLessons}}/>, <HomeNewGrades/>]}
-				/>
+				{error == false && loaded == true && 
+					<HomeSwitchView 
+						headerTexts={["Absence", "Nové známky"]}
+						components={[<HomeAbsence absence={{attended:Absence.lessons, missed:Absence.missedLessons, notExcused: Absence.unexcusedLessons}}/>, <HomeNewGrades/>]} />
 				}
 			</Body>
 		</Container>
@@ -91,9 +92,7 @@ export default function Profile() {
 function Settings() {
 	return(
 		<TouchableWithoutFeedback onPress={SettingsOnPress}>
-			<View style={styles.settingIconContainer}>
-				<Ionicons name='settings-sharp' size={30} color={'white'}/>
-			</View>
+			<Ionicons name='settings-sharp' size={30} color={'white'} />
 		</TouchableWithoutFeedback>
 	);
 }
@@ -103,19 +102,7 @@ function SettingsOnPress() {
 }
 
 const styles = StyleSheet.create({
-
 	headerContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingBottom: 22,
-	},
-	switchHolder: {
-		
-	},
-	settingIconContainer: {
-		justifyContent: 'flex-end',
-		paddingHorizontal: 22,
+		paddingBottom: 22
 	}
-
 });

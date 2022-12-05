@@ -10,7 +10,7 @@ import {
   useWindowDimensions
 } from "react-native";
 
-const data = new Array(6).fill('https://images.unsplash.com/photo-1556740749-887f6717d7e4');
+const data = new Array(10).fill('https://images.unsplash.com/photo-1556740749-887f6717d7e4');
 
 export default function Carousel() {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -33,20 +33,19 @@ export default function Carousel() {
               }
             }
           ])}
-          scrollEventThrottle={1}
-        >
+          scrollEventThrottle={1} >
           {data.map((image, imageIndex) => {
             return (
               <View
-                style={{ width: 100, height: 100, backgroundColor:'red' }}
-                key={imageIndex}
-              >
+                style={{ width: 100, height: 100, borderColor: 'black', borderWidth: 1 }}
+                key={imageIndex} >
                 
               </View>
             );
           })}
         </ScrollView>
-        {/* <View style={styles.indicatorContainer}>
+
+        <View style={styles.indicatorContainer}>
           {data.map((image, imageIndex) => {
             const width = scrollX.interpolate({
               inputRange: [
@@ -64,7 +63,7 @@ export default function Carousel() {
               />
             );
           })}
-        </View> */}
+        </View>
       </View>
     </View>
   );
@@ -72,7 +71,6 @@ export default function Carousel() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },

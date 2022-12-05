@@ -8,8 +8,8 @@ interface ContainerProps {
 }
 
 export default function Container(props:ContainerProps){
-	return(
-		<View style={[{ height: Dimensions.get("screen").height - navbarHeight, backgroundColor: "#f1f1f1", }, props.style]}>
+	return (
+		<View style={[{ height: Dimensions.get("screen").height - navbarHeight, backgroundColor: "#f4f4f4" }, props.style]}>
 			{props.children}
 		</View>
 	);
