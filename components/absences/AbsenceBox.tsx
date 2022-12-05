@@ -1,43 +1,106 @@
 import React from 'react'
-import { StyleSheet, Text, View,} from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import moment from 'moment';
+import "moment/locale/cs";
 
-export default function AbsenceBox() {
+moment.locale('cs');
+
+interface AbsenceData {
+	date: Date,
+	start: string,
+	end: string,
+	reason: string
+}
+
+interface AbsenceProps {
+	data: Array<AbsenceData>
+}
+
+export default function AbsenceBox(props: AbsenceProps) {
 	return (
 		<View style={styles.container}>
-			<View style={styles.wrapper}>
-				<Text style={styles.value}>Datum</Text>
-				<Text>17. listopad</Text>
-			</View>
-
-			<View style={styles.wrapper}>
-				<Text style={styles.value}>Rozmezí</Text>
-				<Text>18:00-19:00</Text>
-			</View>
-
-			<View style={styles.wrapper}>
-				<Text style={styles.value}>Důvod</Text>
-				<Text>Rodinné důvody</Text>
-			</View>
+			<FlatList
+				data={props.data}
+				renderItem={renderAbsence}
+				ItemSeparatorComponent={separator}
+				ListHeaderComponent={header}
+				keyExtractor={(item, index) => index.toString()}
+			/>
 		</View>
 	);
 };
 
+function renderAbsence({ item }: { item: AbsenceData }) {
+	return (
+		<View style={styles.item}>
+			<View style={styles.wrapper}>
+				<Text>{moment(item.date).format('D. MMMM')}</Text>
+			</View>
+
+			<View style={styles.wrapper}>
+				<Text>{item.start}-{item.end}</Text>
+			</View>
+
+			<View style={styles.wrapper}>
+				<Text>{item.reason}</Text>
+			</View>
+		</View>
+	);
+}
+
+function header() {
+	return (
+		<>
+			<View style={styles.item}>
+				<View style={styles.wrapper}>
+					<Text style={styles.bold}>Datum</Text>
+				</View>
+
+				<View style={styles.wrapper}>
+					<Text style={styles.bold}>Rozmezí</Text>
+				</View>
+
+				<View style={styles.wrapper}>
+					<Text style={styles.bold}>Důvod</Text>
+				</View>
+			</View>
+			{separator()}
+		</>
+	);
+}
+
+function separator() {
+	return <View style={styles.separator}></View>;
+}
+
  const styles = StyleSheet.create({
+	item: {
+		flexDirection: 'row',
+		paddingVertical: 10,
+		flex: 3
+	},
+	wrapper: {
+		flex: 1
+	},
+	bold: {
+		fontWeight: 'bold',
+		fontSize: 14
+	},
+	separator: {
+		backgroundColor: 'lightgray',
+		opacity: 0.5,
+		height: 1,
+		width: '100%'
+	},
 	container: {
-		flexDirection:'row',
-		backgroundColor: '#fff',
-		justifyContent:'space-around',
-		 marginHorizontal: 20,
-		marginVertical: 10,
-		borderRadius: 10
-	},
-	wrapper:{
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		paddingTop: '2%',
-		paddingBottom: '2%'
-	},
-	value: {
-		fontWeight:'bold'
+		marginTop: 10,
+		backgroundColor: 'white',
+		marginHorizontal: 20,
+		paddingHorizontal: 20,
+		borderRadius: 10,
+		shadowColor: 'rgba(0, 0, 0, 0.1)',
+		shadowOffset: { width: 0, height: 0 },
+		shadowRadius: 10,
+		shadowOpacity: 1
 	}
 });

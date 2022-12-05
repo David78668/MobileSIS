@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
@@ -6,21 +6,49 @@ import Heading from '../components/general/Heading';
 import Datescroll from '../components/absences/DateScroll';
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import AbsenceBox from '../components/absences/AbsenceBox';
+import moment from 'moment';
+import "moment/locale/cs";
+
+moment.locale('cs');
 
 export default function Absence() {
+	const [month, setMonth] = useState<string>();
+
+	function monthChange(index: number) {
+		const months = ['září', 'říjnu', 'listopadu', 'prosinci', 'lednu', 'únoru', 'březnu', 'dubnu', 'květnu', 'červnu'];
+		setMonth(months[index]);
+	}
+
+	const data = [{
+		date: new Date(),
+		start: '10:00',
+		end: '11:00',
+		reason: 'Zácpa 💩'
+	}, {
+		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
+		start: '11:00',
+		end: '12:00',
+		reason: 'Nechtělo se 😩'
+	}, {
+		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 48),
+		start: '12:00',
+		end: '13:00',
+		reason: 'Výletíček 🚀'
+	}];
+
 	return (
 		<Container>
-			<Heading headerText='Absence' headerComponent={<Datescroll />} />
+			<Heading headerText='Absence' headerComponent={<Datescroll monthChange={monthChange} />} />
 			
 			<Body>
 				<View style={styles.graphContainer}>
 					<Text style={styles.title}>Celková absence</Text>
-					<HomeAbsence absence={{ attended: 400, missed: 32, notExcused: 5 }} />
+					<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />
 				</View>
 
 				<View style={styles.dates}>
-					<Text style={styles.title}>Absence tento měsíc</Text>
-					<AbsenceBox />
+					<Text style={styles.title}>Absence v {month} ({data.length})</Text>
+					<AbsenceBox data={data} />
 				</View>
 			</Body>
 		</Container>

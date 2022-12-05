@@ -25,7 +25,7 @@ export default function Home() {
 				<ScheduleChanges />
 				<HomeSwitchView 
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{ attended: 400, missed: 32, notExcused: 5 }}/>, <HomeNewGrades/>]}
+					components={[<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }}/>, <HomeNewGrades/>]}
 				/>
 			</Body>
 		</Container>

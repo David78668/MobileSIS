@@ -29,25 +29,32 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 				</View>
 			</View>
 
-			<View>
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text>{attended} zúčastnených</Text>
+			<View style={styles.graphLabels}>
+				<View style={styles.graphLabelsTop}>
+					<View style={styles.graphLabel}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Odučené</Text>
+							<Text style={styles.graphLabelValue}>{attended} hodin</Text>
+						</View>
+					</View>
+
+					<View style={{...styles.graphLabel, marginLeft: 30 }}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Zameškané</Text>
+							<Text style={styles.graphLabelValue}>{missed} hodin</Text>
+						</View>
 					</View>
 				</View>
 
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text>{missed} zameškaných</Text>
-					</View>
-				</View>
-
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text>{notExcused} neomluvených</Text>
+				<View>
+					<View style={styles.graphLabel}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Neomluvené</Text>
+							<Text style={styles.graphLabelValue}>{notExcused} hodin</Text>
+						</View>
 					</View>
 				</View>
 			</View>
@@ -58,10 +65,10 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: "row",
-		paddingVertical: 20,
-		justifyContent: 'space-evenly',
-		alignItems: 'center',
+		flexDirection: 'row',
+		paddingVertical: 15,
+		paddingHorizontal: 20,
+		justifyContent: 'space-between',
 		marginTop: 10,
 		borderRadius: 10,
 		marginHorizontal: 20,
@@ -79,17 +86,30 @@ const styles = StyleSheet.create({
 	},
 	graphLegend: {
 		borderRadius: 3,
-		width: 10,
-		height: 10,
-		marginRight: 5
+		width: 5,
+		height: 20,
+		marginRight: 8
 	},
 	graphLabel: {
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		backgroundColor: "white",
+		alignItems: 'center'
 	},
 	graphLabelTextContainer: {
-		paddingVertical: 5
+		paddingVertical: 3
+	},
+	graphLabelText: {
+		fontWeight: 'bold'
+	},
+	graphLabelValue: {
+		opacity: 0.5,
+		fontSize: 13
+	},
+	graphLabels: {
+		flexDirection: 'column',
+		justifyContent: 'center'
+	},
+	graphLabelsTop: {
+		flexDirection: 'row',
+		justifyContent: 'space-between'
 	}
 });

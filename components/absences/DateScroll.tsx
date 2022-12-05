@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
-export default function Datescroll() {
-  moment.locale('cs');
+moment.locale('cs');
 
-  var month = moment(`${moment().get('year')}-09-01`);
+interface DateScrollProps {
+	monthChange: Function
+}
 
-  var dates: string[] = [];
-  for (let i = 0; i < 10; i++) {
-    const date = month.format('MMM. YYYY');
+export default function Datescroll(props: DateScrollProps) {
+  const [currentDate, setCurrentDate] = useState(monthIndex);
 
-    dates.push(date[0].toUpperCase() + date.slice(1));
-    month.add(1, 'month');
-  }
-
-  const currentMonth = dates.find(e => e.toLowerCase().includes(moment().format('MMM')))!;
-  const [currentDate, setCurrentDate] = useState(dates.indexOf(currentMonth));
+  useEffect(() => props.monthChange(monthIndex), []);
   
   return (
     <View style={styles.dateWrapper}>
-    	<TouchableWithoutFeedback onPress={() => currentDate > 0 ? setCurrentDate(currentDate - 1) : null}>
+      <TouchableWithoutFeedback onPress={() => {
+        if (currentDate > 0) {
+          setCurrentDate(currentDate - 1);
+          props.monthChange(currentDate - 1);
+        }
+      }}>
         <View style={styles.arrowWrapper}>
           <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.5 }} />
         </View>
@@ -33,7 +33,12 @@ export default function Datescroll() {
         <Text style={styles.headerDate}>{dates[currentDate]}</Text>
       </View>
 
-      <TouchableWithoutFeedback onPress={() => currentDate < dates.length - 1 ? setCurrentDate(currentDate + 1) : null}>
+      <TouchableWithoutFeedback onPress={() => {
+        if (currentDate < dates.length - 1) {
+          setCurrentDate(currentDate + 1);
+          props.monthChange(currentDate + 1);
+        }
+      }}>
         <View style={styles.arrowWrapper}>
           <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.5 }}/>
         </View>
@@ -41,6 +46,20 @@ export default function Datescroll() {
     </View>
   );
 };
+
+var month = moment(`${moment().get('year')}-09-01`);
+
+var dates: string[] = [];
+for (let i = 0; i < 10; i++) {
+  const date = month.format('MMM. YYYY');
+
+  dates.push(date[0].toUpperCase() + date.slice(1));
+  month.add(1, 'month');
+}
+
+const currentMonth = dates.find(e => e.toLowerCase().includes(moment().format('MMM')))!;
+const monthIndex = dates.indexOf(currentMonth);
+export const longMonth = month.add(monthIndex, 'month').format('MMMM');
 
 const styles = StyleSheet.create({
   dateWrapper:{
