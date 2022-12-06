@@ -68,7 +68,6 @@ export default function Profile() {
 		<Container>
 			<Heading
 				headerText='Profil'
-				style={styles.headerContainer}
 				headerComponent={<Settings />} />
 			
 				{error == false && loaded == true && 
@@ -101,8 +100,4 @@ function SettingsOnPress() {
 	
 }
 
-const styles = StyleSheet.create({
-	headerContainer: {
-		paddingBottom: 22
-	}
-});
+const styles = StyleSheet.create({});

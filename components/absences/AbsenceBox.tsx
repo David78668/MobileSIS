@@ -105,6 +105,7 @@ function separator() {
 		shadowColor: 'rgba(0, 0, 0, 0.1)',
 		shadowOffset: { width: 0, height: 0 },
 		shadowRadius: 10,
-		shadowOpacity: 1
+		shadowOpacity: 1,
+		overflow: 'visible'
 	}
 });

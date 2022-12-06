@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 
 interface ScheduleChangeBoxProps {
 	StartTime: string,
@@ -46,16 +46,26 @@ export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 			<View style={styles.changeright}>
 				<View style={styles.top}>
 					<Text style={styles.lesson}>{props.ShortName}</Text>
+					
+					{props.Change == "LessonRemoved" ? 
+							<Ionicons name='close' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
+					
+					{props.Change == "ClassroomChanged" ? 
+						<Ionicons name='easel' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
+					
+					{props.Change == "TeacherChanged" ? 
+						<Ionicons name='person-circle' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
 				</View>
 
 				<View style={styles.bottom}>
 					<View style={styles.classroom}>
 						<Ionicons color="#EE5656" size={15} name="easel" />
-						<Text style={styles.datatext}>Učebna {props.Classroom}</Text>
+						<Text style={styles.value}>Učebna {props.Classroom}</Text>
 					</View>
+
 					<View style={styles.teacher}>
 						<Ionicons color="#EE5656" size={15} name="person-circle" />
-						<Text style={styles.datatext}>{props.Teacher}</Text>
+						<Text style={styles.value}>{props.Teacher}</Text>
 					</View>
 				</View>
 			</View>
@@ -80,7 +90,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		backgroundColor: '#EE5656',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		width: 80
 	},
 	classstart: {
 		color: 'white',
@@ -96,7 +107,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20
 	},
 	top: {
-		width: 150
+		width: 150,
+		flexDirection: 'row',
+		alignItems: 'center'
 	},
 	difference: {
 		fontSize: 14,
@@ -114,14 +127,14 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center'
 	},
-	datatext: {
+	value: {
 		marginLeft: 5,
 		fontWeight: '500',
-		opacity: 0.6
+		opacity: 0.8
 	},
 	teacher: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginTop: 5
+		marginTop: 3
 	}
 });

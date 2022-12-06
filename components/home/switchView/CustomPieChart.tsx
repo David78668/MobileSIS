@@ -29,18 +29,9 @@ export default function DonutChart(props: DonutProps) {
 	const notExcusedAngle = attendedAngle + missedAngle;
 	return (
 		<View style={styles.container}>
-			<Svg height="100%" width="100%" viewBox="0 0 180 180">
-				<G rotation={-90} originX="90" originY="90">
-					{total === 0 ? (
-						<Circle
-							cx="50%"
-							cy="50%"
-							r={radius}
-							stroke="#F1F6F9"
-							fill="transparent"
-							strokeWidth="40"
-						/>
-					) : (
+			<Svg height="100%" width="100%" viewBox="0 0 190 190">
+				<G rotation={-90} originX="95" originY="95">
+					{total !== 0 ? 
 						<>
 							<Circle
 								cx="50%"
@@ -48,12 +39,12 @@ export default function DonutChart(props: DonutProps) {
 								r={radius}
 								stroke={props.chartColors.attended}
 								fill="transparent"
-								strokeWidth="40"
+								strokeWidth="45"
 								strokeDasharray={circleLenght}
 								strokeDashoffset={attendedStroke}
 								rotation={0}
-								originX="90"
-								originY="90"
+								originX="95"
+								originY="95"
 								strokeLinecap="butt"
 							/>
 							<Circle
@@ -62,12 +53,12 @@ export default function DonutChart(props: DonutProps) {
 								r={radius}
 								stroke={props.chartColors.missed}
 								fill="transparent"
-								strokeWidth="40"
+								strokeWidth="45"
 								strokeDasharray={circleLenght}
 								strokeDashoffset={missedStroke}
 								rotation={attendedAngle}
-								originX="90"
-								originY="90"
+								originX="95"
+								originY="95"
 								strokeLinecap="butt"
 							/>
 							<Circle
@@ -76,16 +67,16 @@ export default function DonutChart(props: DonutProps) {
 								r={radius}
 								stroke={props.chartColors.notExcused}
 								fill="transparent"
-								strokeWidth="40"
+								strokeWidth="45"
 								strokeDasharray={circleLenght}
 								strokeDashoffset={notExcusedStroke}
 								rotation={notExcusedAngle}
-								originX="90"
-								originY="90"
+								originX="95"
+								originY="95"
 								strokeLinecap="butt"
 							/>
-						</>
-					)}
+						</> : null
+					}
 				</G>
 			</Svg>
 		</View>

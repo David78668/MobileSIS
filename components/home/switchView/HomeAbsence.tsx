@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
 	graphContainer: {
 		marginTop: 'auto',
 		marginBottom: 'auto',
-		width: 80,
-		height: 80,
+		width: 85,
+		height: 85,
 	},
 	graphLegend: {
 		borderRadius: 3,
-		width: 3,
+		width: 5,
 		height: 20,
 		marginRight: 8
 	},

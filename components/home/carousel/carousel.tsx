@@ -1,70 +1,63 @@
 import React, { useRef } from "react";
 import {
-  SafeAreaView,
-  ScrollView,
-  Text,
   StyleSheet,
   View,
-  ImageBackground,
   Animated,
-  useWindowDimensions
+  Dimensions,
+  FlatList
 } from "react-native";
-
-const data = new Array(10).fill('https://images.unsplash.com/photo-1556740749-887f6717d7e4');
+import CarouselItem from './CarouselItem';
 
 export default function Carousel() {
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  const { width: windowWidth } = useWindowDimensions();
+  const windowWidth = Dimensions.get('window').width;
+  const data = require('../../../assets/testData.json');
+
+  function renderDot({ item, index }: any) {
+    const width = scrollX.interpolate({
+      inputRange: [
+        windowWidth * (index - 1),
+        windowWidth * index,
+        windowWidth * (index + 1)
+      ],
+      outputRange: [5, 8, 5],
+      extrapolate: 'clamp'
+    });
+
+    const opacity = scrollX.interpolate({
+      inputRange: [
+        windowWidth * (index - 1),
+        windowWidth * index,
+        windowWidth * (index + 1)
+      ],
+      outputRange: [0.5, 1, 0.5],
+      extrapolate: 'clamp'
+    });
+
+    return <Animated.View style={[styles.normalDot, { width, height: width, opacity: opacity }]} />;
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.scrollContainer}>
-        <ScrollView
-          horizontal={true}
-          pagingEnabled
+        <FlatList
+          data={data.Days[0].Lessons}
+          renderItem={({ item }) => <CarouselItem item={item} />}
           showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event([
-            {
-              nativeEvent: {
-                contentOffset: {
-                  x: scrollX
-                }
-              }
-            }
-          ])}
-          scrollEventThrottle={1} >
-          {data.map((image, imageIndex) => {
-            return (
-              <View
-                style={{ width: 100, height: 100, borderColor: 'black', borderWidth: 1 }}
-                key={imageIndex} >
-                
-              </View>
-            );
-          })}
-        </ScrollView>
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
+          horizontal
+          snapToInterval={windowWidth}
+          decelerationRate={0.5}
+          scrollEventThrottle={1} />
 
-        <View style={styles.indicatorContainer}>
-          {data.map((image, imageIndex) => {
-            const width = scrollX.interpolate({
-              inputRange: [
-                windowWidth * (imageIndex - 1),
-                windowWidth * imageIndex,
-                windowWidth * (imageIndex + 1)
-              ],
-              outputRange: [8, 16, 8],
-              extrapolate: "clamp"
-            });
-            return (
-              <Animated.View
-                key={imageIndex}
-                style={[styles.normalDot, { width }]}
-              />
-            );
-          })}
-        </View>
-      </View>
+        <FlatList
+          data={data.Days[0].Lessons}
+          renderItem={renderDot}
+          scrollEnabled={false}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          contentContainerStyle={styles.indicatorContainer}
+          scrollEventThrottle={1} />
     </View>
   );
 }
@@ -76,39 +69,19 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     alignItems: "center",
-	  height: 50,
-    justifyContent: "center"
-  },
-  card: {
-    flex: 1,
-    marginVertical: 4,
-    marginHorizontal: 16,
-    borderRadius: 5,
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  textContainer: {
-    backgroundColor: "rgba(0,0,0, 0.7)",
-    paddingHorizontal: 24,
-    paddingVertical: 8,
-    borderRadius: 5
-  },
-  infoText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold"
+    justifyContent: "center",
+    overflow: 'visible',
   },
   normalDot: {
-    height: 8,
-    width: 8,
     borderRadius: 4,
-    backgroundColor: "silver",
-    marginHorizontal: 4
+    marginHorizontal: 5,
+    backgroundColor: 'white'
   },
   indicatorContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: 20,
+    height: 8
   }
 });

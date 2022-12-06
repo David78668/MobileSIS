@@ -4,7 +4,7 @@ import Body from '../components/general/Body';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import HomeSwitchView from '../components/home/switchView/HomeSwitchView';
-import Carousel from '../components/home/carousel/carousel';
+import Carousel from '../components/home/carousel/Carousel';
 import ScheduleChanges from '../components/home/scheduleChanges/ScheduleChanges';
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
@@ -20,7 +20,7 @@ export default function Home({ navigation }: any) {
 
 	return (
 		<Container>
-			<Heading headerText={date} />
+			<Heading headerText={date} children={<Carousel />} />
 			
 			<Body>
 				<ScheduleChanges />
