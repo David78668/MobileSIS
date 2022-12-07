@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Body from '../components/general/Body';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
@@ -12,7 +12,7 @@ import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import moment from 'moment';
 import "moment/locale/cs";
 
-export default function Home({ navigation }: any) {
+export default function Home() {
 	// date
 	moment.locale('cs');
 	const format = moment().format('dddd, D. MMMM').toString();
@@ -27,9 +27,7 @@ export default function Home({ navigation }: any) {
 
 				<HomeSwitchView
 					headerTexts={["Absence", "Nové známky"]}
-					components={[<Pressable onPress={() => navigation.navigate('Absence')}>
-						<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />
-					</Pressable>, <HomeNewGrades />]}
+					components={[<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />, <HomeNewGrades />]}
 				/>
 			</Body>
 		</Container>

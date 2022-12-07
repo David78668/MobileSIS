@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 		fontWeight: '400'
 	},
 	lesson: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		opacity: 0.8
 	},

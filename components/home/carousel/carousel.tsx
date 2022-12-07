@@ -47,6 +47,7 @@ export default function Carousel() {
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
           horizontal
           snapToInterval={windowWidth}
+          style={{ overflow: 'visible' }}
           decelerationRate={0.5}
           scrollEventThrottle={1} />
 

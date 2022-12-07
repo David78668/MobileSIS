@@ -23,17 +23,17 @@ export default function Absence() {
 		date: new Date(),
 		start: '10:00',
 		end: '11:00',
-		reason: 'Zácpa 💩'
+		reason: 'Školní akce'
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
 		start: '11:00',
 		end: '12:00',
-		reason: 'Nechtělo se 😩'
+		reason: 'Zaspání'
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 48),
 		start: '12:00',
 		end: '13:00',
-		reason: 'Výletíček 🚀'
+		reason: 'Nevolnost'
 	}];
 
 	return (

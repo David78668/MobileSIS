@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import HomeAbsence from './HomeAbsence';
-import HomeNewGrades from './HomeNewGrades';
-import { View, Text, StyleSheet, Dimensions, TouchableWithoutFeedback, FlatList } from "react-native"
-
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
-const viewHeight = windowHeight * 0.23;
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native"
 
 interface HomeSwitchViewProps {
 	headerTexts: Array<string>,
@@ -18,9 +12,9 @@ export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	function renderSwitch({ item, index }: any) {
 		return (
 			<View style={currentView == index ? styles.underline : null}>
-				<TouchableWithoutFeedback onPress={() => setView(index)}>
+				<TouchableOpacity onPress={() => setView(index)} activeOpacity={0.7}>
 					<Text style={{ ...styles.text, opacity: currentView == index ? 0.8 : 0.3 }}>{item}</Text>
-				</TouchableWithoutFeedback>
+				</TouchableOpacity>
 			</View>
 		);
 	}

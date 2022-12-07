@@ -1,11 +1,11 @@
 import React from 'react';
 import HomeNewGradeBox from './HomeNewGradeBox';
-import { ScrollView, StyleSheet, View, Dimensions } from 'react-native';
+import { FlatList, StyleSheet, View, Dimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const date = new Date();
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const containerHeight = windowHeight * 0.18;
 
 function daysInMonth(month: number, year: number) {
 	return new Date(year, month, 0).getDate();
@@ -35,27 +35,57 @@ export default function HomeNewGrades() {
 	}
 	*/
 	//let gradeAmount = grades.length;
+
+	const data = [{
+		date: new Date(),
+		subject: 'MAT',
+		grade: '1',
+		icon: <Ionicons name='shapes' size={20} color='#E9671ECC' />
+	}, {
+		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
+		subject: 'PRG',
+		grade: '1',
+		icon: <Ionicons name='code-slash' size={20} color='#E9671ECC' />
+	}, {
+		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 48),
+		subject: 'AGJ',
+		grade: '1',
+		icon: <Ionicons name='earth' size={20} color='#E9671ECC' />
+	}, {
+		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 72),
+		subject: 'FYZ',
+		grade: '1',
+		icon: <Ionicons name='sunny' size={20} color='#E9671ECC' />
+	}];
+	
+	function renderGrade(item: any, index: number, length: number) {
+		return (
+			<HomeNewGradeBox
+				date={item.date}
+				subjectName={item.subject}
+				grade={item.grade}
+				icon={item.icon}
+				last={index + 1 == length} />
+		);
+	}
+
 	return (
 		<View style={styles.container}>
-			<ScrollView style={styles.scrollView} horizontal={true} showsHorizontalScrollIndicator={false}>
-				{/*grades*/}
-			</ScrollView>
+			<FlatList
+				data={data}
+				renderItem={({ item, index }) => renderGrade(item, index, data.length)}
+				horizontal
+				showsHorizontalScrollIndicator={false}
+				snapToInterval={140}
+				decelerationRate={0.5}
+				style={{ overflow: 'visible' }}
+			/>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: "row",
-		height: containerHeight,
-		marginBottom: 0,
-		marginTop: 'auto',
-		borderRadius: 10,
-		marginLeft: "5.9%",
-		shadowOffset: { width: 0, height: 0 },
-	},
-	scrollView: {
-		height: '100%',
-		borderWidth:0
+		margin: 20
 	}
-})
+});

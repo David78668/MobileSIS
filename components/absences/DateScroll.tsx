@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
+
 import moment from 'moment';
 import "moment/locale/cs";
 
@@ -18,31 +19,31 @@ export default function Datescroll(props: DateScrollProps) {
   
   return (
     <View style={styles.dateWrapper}>
-      <TouchableWithoutFeedback onPress={() => {
+      <TouchableOpacity onPress={() => {
         if (currentDate > 0) {
           setCurrentDate(currentDate - 1);
           props.monthChange(currentDate - 1);
         }
-      }}>
+      }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
           <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.5 }} />
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
       
       <View style={styles.datetextWrapper}>
         <Text style={styles.headerDate}>{dates[currentDate]}</Text>
       </View>
 
-      <TouchableWithoutFeedback onPress={() => {
+      <TouchableOpacity onPress={() => {
         if (currentDate < dates.length - 1) {
           setCurrentDate(currentDate + 1);
           props.monthChange(currentDate + 1);
         }
-      }}>
+      }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
           <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.5 }}/>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -99,12 +99,16 @@ const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
 		flexDirection: 'row',
-		backgroundColor: "#FFFFFF",
+		backgroundColor: "white",
 		borderRadius: 20,
 		paddingHorizontal: 25,
 		paddingVertical: 15,
 		width: width - 40,
-		marginHorizontal: 20
+		marginHorizontal: 20,
+		shadowColor: 'rgba(255, 255, 255, 0.1)',
+		shadowOffset: { width: 0, height: 0 },
+		shadowRadius: 10,
+		shadowOpacity: 1
 	},
 	timeContainer: {
 		alignItems: 'center',

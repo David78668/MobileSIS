@@ -84,10 +84,12 @@ function separator() {
 	},
 	bold: {
 		fontWeight: 'bold',
-		opacity: 0.8
+		opacity: 0.8,
+		fontSize: 15
 	},
 	reasonText: {
-		opacity: 0.8
+		opacity: 0.6,
+		fontWeight: '500'
 	},
 	separator: {
 		backgroundColor: 'lightgray',

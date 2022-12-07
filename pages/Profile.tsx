@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import Heading from '../components/general/Heading';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
@@ -90,9 +90,9 @@ export default function Profile() {
 
 function Settings() {
 	return(
-		<TouchableWithoutFeedback onPress={SettingsOnPress}>
-			<Ionicons name='settings-sharp' size={30} color={'white'} />
-		</TouchableWithoutFeedback>
+		<TouchableOpacity onPress={SettingsOnPress} activeOpacity={0.7}>
+			<Ionicons name='person-circle' size={30} color={'white'} />
+		</TouchableOpacity>
 	);
 }
 
