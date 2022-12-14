@@ -19,41 +19,6 @@ export default function Profile() {
 	const [Absence, setAbsence] = useState<any>();
 	const [AbsenceLoaded, setAbsenceLoaded] = useState(false);
 	const [AbsenceError, setAbsenceError] = useState(false);
-	/*let GetProfileInfo = async () => {
-		fetch('https://api.sis.kyberna.cz/api/user', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
-		  .then(res => {return(res.json())})
-		  .then(
-			(result) => {
-				//console.log(result);
-				setData(result);
-				setLoaded(true);
-				//alert(result[0].name);
-			},
-			
-			(error) => {
-				//alert(error);
-				setError(true);
-				setLoaded(true);
-			}
-		)
-	}*/
-	let GetAbsenceInfo = async () => {
-		fetch('https://api.sis.kyberna.cz/api/absence/stats', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
-		  .then(res => {return(res.json())})
-		  .then(
-			(result) => {
-				//console.log(result);
-				setAbsence(result);
-				//alert(result[0].name);
-			},
-			
-			(error) => {
-				//alert(error);
-				setAbsenceError(true);
-				setAbsenceLoaded(true);
-			}
-		)
-	}
 	useEffect(() => {
 		//GetProfileInfo();
 		FetchData({
@@ -62,7 +27,7 @@ export default function Profile() {
 			setLoadedFunction: setLoaded,
 			setErrorFunction: setError
 		});
-		GetAbsenceInfo();
+		//GetAbsenceInfo();
 	  }, []) 
 	return (
 		<Container>
@@ -77,12 +42,12 @@ export default function Profile() {
 				
 			</Heading>
 			<Body>
-			{error == false && loaded == true && 
+			{/* {!error && loaded && 
 			<HomeSwitchView 
 					headerTexts={["Absence", "Nové známky"]}
 					components={[<HomeAbsence absence={{attended:Absence.lessons, missed:Absence.missedLessons, notExcused: Absence.unexcusedLessons}}/>, <HomeNewGrades/>]}
 				/>
-			}
+			} */}
 			</Body>
 		</Container>
 	);

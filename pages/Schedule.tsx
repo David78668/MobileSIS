@@ -1,4 +1,5 @@
 import React from 'react';
+import FetchData from '../tools/ApiRequest';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text } from 'react-native';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
@@ -7,7 +8,13 @@ import HomeSwitchView from '../components/home/switchView/HomeSwitchView';
 import LessonView from '../components/timetable/TimeTableStatus';
 import Lesson from '../components/timetable/Lesson';
 import Body from '../components/general/Body';
+import moment from 'moment';
 
+function GetWeekStart(date: Date){
+	let result = moment(date).subtract(date.getDay() - 1, "days").format("YYYY/MM/DD");
+	alert(result);
+	return result
+}
 export default function Schedule() {
 	//const testdata = require("../testData.json");
 	// 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + '&date=2022/02/23&days=5', { method: 'get', headers: new Headers({ 'Authorization': bareer.toString() }) }
@@ -16,6 +23,15 @@ export default function Schedule() {
 	const [error, setError] = React.useState(false);
 		
 	const [page, setPage] = React.useState(0);
+	React.useEffect(() => {
+		FetchData({
+			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',
+			setDataFunction: setData,
+			setLoadedFunction: setLoaded,
+			setErrorFunction: setError,
+		})
+	});
+	
 	return (
 		<Container>
 			<Heading headerText='Rozvrh' style={styles.view}>
