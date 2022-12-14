@@ -35,6 +35,7 @@ export default function App({ navigation }: any) {
         },
         discovery
     );
+
     useEffect(() => {
         async function getToken() {
             if (result && result.type === 'success') {
@@ -100,7 +101,7 @@ export default function App({ navigation }: any) {
 
                     {/* Log in button */}
                     <Animated.View style={{ opacity: animated[2] }}>
-                        <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }}>
+                        <TouchableOpacity style={styles.loginButton} onPress={() => { promptAsync({ useProxy }) }} activeOpacity={0.7}>
                             <Image source={require('../assets/logo.png')} style={{ height: 17, width: 20.5}} />
                             <Text style={{ fontWeight: 'bold', marginLeft: 10 }}>Přihlásit se přes Kybernu</Text>
                         </TouchableOpacity>
@@ -163,6 +164,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 20,
-        opacity: 0.5
+        opacity: 0.6
     }
 });

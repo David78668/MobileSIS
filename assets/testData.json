@@ -1,33 +1,90 @@
 {
-    "Days":[
-        {
-            "Date":"2021-12-07",
-            "Lessons":[
-                {
-                   "Id":2,
-                   "Name":"Matematika",
-                   "ShortName":"MAT",
-                   "Teacher":"Zlata Karpiskova",
-                   "TeacherShortName":"KR",
-                   "StartTime":"08:30",
-                   "Classroom":"205",
-                   "Group":"p",
-                   "LessonType":"Normal",
-                   "Url":"Meet"
-                },
-		{
-                   "Id":90,
-                   "Name":"Základy elektrotechniky",
-                   "ShortName":"ZEL",
-                   "Teacher":"Jiří Špičan",
-                   "TeacherShortName":"ŠP",
-                   "StartTime":"08:30",
-                   "Classroom":"309",
-                   "Group":"p",
-                   "LessonType":"LessonChanged",
-                   "Url":"Meet"
-                }
-            ]
-        }
-    ]
+    "Days": [{
+        "Date": "2021-12-07",
+        "Lessons": [{
+                "Id": 189528,
+                "Name": "Tělocvik",
+                "ShortName": "TEV",
+                "Teacher": "Igor Ročín",
+                "TeacherShortName": "RO",
+                "StartTime": "07:50",
+                "Classroom": "T0",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": ""
+            },
+            {
+                "Id": 189528,
+                "Name": "Tělocvik",
+                "ShortName": "TEV",
+                "Teacher": "Igor Ročín",
+                "TeacherShortName": "RO",
+                "StartTime": "08:45",
+                "Classroom": "T0",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": ""
+            },
+            {
+                "Id": 189530,
+                "Name": "Fyzika",
+                "ShortName": "FYZ",
+                "Teacher": "Jan Lang",
+                "TeacherShortName": "LA",
+                "StartTime": "09:45",
+                "Classroom": "206",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": "ClassroomChanged"
+            },
+            {
+                "Id": 189532,
+                "Name": "Výpočetní technika",
+                "ShortName": "VYT",
+                "Teacher": "Jaroslav Hývl",
+                "TeacherShortName": "HY",
+                "StartTime": "10:45",
+                "Classroom": "403",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": ""
+            },
+            {
+                "Id": 189535,
+                "Name": "Anglický jazyk",
+                "ShortName": "AGJ",
+                "Teacher": "Libero Guarisco",
+                "TeacherShortName": "GA",
+                "StartTime": "11:55",
+                "Classroom": "208",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": "TeacherChanged"
+            },
+            {
+                "Id": 189530,
+                "Name": "Fyzika",
+                "ShortName": "FYZ",
+                "Teacher": "Jan Lang",
+                "TeacherShortName": "LA",
+                "StartTime": "13:45",
+                "Classroom": "206",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": ""
+            },
+            {
+                "Id": 189541,
+                "Name": "Český jazyk",
+                "ShortName": "CJL",
+                "Teacher": "Richard Rejthar",
+                "TeacherShortName": "RE",
+                "StartTime": "14:45",
+                "Classroom": "320",
+                "Group": "",
+                "Meet": "Meet",
+                "LessonType": "LessonRemoved"
+            }
+        ]
+    }]
 }

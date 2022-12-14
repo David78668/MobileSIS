@@ -1,31 +1,31 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-const containerHeight = windowHeight * 0.18;
-const months = ["Led.", "Úno.", "Bře.", "Dub.", "Kvě.", "Čer.", "Črv.", "Srp.", "Zář.", "Řij.", "Lis.", "Pro."];
+import moment from 'moment';
+import "moment/locale/cs";
 
 interface GradeBoxProps {
-	icon?: FunctionComponent,
-	subjectName: String,
-	date: String,
-	grade: String,
-}
-
-function GetDate(date: String) {
-	let splitDate = date.split('-');
-	return (`${splitDate[2]}. ${months[Number(splitDate[1])]} 20${splitDate[0]}`);
+	icon?: React.ReactNode,
+	subjectName: string,
+	date: Date,
+	grade: string,
+	last: boolean
 }
 
 export default function HomeNewGradeBox(props: GradeBoxProps) {
+	moment.locale('cs');
+	const date = moment(props.date).format('D. MMMM').toString();
+
 	return (
-		<View style={styles.container}>
-			<View style={styles.iconBox}></View>
-			<Text style={styles.header}>{props.subjectName}</Text>
-			<Text style={styles.baseText}>{GetDate(props.date)}</Text>
+		<View style={{ ...styles.container, marginRight: props.last ? 0 : 20 }}>
+			<View style={{ alignItems: 'center' }}>
+				<View style={styles.iconBox}>{props.icon}</View>
+				<Text style={styles.header}>{props.subjectName}</Text>
+				<Text style={styles.date}>{date}</Text>
+			</View>
+
 			<View style={styles.gradeBox}>
-				<Text style={[styles.header, styles.grade]}>{props.grade}</Text>
+				<Text style={styles.grade}>{props.grade}</Text>
 			</View>
 		</View>
 	);
@@ -33,39 +33,48 @@ export default function HomeNewGradeBox(props: GradeBoxProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		marginRight: windowWidth * 0.037,
 		backgroundColor: "white",
-		borderRadius: 15,
-		alignItems: 'center',
-		height: containerHeight,
-		width: containerHeight * 0.8,
+		borderRadius: 10,
+		paddingHorizontal: 20,
+		paddingTop: 10,
+		justifyContent: 'space-between',
+		shadowColor: 'rgba(0, 0, 0, 0.1)',
+		shadowOffset: { width: 0, height: 0 },
+		shadowRadius: 10,
+		shadowOpacity: 1,
+		width: 120
 	},
 	gradeBox: {
-		height: '25.5%',
-		width: '37.5%',
-		justifyContent: 'center',
 		alignItems: 'center',
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		backgroundColor: '#E9671E',
-		marginTop: 'auto',
-		marginBottom: 0,
+		paddingVertical: 5,
+		marginTop: 20
 	},
 	iconBox: {
-		marginTop: containerHeight * 0.082,
-		height: containerHeight * 0.234,
-		width: containerHeight * 0.234,
+		height: 40,
+		width: 40,
 		borderRadius: 10,
-		backgroundColor: "blue",
+		backgroundColor: "#e9691e1A",
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row'
 	},
 	header: {
-		fontSize: 21,
+		fontSize: 18,
 		fontWeight: 'bold',
+		opacity: 0.8,
+		marginTop: 10
 	},
-	baseText: {
-		fontSize: 14,
+	date: {
+		fontWeight: '500',
+		opacity: 0.6,
+		fontSize: 13
 	},
 	grade: {
 		color: 'white',
+		fontWeight: 'bold',
+		fontSize: 18
 	}
 })

@@ -1,26 +1,34 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import FancyBox from '../../general/FancyBox';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
 
 export default function ScheduleChanges() {
 	const data = require("../../../assets/testData.json");
+	const filtered = data.Days[0].Lessons.filter((e: any) => e.LessonType.length != 0);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>2 změny v rozvrhu</Text>
-			
-			<ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.changes}>
-				{data.Days[0].Lessons.map((item: any) => (
-					item.LessonType == "LessonChanged" ?
-						<ScheduleChangeBox
-							StartTime={item.StartTime} ShortName={item.ShortName}
-							Classroom={item.Classroom} Teacher={item.Teacher}
-							Lessons={data.Days[0].Lessons} />
-						: null
-				))}
-			</ScrollView>
+			<Text style={styles.title}>Změny v rozvrhu ({filtered.length})</Text>
+
+			<FlatList
+				data={filtered}
+				renderItem={({ item, index }) => renderChange(item, index, filtered.length)}
+				keyExtractor={(item, index) => index.toString()}
+				horizontal
+				showsHorizontalScrollIndicator={false}
+				snapToInterval={290}
+          		decelerationRate={0.5}
+				style={styles.changes} />
 		</View>
+	);
+}
+
+function renderChange(item: any, index: number, length: number) {
+	return (
+		<ScheduleChangeBox
+			StartTime={item.StartTime} ShortName={item.ShortName}
+			Classroom={item.Classroom} Teacher={item.Teacher}
+			Change={item.LessonType} Last={index + 1 == length} />
 	);
 }
 
@@ -31,8 +39,10 @@ const styles = StyleSheet.create({
 	title: {
 		fontWeight: 'bold',
 		fontSize: 18,
+		opacity: 0.8
 	},
 	changes: {
-		marginTop: 10
+		marginTop: 20,
+		overflow: 'visible'
 	}
 });

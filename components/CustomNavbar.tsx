@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeIcon, ScheduleIcon, GradesIcon, AbsenceIcon, ProfileIcon } from '../assets/navbarIcons';
+import { Feather } from '@expo/vector-icons';
 import Home from '../pages/Home';
 import React from 'react';
 import Schedule from '../pages/Schedule';
@@ -11,112 +11,94 @@ import Login from '../pages/Login';
 import FirstPage from '../pages/AAFirstPage';
 
 const windowWidth = Dimensions.get('window').width;
-export const navbarHeight = 65;
+export const navbarHeight = 75;
 
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation() {
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
-                position: 'absolute',
                 height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
-                paddingTop: Platform.OS == 'android' ? 0 : 20
+                paddingTop: Platform.OS == 'android' ? 0 : 20,
+                borderTopColor: '#eaeaf1',
+                borderTopWidth: 3,
+                paddingHorizontal: 20
             }
-        }} >
-            <Tab.Screen name="FirstPage" component={FirstPage} options={{tabBarItemStyle:{display:'none'}}} /> 
-            <Tab.Screen name="Login" component={Login} options={{tabBarItemStyle:{display:'none'}}} /> 
-            <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIco }} />
-            <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIco }} />
-            <Tab.Screen name="Grades" component={Grades} options={{ tabBarIcon: GradesIco }} />
-            <Tab.Screen name="Absence" component={Absence} options={{ tabBarIcon: AbsenceIco }} />
-            <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon: ProfileIco }} />
+        }}>
+            <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' }}} /> 
+            <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' }}} /> 
+            <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
+            <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIcon }} />
+            <Tab.Screen name="Grades" component={Grades} options={{ tabBarIcon: GradesIcon }} />
+            <Tab.Screen name="Absence" component={Absence} options={{ tabBarIcon: AbsenceIcon }} />
+            <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon: ProfileIcon }} />
         </Tab.Navigator>
     );
 }
 
-const HomeIco = ({ focused }: any) => {
-    return (
-        <View style={styles.IconContainer}>
-            <HomeIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
+const active = '#de6830';
+const inactive = 'rgba(0, 0, 0, 0.2)';
 
-            }]} />
-            <Text style={[
-                {
-                    color: focused ? "#de6830" : "#c7c7cc",
-                }, styles.Label]
-            }>Domů</Text>
+const HomeIcon = ({ focused }: any) => {
+    return (
+        <View style={styles.iconContainer}>
+            <Feather name='home' size={25} color={focused ? active : inactive} />
+            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Domů</Text>
         </View>
     )
 }
 
-const ScheduleIco = ({ focused }: any) => {
+const ScheduleIcon = ({ focused }: any) => {
     return (
-        <View style={styles.IconContainer}>
-            <ScheduleIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-            }]} />
-            <Text style={[
-                {
-                    color: focused ? "#de6830" : "#c7c7cc",
-                }, styles.Label]
-            }>Rozvrh</Text>
+        <View style={styles.iconContainer}>
+            <Feather name='trello' size={25} color={focused ? active : inactive} />
+            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Rozvrh</Text>
         </View>
     )
 }
 
-const GradesIco = ({ focused }: any) => {
+const GradesIcon = ({ focused }: any) => {
     return (
-        <View style={styles.IconContainer}>
-            <GradesIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-            }]} />
-            <Text style={[
-                {
-                    color: focused ? "#de6830" : "#c7c7cc",
-                }, styles.Label]
-            }>Známky</Text>
+        <View style={styles.iconContainer}>
+            <Feather name='bookmark' size={25} color={focused ? active : inactive} />
+            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Známky</Text>
         </View>
     )
 }
 
-const AbsenceIco = ({ focused }: any) => {
+const AbsenceIcon = ({ focused }: any) => {
     return (
-        <View style={styles.IconContainer}>
-            <AbsenceIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-            }]} />
-            <Text style={[
-                {
-                    color: focused ? "#de6830" : "#c7c7cc",
-                }, styles.Label]
-            }>Absence</Text>
+        <View style={styles.iconContainer}>
+            <Feather name='calendar' size={25} color={focused ? active : inactive} />
+            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Absence</Text>
         </View>
     )
 }
 
-const ProfileIco = ({ focused }: any) => {
+const ProfileIcon = ({ focused }: any) => {
     return (
-        <View style={styles.IconContainer}>
-            <ProfileIcon tint={focused ? "#de6830" : "#c7c7cc"} style={[styles.Icon, {
-            }]} />
-            <Text style={[
-                {
-                    color: focused ? "#de6830" : "#c7c7cc",
-                }, styles.Label]
-            }>Profil</Text>
+        <View style={styles.iconContainer}>
+            <Feather name='at-sign' size={25} color={focused ? active : inactive} />
+            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Profil</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    Icon: {
-        width: windowWidth * 0.059,
-        height: windowWidth * 0.059,
-    },
-    Label: {
-        width: "100%",
+    label: {
         fontSize: 10,
+        marginTop: 3,
+        fontWeight: '500'
     },
-    IconContainer: {
-        position: 'absolute',
+    iconContainer: {
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    focused: {
+        color: '#de6830',
+        fontWeight: 'bold'
+    },
+    unfocused: {
+        color: 'rgba(0, 0, 0, 0.3)'
     }
 });

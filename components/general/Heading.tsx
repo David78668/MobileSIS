@@ -17,7 +17,7 @@ export default function Heading(props: HeadingProps) {
 				{props.headerComponent}
 			</View>
 
-			<View style={props.style}>
+			<View style={{ ...props.style, marginTop: 20 }}>
 				{props.children}
 			</View>
 		</SafeAreaView>
@@ -27,9 +27,8 @@ export default function Heading(props: HeadingProps) {
 const styles = StyleSheet.create({
 	background: {
 		backgroundColor: '#E9671E',
-		paddingHorizontal: 22,
 		paddingTop: 20,
-		paddingBottom: Platform.OS == 'android' ? 10 : 0
+		paddingBottom: Platform.OS == 'android' ? 20 : 0
 	},
 	headerText: {
 		fontSize: 30,
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
 	headerContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		flexWrap: 'nowrap',
-		width: '100%',
+		alignItems: 'center',
+		paddingHorizontal: 20
 	}
 })

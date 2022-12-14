@@ -1,6 +1,6 @@
 import * as React from "react"
 import { View } from "react-native";
-import {Svg, Path, Ellipse } from "react-native-svg"
+import { Svg, Path, Ellipse } from "react-native-svg"
 
 // *NOTES*
 

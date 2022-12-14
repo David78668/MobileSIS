@@ -1,25 +1,23 @@
 import React from 'react';
 import { TeacherIcon, RoomIcon } from '../../../assets/carouselIcons';
 import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
+const width = Dimensions.get('window').width;
 const date = new Date();
-export const SLIDER_WIDTH = windowWidth - 44;
-export const ITEM_WIDTH = Math.round(windowWidth - 44)
 
 function computeTime(time: string, lenght: number) {
 	let splitTime = time.split(':')
 	let hours = isNaN(Number(splitTime[0])) ? 0 : Number(splitTime[0]);
 	let minutes = isNaN(Number(splitTime[1])) ? 0 : Number(splitTime[1]);
 	minutes += lenght;
+
 	while (minutes >= 60) {
 		hours++;
 		minutes -= 60;
 	}
-	return (
-		`${hours}:${minutes < 10 ? "0" + minutes : minutes}`
-	)
+
+	return `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
 }
 
 function labelChange(time: string, duration: number, subject: string) {
@@ -29,16 +27,18 @@ function labelChange(time: string, duration: number, subject: string) {
 	let startTime = hours * 60 + minutes;
 	let endTime = startTime + duration;
 	let currentTime = date.getHours() * 60 + date.getMinutes();
+	
 	if (currentTime < startTime) {
 		return "Proběhne";
 	}
 	if (currentTime >= startTime && currentTime <= endTime) {
-		return "Právě Probíhá";
+		return "Právě probíhá";
 	}
 	if (currentTime > endTime) {
-		return "Proběhlo";
+		return "Již proběhlo";
 	}
 }
+
 export type CarouselItemProps = {
 	Id: number;
 		Name: string;
@@ -52,28 +52,32 @@ export type CarouselItemProps = {
 		Url: string;
 }
 export interface CarouselCardItemProps {
-	index: number,
 	item: CarouselItemProps,
 }
 
-const CarouselItem = (props: CarouselCardItemProps) => {
+export default function CarouselItem(props: CarouselCardItemProps) {
 	return (
-		<View style={styles.container} key={props.index}>
+		<View style={styles.container}>
 			<View style={styles.timeContainer}>
-				<Text style={[styles.basicLabel, { textAlign: 'right' }]}>{props.item.StartTime[0] != '0' ? props.item.StartTime : props.item.StartTime.slice(1, 5)}</Text>
+				<Text style={styles.startTimeLabel}>{props.item.StartTime[0] != '0' ? props.item.StartTime : props.item.StartTime.slice(1, 5)}</Text>
 				<Text style={styles.endTimeLabel}>{computeTime(props.item.StartTime, 45)}</Text>
 			</View>
+
 			<View style={styles.divider}></View>
+			
 			<View style={styles.cardBody}>
-				<Text style={styles.basicLabel}>{labelChange(props.item.StartTime, 45, props.item.Name)}</Text>
 				<Text style={styles.subjectLabel}>{props.item.Name}</Text>
-				<View style={styles.paralel}>
-					<RoomIcon style={styles.icon} />
-					<Text style={styles.basicLabel}>{props.item.Classroom}</Text>
-				</View>
-				<View style={styles.paralel}>
-					<TeacherIcon style={styles.icon} />
-					<Text style={styles.basicLabel}>{props.item.Teacher}</Text>
+
+				<View style={{ marginTop: 10 }}>
+					<View style={styles.paralel}>
+						<Ionicons color="#DE6830" size={15} name='easel' />
+						<Text style={styles.value}>Učebna {props.item.Classroom}</Text>
+					</View>
+
+					<View style={{ ...styles.paralel, marginTop: 3 }}>
+						<Ionicons color="#DE6830" size={15} name='person-circle' />
+						<Text style={styles.value}>{props.item.Teacher}</Text>
+					</View>
 				</View>
 			</View>
 		</View>
@@ -81,52 +85,57 @@ const CarouselItem = (props: CarouselCardItemProps) => {
 }
 
 const styles = StyleSheet.create({
-	icon: {
-		width: (windowHeight * 0.377 * 0.5) / 10.75,
-		height: (windowHeight * 0.377 * 0.5) / 10.75,
-		marginRight: 6,
-	},
 	divider: {
 		borderRadius: 10,
-		height: "61%",
-		width: "1%",
+		height: "75%",
+		width: 3,
 		backgroundColor: "#DE6830",
-		marginRight: '3.3%',
+		marginHorizontal: 20
 	},
 	paralel: {
 		flexDirection: 'row',
-		alignItems: 'center',
-		flexWrap: 'nowrap',
+		alignItems: 'center'
 	},
 	container: {
-		height: 130,
 		alignItems: "center",
-		justifyContent: "flex-start",
 		flexDirection: 'row',
-		backgroundColor: "#FFFFFF",
-		borderRadius: 10,
+		backgroundColor: "white",
+		borderRadius: 20,
+		paddingHorizontal: 25,
+		paddingVertical: 15,
+		width: width - 40,
+		marginHorizontal: 20,
+		shadowColor: 'rgba(255, 255, 255, 0.1)',
+		shadowOffset: { width: 0, height: 0 },
+		shadowRadius: 10,
+		shadowOpacity: 1
 	},
 	timeContainer: {
-		marginLeft: '4.5%',
-		marginRight: '4%',
+		alignItems: 'center',
+		width: 40
 	},
-	basicLabel: {
-		textAlign: 'left',
-		fontSize: 14,
+	value: {
+		marginLeft: 5,
+		fontWeight: '500',
+		opacity: 0.8
 	},
 	subjectLabel: {
-		fontSize: 21,
-		fontWeight: "600",
+		fontSize: 18,
+		fontWeight: 'bold',
+		opacity: 0.8
 	},
 	endTimeLabel: {
-		fontSize: 14,
-		color: "#C7C7CC",
+		opacity: 0.3,
+		fontWeight: 'bold'
+	},
+	startTimeLabel: {
+		fontWeight: 'bold'
 	},
 	cardBody: {
-		paddingVertical: 5,
-		height: "61%",
 		justifyContent: 'center',
 	},
+	time: {
+		opacity: 0.3,
+		fontWeight: '500'
+	}
 });
-
-export default CarouselItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import Heading from '../components/general/Heading';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
@@ -31,16 +31,17 @@ export default function Profile() {
 	  }, []) 
 	return (
 		<Container>
-			<Heading headerText='Profil' style={styles.headerContainer} headerComponent={<Settings/>}>
+			<Heading
+				headerText='Profil'
+				headerComponent={<Settings />} />
+			
 				{error == false && loaded == true && 
 					<ProfileBox
-					FirstName={data.name}
-					LastName={data.surname}
-					Class={data.groups[0].name}
-				/>
-				}
+						FirstName={data.name}
+						LastName={data.surname}
+						Class={data.groups[0].name}
+					/>}
 				
-			</Heading>
 			<Body>
 			{/* {!error && loaded && 
 			<HomeSwitchView 
@@ -55,11 +56,9 @@ export default function Profile() {
 
 function Settings() {
 	return(
-		<TouchableWithoutFeedback onPress={SettingsOnPress}>
-			<View style={styles.settingIconContainer}>
-				<Ionicons name='settings-sharp' size={30} color={'white'}/>
-			</View>
-		</TouchableWithoutFeedback>
+		<TouchableOpacity onPress={SettingsOnPress} activeOpacity={0.7}>
+			<Ionicons name='person-circle' size={30} color={'white'} />
+		</TouchableOpacity>
 	);
 }
 
@@ -67,20 +66,4 @@ function SettingsOnPress() {
 	
 }
 
-const styles = StyleSheet.create({
-
-	headerContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingBottom: 22,
-	},
-	switchHolder: {
-		
-	},
-	settingIconContainer: {
-		justifyContent: 'flex-end',
-		paddingHorizontal: 22,
-	}
-
-});
+const styles = StyleSheet.create({});

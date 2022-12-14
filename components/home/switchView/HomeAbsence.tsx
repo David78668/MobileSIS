@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions, ViewStyle } from 'react-native';
 import { Absences, ChartColors } from '../../../declarations/types';
-import FancyBox from '../../general/FancyBox';
 import DonutChart from './CustomPieChart';
 
 const windowWidth = Dimensions.get('window').width;
@@ -16,89 +15,103 @@ interface HomeAbsenceProps {
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
 	const colors = props.chartColors != null ?
-		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" }
+		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" };
 	
 	const attended = props.absence.attended;
 	const missed = props.absence.missed;
 	const notExcused = props.absence.notExcused;
 
 	return (
-	<FancyBox style={[styles.container]}>
+		<View style={styles.container}>
 			<View>
 				<View style={styles.graphContainer}>
 					<DonutChart absence={props.absence} chartColors={colors}/>
 				</View>
 			</View>
 
-			<View style={styles.graphLegendContainer}>
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text style={styles.graphLabelText}>{attended}</Text>
-						<Text style={styles.graphLabelText}>Odučené hodiny</Text>
+			<View style={styles.graphLabels}>
+				<View style={styles.graphLabelsTop}>
+					<View style={styles.graphLabel}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Odučené</Text>
+							<Text style={styles.graphLabelValue}>{attended} hodin</Text>
+						</View>
+					</View>
+
+					<View style={{...styles.graphLabel, marginLeft: 20 }}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Zameškané</Text>
+							<Text style={styles.graphLabelValue}>{missed} hodin</Text>
+						</View>
 					</View>
 				</View>
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text style={styles.graphLabelText}>{missed}</Text>
-						<Text style={styles.graphLabelText}>Zameškané hodiny</Text>
-					</View>
-				</View>
-				<View style={styles.graphLabel}>
-					<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
-					<View style={styles.graphLabelTextContainer}>
-						<Text style={styles.graphLabelText}>{notExcused}</Text>
-						<Text style={styles.graphLabelText}>Neomluvené hodiny</Text>
+
+				<View>
+					<View style={{...styles.graphLabel, marginTop: 5 }}>
+						<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
+						<View style={styles.graphLabelTextContainer}>
+							<Text style={styles.graphLabelText}>Neomluvené</Text>
+							<Text style={styles.graphLabelValue}>{notExcused} hodin</Text>
+						</View>
 					</View>
 				</View>
 			</View>
-		</FancyBox>
+		</View>
 	);
 }
 
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: "row",
-		height: containerHeight,
+		flexDirection: 'row',
+		paddingVertical: 15,
+		paddingHorizontal: 20,
 		justifyContent: 'space-around',
-		alignItems: 'center',
-		marginTop: 10,
+		marginTop: 20,
 		borderRadius: 10,
 		marginHorizontal: 20,
 		backgroundColor: 'white',
 		shadowColor: 'rgba(0, 0, 0, 0.1)',
 		shadowOffset: { width: 0, height: 0 },
 		shadowRadius: 10,
-		shadowOpacity: 1,
+		shadowOpacity: 1
 	},
 	graphContainer: {
 		marginTop: 'auto',
 		marginBottom: 'auto',
-		width: windowWidth * 0.288,
-		height: windowWidth * 0.288,
+		width: 85,
+		height: 85,
 	},
 	graphLegend: {
-		borderRadius: containerHeight * 0.08 * 0.21,
-		width: windowWidth * 0.032,
-		height: windowWidth * 0.032,
-		marginRight: windowWidth * 0.016,
-		marginLeft: 0,
+		borderRadius: 3,
+		width: 5,
+		height: 20,
+		marginRight: 8
 	},
 	graphLabel: {
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
-		backgroundColor: "white",
-	},
-	graphLabelText: {
-		fontSize: 14
+		alignItems: 'center'
 	},
 	graphLabelTextContainer: {
-
+		paddingVertical: 3
 	},
-	graphLegendContainer: {
-		justifyContent: 'space-around',
+	graphLabelText: {
+		fontWeight: 'bold',
+		opacity: 0.8
 	},
-})
+	graphLabelValue: {
+		opacity: 0.5,
+		fontSize: 13,
+		fontWeight: '500'
+	},
+	graphLabels: {
+		flexDirection: 'column',
+		justifyContent: 'center'
+	},
+	graphLabelsTop: {
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	}
+});
