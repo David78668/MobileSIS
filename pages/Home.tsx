@@ -20,7 +20,7 @@ export default function Home() {
 
 	return (
 		<Container>
-			<Heading headerText={date} children={<Carousel />} />
+			<Heading title='Kyberna' subtitle={date} children={<Carousel />} />
 			
 			<Body>
 				<ScheduleChanges />

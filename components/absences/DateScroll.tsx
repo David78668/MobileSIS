@@ -26,7 +26,7 @@ export default function Datescroll(props: DateScrollProps) {
         }
       }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
-          <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.5 }} />
+          <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.6 }} />
         </View>
       </TouchableOpacity>
       
@@ -41,7 +41,7 @@ export default function Datescroll(props: DateScrollProps) {
         }
       }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
-          <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.5 }}/>
+          <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.6 }}/>
         </View>
       </TouchableOpacity>
     </View>
@@ -64,7 +64,7 @@ export const longMonth = month.add(monthIndex, 'month').format('MMMM');
 
 const styles = StyleSheet.create({
   dateWrapper:{
-    width: '45%',
+    width: '42%',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
   headerDate: {
     fontSize: 17,
     color: 'white',
-    fontWeight: '500',
-    padding: 0,
+    fontWeight: '500'
   },
 });

@@ -17,6 +17,7 @@ export default function Grades() {
 	const [data, setData] = useState<any>();
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
+
 	let GetGrades = async () => {
 		fetch('https://api.sis.kyberna.cz/api/classification/current/marks', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
 		  .then(res => {return(res.json())})
@@ -35,30 +36,27 @@ export default function Grades() {
 			}
 		)
 	}
+	
 	useEffect(() => {
 		GetGrades();
-	  }, []) 
+	}, []);
+	
 	return (
 		<Container>
-			<Heading headerText='Známky' />
-			<Body style={styles.body}>
-			{ loaded == true  ? 
-				 <View style={{paddingHorizontal:'6%', paddingTop: 30}}>
-					{data.map((item:any)=>{
-						return(
-							<Grade {...item}/>
-						);	
-					})}
-				</View> : <View></View>
-				
-			}
+			<Heading title='Známky' />
+
+			<Body>
+				{/*loaded == true  ? 
+					<View style={{paddingHorizontal:'6%', paddingTop: 30}}>
+						{data.map((item:any)=>{
+							return(
+								<Grade {...item} />
+							);	
+						})}
+					</View> : null*/}
 			</Body>
 		</Container>
 	);
 }
 
-const styles = StyleSheet.create({
-	body: {
-		
-	}
-})
+const styles = StyleSheet.create({});

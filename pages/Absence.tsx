@@ -6,6 +6,7 @@ import Heading from '../components/general/Heading';
 import Datescroll from '../components/absences/DateScroll';
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import AbsenceBox from '../components/absences/AbsenceBox';
+
 import moment from 'moment';
 import "moment/locale/cs";
 
@@ -38,7 +39,7 @@ export default function Absence() {
 
 	return (
 		<Container>
-			<Heading headerText='Absence' headerComponent={<Datescroll monthChange={monthChange} />} />
+			<Heading title='Absence' headerComponent={<Datescroll monthChange={monthChange} />} />
 			
 			<Body>
 				<View style={styles.graphContainer}>
@@ -64,10 +65,6 @@ const styles = StyleSheet.create({
 	},
 	dates: {
 		marginVertical: 20
-	},
-	headerContainer: {
-		flexDirection: 'row',
-		width: '88%',
 	},
 	graphContainer: {
 		marginVertical: 20

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
+import { Feather } from '@expo/vector-icons';
 
 export default function ScheduleChanges() {
 	const data = require("../../../assets/testData.json");

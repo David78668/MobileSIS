@@ -27,6 +27,7 @@ export default function DonutChart(props: DonutProps) {
 	const attendedAngle = (attended / total) * 360;
 	const missedAngle = (missed / total) * 360;
 	const notExcusedAngle = attendedAngle + missedAngle;
+	
 	return (
 		<View style={styles.container}>
 			<Svg height="100%" width="100%" viewBox="0 0 190 190">

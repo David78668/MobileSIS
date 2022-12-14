@@ -1,16 +1,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Heading from '../components/general/Heading';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
-import HomeSwitchView from '../components/home/switchView/HomeSwitchView';
-import HomeAbsence from '../components/home/switchView/HomeAbsence';
-import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import ProfileBox from '../components/profile/ProfileBox';
+import ProfileInfo from '../components/profile/ProfileInfo';
 import * as SecureStore from 'expo-secure-store';
 import FetchData from '../tools/ApiRequest';
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Profile() {
 	const [data, setData] = useState<any>();
@@ -37,6 +35,7 @@ export default function Profile() {
 			}
 		)
 	}*/
+
 	let GetAbsenceInfo = async () => {
 		fetch('https://api.sis.kyberna.cz/api/absence/stats', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
 		  .then(res => {return(res.json())})
@@ -54,6 +53,7 @@ export default function Profile() {
 			}
 		)
 	}
+
 	useEffect(() => {
 		//GetProfileInfo();
 		FetchData({
@@ -62,42 +62,103 @@ export default function Profile() {
 			setLoadedFunction: setLoaded,
 			setErrorFunction: setError
 		});
+
 		GetAbsenceInfo();
-	  }, []) 
+	}, []);
+
+	const informaceData = [{
+		key: 'Jméno',
+		value: 'Jméno Příjmění'
+	}, {
+		key: 'E-mail',
+		value: 'jmeno.prijmeni@ssakhk.cz'
+	}, {
+		key: 'Telefoní číslo',
+		value: '123 456 789',
+		editable: true
+	}];
+	
+	const rozdeleniData = [{
+		key: 'Skupiny',
+		value: '1 / p / r'
+	}, {
+		key: 'Volitelný předmět',
+		value: 'PW1'
+	}, {
+		key: 'Projekt',
+		value: 'P17'
+	}];
+	
+	const [editMode, setEditMode] = useState(false);
+
+	function Edit() {
+		return (
+			<TouchableOpacity style={styles.edit} activeOpacity={0.7} onPress={() => setEditMode(!editMode)}>
+				<Text style={styles.editText}>{editMode ? 'Uložit' : 'Upravit'}</Text>
+				
+				{editMode ?
+					<Ionicons name='checkmark-circle' size={15} color='white' style={styles.editIcon} /> :
+					<Ionicons name='create' size={15} color='white' style={styles.editIcon} /> }
+			</TouchableOpacity>
+		);
+	}
+	
 	return (
 		<Container>
-			<Heading
-				headerText='Profil'
-				headerComponent={<Settings />} />
-			
-				{error == false && loaded == true && 
-					<ProfileBox
-						FirstName={data.name}
-						LastName={data.surname}
-						Class={data.groups[0].name}
-					/>}
-				
+			<Heading title='Profil'>
+				{error == false && loaded == true &&
+					<ProfileBox firstName={data.name} lastName={data.surname} class={data.groups[0].name} />}
+			</Heading>
+
 			<Body>
-				{error == false && loaded == true && 
-					<HomeSwitchView 
-						headerTexts={["Absence", "Nové známky"]}
-						components={[<HomeAbsence absence={{attended:Absence.lessons, missed:Absence.missedLessons, notExcused: Absence.unexcusedLessons}}/>, <HomeNewGrades/>]} />
-				}
+				<View style={styles.section}>
+					<View style={styles.header}>
+						<Text style={styles.title}>Informace</Text>
+						<Edit />
+					</View>
+
+					<ProfileInfo data={informaceData} edit={editMode} />
+				</View>
+
+				<View style={styles.section}>
+					<Text style={styles.title}>Rozdělení</Text>
+					<ProfileInfo data={rozdeleniData} />
+				</View>
 			</Body>
 		</Container>
 	);
 }
 
-function Settings() {
-	return(
-		<TouchableOpacity onPress={SettingsOnPress} activeOpacity={0.7}>
-			<Ionicons name='person-circle' size={30} color={'white'} />
-		</TouchableOpacity>
-	);
-}
-
-function SettingsOnPress() {
-	
-}
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	title: {
+		fontWeight: 'bold',
+		fontSize: 18,
+		marginLeft: 20,
+		opacity: 0.8
+	},
+	section: {
+		marginVertical: 20
+	},
+	edit: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		marginRight: 20,
+		paddingVertical: 5,
+		paddingHorizontal: 10,
+		borderRadius: 10,
+		backgroundColor: 'cornflowerblue'
+	},
+	editText: {
+		color: 'white',
+		fontWeight: 'bold'
+	},
+	editIcon: {
+		marginLeft: 5,
+		opacity: 0.8
+	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between'
+	}
+});
