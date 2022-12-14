@@ -89,7 +89,7 @@ export default function Home() {
 
 	return (
 		<Container>
-			<Heading headerText={date}>
+			<Heading title='Kyberna' subtitle={date}>
 				{<Carousel
 					data={testData.data}
 				/>}

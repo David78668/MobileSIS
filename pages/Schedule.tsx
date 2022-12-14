@@ -16,12 +16,11 @@ function GetWeekStart(date: Date){
 	return result
 }
 export default function Schedule() {
-	//const testdata = require("../testData.json");
-	// 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + '&date=2022/02/23&days=5', { method: 'get', headers: new Headers({ 'Authorization': bareer.toString() }) }
+	//const testdata = require("../assets/testData.json");
+	//'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + '&date=2022/02/23&days=5', { method: 'get', headers: new Headers({ 'Authorization': bareer.toString() }) }
 	const [data, setData] = React.useState<any>();
 	const [loaded, setLoaded] = React.useState(false);
 	const [error, setError] = React.useState(false);
-		
 	const [page, setPage] = React.useState(0);
 	React.useEffect(() => {
 		FetchData({
@@ -34,25 +33,21 @@ export default function Schedule() {
 	
 	return (
 		<Container>
-			<Heading headerText='Rozvrh' style={styles.view}>
-				
-           		{/*testdata.map((item:any,index:number) =>{
-				return(
-              	<TouchableOpacity onPress={()=>{setPage(index)}} style={styles.column}>
-                <Text style={styles.lessonsText}>{new Date(item.date).getDate()}. den</Text>
-                  {page == index?<View style={{height:item.timetable.length*12,width:50,backgroundColor:"white",borderRadius:10,opacity:0.8}}></View>:<View style={{height:item.timetable.length*12,width:50,backgroundColor:"white",borderRadius:10,opacity:0.5}}></View>}
-                  <Text style={styles.lessonsText}>{item.timetable[0].date}</Text>
-                  <Text style={styles.lessonsText}>{(item.timetable[item.timetable.length-1].date)}</Text>
-              	</TouchableOpacity>
-				)})*/}
+			<Heading title='Rozvrh'>
+           		{/*testdata.map((item: any, index: number) => {
+					return (
+						<TouchableOpacity onPress={()=>{setPage(index)}} style={styles.column}>
+							<Text style={styles.lessonsText}>{new Date(item.date).getDate()}. den</Text>
+							{page == index?<View style={{height:item.timetable.length*12,width:50,backgroundColor:"white",borderRadius:10,opacity:0.8}}></View>:<View style={{height:item.timetable.length*12,width:50,backgroundColor:"white",borderRadius:10,opacity:0.5}}></View>}
+							<Text style={styles.lessonsText}>{item.timetable[0].date}</Text>
+							<Text style={styles.lessonsText}>{(item.timetable[item.timetable.length-1].date)}</Text>
+						</TouchableOpacity>
+					)})*/}
 			</Heading>
 			<Body>
-        		{/*testdata[page].timetable.map((item:any)=> {
-					return(
-						<Lesson item={item}/>
-					)
-				}
-			)*/}
+        		{/*testdata[page].timetable.map((item: any) => {
+					return <Lesson item={item}/>;
+				})*/}
 			</Body>
 		</Container>
 	);
@@ -77,8 +72,5 @@ const styles = StyleSheet.create({
 		color: "white",
 		opacity: 0.8,
 		fontWeight: '600'
-	},
-	view: {
-		flexDirection: 'row',
-	},
+	}
 });

@@ -19,12 +19,12 @@ export default function CustomTabNavigation() {
         <Tab.Navigator screenOptions={{
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                 height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
-                paddingTop: Platform.OS == 'android' ? 0 : 20,
-                borderTopColor: '#eaeaf1',
-                borderTopWidth: 3,
+                paddingTop: Platform.OS == 'android' ? 0 : 10,
+                borderTopColor: 'rgba(0, 0, 0, 0.05)',
+                borderTopWidth: 5,
                 paddingHorizontal: 20
-            }
-        }}>
+            }}}>
+
             <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' }}} /> 
             <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' }}} /> 
             <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
@@ -36,49 +36,51 @@ export default function CustomTabNavigation() {
     );
 }
 
-const active = '#de6830';
-const inactive = 'rgba(0, 0, 0, 0.2)';
+const colors = {
+    focused: '#de6830',
+    unfocused: 'rgba(0, 0, 0, 0.2)'
+}
 
-const HomeIcon = ({ focused }: any) => {
+function HomeIcon({ focused }: any) {
     return (
         <View style={styles.iconContainer}>
-            <Feather name='home' size={25} color={focused ? active : inactive} />
+            <Feather name='home' size={25} color={focused ? colors.focused : colors.unfocused} />
             <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Domů</Text>
         </View>
     )
 }
 
-const ScheduleIcon = ({ focused }: any) => {
+function ScheduleIcon({ focused }: any) {
     return (
         <View style={styles.iconContainer}>
-            <Feather name='trello' size={25} color={focused ? active : inactive} />
+            <Feather name='trello' size={25} color={focused ? colors.focused : colors.unfocused} />
             <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Rozvrh</Text>
         </View>
     )
 }
 
-const GradesIcon = ({ focused }: any) => {
+function GradesIcon({ focused }: any) {
     return (
         <View style={styles.iconContainer}>
-            <Feather name='bookmark' size={25} color={focused ? active : inactive} />
+            <Feather name='bookmark' size={25} color={focused ? colors.focused : colors.unfocused} />
             <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Známky</Text>
         </View>
     )
 }
 
-const AbsenceIcon = ({ focused }: any) => {
+function AbsenceIcon({ focused }: any) {
     return (
         <View style={styles.iconContainer}>
-            <Feather name='calendar' size={25} color={focused ? active : inactive} />
+            <Feather name='calendar' size={25} color={focused ? colors.focused : colors.unfocused} />
             <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Absence</Text>
         </View>
     )
 }
 
-const ProfileIcon = ({ focused }: any) => {
+function ProfileIcon({ focused }: any) {
     return (
         <View style={styles.iconContainer}>
-            <Feather name='at-sign' size={25} color={focused ? active : inactive} />
+            <Feather name='at-sign' size={25} color={focused ? colors.focused : colors.unfocused} />
             <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Profil</Text>
         </View>
     )
@@ -88,7 +90,8 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 10,
         marginTop: 3,
-        fontWeight: '500'
+        fontWeight: 'bold',
+        opacity: 0.8
     },
     iconContainer: {
         alignItems: 'center',
@@ -96,7 +99,7 @@ const styles = StyleSheet.create({
     },
     focused: {
         color: '#de6830',
-        fontWeight: 'bold'
+        fontWeight: '900'
     },
     unfocused: {
         color: 'rgba(0, 0, 0, 0.3)'

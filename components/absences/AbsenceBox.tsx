@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, View, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
@@ -18,7 +19,7 @@ interface AbsenceProps {
 
 export default function AbsenceBox(props: AbsenceProps) {
 	return (
-		<ScrollView style={styles.container}>
+		<View style={styles.container}>
 			<FlatList
 				data={props.data}
 				renderItem={renderAbsence}
@@ -26,7 +27,7 @@ export default function AbsenceBox(props: AbsenceProps) {
 				ListHeaderComponent={header}
 				keyExtractor={(item, index) => index.toString()}
 			/>
-		</ScrollView>
+		</View>
 	);
 };
 
@@ -80,7 +81,9 @@ function separator() {
 		flex: 3
 	},
 	wrapper: {
-		flex: 1
+		flex: 1,
+		flexDirection: 'row',
+		alignItems: 'center'
 	},
 	bold: {
 		fontWeight: 'bold',

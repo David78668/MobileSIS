@@ -1,19 +1,16 @@
 import React from "react";
-import { StyleSheet, ViewStyle, Dimensions, ScrollView} from "react-native";
-import {navbarHeight} from '../CustomNavbar';
-
+import { StyleSheet, ScrollView } from "react-native";
 interface BodyProps {
-	children?: React.ReactNode,
-	style?: ViewStyle | Array<ViewStyle>,
+	children?: React.ReactNode
 }
 
 export default function Body(props: BodyProps){
-	return(
-		<ScrollView
-			contentContainerStyle={{ flexGrow: 1 }}
-			style={StyleSheet.compose({ flexGrow: 1, overflow: 'scroll' }, props.style)}>
-			
-			{props.children}
-		</ScrollView>
-	);
+	return <ScrollView style={styles.container}>{props.children}</ScrollView>;
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		overflow: 'scroll'
+	}
+});

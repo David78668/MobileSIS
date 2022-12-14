@@ -45,12 +45,14 @@ const styles = StyleSheet.create({
 		width: 120
 	},
 	gradeBox: {
+		justifyContent: 'center',
 		alignItems: 'center',
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		backgroundColor: '#E9671E',
 		paddingVertical: 5,
-		marginTop: 20
+		marginTop: 20,
+		flexDirection: 'row'
 	},
 	iconBox: {
 		height: 40,
@@ -58,8 +60,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		backgroundColor: "#e9691e1A",
 		justifyContent: 'center',
-		alignItems: 'center',
-		flexDirection: 'row'
+		alignItems: 'center'
 	},
 	header: {
 		fontSize: 18,

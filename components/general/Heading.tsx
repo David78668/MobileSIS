@@ -2,24 +2,26 @@ import React from "react";
 import { View, Text, StyleSheet, ViewStyle, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-interface HeadingProps {
-	headerText: string,
+interface HeaderProps {
+	title: string,
+	subtitle?: string,
 	headerComponent?: React.ReactNode,
-	children?: React.ReactNode,
-	style?: ViewStyle,
+	children?: React.ReactNode
 }
 
-export default function Heading(props: HeadingProps) {
+export default function Heading(props: HeaderProps) {
 	return (
 		<SafeAreaView style={styles.background}>
 			<View style={styles.headerContainer}>
-				<Text style={styles.headerText}>{props.headerText}</Text>
+				<View>
+					<Text style={styles.headerText}>{props.title}</Text>
+					{props.subtitle ? <Text style={styles.subtitle}>{props.subtitle}</Text> : null}
+				</View>
+
 				{props.headerComponent}
 			</View>
 
-			<View style={{ ...props.style, marginTop: 20 }}>
-				{props.children}
-			</View>
+			{props.children ? <View style={{ marginTop: 20 }}>{props.children}</View> : null}
 		</SafeAreaView>
 	);
 }
@@ -40,5 +42,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		paddingHorizontal: 20
+	},
+	subtitle: {
+		color: 'white',
+		fontWeight: '500',
+		opacity: 0.6
 	}
-})
+});

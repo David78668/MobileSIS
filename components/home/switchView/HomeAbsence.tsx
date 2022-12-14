@@ -1,21 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, ViewStyle } from 'react-native';
-import { Absences, ChartColors } from '../../../declarations/types';
+import { StyleSheet, Text, View } from 'react-native';
+import { Absences } from '../../../declarations/types';
 import DonutChart from './CustomPieChart';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-const containerHeight = windowHeight * 0.18;
-
 interface HomeAbsenceProps {
-	absence: Absences,
-	style?: ViewStyle | Array<ViewStyle>,
-	chartColors?: ChartColors
+	absence: Absences
 }
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
-	const colors = props.chartColors != null ?
-		props.chartColors : { attended: "#DE6830", missed: "#1E9EE8", notExcused: "#39E81E" };
+	const colors = {
+		attended: "#DE6830",
+		missed: "#71c1f0",
+		notExcused: "#a7d533"
+	}
 	
 	const attended = props.absence.attended;
 	const missed = props.absence.missed;
@@ -33,7 +30,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 				<View style={styles.graphLabelsTop}>
 					<View style={styles.graphLabel}>
 						<View style={[styles.graphLegend, { backgroundColor: colors.attended }]}></View>
-						<View style={styles.graphLabelTextContainer}>
+						<View>
 							<Text style={styles.graphLabelText}>Odučené</Text>
 							<Text style={styles.graphLabelValue}>{attended} hodin</Text>
 						</View>
@@ -41,7 +38,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 
 					<View style={{...styles.graphLabel, marginLeft: 20 }}>
 						<View style={[styles.graphLegend, { backgroundColor: colors.missed }]}></View>
-						<View style={styles.graphLabelTextContainer}>
+						<View>
 							<Text style={styles.graphLabelText}>Zameškané</Text>
 							<Text style={styles.graphLabelValue}>{missed} hodin</Text>
 						</View>
@@ -49,9 +46,9 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 				</View>
 
 				<View>
-					<View style={{...styles.graphLabel, marginTop: 5 }}>
+					<View style={{...styles.graphLabel, marginTop: 10 }}>
 						<View style={[styles.graphLegend, { backgroundColor: colors.notExcused }]}></View>
-						<View style={styles.graphLabelTextContainer}>
+						<View>
 							<Text style={styles.graphLabelText}>Neomluvené</Text>
 							<Text style={styles.graphLabelValue}>{notExcused} hodin</Text>
 						</View>
@@ -88,14 +85,12 @@ const styles = StyleSheet.create({
 		borderRadius: 3,
 		width: 5,
 		height: 20,
-		marginRight: 8
+		marginRight: 8,
+		opacity: 0.8
 	},
 	graphLabel: {
 		flexDirection: 'row',
 		alignItems: 'center'
-	},
-	graphLabelTextContainer: {
-		paddingVertical: 3
 	},
 	graphLabelText: {
 		fontWeight: 'bold',
