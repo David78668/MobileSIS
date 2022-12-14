@@ -6,13 +6,16 @@ import {
   Dimensions,
   FlatList
 } from "react-native";
-import CarouselItem from './CarouselItem';
+import {CarouselItem, CarouselItemProps} from './CarouselItem';
 
-export default function Carousel() {
+export interface CarouselProps {
+    data: Array<CarouselItemProps>
+}
+
+export default function Carousel(props: CarouselProps) {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const windowWidth = Dimensions.get('window').width;
-  const data = require('../../../assets/testData.json');
 
   function renderDot({ item, index }: any) {
     const width = scrollX.interpolate({
@@ -40,19 +43,18 @@ export default function Carousel() {
 
   return (
     <View style={styles.container}>
-        <FlatList
-          data={data.Days[0].Lessons}
-          renderItem={({ item }) => <CarouselItem item={item} />}
+         <FlatList
+          data={props.data}
+          renderItem={({ item }) => <CarouselItem item={item.item} />}
           showsHorizontalScrollIndicator={false}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
           horizontal
+          scrollEnabled = {true}
           snapToInterval={windowWidth}
-          style={{ overflow: 'visible' }}
           decelerationRate={0.5}
           scrollEventThrottle={1} />
-
-        <FlatList
-          data={data.Days[0].Lessons}
+       <Animated.FlatList
+          data={props.data}
           renderItem={renderDot}
           scrollEnabled={false}
           showsHorizontalScrollIndicator={false}
