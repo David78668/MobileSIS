@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Colors } from "../../../declarations/colors";
 import {
   StyleSheet,
   View,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   normalDot: {
     borderRadius: 4,
     marginHorizontal: 5,
-    backgroundColor: 'white'
+    backgroundColor: Colors.PrimaryBackgroundColor
   },
   indicatorContainer: {
     flexDirection: "row",

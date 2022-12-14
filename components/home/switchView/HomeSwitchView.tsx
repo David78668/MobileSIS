@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Colors } from '../../../declarations/colors';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native"
 
 interface HomeSwitchViewProps {
@@ -48,13 +49,13 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20
 	},
 	text: {
-		color: 'black',
+		color: Colors.SecondaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18,
 		paddingBottom: 3
 	},
 	underline: {
 		borderBottomWidth: 2,
-		borderBottomColor: 'lightgray'
+		borderBottomColor: Colors.TertiaryTextColor,
 	}
 });

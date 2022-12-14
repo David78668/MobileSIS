@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
+import { Colors } from '../../../declarations/colors';
 import { Feather } from '@expo/vector-icons';
 
 export default function ScheduleChanges() {
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
 		fontSize: 18,
 		opacity: 0.8
 	},

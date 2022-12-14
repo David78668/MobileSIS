@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Absences } from '../../../declarations/types';
+import { Colors } from '../../../declarations/colors';
 import DonutChart from './CustomPieChart';
 
 interface HomeAbsenceProps {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		borderRadius: 10,
 		marginHorizontal: 20,
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		shadowColor: 'rgba(0, 0, 0, 0.1)',
 		shadowOffset: { width: 0, height: 0 },
 		shadowRadius: 10,
@@ -94,12 +95,15 @@ const styles = StyleSheet.create({
 	},
 	graphLabelText: {
 		fontWeight: 'bold',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor,
+
 	},
 	graphLabelValue: {
 		opacity: 0.5,
 		fontSize: 13,
-		fontWeight: '500'
+		fontWeight: '500',
+		color: Colors.SecondaryTextColor,
 	},
 	graphLabels: {
 		flexDirection: 'column',

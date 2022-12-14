@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { Colors } from '../../declarations/colors';
 import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
@@ -87,6 +88,7 @@ function separator() {
 	},
 	bold: {
 		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
 		opacity: 0.8,
 		fontSize: 15
 	},
@@ -95,7 +97,7 @@ function separator() {
 		fontWeight: '500'
 	},
 	separator: {
-		backgroundColor: 'lightgray',
+		backgroundColor: Colors.TertiaryTextColor,
 		opacity: 0.5,
 		width: '100%',
 		borderRadius: 1,
@@ -103,7 +105,7 @@ function separator() {
 	},
 	container: {
 		marginTop: 20,
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		marginHorizontal: 20,
 		paddingHorizontal: 20,
 		borderRadius: 10,

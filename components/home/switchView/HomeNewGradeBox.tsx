@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Colors } from '../../../declarations/colors';
 
 import moment from 'moment';
 import "moment/locale/cs";
@@ -33,7 +34,7 @@ export default function HomeNewGradeBox(props: GradeBoxProps) {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "white",
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		borderRadius: 10,
 		paddingHorizontal: 20,
 		paddingTop: 10,
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
-		backgroundColor: '#E9671E',
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		paddingVertical: 5,
 		marginTop: 20,
 		flexDirection: 'row'
@@ -65,16 +66,18 @@ const styles = StyleSheet.create({
 	header: {
 		fontSize: 18,
 		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
 		opacity: 0.8,
 		marginTop: 10
 	},
 	date: {
 		fontWeight: '500',
 		opacity: 0.6,
+		color: Colors.SecondaryTextColor,
 		fontSize: 13
 	},
 	grade: {
-		color: 'white',
+		color: Colors.SecondaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18
 	}

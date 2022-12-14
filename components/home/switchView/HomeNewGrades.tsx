@@ -1,5 +1,6 @@
 import React from 'react';
 import HomeNewGradeBox from './HomeNewGradeBox';
+import { Colors } from '../../../declarations/colors';
 import { FlatList, StyleSheet, View, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -40,22 +41,22 @@ export default function HomeNewGrades() {
 		date: new Date(),
 		subject: 'MAT',
 		grade: '1',
-		icon: <Ionicons name='shapes' size={20} color='#E9671ECC' />
+		icon: <Ionicons name='shapes' size={20} color={Colors.TertiaryBackgroundColor} />
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
 		subject: 'PRG',
 		grade: '1',
-		icon: <Ionicons name='code-slash' size={20} color='#E9671ECC' />
+		icon: <Ionicons name='code-slash' size={20} color={Colors.TertiaryBackgroundColor} />
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 48),
 		subject: 'AGJ',
 		grade: '1',
-		icon: <Ionicons name='earth' size={20} color='#E9671ECC' />
+		icon: <Ionicons name='earth' size={20} color={Colors.TertiaryBackgroundColor} />
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 72),
 		subject: 'FYZ',
 		grade: '1',
-		icon: <Ionicons name='sunny' size={20} color='#E9671ECC' />
+		icon: <Ionicons name='sunny' size={20} color={Colors.TertiaryBackgroundColor} />
 	}];
 	
 	function renderGrade(item: any, index: number, length: number) {

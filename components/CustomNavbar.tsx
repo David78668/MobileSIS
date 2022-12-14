@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
+import { Colors } from '../declarations/colors';
 import Home from '../pages/Home';
 import React from 'react';
 import Schedule from '../pages/Schedule';
@@ -37,7 +38,7 @@ export default function CustomTabNavigation() {
 }
 
 const colors = {
-    focused: '#de6830',
+    focused: Colors.TertiaryBackgroundColor,
     unfocused: 'rgba(0, 0, 0, 0.2)'
 }
 

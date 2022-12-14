@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../../../declarations/colors';
 
 const width = Dimensions.get('window').width;
 export type CarouselItemProps = {
@@ -28,11 +29,11 @@ export function CarouselItem(item: CarouselItemProps)
 				<Text style={styles.subjectLabel}>{item.item.Name}</Text>
 				<View style={{ marginTop: 10 }}>
 					<View style={styles.paralel}>
-						<Ionicons color="#DE6830" size={15} name='easel' />
+						<Ionicons color= {Colors.TertiaryBackgroundColor} size={15} name='easel' />
 						<Text style={styles.value}>Učebna {item.item.Classroom}</Text>
 					</View>
 					<View style={{ ...styles.paralel, marginTop: 3 }}>
-						<Ionicons color="#DE6830" size={15} name='person-circle' />
+						<Ionicons color= {Colors.TertiaryBackgroundColor} size={15} name='person-circle' />
 						<Text style={styles.value}>{item.item.Teacher}</Text>
 					</View>
 				</View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		height: "75%",
 		width: 3,
-		backgroundColor: "#DE6830",
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		marginHorizontal: 20
 	},
 	paralel: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
 	container: {
 		alignItems: "center",
 		flexDirection: 'row',
-		backgroundColor: "white",
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		borderRadius: 20,
 		paddingHorizontal: 25,
 		paddingVertical: 15,
@@ -74,25 +75,30 @@ const styles = StyleSheet.create({
 	value: {
 		marginLeft: 5,
 		fontWeight: '500',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor,
 	},
 	subjectLabel: {
 		fontSize: 18,
 		fontWeight: 'bold',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor,
 	},
 	endTimeLabel: {
 		opacity: 0.3,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
 	},
 	startTimeLabel: {
-		fontWeight: 'bold'
+		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
 	},
 	cardBody: {
 		justifyContent: 'center',
 	},
 	time: {
 		opacity: 0.3,
-		fontWeight: '500'
+		fontWeight: '500',
+		color: Colors.SecondaryTextColor,
 	}
 });

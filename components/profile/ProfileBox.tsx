@@ -1,4 +1,5 @@
 import React from "react";
+import { Colors } from "../../declarations/colors";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 
 interface ProfileBoxProps {
@@ -24,7 +25,7 @@ export default function ProfileBox(props: ProfileBoxProps) {
 
 const styles = StyleSheet.create({
 	profileBox: {
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
@@ -38,31 +39,32 @@ const styles = StyleSheet.create({
 		height: 50,
 		width: 50,
 		borderRadius: 50,
-		backgroundColor: '#e9691e',
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	profilePictureText: {
 		fontSize: 18,
 		fontWeight: 'bold',
-		color: 'white'
+		color: Colors.PrimaryTextColor
 	},
 	studentName: {
 		fontSize: 18,
 		fontWeight: 'bold',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor,
 	},
 	logoutText: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		fontSize: 12
 	},
 	studentInfo: {
-		color: 'black',
+		color: Colors.SecondaryTextColor,
 		opacity: 0.6,
 		fontWeight: '500'
 	},
 	logoutButton: {
-		backgroundColor: '#E8681E',
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		borderRadius: 10,
 		height: 33,
 		width: 117,

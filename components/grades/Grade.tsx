@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { Ionicons } from "@expo/vector-icons"
 import React from 'react';
+import { Colors } from '../../declarations/colors';
 import { GradeProps, GradeData } from '../../declarations/types';
 
 //TODO
@@ -18,20 +19,20 @@ export default function Grade(data: any) {
 					color={'white'}
 					size={27}
 					style={{
-						backgroundColor: "#EB7221",
+						backgroundColor: Colors.TertiaryBackgroundColor,
 						padding: 5,
 						borderRadius: 12,
 						marginLeft: 10,
 						}} name="calculator-outline"></Ionicons>
 				<View style={{ flexDirection: 'column', marginLeft: 20 }}>
-					<Text style={{ fontSize: 16, fontWeight: '600' }}>{data.subject.name}</Text>
-					<Text>Průměr: {calculateAverage(data.marks)}</Text>
+					<Text style={{ fontSize: 16, fontWeight: '600', color:Colors.SecondaryTextColor }}>{data.subject.name}</Text>
+					<Text style={{color:Colors.SecondaryTextColor}}>Průměr: {calculateAverage(data.marks)}</Text>
 				</View>
 				<View style={{ marginLeft: 'auto', flexDirection: 'row', justifyContent: 'flex-end' }}>
 					<Text style={{ paddingTop: 30 }}>Známky: {data.marks.length}</Text>
 					<Ionicons
 						name='chevron-up-outline'
-						color="#EB7221"
+						color={Colors.TertiaryBackgroundColor}
 						size={20}
 						style={{
 							transform: [{rotate: select ? '0deg' : '180deg'}],
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 		padding: 5,
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 	},
 	shadow: {
 		margin: 3,
@@ -72,8 +73,8 @@ function Content(data: any) {
 			<View>
 				{data.map((item: any) => (
 					<View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 1,}}>
-						<View style={{ backgroundColor: "#EB7221", height: 55, width: 55, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 30, color: 'white' }}>{item.value}</Text></View>
-						<View style={{ flexDirection: 'row', height:"100%", flex:1, paddingRight: 5, justifyContent: 'space-between', alignItems: 'center', backgroundColor:'white'}}>
+						<View style={{ backgroundColor: Colors.TertiaryBackgroundColor, height: 55, width: 55, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 30, color: Colors.PrimaryTextColor }}>{item.value}</Text></View>
+						<View style={{ flexDirection: 'row', height:"100%", flex:1, paddingRight: 5, justifyContent: 'space-between', alignItems: 'center', backgroundColor:Colors.PrimaryBackgroundColor}}>
 						<Text numberOfLines={1}
 							style={{
 								marginLeft: 10,
@@ -82,8 +83,8 @@ function Content(data: any) {
 							}}
 						>{item.comment}</Text>
 						<View style={{ flexDirection: 'column', marginRight: 10 }}>
-							<Text style={{ fontSize: 15 }}>{toDate(item.date)}</Text>
-							<Text style={{ textAlign: 'right', color: '#EB7221' }}>Váha: {item.weight}</Text>
+							<Text style={{ fontSize: 15, color: Colors.SecondaryTextColor }}>{toDate(item.date)}</Text>
+							<Text style={{ textAlign: 'right', color: Colors.TertiaryBackgroundColor }}>Váha: {item.weight}</Text>
 						</View>
 						</View>
 					</View>

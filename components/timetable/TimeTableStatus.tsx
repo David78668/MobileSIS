@@ -1,4 +1,5 @@
 import React from 'react';
+import { Colors } from '../../declarations/colors';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function LessonView() {
@@ -39,7 +40,7 @@ export default function LessonView() {
 			{data.map((item) => (
 				<View style={styles.column}>
 					<Text style={styles.lessonsText}>{item.DayName}</Text>
-					<View style={{ height: item.Hours * 12, width: 50, backgroundColor: "white", borderRadius: 10, opacity: 0.8 }}></View>
+					<View style={{ height: item.Hours * 12, width: 50, backgroundColor: Colors.PrimaryBackgroundColor, borderRadius: 10, opacity: 0.8 }}></View>
 					<Text style={styles.lessonsText}>{item.From}</Text>
 					<Text style={styles.lessonsText}>{item.To}</Text>
 				</View>
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
 	},
 	lessonsText: {
 		textAlign: 'center',
-		color: "white",
-		opacity: 0.8
+		color: Colors.PrimaryTextColor,
+		opacity: 0.8,
 	}
 });

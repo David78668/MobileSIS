@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Colors } from '../../declarations/colors';
 import { StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
 
 interface ProfilData {
@@ -65,14 +66,16 @@ function separator() {
 	},
 	key: {
 		fontWeight: 'bold',
-		opacity: 0.8
+		color: Colors.SecondaryTextColor,
+		opacity: 0.8,
 	},
 	value: {
 		opacity: 0.6,
+		color: Colors.SecondaryTextColor,
 		fontWeight: '500'
 	},
 	separator: {
-		backgroundColor: 'lightgray',
+		backgroundColor: Colors.TertiaryTextColor,
 		opacity: 0.5,
 		width: '100%',
 		borderRadius: 1,
@@ -80,7 +83,7 @@ function separator() {
 	},
 	container: {
 		marginTop: 20,
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		marginHorizontal: 20,
 		paddingHorizontal: 20,
 		borderRadius: 10,
@@ -91,7 +94,9 @@ function separator() {
 		overflow: 'visible'
     },
     input: {
-        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        backgroundColor: Colors.PrimaryTextColor,
+		color: Colors.SecondaryTextColor,
+		opacity: 0.05,
         paddingVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 5

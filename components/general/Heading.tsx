@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ViewStyle, Platform } from "react-native";
+import { Colors } from '../../declarations/colors';
 import { SafeAreaView } from "react-native-safe-area-context";
 
 interface HeaderProps {
@@ -28,13 +29,13 @@ export default function Heading(props: HeaderProps) {
 
 const styles = StyleSheet.create({
 	background: {
-		backgroundColor: '#E9671E',
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		paddingTop: 20,
 		paddingBottom: Platform.OS == 'android' ? 20 : 0
 	},
 	headerText: {
 		fontSize: 30,
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		fontWeight: '900'
 	},
 	headerContainer: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20
 	},
 	subtitle: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		fontWeight: '500',
 		opacity: 0.6
 	}

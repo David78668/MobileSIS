@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { Colors } from '../../declarations/colors';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 
@@ -26,7 +27,7 @@ export default function Datescroll(props: DateScrollProps) {
         }
       }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
-          <Feather color='white' size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.6 }} />
+          <Feather color={Colors.PrimaryTextColor} size={20} name="chevron-left" style={{ opacity: currentDate == 0 ? 0 : 0.6 }} />
         </View>
       </TouchableOpacity>
       
@@ -41,7 +42,7 @@ export default function Datescroll(props: DateScrollProps) {
         }
       }} activeOpacity={0.7}>
         <View style={styles.arrowWrapper}>
-          <Feather color="white" size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.6 }}/>
+          <Feather color={Colors.PrimaryTextColor} size={20} name="chevron-right" style={{ opacity: currentDate == dates.length - 1 ? 0 : 0.6 }}/>
         </View>
       </TouchableOpacity>
     </View>
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
   },
   headerDate: {
     fontSize: 17,
-    color: 'white',
+    color: Colors.PrimaryTextColor,
     fontWeight: '500'
   },
 });

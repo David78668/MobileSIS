@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
+import { Colors } from '../../../declarations/colors';
 
 export default function App(item: any) {
 	return (
@@ -15,11 +16,11 @@ export default function App(item: any) {
 				</View>
 				<View style={styles.bottom}>
 					<View style={styles.classroom}>
-						<Ionicons color="#DE6830" size={15} name="easel"></Ionicons>
+						<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="easel"></Ionicons>
 						<Text style={styles.classroomtext}>{item.classroom}</Text>
 					</View>
 					<View style={styles.teacher}>
-						<Ionicons color="#DE6830" size={15} name="person-circle"></Ionicons>
+						<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="person-circle"></Ionicons>
 						<Text style={styles.teachertext}>{item.subject.teacher.shortName}</Text>
 					</View>
 				</View>
@@ -30,24 +31,24 @@ export default function App(item: any) {
 
 const styles = StyleSheet.create({
 	change: {
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		margin: 1,
 		flexDirection: 'row',
 	},
 	changeleft: {
 		width: 66,
 		height: 100,
-		backgroundColor: '#DE6830',
-		borderLeftColor: '#E9671E',
+		backgroundColor: Colors.TertiaryBackgroundColor,
+		borderLeftColor: Colors.TertiaryBackgroundColor,
 		borderLeftWidth: 4,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
 	classstart: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 	},
 	classend: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		opacity: 0.5,
 	},
 	changeright: {
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
 	lesson: {
 		fontSize: 21,
 		fontWeight: '600',
+		color: Colors.SecondaryTextColor,
 	},
 	bottom: {
 		width: 144,
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
 		paddingTop: 3,
 		paddingBottom: 3,
 		justifyContent: 'space-evenly',
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 	},
 	classroom: {
 		flexDirection: 'row',
@@ -84,12 +86,14 @@ const styles = StyleSheet.create({
 		marginLeft: 4,
 		fontWeight: "500",
 		fontSize: 15,
+		color: Colors.SecondaryTextColor,
 	},
 	fromclassroomtext: {
 		marginLeft: 3,
 		opacity: 0.35,
 		fontWeight: "500",
 		fontSize: 15,
+		color: Colors.SecondaryTextColor,
 	},
 	teacher: {
 		flexDirection: 'row',
@@ -99,5 +103,6 @@ const styles = StyleSheet.create({
 		marginLeft: 4,
 		fontWeight: "500",
 		fontSize: 15,
+		color: Colors.SecondaryTextColor,
 	},
 });

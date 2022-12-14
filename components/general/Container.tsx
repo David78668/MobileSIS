@@ -1,4 +1,5 @@
 import React from "react";
+import { Colors } from '../../declarations/colors';
 import { View, StyleSheet, Dimensions } from "react-native";
 
 interface ContainerProps {
@@ -12,6 +13,6 @@ export default function Container(props:ContainerProps){
 const styles = StyleSheet.create({
 	container: {
 		height: Dimensions.get('screen').height,
-		backgroundColor: "#f4f4f4" 
+		backgroundColor: Colors.SecondaryBackgroundColor,
 	}
 });

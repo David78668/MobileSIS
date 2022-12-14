@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
+import { Colors } from '../../../declarations/colors';
 
 interface ScheduleChangeBoxProps {
 	StartTime: string,
@@ -48,23 +49,23 @@ export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 					<Text style={styles.lesson}>{props.ShortName}</Text>
 					
 					{props.Change == "LessonRemoved" ? 
-							<Ionicons name='close' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
+							<Ionicons name='close' size={15} color={Colors.LessonRemovedColor} style={{ marginLeft: 5 }} /> : null}
 					
 					{props.Change == "ClassroomChanged" ? 
-						<Ionicons name='easel' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
+						<Ionicons name='easel' size={15} color={Colors.ClassroomChangedColor} style={{ marginLeft: 5 }} /> : null}
 					
 					{props.Change == "TeacherChanged" ? 
-						<Ionicons name='person-circle' size={15} color="#EE5656" style={{ marginLeft: 5 }} /> : null}
+						<Ionicons name='person-circle' size={15} color={Colors.TeacherChangedColor} style={{ marginLeft: 5 }} /> : null}
 				</View>
 
 				<View style={styles.bottom}>
 					<View style={styles.classroom}>
-						<Ionicons color="#EE5656" size={15} name="easel" />
+						<Ionicons color={Colors.ClassroomChangedColor} size={15} name="easel" />
 						<Text style={styles.value}>Učebna {props.Classroom}</Text>
 					</View>
 
 					<View style={styles.teacher}>
-						<Ionicons color="#EE5656" size={15} name="person-circle" />
+						<Ionicons color={Colors.TeacherChangedColor} size={15} name="person-circle" />
 						<Text style={styles.value}>{props.Teacher}</Text>
 					</View>
 				</View>
@@ -75,7 +76,7 @@ export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 
 const styles = StyleSheet.create({
 	change: {
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor,
 		alignSelf: 'center',
 		flexDirection: 'row',
 		borderRadius: 10,
@@ -88,17 +89,17 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 10,
 		borderBottomLeftRadius: 10,
 		paddingHorizontal: 20,
-		backgroundColor: '#EE5656',
+		backgroundColor: Colors.ClassroomChangedColor,
 		justifyContent: 'center',
 		alignItems: 'center',
 		width: 80
 	},
 	classstart: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold'
 	},
 	classend: {
-		color: 'white',
+		color: Colors.PrimaryTextColor,
 		opacity: 0.5,
 		fontWeight: 'bold'
 	},
@@ -113,24 +114,27 @@ const styles = StyleSheet.create({
 	},
 	difference: {
 		fontSize: 14,
-		fontWeight: '400'
+		fontWeight: '400',
 	},
 	lesson: {
 		fontSize: 18,
 		fontWeight: 'bold',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor,
 	},
 	bottom: {
 		marginTop: 10
 	},
 	classroom: {
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		color: Colors.SecondaryTextColor
 	},
 	value: {
 		marginLeft: 5,
 		fontWeight: '500',
-		opacity: 0.8
+		opacity: 0.8,
+		color: Colors.SecondaryTextColor
 	},
 	teacher: {
 		flexDirection: 'row',
