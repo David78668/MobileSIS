@@ -3,29 +3,36 @@ import { Colors } from '../../declarations/colors';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import moment from 'moment';
+import { getCurrentTimeInSeconds } from 'expo-auth-session/build/TokenRequest';
 
-export default function Lesson(item: any) {
-	let startTime = moment(item.item.date).format("H.mm");
-	let endTime = moment(item.item.date).add(45, "minutes").format("H.mm");
+export interface LessonProps {
+	item: any,
+	delayBefore : number
+}
+
+export default function Lesson(props : LessonProps) {
+	let startTime = moment(props.item.date).format("H.mm");
+	let endTime = moment(props.item.date).add(45, "minutes").format("H.mm");
 	return (
-		<View style={styles.container}>
+		<View
+			style={[styles.container, {marginTop: props.delayBefore}, !props.item.active &&  styles.inactiveClass]}>
 			{(<View style={styles.change}>
-				<View style={styles.changeleft}>
+				<View style={[styles.changeleft, !props.item.static && styles.suplementaryClass]}>
 					<Text style={styles.classstart}>{startTime}</Text>
 					<Text style={styles.classend}>{endTime}</Text>
 				</View>
 				<View style={styles.changeright}>
 					<View style={styles.top}>
-						<Text style={styles.lesson}>{item.item.subject.name}</Text>
+						<Text style={styles.lesson}>{props.item.subject.name}</Text>
 					</View>
 					<View style={styles.bottom}>
 						<View style={styles.classroom}>
 							<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="easel"></Ionicons>
-							<Text style={styles.classroomtext}>{item.item.classroom}</Text>
+							<Text style={styles.classroomtext}>{props.item.classroom}</Text>
 						</View>
 						<View style={styles.teacher}>
 							<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="person-circle"></Ionicons>
-							<Text style={styles.teachertext}>{item.item.subject.teacher.shortName}</Text>
+							<Text style={styles.teachertext}>{props.item.subject.teacher.shortName}</Text>
 						</View>
 					</View>
 				</View>
@@ -42,7 +49,12 @@ const styles = StyleSheet.create({
 		marginVertical: 2,
 		marginHorizontal: 5,
 		overflow: "hidden",
-	
+	},
+	inactiveClass: {
+		opacity: 0.3
+	},
+	suplementaryClass: {
+		backgroundColor: Colors.ClassroomChangedColor
 	},
 	change: {
 		backgroundColor: Colors.PrimaryBackgroundColor,
@@ -51,9 +63,7 @@ const styles = StyleSheet.create({
 	},
 	changeleft: {
 		width: 66,
-		backgroundColor: '#DE6830',
-		borderLeftColor: '#E9671E',
-		borderLeftWidth: 4,
+		backgroundColor: Colors.TertiaryBackgroundColor,
 		height: "100%",
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -63,10 +73,8 @@ const styles = StyleSheet.create({
 	},
 	classend: {
 		color: Colors.PrimaryTextColor,
-		opacity: 0.5,
 	},
 	changeright: {
-		width: 144,
 		height: "100%",
 		marginLeft: 10,
 		paddingVertical: 5,

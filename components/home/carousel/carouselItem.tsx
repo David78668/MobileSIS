@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import {  View, Text, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../declarations/colors';
 

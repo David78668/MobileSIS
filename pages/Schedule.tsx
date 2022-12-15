@@ -1,6 +1,6 @@
 import React from 'react';
 import FetchData from '../tools/ApiRequest';
-import { StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback } from 'react-native';
+import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback } from 'react-native';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import { userid, bareer } from "../components/Token";
@@ -15,14 +15,21 @@ function GetWeekStart(date: Date) {
 	return result;
 }
 
-function GetSelectedDay(date: string){
+function GetSelectedDay(date: string) {
 	var output = moment(date).format("dddd Do");
 	output = output[0].toUpperCase() + output.substring(1, output.length)
 	return output;
 }
+
+if (
+	Platform.OS === "android" &&
+	UIManager.setLayoutAnimationEnabledExperimental
+) {
+	UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 export default function Schedule() {
 	const testdata = require("../assets/testData.json");
-	//'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + '&date=2022/02/23&days=5', { method: 'get', headers: new Headers({ 'Authorization': bareer.toString() }) }
 	const [data, setData] = React.useState<any>();
 	const [loaded, setLoaded] = React.useState(false);
 	const [error, setError] = React.useState(false);
@@ -39,9 +46,19 @@ export default function Schedule() {
 
 	return (
 		<Container>
-			<Heading title='Rozvrh'>
+			<Heading
+				title="Rozvrh"
+				subtitle={GetSelectedDay(testdata[page].date)}
+				Pressable = {{
+					delayPressIn: 0,
+					onPress(event) {
+						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+						setIsDaySelect(!isDaySelect);
+					},
+				}}
+			>
 				<View style={styles.HeadingContainer}>
-					{isDaySelect ?
+					{isDaySelect &&
 						testdata.map((item: any, index: number) => {
 							return (
 								<DayBlock
@@ -51,31 +68,30 @@ export default function Schedule() {
 									onPress={(setPage)}
 								/>
 							)
-						}) :
-						<TouchableWithoutFeedback
-							onPress={()=>{
-								setIsDaySelect(true);
-							}}
-						>
-							<View style={styles.headingTextContainer}>
-								<Text style={styles.currentDayText}>
-									{GetSelectedDay(testdata[page].date)}
-								</Text>
-							</View>
-						</TouchableWithoutFeedback>
+						})
 					}
-
 				</View>
 			</Heading>
-			<Body
-				onScroll={() => {
-					setIsDaySelect(false);
-				}}
-			>
-				{testdata[page].timetable.map((item: any) => {
-					return <Lesson item={item} />;
-				})}
-			</Body>
+				<Body
+					ScrollView={{
+						onTouchStart(event) {
+							LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+							setIsDaySelect(false);
+						},
+					}}
+				>
+					{testdata[page].timetable.map((item: any, index: number) => {
+						let delay = 15
+						if(index > 0){
+							let lessonBefore = testdata[page].timetable[index - 1].date;
+							delay = moment(item.date).diff(moment(lessonBefore), "minutes") - 45
+						}
+						return( <Lesson
+						item={item}
+						delayBefore={delay}
+						/>)
+					})}
+				</Body>
 		</Container>
 	);
 }
@@ -97,7 +113,7 @@ const styles = StyleSheet.create({
 	column: {
 		padding: 5
 	},
-	currentDayText:{
+	currentDayText: {
 		color: Colors.PrimaryTextColor,
 		fontSize: 25,
 		fontWeight: 'bold',
