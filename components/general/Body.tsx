@@ -1,23 +1,27 @@
 import React from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, ScrollViewProps, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from "react-native";
 interface BodyProps {
-	children?: React.ReactNode
-	onScroll?: Function
+	children?: React.ReactNode,
+	ScrollView?: ScrollViewProps,
+	Touchable?: TouchableWithoutFeedbackProps
+	
 }
 
 export default function Body(props: BodyProps) {
 	return (
+	<TouchableWithoutFeedback
+		{...props.Touchable}
+	>
 		<ScrollView
 			overScrollMode="never"
 			showsVerticalScrollIndicator={false}
-			scrollEventThrottle = {250}
-			onScroll={() => {
-				if (props.onScroll != undefined)
-					props.onScroll()
-			}}
-			style={styles.container}>
+			scrollEventThrottle = {1}
+			style={styles.container}
+			{...props.ScrollView}
+		>
 			{props.children}
 		</ScrollView>
+	</TouchableWithoutFeedback>
 	);
 }
 
