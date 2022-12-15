@@ -59,26 +59,30 @@ export default function HomeNewGrades() {
 		icon: <Ionicons name='sunny' size={20} color={Colors.TertiaryBackgroundColor} />
 	}];
 	
-	function renderGrade(item: any, index: number, length: number) {
+	function renderGrade({ item }: any) {
 		return (
 			<HomeNewGradeBox
 				date={item.date}
 				subjectName={item.subject}
 				grade={item.grade}
-				icon={item.icon}
-				last={index + 1 == length} />
+				icon={item.icon} />
 		);
+	}
+
+	function separator() {
+		return <View style={{ width: 20 }}></View>;
 	}
 
 	return (
 		<View style={styles.container}>
 			<FlatList
 				data={data}
-				renderItem={({ item, index }) => renderGrade(item, index, data.length)}
+				renderItem={renderGrade}
 				horizontal
 				showsHorizontalScrollIndicator={false}
 				snapToInterval={140}
 				decelerationRate={0.5}
+				ItemSeparatorComponent={separator}
 				style={{ overflow: 'visible' }}
 			/>
 		</View>

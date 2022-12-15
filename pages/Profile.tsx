@@ -68,7 +68,7 @@ export default function Profile() {
 
 	const informaceData = [{
 		key: 'Jméno',
-		value: 'Jméno Příjmění'
+		value: 'Jméno Příjmení'
 	}, {
 		key: 'E-mail',
 		value: 'jmeno.prijmeni@ssakhk.cz'

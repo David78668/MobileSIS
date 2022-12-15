@@ -31,20 +31,88 @@ export default function Grade(data: any) {
 
 				<View style={{ marginLeft: 'auto', flexDirection: 'row' }}>
 					<Text style={styles.grades}>{data.marks.length}</Text>
-					<Feather name='chevron-down' color={Colors.TertiaryBackgroundColor} size={20} style={styles.dropdown} />
+					<Feather name='chevron-down' color={Colors.TertiaryBackgroundColor} size={20} style={{
+						...styles.dropdown,
+						transform: [{rotateX: (select) ? '180deg' : '0deg'}]
+					}} />
 				</View>
 			</TouchableOpacity>
 			
-			{select && <View style={styles.gradesBox}>{Content(data.marks)}</View>}
+			{select && <View style={styles.gradesBox}>{GradeItems(data.marks)}</View>}
 		</View>
 	);
+}
+
+function renderGradeItem({ item }: any) {
+	if (item.comment.length != 0) {
+		item.comment = item.comment[0].toUpperCase() + item.comment.slice(1);
+	}
+
+	item.comment = (item.comment.length > 20) ? item.comment.substring(0, 20) + "..." : item.comment;
+
+	return (
+		<View style={styles.gradeItem}>
+			<View style={styles.gradeBox}>
+				<Text style={styles.grade}>{item.value}</Text>
+			</View>
+
+			<View style={styles.gradeInfo}>
+				<View>
+					<Text style={styles.gradeName}>{(item.comment.length == 0) ? 'Bez názvu' : item.comment}</Text>
+					<Text style={styles.date}>{moment(item.date).format('D. MMMM')}</Text>
+				</View>
+
+				<Text style={styles.weight}>Váha: {item.weight}</Text>
+			</View>
+		</View>
+	);
+}
+
+function GradeItems(data: any) {
+	return (
+		<FlatList
+			data={data}
+			renderItem={renderGradeItem}
+			keyExtractor={(item, index) => index.toString()}
+		/>
+	);
+}
+
+function calculateAverage(data: any){
+	var totalValue = 0;
+	var count = 0;
+
+	data.forEach((item: any) => {
+		let weight = item.weight;
+		
+		if (weight != undefined && item.value != undefined && item.value != 's') {
+			totalValue += weight * gradeToNumber(item.value);
+			count += weight;
+		}
+	});
+
+	return (totalValue/count).toFixed(2).replace('.', ',');
+}
+
+function gradeToNumber(text: string) {
+	if(text[1] == '-')
+		return (Number)(text[0]) + 0.5;
+	
+	if(text == 'n'){
+		return 5;
+	}
+
+	if(!Number.isNaN(text))
+		return (Number)(text);
+	
+	return NaN;
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		alignItems: 'center',
+		alignItems: 'flex-end',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		backgroundColor: Colors.PrimaryBackgroundColor
@@ -75,7 +143,7 @@ const styles = StyleSheet.create({
 	gradesBox: {
 		borderTopLeftRadius: 10,
 		overflow: 'hidden',
-		marginTop: 10
+		marginTop: 5
 	},
 	info: {
 		flexDirection: 'column',
@@ -101,9 +169,11 @@ const styles = StyleSheet.create({
 	gradeBox: {
 		backgroundColor: Colors.TertiaryBackgroundColor,
 		paddingVertical: 15,
-		width: 50,
+		width: 60,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		borderTopColor: 'rgba(255, 255, 255, 0.2)',
+		borderTopWidth: 1
 	},
 	grade: {
 		fontSize: 16,
@@ -117,7 +187,6 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: Colors.PrimaryBackgroundColor,
 		borderTopColor: 'rgba(0, 0, 0, 0.1)',
 		borderTopWidth: 1
 	},
@@ -146,63 +215,3 @@ const styles = StyleSheet.create({
 		opacity: 0.6
 	}
 });
-
-function renderGradeItem({ item }: any) {
-	if (item.comment.length != 0) {
-		item.comment = item.comment[0].toUpperCase() + item.comment.slice(1);
-	}
-
-	return (
-		<View style={styles.gradeItem}>
-			<View style={styles.gradeBox}>
-				<Text style={styles.grade}>{item.value}</Text>
-			</View>
-
-			<View style={styles.gradeInfo}>
-				<View>
-					<Text style={styles.gradeName}>{(item.comment.length > 20) ? item.comment.substring(0, 20) + "..." : item.comment}</Text>
-					<Text style={styles.date}>{moment(item.date).format('D. MMMM')}</Text>
-				</View>
-
-				<Text style={styles.weight}>Váha: {item.weight}</Text>
-			</View>
-		</View>
-	);
-}
-
-function Content(data: any) {
-	return (
-		<FlatList
-			data={data}
-			renderItem={renderGradeItem}
-			keyExtractor={(item, index) => index.toString()}
-		/>
-	);
-}
-
-function calculateAverage(data: any){
-	var totalValue = 0;
-	var count = 0;
-
-	data.forEach((item: any) => {
-		let weight = item.weight;
-		
-		if (weight != undefined && item.value != undefined && item.value != 's') {
-			totalValue += weight * gradeToNumber(item.value);
-			count += weight;
-		}
-	});
-
-	return ((totalValue/count).toFixed(2)).replace('.', ',');
-}
-
-function gradeToNumber(text: string){
-	if(text[1] == '-')
-		return (Number)(text[0]) + 0.5;
-	if(text == 'n'){
-		return 5;
-	}
-	if(!Number.isNaN(text))
-		return (Number)(text);
-	return NaN;
-}

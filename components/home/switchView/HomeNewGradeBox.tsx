@@ -9,8 +9,7 @@ interface GradeBoxProps {
 	icon?: React.ReactNode,
 	subjectName: string,
 	date: Date,
-	grade: string,
-	last: boolean
+	grade: string
 }
 
 export default function HomeNewGradeBox(props: GradeBoxProps) {
@@ -18,7 +17,7 @@ export default function HomeNewGradeBox(props: GradeBoxProps) {
 	const date = moment(props.date).format('D. MMMM').toString();
 
 	return (
-		<View style={{ ...styles.container, marginRight: props.last ? 0 : 20 }}>
+		<View style={styles.container}>
 			<View style={{ alignItems: 'center' }}>
 				<View style={styles.iconBox}>{props.icon}</View>
 				<Text style={styles.header}>{props.subjectName}</Text>
@@ -81,4 +80,4 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 18
 	}
-})
+});

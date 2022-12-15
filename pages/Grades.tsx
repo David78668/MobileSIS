@@ -2,11 +2,12 @@ import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import Body from '../components/general/Body';
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
 import Grade from '../components/grades/Grade';
 import { userid, bareer, getValueFor} from "../components/Token";
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
+import { Colors } from '../declarations/colors';
 
 /*
 	TODO:
@@ -65,23 +66,36 @@ export default function Grades() {
 							);	
 						})}
 					</View> : null*/}
-				
-				<View style={styles.grades}>
+
+				<View style={styles.gradesBox}>
+					<Text style={styles.title}>Známky z předmetů</Text>
+			
 					<FlatList
 						data={testData}
 						renderItem={renderGrade}
 						ItemSeparatorComponent={separator}
 						keyExtractor={(item, index) => index.toString()}
+						contentContainerStyle={styles.grades}
 					/>
 				</View>
 			</Body>
 		</Container>
+		
 	);
 }
 
 const styles = StyleSheet.create({
+	gradesBox: {
+		padding: 20
+	},
 	grades: {
-		padding: 20,
-		overflow: 'visible'
+		overflow: 'visible',
+		marginTop: 20
+	},
+	title: {
+		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
+		fontSize: 18,
+		opacity: 0.8
 	}
 });

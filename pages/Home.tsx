@@ -44,7 +44,7 @@ const testData = {
 					Teacher: "Zlata Karpíšková",
 					Classroom: "214"
 			}
-		},
+		}
 	]
 }
 
@@ -56,9 +56,7 @@ export default function Home() {
 	return (
 		<Container>
 			<Heading title='Home' subtitle={date}>
-				{<Carousel
-					data={testData.data}
-				/>}
+				{<Carousel data={testData.data} />}
 			</Heading>
 			
 			<Body>
