@@ -1,443 +1,758 @@
-{
-    "Days": [{
-            "Date": "2021-12-07",
-            "Lessons": [{
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "07:50",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "08:45",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "09:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "ClassroomChanged"
-                },
-                {
-                    "Id": 189532,
-                    "Name": "Výpočetní technika",
-                    "ShortName": "VYT",
-                    "Teacher": "Jaroslav Hývl",
-                    "TeacherShortName": "HY",
-                    "StartTime": "10:45",
-                    "Classroom": "403",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189535,
-                    "Name": "Anglický jazyk",
-                    "ShortName": "AGJ",
-                    "Teacher": "Libero Guarisco",
-                    "TeacherShortName": "GA",
-                    "StartTime": "11:55",
-                    "Classroom": "208",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "TeacherChanged"
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "13:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189541,
-                    "Name": "Český jazyk",
-                    "ShortName": "CJL",
-                    "Teacher": "Richard Rejthar",
-                    "TeacherShortName": "RE",
-                    "StartTime": "14:45",
-                    "Classroom": "320",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "LessonRemoved"
-                }
-            ]
+[
+    {
+      "date": "2022-12-12T00:00:00",
+      "timetable": [
+        {
+          "id": 190158,
+          "subject": {
+            "id": 3904,
+            "name": "VYT",
+            "teacher": {
+              "id": 5805,
+              "shortName": "HS"
+            }
+          },
+          "date": "2022-12-12T07:50:00",
+          "meetUrl": "https://meet.google.com/aui-bcjq-mvh",
+          "classroom": "213",
+          "active": true,
+          "static": true,
+          "description": null
         },
         {
-            "Date": "2021-12-07",
-            "Lessons": [{
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "07:50",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "08:45",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "09:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "ClassroomChanged"
-                },
-                {
-                    "Id": 189532,
-                    "Name": "Výpočetní technika",
-                    "ShortName": "VYT",
-                    "Teacher": "Jaroslav Hývl",
-                    "TeacherShortName": "HY",
-                    "StartTime": "10:45",
-                    "Classroom": "403",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189535,
-                    "Name": "Anglický jazyk",
-                    "ShortName": "AGJ",
-                    "Teacher": "Libero Guarisco",
-                    "TeacherShortName": "GA",
-                    "StartTime": "11:55",
-                    "Classroom": "208",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "TeacherChanged"
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "13:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189541,
-                    "Name": "Český jazyk",
-                    "ShortName": "CJL",
-                    "Teacher": "Richard Rejthar",
-                    "TeacherShortName": "RE",
-                    "StartTime": "14:45",
-                    "Classroom": "320",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "LessonRemoved"
-                }
-            ]
+          "id": 190159,
+          "subject": {
+            "id": 3916,
+            "name": "PSY",
+            "teacher": {
+              "id": 5821,
+              "shortName": "PN"
+            }
+          },
+          "date": "2022-12-12T08:45:00",
+          "meetUrl": "https://meet.google.com/gvy-adjj-fzh",
+          "classroom": "320",
+          "active": true,
+          "static": true,
+          "description": null
         },
         {
-            "Date": "2021-12-07",
-            "Lessons": [{
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "07:50",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "08:45",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "09:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "ClassroomChanged"
-                },
-                {
-                    "Id": 189532,
-                    "Name": "Výpočetní technika",
-                    "ShortName": "VYT",
-                    "Teacher": "Jaroslav Hývl",
-                    "TeacherShortName": "HY",
-                    "StartTime": "10:45",
-                    "Classroom": "403",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189535,
-                    "Name": "Anglický jazyk",
-                    "ShortName": "AGJ",
-                    "Teacher": "Libero Guarisco",
-                    "TeacherShortName": "GA",
-                    "StartTime": "11:55",
-                    "Classroom": "208",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "TeacherChanged"
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "13:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189541,
-                    "Name": "Český jazyk",
-                    "ShortName": "CJL",
-                    "Teacher": "Richard Rejthar",
-                    "TeacherShortName": "RE",
-                    "StartTime": "14:45",
-                    "Classroom": "320",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "LessonRemoved"
-                }
-            ]
+          "id": 190160,
+          "subject": {
+            "id": 3916,
+            "name": "PSY",
+            "teacher": {
+              "id": 5821,
+              "shortName": "PN"
+            }
+          },
+          "date": "2022-12-12T09:45:00",
+          "meetUrl": "https://meet.google.com/gvy-adjj-fzh",
+          "classroom": "320",
+          "active": true,
+          "static": true,
+          "description": null
         },
         {
-            "Date": "2021-12-07",
-            "Lessons": [{
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "07:50",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "08:45",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "09:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "ClassroomChanged"
-                },
-                {
-                    "Id": 189532,
-                    "Name": "Výpočetní technika",
-                    "ShortName": "VYT",
-                    "Teacher": "Jaroslav Hývl",
-                    "TeacherShortName": "HY",
-                    "StartTime": "10:45",
-                    "Classroom": "403",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189535,
-                    "Name": "Anglický jazyk",
-                    "ShortName": "AGJ",
-                    "Teacher": "Libero Guarisco",
-                    "TeacherShortName": "GA",
-                    "StartTime": "11:55",
-                    "Classroom": "208",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "TeacherChanged"
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "13:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189541,
-                    "Name": "Český jazyk",
-                    "ShortName": "CJL",
-                    "Teacher": "Richard Rejthar",
-                    "TeacherShortName": "RE",
-                    "StartTime": "14:45",
-                    "Classroom": "320",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "LessonRemoved"
-                }
-            ]
+          "id": 190233,
+          "subject": {
+            "id": 3906,
+            "name": "OBN",
+            "teacher": {
+              "id": 5824,
+              "shortName": "RO"
+            }
+          },
+          "date": "2022-12-12T10:45:00",
+          "meetUrl": "https://meet.google.com/iwh-cgqw-awh",
+          "classroom": "kin",
+          "active": true,
+          "static": false,
+          "description": null
         },
         {
-            "Date": "2021-12-07",
-            "Lessons": [{
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "07:50",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189528,
-                    "Name": "Tělocvik",
-                    "ShortName": "TEV",
-                    "Teacher": "Igor Ročín",
-                    "TeacherShortName": "RO",
-                    "StartTime": "08:45",
-                    "Classroom": "T0",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "09:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "ClassroomChanged"
-                },
-                {
-                    "Id": 189532,
-                    "Name": "Výpočetní technika",
-                    "ShortName": "VYT",
-                    "Teacher": "Jaroslav Hývl",
-                    "TeacherShortName": "HY",
-                    "StartTime": "10:45",
-                    "Classroom": "403",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189535,
-                    "Name": "Anglický jazyk",
-                    "ShortName": "AGJ",
-                    "Teacher": "Libero Guarisco",
-                    "TeacherShortName": "GA",
-                    "StartTime": "11:55",
-                    "Classroom": "208",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "TeacherChanged"
-                },
-                {
-                    "Id": 189530,
-                    "Name": "Fyzika",
-                    "ShortName": "FYZ",
-                    "Teacher": "Jan Lang",
-                    "TeacherShortName": "LA",
-                    "StartTime": "13:45",
-                    "Classroom": "206",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": ""
-                },
-                {
-                    "Id": 189541,
-                    "Name": "Český jazyk",
-                    "ShortName": "CJL",
-                    "Teacher": "Richard Rejthar",
-                    "TeacherShortName": "RE",
-                    "StartTime": "14:45",
-                    "Classroom": "320",
-                    "Group": "",
-                    "Meet": "Meet",
-                    "LessonType": "LessonRemoved"
-                }
-            ]
+          "id": 190161,
+          "subject": {
+            "id": 3902,
+            "name": "AGJ",
+            "teacher": {
+              "id": 12248,
+              "shortName": "GA"
+            }
+          },
+          "date": "2022-12-12T10:45:00",
+          "meetUrl": null,
+          "classroom": "208",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190163,
+          "subject": {
+            "id": 3912,
+            "name": "EKO",
+            "teacher": {
+              "id": 5832,
+              "shortName": "ZE"
+            }
+          },
+          "date": "2022-12-12T11:45:00",
+          "meetUrl": null,
+          "classroom": "214",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190234,
+          "subject": {
+            "id": 3906,
+            "name": "OBN",
+            "teacher": {
+              "id": 5824,
+              "shortName": "RO"
+            }
+          },
+          "date": "2022-12-12T11:45:00",
+          "meetUrl": "https://meet.google.com/iwh-cgqw-awh",
+          "classroom": "kin",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190235,
+          "subject": {
+            "id": 3906,
+            "name": "OBN",
+            "teacher": {
+              "id": 5824,
+              "shortName": "RO"
+            }
+          },
+          "date": "2022-12-12T12:45:00",
+          "meetUrl": "https://meet.google.com/iwh-cgqw-awh",
+          "classroom": "kin",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190164,
+          "subject": {
+            "id": 3934,
+            "name": "TEV",
+            "teacher": {
+              "id": 5824,
+              "shortName": "RO"
+            }
+          },
+          "date": "2022-12-12T12:45:00",
+          "meetUrl": null,
+          "classroom": "P0",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190165,
+          "subject": {
+            "id": 3934,
+            "name": "TEV",
+            "teacher": {
+              "id": 5824,
+              "shortName": "RO"
+            }
+          },
+          "date": "2022-12-12T13:35:00",
+          "meetUrl": "https://meet.google.com/iwh-cgqw-awh",
+          "classroom": "P0",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190166,
+          "subject": {
+            "id": 5013,
+            "name": "PJC",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-12T14:55:00",
+          "meetUrl": null,
+          "classroom": "213",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190168,
+          "subject": {
+            "id": 5013,
+            "name": "PJC",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-12T15:45:00",
+          "meetUrl": null,
+          "classroom": "213",
+          "active": false,
+          "static": true,
+          "description": null
         }
-    ]
-}
+      ]
+    },
+    {
+      "date": "2022-12-13T00:00:00",
+      "timetable": [
+        {
+          "id": 190318,
+          "subject": {
+            "id": 3907,
+            "name": "MAT",
+            "teacher": {
+              "id": 5809,
+              "shortName": "KR"
+            }
+          },
+          "date": "2022-12-13T07:50:00",
+          "meetUrl": "https://meet.google.com/whg-urff-frh",
+          "classroom": "214",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190319,
+          "subject": {
+            "id": 3907,
+            "name": "MAT",
+            "teacher": {
+              "id": 5809,
+              "shortName": "KR"
+            }
+          },
+          "date": "2022-12-13T08:45:00",
+          "meetUrl": "https://meet.google.com/whg-urff-frh",
+          "classroom": "214",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190320,
+          "subject": {
+            "id": 3935,
+            "name": "DIC",
+            "teacher": {
+              "id": 5813,
+              "shortName": "MA"
+            }
+          },
+          "date": "2022-12-13T09:45:00",
+          "meetUrl": "https://meet.google.com/quv-yrjj-rvv",
+          "classroom": "306",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190322,
+          "subject": {
+            "id": 3935,
+            "name": "DIC",
+            "teacher": {
+              "id": 5813,
+              "shortName": "MA"
+            }
+          },
+          "date": "2022-12-13T10:35:00",
+          "meetUrl": "https://meet.google.com/quv-yrjj-rvv",
+          "classroom": "306",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190328,
+          "subject": {
+            "id": 3913,
+            "name": "AUT",
+            "teacher": {
+              "id": 6512,
+              "shortName": "LO"
+            }
+          },
+          "date": "2022-12-13T13:55:00",
+          "meetUrl": "https://meet.google.com/aaq-syuj-mfp",
+          "classroom": "206",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190329,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-13T14:45:00",
+          "meetUrl": "https://meet.google.com/yvv-cqws-uyy",
+          "classroom": "302",
+          "active": true,
+          "static": true,
+          "description": null
+        }
+      ]
+    },
+    {
+      "date": "2022-12-14T00:00:00",
+      "timetable": [
+        {
+          "id": 190452,
+          "subject": {
+            "id": 3914,
+            "name": "PRG",
+            "teacher": {
+              "id": 5948,
+              "shortName": "PZ"
+            }
+          },
+          "date": "2022-12-14T07:00:00",
+          "meetUrl": null,
+          "classroom": "214",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190453,
+          "subject": {
+            "id": 3914,
+            "name": "PRG",
+            "teacher": {
+              "id": 5948,
+              "shortName": "PZ"
+            }
+          },
+          "date": "2022-12-14T07:50:00",
+          "meetUrl": null,
+          "classroom": "214",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190454,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-14T08:45:00",
+          "meetUrl": null,
+          "classroom": "302",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190495,
+          "subject": {
+            "id": 3916,
+            "name": "PSY",
+            "teacher": {
+              "id": 5821,
+              "shortName": "PN"
+            }
+          },
+          "date": "2022-12-14T08:45:00",
+          "meetUrl": "https://meet.google.com/afh-saiw-jxu",
+          "classroom": "302",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190455,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-14T09:45:00",
+          "meetUrl": null,
+          "classroom": "302",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190496,
+          "subject": {
+            "id": 3916,
+            "name": "PSY",
+            "teacher": {
+              "id": 5821,
+              "shortName": "PN"
+            }
+          },
+          "date": "2022-12-14T09:45:00",
+          "meetUrl": "https://meet.google.com/afh-saiw-jxu",
+          "classroom": "302",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190457,
+          "subject": {
+            "id": 9083,
+            "name": "VGD",
+            "teacher": {
+              "id": 6028,
+              "shortName": "HY"
+            }
+          },
+          "date": "2022-12-14T10:45:00",
+          "meetUrl": "https://meet.google.com/xji-rqdz-zdp",
+          "classroom": "320",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190459,
+          "subject": {
+            "id": 9083,
+            "name": "VGD",
+            "teacher": {
+              "id": 6028,
+              "shortName": "HY"
+            }
+          },
+          "date": "2022-12-14T11:35:00",
+          "meetUrl": "https://meet.google.com/xji-rqdz-zdp",
+          "classroom": "320",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190429,
+          "subject": {
+            "id": 3947,
+            "name": "KAJ",
+            "teacher": {
+              "id": 5804,
+              "shortName": "CI"
+            }
+          },
+          "date": "2022-12-14T12:55:00",
+          "meetUrl": null,
+          "classroom": "215",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190434,
+          "subject": {
+            "id": 3947,
+            "name": "KAJ",
+            "teacher": {
+              "id": 5804,
+              "shortName": "CI"
+            }
+          },
+          "date": "2022-12-14T13:45:00",
+          "meetUrl": null,
+          "classroom": "215",
+          "active": false,
+          "static": true,
+          "description": null
+        }
+      ]
+    },
+    {
+      "date": "2022-12-15T00:00:00",
+      "timetable": [
+        {
+          "id": 190525,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T08:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190569,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T09:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190613,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T10:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190657,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T11:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190701,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T12:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190745,
+          "subject": {
+            "id": 3974,
+            "name": "P17",
+            "teacher": {
+              "id": 5812,
+              "shortName": "LN"
+            }
+          },
+          "date": "2022-12-15T13:45:00",
+          "meetUrl": "https://meet.google.com/qmv-ofeb-iqd",
+          "classroom": "202",
+          "active": true,
+          "static": false,
+          "description": null
+        }
+      ]
+    },
+    {
+      "date": "2022-12-16T00:00:00",
+      "timetable": [
+        {
+          "id": 190824,
+          "subject": {
+            "id": 3906,
+            "name": "OBN",
+            "teacher": {
+              "id": 10373,
+              "shortName": "DU"
+            }
+          },
+          "date": "2022-12-16T09:45:00",
+          "meetUrl": null,
+          "classroom": "214",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190865,
+          "subject": {
+            "id": 3906,
+            "name": "OBN",
+            "teacher": {
+              "id": 10373,
+              "shortName": "DU"
+            }
+          },
+          "date": "2022-12-16T09:45:00",
+          "meetUrl": null,
+          "classroom": "302",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190825,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-16T10:45:00",
+          "meetUrl": null,
+          "classroom": "403",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190860,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-16T10:45:00",
+          "meetUrl": null,
+          "classroom": "409",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190826,
+          "subject": {
+            "id": 3912,
+            "name": "EKO",
+            "teacher": {
+              "id": 5832,
+              "shortName": "ZE"
+            }
+          },
+          "date": "2022-12-16T11:35:00",
+          "meetUrl": null,
+          "classroom": "403",
+          "active": false,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190858,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-16T11:45:00",
+          "meetUrl": null,
+          "classroom": "403",
+          "active": true,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190861,
+          "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+              "id": 5822,
+              "shortName": "RE"
+            }
+          },
+          "date": "2022-12-16T11:45:00",
+          "meetUrl": null,
+          "classroom": "409",
+          "active": false,
+          "static": false,
+          "description": null
+        },
+        {
+          "id": 190828,
+          "subject": {
+            "id": 3914,
+            "name": "PRG",
+            "teacher": {
+              "id": 5948,
+              "shortName": "PZ"
+            }
+          },
+          "date": "2022-12-16T12:55:00",
+          "meetUrl": null,
+          "classroom": "403",
+          "active": true,
+          "static": true,
+          "description": null
+        },
+        {
+          "id": 190830,
+          "subject": {
+            "id": 3914,
+            "name": "PRG",
+            "teacher": {
+              "id": 5948,
+              "shortName": "PZ"
+            }
+          },
+          "date": "2022-12-16T13:45:00",
+          "meetUrl": null,
+          "classroom": "403",
+          "active": true,
+          "static": true,
+          "description": null
+        }
+      ]
+    }
+  ]

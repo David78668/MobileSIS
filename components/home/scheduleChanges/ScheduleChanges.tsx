@@ -4,17 +4,38 @@ import ScheduleChangeBox from './ScheduleChangeBox';
 import { Colors } from '../../../declarations/colors';
 import { Feather } from '@expo/vector-icons';
 
+const testData = [
+	{
+		StartTime: "2022-12-12T07:50:00",
+		ShortName: "MAT",
+		Clasroom: "214",
+		Teacher: "KAR"
+	},
+	{
+		StartTime: "2022-12-12T07:50:00",
+		ShortName: "MAT",
+		Clasroom: "214",
+		Teacher: "KAR"
+	},
+	{
+		StartTime: "2022-12-12T09:45:00",
+		ShortName: "MAT",
+		Clasroom: "214",
+		Teacher: "KAR"
+	},
+]
+	
+	
 export default function ScheduleChanges() {
-	const data = require("../../../assets/testData.json");
-	const filtered = data.Days[0].Lessons.filter((e: any) => e.LessonType.length != 0);
+	//const data = require("../../../assets/testData.json");
+	//const filtered = data.filter((e: any) => e.LessonType.length != 0);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Změny v rozvrhu ({filtered.length})</Text>
-
+			<Text style={styles.title}>Změny v rozvrhu ({testData.length})</Text>
 			<FlatList
-				data={filtered}
-				renderItem={({ item, index }) => renderChange(item, index, filtered.length)}
+				data={testData}
+				renderItem={({ item, index }) => renderChange(item, index, testData.length)}
 				keyExtractor={(item, index) => index.toString()}
 				horizontal
 				showsHorizontalScrollIndicator={false}

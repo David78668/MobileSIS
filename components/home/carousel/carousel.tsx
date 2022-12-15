@@ -52,7 +52,7 @@ export default function Carousel(props: CarouselProps) {
           horizontal
           scrollEnabled = {true}
           snapToInterval={windowWidth}
-          decelerationRate={0.5}
+          decelerationRate= {0.5}
           scrollEventThrottle={1} />
        <Animated.FlatList
           data={props.data}

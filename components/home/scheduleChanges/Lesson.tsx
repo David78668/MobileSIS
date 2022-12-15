@@ -2,13 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import { Colors } from '../../../declarations/colors';
+import moment from 'moment';
 
-export default function App(item: any) {
+export default function Lesson(item: any) {
+	let startTime = moment(item.date).format("H.mm");
+	let endTime = moment(item.date).add(45, "minutes").format("H.mm");
 	return (
 		<View style={styles.change}>
 			<View style={styles.changeleft}>
-				<Text style={styles.classstart}>{item.date}</Text>
-				<Text style={styles.classend}>{item.date}</Text>
+				<Text style={styles.classstart}>{startTime}</Text>
+				<Text style={styles.classend}>{endTime}</Text>
 			</View>
 			<View style={styles.changeright}>
 				<View style={styles.top}>

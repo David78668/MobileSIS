@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { Colors } from '../../../declarations/colors';
+import moment from 'moment';
 
 interface ScheduleChangeBoxProps {
 	StartTime: string,
@@ -13,36 +14,11 @@ interface ScheduleChangeBoxProps {
 }
 
 export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
-	
-	function computeTime(time: string, lenght: number) {
-		let splitTime = time.split(':');
-		let hours = isNaN(Number(splitTime[0])) ? 0 : Number(splitTime[0]);
-		let minutes = isNaN(Number(splitTime[1])) ? 0 : Number(splitTime[1]);
-		minutes += lenght;
-		
-		while (minutes >= 60) {
-			hours++;
-			minutes -= 60;
-		}
-
-		return `${hours}:${minutes < 10 ? "0" + minutes : minutes}`;
-	}
-
-	function getChangedClassroom(StartTime: any, Lessons: any) {
-		let ChangedClassroom
-		
-		Lessons.map((item: any) => (
-			item.StartTime == StartTime && item.LessonType != "LessonChanged" ? ChangedClassroom = item.Classroom : null
-		));
-
-		return ChangedClassroom;
-	}
-
 	return (
 		<View style={{ ...styles.change, marginRight: props.Last ? 0 : 20 }}>
 			<View style={styles.changeleft}>
-				<Text style={styles.classstart}>{props.StartTime[0] != '0' ? props.StartTime : props.StartTime.slice(1, 5)}</Text>
-				<Text style={styles.classend}>{computeTime(props.StartTime, 45)}</Text>
+				<Text style={styles.classstart}>{moment(props.StartTime).format("H.mm")}</Text>
+				<Text style={styles.classend}>{moment(props.StartTime).add(45, "minutes").format("H.mm")}</Text>
 			</View>
 			<View style={styles.changeright}>
 				<View style={styles.top}>
@@ -92,11 +68,11 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.ClassroomChangedColor,
 		justifyContent: 'center',
 		alignItems: 'center',
-		width: 80
+		width: 80,
 	},
 	classstart: {
 		color: Colors.PrimaryTextColor,
-		fontWeight: 'bold'
+		fontWeight: 'bold',
 	},
 	classend: {
 		color: Colors.PrimaryTextColor,
