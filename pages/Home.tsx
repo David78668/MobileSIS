@@ -10,13 +10,13 @@ import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import moment from 'moment';
 import "moment/locale/cs";
 import Carousel from '../components/home/carousel/Carousel';
-import {CarouselItem} from '../components/home/carousel/CarouselItem';
+import CarouselItem from '../components/home/carousel/CarouselItem';
 
 const testData = {
 	data:[
 		{
 			item: {
-				StartTime: "2022-12-14T07:00:00",
+				StartTime: "2022-12-14T14:00:00",
 					Name: "Matematika",
 					Teacher: "Zlata Karpíšková",
 					Classroom: "214"
@@ -90,9 +90,7 @@ export default function Home() {
 	return (
 		<Container>
 			<Heading title='Kyberna' subtitle={date}>
-				{<Carousel
-					data={testData.data}
-				/>}
+				{<Carousel data={testData.data} />}
 			</Heading>
 			
 			<Body>

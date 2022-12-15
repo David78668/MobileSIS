@@ -7,7 +7,7 @@ import {
   Dimensions,
   FlatList
 } from "react-native";
-import {CarouselItem, CarouselItemProps} from './CarouselItem';
+import CarouselItem, { CarouselItemProps } from './CarouselItem';
 
 export interface CarouselProps {
     data: Array<CarouselItemProps>
@@ -50,11 +50,12 @@ export default function Carousel(props: CarouselProps) {
           showsHorizontalScrollIndicator={false}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
           horizontal
-          scrollEnabled = {true}
+          scrollEnabled
           snapToInterval={windowWidth}
           decelerationRate={0.5}
           scrollEventThrottle={1} />
-       <Animated.FlatList
+      
+       <FlatList
           data={props.data}
           renderItem={renderDot}
           scrollEnabled={false}

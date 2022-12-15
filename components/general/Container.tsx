@@ -12,6 +12,7 @@ export default function Container(props:ContainerProps){
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
 		height: Dimensions.get('screen').height,
 		backgroundColor: Colors.SecondaryBackgroundColor,
 	}

@@ -1,215 +1,5 @@
 [{
         "subject": {
-            "id": 3925,
-            "name": "ALG",
-            "teacher": {
-                "id": 5805,
-                "shortName": "HS"
-            }
-        },
-        "date": "2022-04-21T12:22:52",
-        "value": "1",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "sifrovani test"
-    },
-    {
-        "subject": {
-            "id": 3903,
-            "name": "CJL",
-            "teacher": {
-                "id": 5822,
-                "shortName": "RE"
-            }
-        },
-        "date": "2022-03-15T12:18:45",
-        "value": "1",
-        "weight": 1,
-        "name": "Ostatní známky",
-        "comment": ""
-    },
-    {
-        "subject": {
-            "id": 3903,
-            "name": "CJL",
-            "teacher": {
-                "id": 5822,
-                "shortName": "RE"
-            }
-        },
-        "date": "2022-04-05T14:28:28",
-        "value": "1",
-        "weight": 5,
-        "name": "Písemné zkoušení",
-        "comment": "1. a 2. etapa NO"
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-02-21T11:55:41",
-        "value": "1",
-        "weight": 5,
-        "name": "Ústní zkoušení",
-        "comment": ""
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-03-07T11:54:53",
-        "value": "1-",
-        "weight": 4,
-        "name": "Písemné zkoušení",
-        "comment": "iraconalni rov. a nerov."
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-03-09T11:58:26",
-        "value": "1",
-        "weight": 4,
-        "name": "Písemné zkoušení",
-        "comment": "rovnice s parametrem"
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-03-18T20:19:46",
-        "value": "1",
-        "weight": 3,
-        "name": "Písemné zkoušení",
-        "comment": "Planimetrie zakladni konstrukce 6 pr."
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-03-30T10:03:28",
-        "value": "3",
-        "weight": 3,
-        "name": "Písemné zkoušení",
-        "comment": "uhly 5 prikladu"
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-04-04T17:09:16",
-        "value": "2",
-        "weight": 3,
-        "name": "Písemné zkoušení",
-        "comment": "Teorie trojuhelnik 8 ot."
-    },
-    {
-        "subject": {
-            "id": 3907,
-            "name": "MAT",
-            "teacher": {
-                "id": 5809,
-                "shortName": "KR"
-            }
-        },
-        "date": "2022-04-22T22:46:09",
-        "value": "1",
-        "weight": 5,
-        "name": "Písemné zkoušení",
-        "comment": "3.ctvrtletni prace"
-    },
-    {
-        "subject": {
-            "id": 3935,
-            "name": "DIC",
-            "teacher": {
-                "id": 5813,
-                "shortName": "MA"
-            }
-        },
-        "date": "2022-02-24T10:48:32",
-        "value": "1",
-        "weight": 1,
-        "name": "Dílenská práce",
-        "comment": "mm"
-    },
-    {
-        "subject": {
-            "id": 3935,
-            "name": "DIC",
-            "teacher": {
-                "id": 5813,
-                "shortName": "MA"
-            }
-        },
-        "date": "2022-02-17T10:38:45",
-        "value": "1",
-        "weight": 1,
-        "name": "Dílenská práce",
-        "comment": "sirény"
-    },
-    {
-        "subject": {
-            "id": 3935,
-            "name": "DIC",
-            "teacher": {
-                "id": 5813,
-                "shortName": "MA"
-            }
-        },
-        "date": "2022-03-17T10:44:06",
-        "value": "1",
-        "weight": 1,
-        "name": "Dílenská práce",
-        "comment": "blikac"
-    },
-    {
-        "subject": {
-            "id": 3935,
-            "name": "DIC",
-            "teacher": {
-                "id": 5813,
-                "shortName": "MA"
-            }
-        },
-        "date": "2022-03-24T11:21:19",
-        "value": "1",
-        "weight": 1,
-        "name": "Dílenská práce",
-        "comment": "pajeni očka"
-    },
-    {
-        "subject": {
             "id": 3930,
             "name": "PSI",
             "teacher": {
@@ -217,251 +7,81 @@
                 "shortName": "PN"
             }
         },
-        "date": "2022-02-14T09:26:17",
-        "value": "1",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "modul č4-7"
+        "marks": [{
+                "date": "2022-11-22T09:57:36",
+                "value": "5",
+                "weight": 1,
+                "name": "Ústní zkoušení",
+                "comment": ""
+            },
+            {
+                "date": "2022-11-10T09:28:58",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "modul č1-3"
+            },
+            {
+                "date": "2022-11-29T10:42:44",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "převody soustav"
+            },
+            {
+                "date": "2022-12-13T10:03:36",
+                "value": "1",
+                "weight": 1,
+                "name": "Ústní zkoušení",
+                "comment": "switching"
+            }
+        ]
     },
     {
         "subject": {
-            "id": 3930,
-            "name": "PSI",
+            "id": 3914,
+            "name": "PRG",
             "teacher": {
-                "id": 5821,
-                "shortName": "PN"
+                "id": 5948,
+                "shortName": "PZ"
             }
         },
-        "date": "2022-02-22T14:00:36",
-        "value": "1",
-        "weight": 1,
-        "name": "Ústní zkoušení",
-        "comment": ""
-    },
-    {
-        "subject": {
-            "id": 3930,
-            "name": "PSI",
-            "teacher": {
-                "id": 5821,
-                "shortName": "PN"
+        "marks": [{
+                "date": "2022-11-22T06:37:30",
+                "value": "s",
+                "weight": 1,
+                "name": "Ostatní známky",
+                "comment": "Zadání projektu"
+            },
+            {
+                "date": "2022-11-29T21:31:39",
+                "value": "1",
+                "weight": 2,
+                "name": "Domácí úkol",
+                "comment": "malováni"
+            },
+            {
+                "date": "2022-12-01T16:53:40",
+                "value": "s",
+                "weight": 1,
+                "name": "Domácí úkol",
+                "comment": "velikost štětce"
+            },
+            {
+                "date": "2022-12-01T17:52:23",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "image browser"
+            },
+            {
+                "date": "2022-12-01T18:29:21",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "Scoreboard"
             }
-        },
-        "date": "2022-03-22T14:32:20",
-        "value": "1",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "modul č8-10"
-    },
-    {
-        "subject": {
-            "id": 3930,
-            "name": "PSI",
-            "teacher": {
-                "id": 5821,
-                "shortName": "PN"
-            }
-        },
-        "date": "2022-04-20T13:38:09",
-        "value": "1",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "subneting"
-    },
-    {
-        "subject": {
-            "id": 3930,
-            "name": "PSI",
-            "teacher": {
-                "id": 5821,
-                "shortName": "PN"
-            }
-        },
-        "date": "2022-04-26T13:54:43",
-        "value": "1",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "subneting oprava"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-02-23T13:42:15",
-        "value": "1",
-        "weight": 10,
-        "name": "Písemné zkoušení",
-        "comment": "essay"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-03-08T15:03:34",
-        "value": "1",
-        "weight": 5,
-        "name": "Písemné zkoušení",
-        "comment": "test present perfect vs past simple"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-03-15T11:26:34",
-        "value": "1",
-        "weight": 3,
-        "name": "Ostatní známky",
-        "comment": "aktivita"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-03-22T11:52:01",
-        "value": "1",
-        "weight": 10,
-        "name": "Ústní zkoušení",
-        "comment": "game presentation"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-04-11T08:48:15",
-        "value": "1",
-        "weight": 5,
-        "name": "Ústní zkoušení",
-        "comment": "Australia presentation"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-04-05T14:00:42",
-        "value": "1",
-        "weight": 6,
-        "name": "Písemné zkoušení",
-        "comment": "film review"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-04-27T11:24:34",
-        "value": "1",
-        "weight": 5,
-        "name": "Písemné zkoušení",
-        "comment": "vocabulary test health"
-    },
-    {
-        "subject": {
-            "id": 3902,
-            "name": "AGJ",
-            "teacher": {
-                "id": 10648,
-                "shortName": "RA"
-            }
-        },
-        "date": "2022-04-27T11:23:32",
-        "value": "1",
-        "weight": 6,
-        "name": "Písemné zkoušení",
-        "comment": "vocabulary reading"
-    },
-    {
-        "subject": {
-            "id": 3934,
-            "name": "TEV",
-            "teacher": {
-                "id": 5815,
-                "shortName": "MH"
-            }
-        },
-        "date": "2022-03-07T12:12:31",
-        "value": "4",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "shyb"
-    },
-    {
-        "subject": {
-            "id": 3934,
-            "name": "TEV",
-            "teacher": {
-                "id": 5815,
-                "shortName": "MH"
-            }
-        },
-        "date": "2022-03-07T12:22:54",
-        "value": "2-",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "klik"
-    },
-    {
-        "subject": {
-            "id": 3934,
-            "name": "TEV",
-            "teacher": {
-                "id": 5815,
-                "shortName": "MH"
-            }
-        },
-        "date": "2022-03-07T12:30:46",
-        "value": "3",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "sed leh"
-    },
-    {
-        "subject": {
-            "id": 3906,
-            "name": "OBN",
-            "teacher": {
-                "id": 10373,
-                "shortName": "TO"
-            }
-        },
-        "date": "2022-04-01T08:52:50",
-        "value": "1",
-        "weight": 5,
-        "name": "Ostatní známky",
-        "comment": "Aktualita"
+        ]
     },
     {
         "subject": {
@@ -472,56 +92,53 @@
                 "shortName": "LA"
             }
         },
-        "date": "2022-04-06T11:51:09",
-        "value": "3",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "Hydrostatika 1"
+        "marks": [{
+                "date": "2022-10-17T11:00:15",
+                "value": "2-",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "vektory"
+            },
+            {
+                "date": "2022-10-31T11:08:33",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "určitost sestav"
+            },
+            {
+                "date": "2022-12-05T11:20:09",
+                "value": "3",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "statické reseni"
+            }
+        ]
     },
     {
         "subject": {
-            "id": 3909,
-            "name": "FYZ",
+            "id": 3935,
+            "name": "DIC",
             "teacher": {
-                "id": 5810,
-                "shortName": "LA"
+                "id": 5813,
+                "shortName": "MA"
             }
         },
-        "date": "2022-04-22T11:37:44",
-        "value": "2-",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "Hydrostatika 2"
-    },
-    {
-        "subject": {
-            "id": 3904,
-            "name": "VYT",
-            "teacher": {
-                "id": 6028,
-                "shortName": "HY"
+        "marks": [{
+                "date": "2022-11-28T15:35:13",
+                "value": "2",
+                "weight": 1,
+                "name": "Dílenská práce",
+                "comment": "VM"
+            },
+            {
+                "date": "2022-11-14T15:03:05",
+                "value": "2",
+                "weight": 1,
+                "name": "Ústní zkoušení",
+                "comment": "BOZP"
             }
-        },
-        "date": "2022-03-17T14:23:44",
-        "value": "1",
-        "weight": 1,
-        "name": "Grafická práce",
-        "comment": "Vejce"
-    },
-    {
-        "subject": {
-            "id": 3904,
-            "name": "VYT",
-            "teacher": {
-                "id": 6028,
-                "shortName": "HY"
-            }
-        },
-        "date": "2022-04-19T11:34:08",
-        "value": "1",
-        "weight": 1,
-        "name": "Test",
-        "comment": "Základní grafické pojmy"
+        ]
     },
     {
         "subject": {
@@ -529,28 +146,160 @@
             "name": "OBN",
             "teacher": {
                 "id": 10373,
-                "shortName": "TO"
+                "shortName": "DU"
             }
         },
-        "date": "2022-04-22T15:08:09",
-        "value": "1",
-        "weight": 10,
-        "name": "Písemné zkoušení",
-        "comment": "Psychické jevy osobnosti"
+        "marks": [{
+                "date": "2022-12-09T08:50:29",
+                "value": "1",
+                "weight": 5,
+                "name": "Ostatní známky",
+                "comment": "Aktualita"
+            },
+            {
+                "date": "2022-10-24T19:02:15",
+                "value": "1",
+                "weight": 5,
+                "name": "Domácí úkol",
+                "comment": ""
+            },
+            {
+                "date": "2022-11-08T09:19:49",
+                "value": "1",
+                "weight": 10,
+                "name": "Písemné zkoušení",
+                "comment": "Vývojová psychologie"
+            }
+        ]
     },
     {
         "subject": {
-            "id": 3909,
-            "name": "A",
+            "id": 3907,
+            "name": "MAT",
             "teacher": {
-                "id": 5810,
-                "shortName": "LA"
+                "id": 5829,
+                "shortName": "TI"
             }
         },
-        "date": "2022-04-06T11:51:09",
-        "value": "3",
-        "weight": 1,
-        "name": "Písemné zkoušení",
-        "comment": "Hydrostatika 1"
+        "marks": [{
+                "date": "2022-10-02T18:02:09",
+                "value": "2-",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "uhly v kruznici"
+            },
+            {
+                "date": "2022-11-09T15:39:55",
+                "value": "1",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "1. pp"
+            },
+            {
+                "date": "2022-12-09T10:00:20",
+                "value": "3-",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": "exponencialni fce"
+            }
+        ]
+    },
+    {
+        "subject": {
+            "id": 3903,
+            "name": "CJL",
+            "teacher": {
+                "id": 5822,
+                "shortName": "RE"
+            }
+        },
+        "marks": [{
+                "date": "2022-09-29T12:38:34",
+                "value": "1",
+                "weight": 1,
+                "name": "Ostatní známky",
+                "comment": ""
+            },
+            {
+                "date": "2022-10-10T12:00:30",
+                "value": "1",
+                "weight": 5,
+                "name": "Písemné zkoušení",
+                "comment": ""
+            },
+            {
+                "date": "2022-10-14T09:25:26",
+                "value": "1-",
+                "weight": 5,
+                "name": "Písemné zkoušení",
+                "comment": "opak 2 - Počátky české"
+            },
+            {
+                "date": "2022-11-24T11:31:51",
+                "value": "1",
+                "weight": 5,
+                "name": "Písemné zkoušení",
+                "comment": "husitství"
+            }
+        ]
+    },
+    {
+        "subject": {
+            "id": 3902,
+            "name": "AGJ",
+            "teacher": {
+                "id": 12248,
+                "shortName": "GA"
+            }
+        },
+        "marks": [{
+                "date": "2022-11-28T13:08:59",
+                "value": "2",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": ""
+            },
+            {
+                "date": "2022-12-01T12:03:08",
+                "value": "2",
+                "weight": 1,
+                "name": "Písemné zkoušení",
+                "comment": ""
+            }
+        ]
+    },
+    {
+        "subject": {
+            "id": 3908,
+            "name": "ELZ",
+            "teacher": {
+                "id": 6512,
+                "shortName": "LO"
+            }
+        },
+        "marks": [{
+            "date": "2022-11-20T16:57:56",
+            "value": "1",
+            "weight": 3,
+            "name": "Písemné zkoušení",
+            "comment": ""
+        }]
+    },
+    {
+        "subject": {
+            "id": 3904,
+            "name": "VYT",
+            "teacher": {
+                "id": 6028,
+                "shortName": "HY"
+            }
+        },
+        "marks": [{
+            "date": "2022-12-08T14:19:51",
+            "value": "1",
+            "weight": 1,
+            "name": "Ostatní známky",
+            "comment": "Kahoot"
+        }]
     }
 ]

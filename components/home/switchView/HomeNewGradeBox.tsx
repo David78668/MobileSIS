@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 		fontSize: 13
 	},
 	grade: {
-		color: Colors.SecondaryTextColor,
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18
 	}
