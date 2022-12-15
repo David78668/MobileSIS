@@ -16,30 +16,30 @@ export type CarouselItemProps = {
 		Url?: string;
 	}
 }
-export function CarouselItem(item: CarouselItemProps)
-	{	
+
+export default function CarouselItem(item: CarouselItemProps) {	
 	return (
 		<View style={styles.container}>
 			<View style={styles.timeContainer}>
-				<Text style={styles.startTimeLabel}>{moment(item.item.StartTime).format("HH.mm")}</Text>
-				<Text style={styles.endTimeLabel}>{moment(item.item.StartTime).add(45, "minutes").format("HH.mm")}</Text>
+				<Text style={styles.startTimeLabel}>{moment(item.item.StartTime).format("H:mm")}</Text>
+				<Text style={styles.endTimeLabel}>{moment(item.item.StartTime).add(45, "minutes").format("H:mm")}</Text>
 			</View>
-			<View style={styles.divider}></View>			
+			<View style={styles.divider}></View>
 			<View style={styles.cardBody}>
 				<Text style={styles.subjectLabel}>{item.item.Name}</Text>
 				<View style={{ marginTop: 10 }}>
 					<View style={styles.paralel}>
-						<Ionicons color= {Colors.TertiaryBackgroundColor} size={15} name='easel' />
+						<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name='easel' />
 						<Text style={styles.value}>Učebna {item.item.Classroom}</Text>
 					</View>
 					<View style={{ ...styles.paralel, marginTop: 3 }}>
-						<Ionicons color= {Colors.TertiaryBackgroundColor} size={15} name='person-circle' />
+						<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name='person-circle' />
 						<Text style={styles.value}>{item.item.Teacher}</Text>
 					</View>
 				</View>
 			</View>
 		</View>
-	)
+	);
 }
 
 const styles = StyleSheet.create({
@@ -69,8 +69,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1
 	},
 	timeContainer: {
-		alignItems: 'center',
-		width: 40
+		alignItems: 'center'
 	},
 	value: {
 		marginLeft: 5,

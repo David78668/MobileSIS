@@ -2,7 +2,7 @@ import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import Body from '../components/general/Body';
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import Grade from '../components/grades/Grade';
 import { userid, bareer, getValueFor} from "../components/Token";
 import { useEffect } from 'react';
@@ -14,7 +14,7 @@ import * as SecureStore from 'expo-secure-store';
  */
 
 export default function Grades() {
-	const [data, setData] = useState<any>();
+	/*const [data, setData] = useState<any>();
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
 
@@ -39,7 +39,18 @@ export default function Grades() {
 	
 	useEffect(() => {
 		GetGrades();
-	}, []);
+	}, []);*/
+
+
+	function separator() {
+		return <View style={{ marginTop: 10 }}></View>;
+	}
+
+	function renderGrade({ item }: any) {
+		return <Grade {...item} />;
+	}
+
+	const testData = require('../assets/gradeTest.json');
 	
 	return (
 		<Container>
@@ -54,9 +65,23 @@ export default function Grades() {
 							);	
 						})}
 					</View> : null*/}
+				
+				<View style={styles.grades}>
+					<FlatList
+						data={testData}
+						renderItem={renderGrade}
+						ItemSeparatorComponent={separator}
+						keyExtractor={(item, index) => index.toString()}
+					/>
+				</View>
 			</Body>
 		</Container>
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	grades: {
+		padding: 20,
+		overflow: 'visible'
+	}
+});
