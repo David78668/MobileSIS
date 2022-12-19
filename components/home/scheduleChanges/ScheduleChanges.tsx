@@ -2,25 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
 import { Colors } from '../../../declarations/colors';
-
-const testData = [{
-		StartTime: "2022-12-12T07:50:00",
-		ShortName: "MAT",
-		Clasroom: "214",
-		Teacher: "KAR"
-	},
-	{
-		StartTime: "2022-12-12T07:50:00",
-		ShortName: "MAT",
-		Clasroom: "214",
-		Teacher: "KAR"
-	},
-	{
-		StartTime: "2022-12-12T09:45:00",
-		ShortName: "MAT",
-		Clasroom: "214",
-		Teacher: "KAR"
-	}];
+import testData from '../../../assets/homeSchedule.json';
 
 export default function ScheduleChanges() {
 	//const data = require("../../../assets/testData.json");
@@ -32,10 +14,10 @@ export default function ScheduleChanges() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Změny v rozvrhu ({testData.length})</Text>
+			<Text style={styles.title}>Změny v rozvrhu ({testData.data.length})</Text>
 
 			<FlatList
-				data={testData}
+				data={testData.data}
 				renderItem={renderChange}
 				keyExtractor={(item, index) => index.toString()}
 				horizontal
@@ -51,9 +33,9 @@ export default function ScheduleChanges() {
 function renderChange({ item }: any) {
 	return (
 		<ScheduleChangeBox
-			StartTime={item.StartTime} ShortName={item.ShortName}
-			Classroom={item.Classroom} Teacher={item.Teacher}
-			Change={item.LessonType} />
+			StartTime={item.item.StartTime} ShortName={item.item.ShortName}
+			Classroom={item.item.Classroom} Teacher={item.item.Teacher}
+			Change={item.item.LessonType} />
 	);
 }
 

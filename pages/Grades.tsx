@@ -2,17 +2,13 @@ import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import Body from '../components/general/Body';
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import Grade from '../components/grades/Grade';
 import { userid, bareer, getValueFor} from "../components/Token";
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { Colors } from '../declarations/colors';
-
-/*
-	TODO:
-		Make proper short month parsing from date
- */
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Grades() {
 	/*const [data, setData] = useState<any>();
@@ -42,6 +38,8 @@ export default function Grades() {
 		GetGrades();
 	}, []);*/
 
+	const testData = require('../assets/gradeTest.json');
+	const [mode, setMode] = useState(true);
 
 	function separator() {
 		return <View style={{ marginTop: 10 }}></View>;
@@ -50,8 +48,6 @@ export default function Grades() {
 	function renderGrade({ item }: any) {
 		return <Grade {...item} />;
 	}
-
-	const testData = require('../assets/gradeTest.json');
 	
 	return (
 		<Container>
@@ -66,21 +62,20 @@ export default function Grades() {
 							);	
 						})}
 					</View> : null*/}
-
 				<View style={styles.gradesBox}>
-					<Text style={styles.title}>Známky z předmetů</Text>
-			
+					<Text style={styles.title}>Předměty</Text>
+		
 					<FlatList
 						data={testData}
 						renderItem={renderGrade}
 						ItemSeparatorComponent={separator}
 						keyExtractor={(item, index) => index.toString()}
-						contentContainerStyle={styles.grades}
+						style={styles.grades}
 					/>
 				</View>
 			</Body>
 		</Container>
-		
+
 	);
 }
 

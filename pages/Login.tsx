@@ -2,7 +2,7 @@ import { View, ScrollView, Text, StyleSheet, TouchableOpacity, Image, Dimensions
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import * as SecureStore from 'expo-secure-store';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { bareer } from "../components/Token"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
@@ -14,27 +14,22 @@ const redirectUri = AuthSession.makeRedirectUri({
     useProxy,
 });
 
-
-
 export default function App({ navigation }: any) {
     navigation.setOptions({ tabBarStyle: { display: 'none' } });
     
     const discovery = {
         authorizationEndpoint: "https://auth.kyberna.cz/connect/authorize",
         tokenEndpoint: "https://auth.kyberna.cz/connect/token",
-    };
+    }
 
-    const [request, result, promptAsync] = AuthSession.useAuthRequest(
-        {
-            clientId: 'mvc',
-            clientSecret: 'secret',
-            redirectUri,
-            responseType: AuthSession.ResponseType.Code,
-            usePKCE: true,
-            scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
-        },
-        discovery
-    );
+    const [request, result, promptAsync] = AuthSession.useAuthRequest({
+        clientId: 'mvc',
+        clientSecret: 'secret',
+        redirectUri,
+        responseType: AuthSession.ResponseType.Code,
+        usePKCE: true,
+        scopes: ['openid', 'profile', 'roles', 'api.sis.kyberna.cz', 'offline_access'],
+    }, discovery);
 
     useEffect(() => {
         async function getToken() {
@@ -57,8 +52,7 @@ export default function App({ navigation }: any) {
             }
         }
         getToken();
-    }
-, [result])
+    }, [result]);
     
     var animated: any[] = [];
     for (var i = 0; i < 3; i++) {

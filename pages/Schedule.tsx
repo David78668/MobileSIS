@@ -16,15 +16,12 @@ function GetWeekStart(date: Date) {
 }
 
 function GetSelectedDay(date: string) {
-	var output = moment(date).format("dddd Do");
+	var output = moment(date).format("dddd, D. MMMM");
 	output = output[0].toUpperCase() + output.substring(1, output.length)
 	return output;
 }
 
-if (
-	Platform.OS === "android" &&
-	UIManager.setLayoutAnimationEnabledExperimental
-) {
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
@@ -55,8 +52,8 @@ export default function Schedule() {
 						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 						setIsDaySelect(!isDaySelect);
 					},
-				}}
-			>
+				}}>
+				
 				<View style={styles.HeadingContainer}>
 					{isDaySelect &&
 						testdata.map((item: any, index: number) => {
@@ -67,7 +64,7 @@ export default function Schedule() {
 									page={page}
 									onPress={(setPage)}
 								/>
-							)
+							);
 						})
 					}
 				</View>
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
 	},
 	HeadingContainer: {
 		flexDirection: 'row',
-		justifyContent: 'center',
+		paddingHorizontal: 20
 	},
 	column: {
 		padding: 5

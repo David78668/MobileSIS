@@ -26,6 +26,7 @@ export default function AbsenceBox(props: AbsenceProps) {
 				renderItem={renderAbsence}
 				ItemSeparatorComponent={separator}
 				ListHeaderComponent={header}
+				scrollEnabled={false}
 				keyExtractor={(item, index) => index.toString()}
 			/>
 		</View>

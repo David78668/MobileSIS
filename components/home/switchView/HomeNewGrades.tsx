@@ -40,23 +40,19 @@ export default function HomeNewGrades() {
 	const data = [{
 		date: new Date(),
 		subject: 'MAT',
-		grade: '1',
-		icon: <Ionicons name='shapes' size={20} color={Colors.TertiaryBackgroundColor} />
+		grade: '1'
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 24),
 		subject: 'PRG',
-		grade: '1',
-		icon: <Ionicons name='code-slash' size={20} color={Colors.TertiaryBackgroundColor} />
+		grade: '1'
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 48),
 		subject: 'AGJ',
-		grade: '1',
-		icon: <Ionicons name='earth' size={20} color={Colors.TertiaryBackgroundColor} />
+		grade: '1'
 	}, {
 		date: new Date(new Date().getTime() + 1000 * 60 * 60 * 72),
 		subject: 'FYZ',
-		grade: '1',
-		icon: <Ionicons name='sunny' size={20} color={Colors.TertiaryBackgroundColor} />
+		grade: '1'
 	}];
 	
 	function renderGrade({ item }: any) {
@@ -64,8 +60,7 @@ export default function HomeNewGrades() {
 			<HomeNewGradeBox
 				date={item.date}
 				subjectName={item.subject}
-				grade={item.grade}
-				icon={item.icon} />
+				grade={item.grade} />
 		);
 	}
 

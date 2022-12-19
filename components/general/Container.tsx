@@ -13,6 +13,6 @@ export default function Container(props:ContainerProps){
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: Colors.SecondaryBackgroundColor,
+		backgroundColor: Colors.SecondaryBackgroundColor
 	}
 });

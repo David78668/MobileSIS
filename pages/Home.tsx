@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Body from '../components/general/Body';
 import Heading from '../components/general/Heading';
@@ -10,52 +10,15 @@ import HomeNewGrades from '../components/home/switchView/HomeNewGrades';
 import moment from 'moment';
 import "moment/locale/cs";
 import Carousel from '../components/home/carousel/Carousel';
-
-const testData = {
-	data:[
-		{
-			item: {
-				StartTime: "2022-12-14T14:00:00",
-					Name: "Matematika",
-					Teacher: "Zlata Karpíšková",
-					Classroom: "214"
-			}
-		},
-		{
-			item: {
-				StartTime: "2022-12-14T07:00:00",
-					Name: "Matematika",
-					Teacher: "Zlata Karpíšková",
-					Classroom: "214"
-			}
-		},
-		{
-			item: {
-				StartTime: "2022-12-14T07:00:00",
-					Name: "Matematika",
-					Teacher: "Zlata Karpíšková",
-					Classroom: "214"
-			}
-		},
-		{
-			item: {
-				StartTime: "2022-12-14T07:00:00",
-					Name: "Matematika",
-					Teacher: "Zlata Karpíšková",
-					Classroom: "214"
-			}
-		}
-	]
-}
+import testData from '../assets/homeSchedule.json';
 
 export default function Home() {
-	moment.locale('cs');
 	const format = moment().format('dddd, D. MMMM').toString();
 	const date = format[0].toUpperCase() + format.slice(1);
 
 	return (
 		<Container>
-			<Heading title='Home' subtitle={date}>
+			<Heading title='Vítejte' subtitle={date}>
 				{<Carousel data={testData.data} />}
 			</Heading>
 			
@@ -63,8 +26,8 @@ export default function Home() {
 				<ScheduleChanges />
 
 				<HomeSwitchView
-					headerTexts={["Absence", "Nové známky"]}
-					components={[<HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />, <HomeNewGrades />]}
+					headerTexts={["Nové známky", "Absence"]}
+					components={[<HomeNewGrades />, <HomeAbsence absence={{ attended: 200, missed: 50, notExcused: 10 }} />]}
 				/>
 			</Body>
 		</Container>

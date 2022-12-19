@@ -1,0 +1,39 @@
+{
+    "data": [{
+            "item": {
+                "StartTime": "2022-12-14T14:00:00",
+                "Name": "Matematika",
+                "ShortName": "MAT",
+                "Teacher": "Zlata Karpíšková",
+                "Classroom": "214"
+            }
+        },
+        {
+            "item": {
+                "StartTime": "2022-12-14T14:00:00",
+                "Name": "Matematika",
+                "ShortName": "MAT",
+                "Teacher": "Zlata Karpíšková",
+                "Classroom": "214"
+            }
+        },
+        {
+            "item": {
+                "StartTime": "2022-12-14T14:00:00",
+                "Name": "Matematika",
+                "ShortName": "MAT",
+                "Teacher": "Zlata Karpíšková",
+                "Classroom": "214"
+            }
+        },
+        {
+            "item": {
+                "StartTime": "2022-12-14T14:00:00",
+                "Name": "Matematika",
+                "ShortName": "MAT",
+                "Teacher": "Zlata Karpíšková",
+                "Classroom": "214"
+            }
+        }
+    ]
+}
