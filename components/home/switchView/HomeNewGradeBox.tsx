@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../declarations/colors';
 import { Ionicons } from '@expo/vector-icons';
-import icons from '../../../assets/icons';
+import icons from '../../../declarations/icons';
 
 import moment from 'moment';
 import "moment/locale/cs";

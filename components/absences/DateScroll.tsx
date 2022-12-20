@@ -82,5 +82,5 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: Colors.PrimaryTextColor,
     fontWeight: '500'
-  },
+  }
 });

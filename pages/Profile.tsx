@@ -9,6 +9,7 @@ import ProfileInfo from '../components/profile/ProfileInfo';
 import * as SecureStore from 'expo-secure-store';
 import FetchData from '../tools/ApiRequest';
 import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../declarations/colors';
 
 export default function Profile() {
 	const [data, setData] = useState<any>();
@@ -105,7 +106,7 @@ export default function Profile() {
 	
 	return (
 		<Container>
-			<Heading title='Profil'>
+			<Heading title='Profil' headerComponent={<Logout />} >
 				{error == false && loaded == true &&
 					<ProfileBox firstName={data.name} lastName={data.surname} class={data.groups[0].name} />}
 			</Heading>
@@ -127,6 +128,19 @@ export default function Profile() {
 			</Body>
 		</Container>
 	);
+}
+
+function Logout() {
+	return (
+		<TouchableOpacity style={styles.logout} activeOpacity={0.7} onPress={logout}>
+			<Text style={styles.logoutText}>Odhlásit se</Text>
+			<Ionicons name='power' size={20} color={Colors.PrimaryTextColor} style={styles.logoutIcon} />
+		</TouchableOpacity>
+	);
+}
+
+function logout() {
+
 }
 
 const styles = StyleSheet.create({
@@ -160,5 +174,22 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between'
+	},
+	logout: {
+		backgroundColor: Colors.TertiaryBackgroundColor,
+        flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingVertical: 5,
+		paddingLeft: 5
+	},
+	logoutText: {
+		fontSize: 17,
+		color: Colors.PrimaryTextColor,
+		fontWeight: '500'
+	},
+	logoutIcon: {
+		opacity: 0.6,
+		marginLeft: 5
 	}
 });

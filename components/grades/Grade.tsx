@@ -1,13 +1,10 @@
-import { LayoutAnimation, Platform, UIManager, StyleSheet, Text, TouchableOpacity, View, FlatList, Animated } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, FlatList, Animated } from 'react-native';
 import { Feather, Ionicons } from "@expo/vector-icons"
 import React, { useRef } from 'react';
 import { Colors } from '../../declarations/colors';
 import moment from 'moment';
-import icons from '../../assets/icons';
-
-if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-	UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+import icons from '../../declarations/icons';
+import { animation } from '../../declarations/animation';
 	
 export default function Grade(data: any) {
 	const [select, setcheckBoxState] = React.useState(false);
@@ -34,12 +31,7 @@ export default function Grade(data: any) {
 				<TouchableOpacity
 					style={styles.container}
 					onPress={() => {
-						LayoutAnimation.configureNext({
-							duration: 500,
-							create: { type: "linear", property: "opacity" },
-							update: { type: "spring", springDamping: 1 },
-							delete: { type: "linear", property: "opacity" }
-						});
+						animation();
 						setcheckBoxState(!select);
 						rotate();
 					}} activeOpacity={1}>
