@@ -67,7 +67,7 @@ function separator() {
 	key: {
 		fontWeight: 'bold',
 		color: Colors.SecondaryTextColor,
-		opacity: 0.8,
+		opacity: 0.6
 	},
 	value: {
 		opacity: 0.6,

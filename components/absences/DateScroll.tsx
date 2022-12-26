@@ -7,8 +7,6 @@ import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
-moment.locale('cs');
-
 interface DateScrollProps {
 	monthChange: Function
 }
@@ -65,7 +63,6 @@ export const longMonth = month.add(monthIndex, 'month').format('MMMM');
 
 const styles = StyleSheet.create({
   dateWrapper:{
-    width: '42%',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
@@ -75,8 +72,8 @@ const styles = StyleSheet.create({
     padding: 5
   },
   datetextWrapper: {
-    alignItems:'center',
-    flex: 1,
+    alignItems: 'center',
+    width: 85
   },
   headerDate: {
     fontSize: 17,

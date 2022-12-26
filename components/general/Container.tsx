@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import { Colors } from '../../declarations/colors';
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet } from 'react-native';
 
 interface ContainerProps {
 	children?: React.ReactNode

@@ -22,7 +22,7 @@ export default function Heading(props: HeaderProps) {
 						{props.subtitle && <Text style={styles.subtitle}>{props.subtitle}</Text>}
 					</View>
 
-					{props.headerComponent}
+					<View style={styles.headerComponent}>{props.headerComponent}</View>
 				</View>
 			</TouchableWithoutFeedback>
 
@@ -53,5 +53,10 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		fontSize: 16,
 		opacity: 0.6
+	},
+	headerComponent: {
+		backgroundColor: '#ffffff1a',
+		paddingHorizontal: 10,
+		borderRadius: 10
 	}
 });

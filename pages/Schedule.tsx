@@ -1,5 +1,5 @@
 import React from 'react';
-import FetchData from '../tools/ApiRequest';
+import ApiRequest from '../tools/ApiRequest';
 import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback } from 'react-native';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
@@ -16,7 +16,7 @@ function GetWeekStart(date: Date) {
 }
 
 function GetSelectedDay(date: string) {
-	var output = moment(date).format("dddd, D. MMMM");
+	var output = moment(date).format("dddd");
 	output = output[0].toUpperCase() + output.substring(1, output.length)
 	return output;
 }
@@ -33,11 +33,11 @@ export default function Schedule() {
 	const [page, setPage] = React.useState(0);
 	const [isDaySelect, setIsDaySelect] = React.useState(true);
 	React.useEffect(() => {
-		FetchData({
+		ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',
-			setDataFunction: setData,
-			setLoadedFunction: setLoaded,
-			setErrorFunction: setError,
+			setData: setData,
+			setLoaded: setLoaded,
+			setError: setError,
 		})
 	});
 
@@ -45,7 +45,7 @@ export default function Schedule() {
 		<Container>
 			<Heading
 				title="Rozvrh"
-				subtitle={GetSelectedDay(testdata[page].date)}
+				headerComponent={<Text style={styles.header}>{GetSelectedDay(testdata[page].date)}</Text>}
 				Pressable = {{
 					delayPressIn: 0,
 					onPress(event) {
@@ -126,5 +126,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 1,
 		justifyContent: 'center',
+	},
+	header: {
+		fontSize: 17,
+   		color: Colors.PrimaryTextColor,
+		fontWeight: '500',
+		padding: 5
 	}
 });

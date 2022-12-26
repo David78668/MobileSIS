@@ -5,8 +5,6 @@ import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
-moment.locale('cs');
-
 interface AbsenceData {
 	date: Date,
 	start: string,
@@ -19,10 +17,19 @@ interface AbsenceProps {
 }
 
 export default function AbsenceBox(props: AbsenceProps) {
+	var absence: any[] = [];
+	
+	props.data.forEach((e: any) => {
+		const start = e.dates[0];
+		const end = moment(e.dates[e.dates.length - 1]).add(45, 'minutes');
+
+		absence.push({ date: new Date(e.date), start, end, reason: e.reason });
+	});
+	
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={props.data}
+				data={absence}
 				renderItem={renderAbsence}
 				ItemSeparatorComponent={separator}
 				ListHeaderComponent={header}
@@ -41,7 +48,7 @@ function renderAbsence({ item }: { item: AbsenceData }) {
 			</View>
 
 			<View style={styles.wrapper}>
-				<Text style={styles.reasonText}>{item.start}-{item.end}</Text>
+				<Text style={styles.reasonText}>{moment(item.start).format('H:mm')}-{moment(item.end).format('H:mm')}</Text>
 			</View>
 
 			<View style={styles.wrapper}>

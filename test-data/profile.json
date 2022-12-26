@@ -1,0 +1,51 @@
+{
+    "id": 11566,
+    "name": "Jméno",
+    "surname": "Příjmení",
+    "shortName": "prijmeni_jmeno",
+    "email": "prijmeni.jmeno@ssakhk.cz",
+    "web": null,
+    "phone": null,
+    "profileImageUrl": null,
+    "groups": [{
+            "id": 4207,
+            "name": "T2"
+        },
+        {
+            "id": 4212,
+            "name": "1"
+        },
+        {
+            "id": 4219,
+            "name": "p"
+        },
+        {
+            "id": 4253,
+            "name": "c"
+        },
+        {
+            "id": 4261,
+            "name": "P03"
+        },
+        {
+            "id": 4306,
+            "name": "r"
+        },
+        {
+            "id": 4349,
+            "name": "PW1"
+        },
+        {
+            "id": 4352,
+            "name": ""
+        },
+        {
+            "id": 4361,
+            "name": "t"
+        },
+        {
+            "id": 4377,
+            "name": "P17"
+        }
+    ]
+}

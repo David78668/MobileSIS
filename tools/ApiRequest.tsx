@@ -1,26 +1,29 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import * as SecureStore from 'expo-secure-store';
+import { animation } from '../declarations/animation';
 
-interface FetchConfig {
+interface RequestProps {
 	requestUrl: string,
-	setDataFunction: React.Dispatch<React.SetStateAction<object>>,
-	setErrorFunction: React.Dispatch<React.SetStateAction<boolean>>,
-	setLoadedFunction: React.Dispatch<React.SetStateAction<boolean>>
+	setData: Dispatch<SetStateAction<object>>,
+	setError: Dispatch<SetStateAction<boolean>>,
+	setLoaded: Dispatch<SetStateAction<boolean>>
 }
 
-const FetchData = async (Config : FetchConfig) => {
-	fetch(Config.requestUrl, { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
-	  .then(res => {return(res.json())})
-	  .then(
-		(result) => {
-			Config.setDataFunction(result);
-			Config.setLoadedFunction(true);
-		},
-		
-		(error) => {
-			Config.setErrorFunction(true);
-			Config.setLoadedFunction(true)
-		}
-	)
-}
+export default async function ApiRequest(props: RequestProps) {
+	fetch(props.requestUrl, {
+		method: 'get',
+		headers: new Headers({ 'Authorization': `Bearer ${await SecureStore.getItemAsync("kybernaAccessToken")}` })
+	})
+	.then(res => res.json())
+	.then((result) => {
+		props.setData(result);
+		props.setLoaded(true);
 
-export default FetchData;
+		animation();
+	}, (error) => {
+		props.setError(true);
+		props.setLoaded(true);
+
+		animation();
+	});
+}
