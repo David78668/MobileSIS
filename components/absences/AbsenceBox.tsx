@@ -1,22 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Colors } from '../../declarations/colors';
-import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
-interface AbsenceData {
-	date: Date,
-	start: string,
-	end: string,
-	reason: string
-}
-
-interface AbsenceProps {
-	data: Array<AbsenceData>
-}
-
-export default function AbsenceBox(props: AbsenceProps) {
+export default function AbsenceBox(props: any) {
 	var absence: any[] = [];
 	
 	props.data.forEach((e: any) => {
@@ -38,9 +26,16 @@ export default function AbsenceBox(props: AbsenceProps) {
 			/>
 		</View>
 	);
-};
+}
 
-function renderAbsence({ item }: { item: AbsenceData }) {
+interface AbsenceItem {
+	date: string,
+	start: string,
+	end: string,
+	reason: number
+}
+
+function renderAbsence({ item }: { item: AbsenceItem }) {
 	return (
 		<View style={styles.item}>
 			<View style={styles.wrapper}>

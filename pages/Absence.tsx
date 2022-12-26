@@ -9,7 +9,6 @@ import AbsenceBox from '../components/absences/AbsenceBox';
 import * as SecureStore from 'expo-secure-store';
 import moment from 'moment';
 import "moment/locale/cs";
-import { animation } from '../declarations/animation';
 import { parse } from 'expo-linking';
 import ApiRequest from '../tools/ApiRequest';
 
@@ -19,14 +18,14 @@ export default function Absence() {
 	const [errorStats, setErrorStats] = useState(false);
 
 	async function getAbsence() {
-		ApiRequest({
+		await ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/absence/stats',
 			setData: setDataStats,
 			setLoaded: setLoadedStats,
 			setError: setErrorStats
 		});
-		
-		getAbsenceMonth(monthIndex!, moment().get('year'));
+
+		getAbsenceMonth(monthIndex, moment().get('year'));
 	}
 
 	const [dataMonth, setDataMonth] = useState<any>(require('../test-data/absence-month.json'));
@@ -34,14 +33,14 @@ export default function Absence() {
 	const [errorMonth, setErrorMonth] = useState(false);
 
 	async function getAbsenceMonth(index: number, year: number) {
-		ApiRequest({
+
+		await ApiRequest({
 			requestUrl: `https://api.sis.kyberna.cz/api/absence/month?month=${index}&year=${year}`,
 			setData: setDataMonth,
 			setLoaded: setLoadedMonth,
-			setError: setErrorMonth
+			setError: setErrorMonth,
+			finally: () => parseAbsence(dataMonth)
 		});
-
-		parseAbsence(dataMonth);
 	}
 
 	useEffect(() => {
@@ -49,7 +48,7 @@ export default function Absence() {
 	}, []);
 
 	const [month, setMonth] = useState<string>();
-	const [monthIndex, setMonthIndex] = useState<number>();
+	const [monthIndex, setMonthIndex] = useState<number>(moment().get('month') + 1);
 	const months = ['září', 'říjnu', 'listopadu', 'prosinci', 'lednu', 'únoru', 'březnu', 'dubnu', 'květnu', 'červnu'];
 
 	function monthChange(index: number) {
@@ -61,7 +60,9 @@ export default function Absence() {
 	}
 
 	const [absenceDays, setAbsenceDays] = useState(0);
-	
+	const [dates, setDates] = useState<object>();
+	const [loadedDates, setLoadedDates] = useState(false);
+
 	function parseAbsence(data: any) {
 		var dates: any = [];
 		
@@ -80,8 +81,9 @@ export default function Absence() {
 			const day = dates.find((e: any) => e.date == date);
 			day.dates.push(e.lesson.date);
 		});
-
-		setDataMonth(dates);
+		
+		setDates(dates);
+		setLoadedDates(true);
 		setAbsenceDays(dates.length);
 	}
 
@@ -110,7 +112,7 @@ export default function Absence() {
 						<ActivityIndicator style={styles.loading} animating={!loadedMonth} />
 					</View>
 
-					{loadedMonth && <AbsenceBox data={dataMonth} />}
+					{loadedDates && <AbsenceBox data={dates} />}
 				</View>
 			</Body>
 		</Container>
