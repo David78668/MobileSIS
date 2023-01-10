@@ -1,10 +1,10 @@
 import React from 'react';
 import FetchData from '../tools/ApiRequest';
-import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback } from 'react-native';
+import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback, EventEmitter } from 'react-native';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import { userid, bareer } from "../components/Token";
-import Lesson from '../components/timetable/Lesson';
+import LessonContainer from '../components/timetable/LessonContainer';
 import Body from '../components/general/Body';
 import moment from 'moment';
 import DayBlock from '../components/timetable/DayBlock';
@@ -21,6 +21,29 @@ function GetSelectedDay(date: string) {
 	return output;
 }
 
+function FilterData(data: Array<any>) {
+	var result: any[][] = [[]];
+	for (var i = 0; i < data.length; i++) {
+		result[i] = [];
+		result[i].push(data[i])
+		while(i < data.length - 1){
+			var dateA = moment(data[i].date);
+			var dateB = moment(data[i + 1].date);
+			console.log(dateA);
+			console.log(dateB);
+			if (i != data.length - 1 && dateB.isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")) {
+				console.log((dateB.add(20, "minutes").isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")));
+				result[i].push(data[i + 1])
+				i++;
+			}
+			else{
+				break;
+			}
+		}
+	}
+	return result;
+}
+
 if (
 	Platform.OS === "android" &&
 	UIManager.setLayoutAnimationEnabledExperimental
@@ -35,6 +58,7 @@ export default function Schedule() {
 	const [error, setError] = React.useState(false);
 	const [page, setPage] = React.useState(0);
 	const [isDaySelect, setIsDaySelect] = React.useState(true);
+	const filteredData = FilterData(testdata[page].timetable);
 	React.useEffect(() => {
 		FetchData({
 			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',
@@ -49,9 +73,9 @@ export default function Schedule() {
 			<Heading
 				title="Rozvrh"
 				subtitle={GetSelectedDay(testdata[page].date)}
-				Pressable = {{
+				Pressable={{
 					delayPressIn: 0,
-					onPress(event) {
+					onPressIn(event) {
 						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 						setIsDaySelect(!isDaySelect);
 					},
@@ -72,26 +96,29 @@ export default function Schedule() {
 					}
 				</View>
 			</Heading>
-				<Body
-					ScrollView={{
-						onTouchStart(event) {
-							LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-							setIsDaySelect(false);
-						},
-					}}
-				>
-					{testdata[page].timetable.map((item: any, index: number) => {
+			<Body
+				ScrollView={{
+					onTouchStart(event) {
+						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+						setIsDaySelect(false);
+					},
+				}}
+			>
+				{
+					filteredData.map((item: any, index: number) => {
 						let delay = 15
-						if(index > 0){
-							let lessonBefore = testdata[page].timetable[index - 1].date;
-							delay = moment(item.date).diff(moment(lessonBefore), "minutes") - 45
+						if (index > 0 && filteredData[index - 1] != undefined) {
+							let lessonBefore = filteredData[index - 1][0].date;
+							delay = moment(filteredData[index][0].date).diff(moment(lessonBefore), "minutes") - 45;
 						}
-						return( <Lesson
-						item={item}
-						delayBefore={delay}
-						/>)
-					})}
-				</Body>
+						return (
+							<LessonContainer
+								items={item}
+								delayBefore={delay}
+							/>)
+					})
+				}
+			</Body>
 		</Container>
 	);
 }

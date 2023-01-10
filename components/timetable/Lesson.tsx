@@ -7,16 +7,13 @@ import { getCurrentTimeInSeconds } from 'expo-auth-session/build/TokenRequest';
 
 export interface LessonProps {
 	item: any,
-	delayBefore : number
 }
 
 export default function Lesson(props : LessonProps) {
 	let startTime = moment(props.item.date).format("H.mm");
 	let endTime = moment(props.item.date).add(45, "minutes").format("H.mm");
 	return (
-		<View
-			style={[styles.container, {marginTop: props.delayBefore}, !props.item.active &&  styles.inactiveClass]}>
-			{(<View style={styles.change}>
+			(<View style={[styles.change, !props.item.active &&  styles.inactiveClass]}>
 				<View style={[styles.changeleft, !props.item.static && styles.suplementaryClass]}>
 					<Text style={styles.classstart}>{startTime}</Text>
 					<Text style={styles.classend}>{endTime}</Text>
@@ -36,20 +33,11 @@ export default function Lesson(props : LessonProps) {
 						</View>
 					</View>
 				</View>
-			</View>)}
-		</View>
-
+			</View>)
 	);
 }
 
 const styles = StyleSheet.create({
-	container:{
-		height: 80,
-		borderRadius: 10,
-		marginVertical: 2,
-		marginHorizontal: 5,
-		overflow: "hidden",
-	},
 	inactiveClass: {
 		opacity: 0.3
 	},
@@ -58,8 +46,12 @@ const styles = StyleSheet.create({
 	},
 	change: {
 		backgroundColor: Colors.PrimaryBackgroundColor,
-		height:"100%",
+		height:80,
 		flexDirection: 'row',
+		borderRadius: 10,
+		flex: 1,
+		overflow: 'hidden',
+		marginHorizontal: 5,
 	},
 	changeleft: {
 		width: 66,
@@ -80,7 +72,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 5,
 	},
 	top: {
-		width: 144,
+		width: "100%",
 		justifyContent: 'space-evenly',
 	},
 	difference: {
@@ -94,7 +86,7 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 	},
 	bottom: {
-		width: 144,
+		width: "100%",
 		paddingTop: 3,
 		paddingBottom: 3,
 		backgroundColor: 'white',
