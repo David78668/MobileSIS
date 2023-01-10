@@ -1,95 +1,46 @@
-import React from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, Button } from 'react-native';
 import Heading from '../components/general/Heading';
 import Body from '../components/general/Body';
 import Container from '../components/general/Container';
 import ProfileBox from '../components/profile/ProfileBox';
 import ProfileInfo from '../components/profile/ProfileInfo';
-import * as SecureStore from 'expo-secure-store';
-import FetchData from '../tools/ApiRequest';
-import { Ionicons } from '@expo/vector-icons';
+import { Colors } from '../declarations/colors';
+import ApiRequest from '../tools/ApiRequest';
 
 export default function Profile() {
-	const [data, setData] = useState<any>();
+	const [data, setData] = useState<any>(require('../test-data/profile.json'));
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
-	const [Absence, setAbsence] = useState<any>();
-	const [AbsenceLoaded, setAbsenceLoaded] = useState(false);
-	const [AbsenceError, setAbsenceError] = useState(false);
-	/*let GetProfileInfo = async () => {
-		fetch('https://api.sis.kyberna.cz/api/user', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
-		  .then(res => {return(res.json())})
-		  .then(
-			(result) => {
-				//console.log(result);
-				setData(result);
-				setLoaded(true);
-				//alert(result[0].name);
-			},
-			
-			(error) => {
-				//alert(error);
-				setError(true);
-				setLoaded(true);
-			}
-		)
-	}*/
 
-	let GetAbsenceInfo = async () => {
-		fetch('https://api.sis.kyberna.cz/api/absence/stats', { method: 'get', headers: new Headers({ 'Authorization': 'Bearer '+ await SecureStore.getItemAsync("kybernaAccessToken") }) })
-		  .then(res => {return(res.json())})
-		  .then(
-			(result) => {
-				//console.log(result);
-				setAbsence(result);
-				//alert(result[0].name);
-			},
+	const [info, setInfo] = useState<any>();
+	const [groups, setGroups] = useState<any>();
+
+	async function getProfileInfo() {		
+		ApiRequest({
+			requestUrl: 'https://api.sis.kyberna.cz/api/user',
+			setData, setLoaded, setError
+		});
 			
-			(error) => {
-				//alert(error);
-				setAbsenceError(true);
-				setAbsenceLoaded(true);
-			}
-		)
+		setInfo([
+			{ key: 'Jméno', value: `${data.name} ${data.surname}` },
+			{ key: 'E-mail', value: data.email },
+			{ key: 'Telefoní číslo', value: data.phone, editable: true }
+		]);
+
+		setGroups([
+			{ key: 'Skupiny', value: '1 / p / r' },
+			{ key: 'Volitelný předmět', value: 'PW1' },
+			{ key: 'Projekt', value: 'P17' }
+		]);
 	}
 
 	useEffect(() => {
-		//GetProfileInfo();
-		FetchData({
-			requestUrl: "https://api.sis.kyberna.cz/api/user",
-			setDataFunction: setData,
-			setLoadedFunction: setLoaded,
-			setErrorFunction: setError
-		});
-
-		GetAbsenceInfo();
+		getProfileInfo();
 	}, []);
-
-	const informaceData = [{
-		key: 'Jméno',
-		value: 'Jméno Příjmění'
-	}, {
-		key: 'E-mail',
-		value: 'jmeno.prijmeni@ssakhk.cz'
-	}, {
-		key: 'Telefoní číslo',
-		value: '123 456 789',
-		editable: true
-	}];
 	
-	const rozdeleniData = [{
-		key: 'Skupiny',
-		value: '1 / p / r'
-	}, {
-		key: 'Volitelný předmět',
-		value: 'PW1'
-	}, {
-		key: 'Projekt',
-		value: 'P17'
-	}];
-	
-	const [editMode, setEditMode] = useState(false);
+	/*const [editMode, setEditMode] = useState(false);
 
 	function Edit() {
 		return (
@@ -101,32 +52,52 @@ export default function Profile() {
 					<Ionicons name='create' size={15} color='white' style={styles.editIcon} /> }
 			</TouchableOpacity>
 		);
-	}
-	
+	}*/
+
 	return (
 		<Container>
-			<Heading title='Profil'>
-				{error == false && loaded == true &&
+			<Heading title='Profil' headerComponent={<Logout />} >
+				{loaded &&
 					<ProfileBox firstName={data.name} lastName={data.surname} class={data.groups[0].name} />}
 			</Heading>
 
 			<Body>
 				<View style={styles.section}>
 					<View style={styles.header}>
-						<Text style={styles.title}>Informace</Text>
-						<Edit />
+						<View style={styles.headerBox}>
+							<Text style={styles.title}>Účet</Text>
+							<ActivityIndicator style={styles.loading} animating={!loaded} />
+						</View>
+
+						{/*<Edit />*/}
 					</View>
 
-					<ProfileInfo data={informaceData} edit={editMode} />
+					{loaded && <ProfileInfo data={info} /*edit={editMode}*/ />}
 				</View>
 
 				<View style={styles.section}>
-					<Text style={styles.title}>Rozdělení</Text>
-					<ProfileInfo data={rozdeleniData} />
+					<View style={styles.headerBox}>
+						<Text style={styles.title}>Rozdělení</Text>
+						<ActivityIndicator style={styles.loading} animating={!loaded} />
+					</View>
+					
+					{loaded && <ProfileInfo data={groups} />}
 				</View>
 			</Body>
 		</Container>
 	);
+}
+
+function Logout() {
+	return (
+		<TouchableOpacity style={styles.logout} activeOpacity={0.7} onPress={logout}>
+			<Text style={styles.logoutText}>Odhlásit se</Text>
+		</TouchableOpacity>
+	);
+}
+
+function logout() {
+
 }
 
 const styles = StyleSheet.create({
@@ -160,5 +131,27 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between'
+	},
+	logout: {
+        flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 5
+	},
+	logoutText: {
+		fontSize: 17,
+		color: Colors.PrimaryTextColor,
+		fontWeight: '500'
+	},
+	logoutIcon: {
+		opacity: 0.6,
+		marginLeft: 5
+	},
+	headerBox: {
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
+	loading: {
+		marginLeft: 10
 	}
 });

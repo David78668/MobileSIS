@@ -14,20 +14,18 @@ interface HeaderProps {
 export default function Heading(props: HeaderProps) {
 	return (
 		<SafeAreaView style={styles.background}>
-			<TouchableWithoutFeedback
-				{...props.Pressable}
-			>
+			<TouchableWithoutFeedback {...props.Pressable}>
 				<View style={styles.headerContainer}>
 					<View>
-
 						<Text style={styles.headerText}>{props.title}</Text>
 
-						{props.subtitle ? <Text style={styles.subtitle}>{props.subtitle}</Text> : null}
+						{props.subtitle && <Text style={styles.subtitle}>{props.subtitle}</Text>}
 					</View>
 
-					{props.headerComponent}
+					<View style={styles.headerComponent}>{props.headerComponent}</View>
 				</View>
 			</TouchableWithoutFeedback>
+
 			{props.children ? <View style={{ marginTop: 20 }}>{props.children}</View> : null}
 		</SafeAreaView>
 	);
@@ -53,7 +51,12 @@ const styles = StyleSheet.create({
 	subtitle: {
 		color: Colors.PrimaryTextColor,
 		fontWeight: '500',
-		fontSize: 18,
+		fontSize: 16,
 		opacity: 0.6
+	},
+	headerComponent: {
+		backgroundColor: '#ffffff1a',
+		paddingHorizontal: 10,
+		borderRadius: 10
 	}
 });

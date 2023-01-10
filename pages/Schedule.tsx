@@ -1,6 +1,6 @@
 import React from 'react';
-import FetchData from '../tools/ApiRequest';
-import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback, EventEmitter } from 'react-native';
+import ApiRequest from '../tools/ApiRequest';
+import { LayoutAnimation, Platform, UIManager, StyleSheet, View, ScrollView, TouchableOpacity, Text, TouchableWithoutFeedback } from 'react-native';
 import Heading from '../components/general/Heading';
 import Container from '../components/general/Container';
 import { userid, bareer } from "../components/Token";
@@ -16,7 +16,7 @@ function GetWeekStart(date: Date) {
 }
 
 function GetSelectedDay(date: string) {
-	var output = moment(date).format("dddd Do");
+	var output = moment(date).format("dddd");
 	output = output[0].toUpperCase() + output.substring(1, output.length)
 	return output;
 }
@@ -44,10 +44,30 @@ function FilterData(data: Array<any>) {
 	return result;
 }
 
-if (
-	Platform.OS === "android" &&
-	UIManager.setLayoutAnimationEnabledExperimental
-) {
+function FilterData(data: Array<any>) {
+	var result: any[][] = [[]];
+	for (var i = 0; i < data.length; i++) {
+		result[i] = [];
+		result[i].push(data[i])
+		while(i < data.length - 1){
+			var dateA = moment(data[i].date);
+			var dateB = moment(data[i + 1].date);
+			console.log(dateA);
+			console.log(dateB);
+			if (i != data.length - 1 && dateB.isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")) {
+				console.log((dateB.add(20, "minutes").isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")));
+				result[i].push(data[i + 1])
+				i++;
+			}
+			else{
+				break;
+			}
+		}
+	}
+	return result;
+}
+
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
@@ -60,11 +80,11 @@ export default function Schedule() {
 	const [isDaySelect, setIsDaySelect] = React.useState(true);
 	const filteredData = FilterData(testdata[page].timetable);
 	React.useEffect(() => {
-		FetchData({
+		ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',
-			setDataFunction: setData,
-			setLoadedFunction: setLoaded,
-			setErrorFunction: setError,
+			setData: setData,
+			setLoaded: setLoaded,
+			setError: setError,
 		})
 	});
 
@@ -72,15 +92,15 @@ export default function Schedule() {
 		<Container>
 			<Heading
 				title="Rozvrh"
-				subtitle={GetSelectedDay(testdata[page].date)}
-				Pressable={{
+				headerComponent={<Text style={styles.header}>{GetSelectedDay(testdata[page].date)}</Text>}
+				Pressable = {{
 					delayPressIn: 0,
 					onPressIn(event) {
 						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 						setIsDaySelect(!isDaySelect);
 					},
-				}}
-			>
+				}}>
+				
 				<View style={styles.HeadingContainer}>
 					{isDaySelect &&
 						testdata.map((item: any, index: number) => {
@@ -91,7 +111,7 @@ export default function Schedule() {
 									page={page}
 									onPress={(setPage)}
 								/>
-							)
+							);
 						})
 					}
 				</View>
@@ -135,7 +155,7 @@ const styles = StyleSheet.create({
 	},
 	HeadingContainer: {
 		flexDirection: 'row',
-		justifyContent: 'center',
+		paddingHorizontal: 20
 	},
 	column: {
 		padding: 5
@@ -156,5 +176,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 1,
 		justifyContent: 'center',
+	},
+	header: {
+		fontSize: 17,
+   		color: Colors.PrimaryTextColor,
+		fontWeight: '500',
+		padding: 5
 	}
 });

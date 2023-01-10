@@ -1,0 +1,144 @@
+[{
+        "lesson": {
+            "id": 189181,
+            "name": "PSI",
+            "date": "2022-12-01T08:45:00",
+            "teacher": {
+                "id": 5821,
+                "shortName": "PN"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189182,
+            "name": "PSI",
+            "date": "2022-12-01T09:45:00",
+            "teacher": {
+                "id": 5821,
+                "shortName": "PN"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189183,
+            "name": "MAT",
+            "date": "2022-12-01T10:45:00",
+            "teacher": {
+                "id": 5829,
+                "shortName": "TI"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189187,
+            "name": "CJL",
+            "date": "2022-12-01T12:55:00",
+            "teacher": {
+                "id": 5822,
+                "shortName": "RE"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189188,
+            "name": "CJL",
+            "date": "2022-12-01T13:45:00",
+            "teacher": {
+                "id": 5822,
+                "shortName": "RE"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189189,
+            "name": "ALG",
+            "date": "2022-12-01T14:45:00",
+            "teacher": {
+                "id": 5805,
+                "shortName": "HS"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 189191,
+            "name": "ALG",
+            "date": "2022-12-01T15:45:00",
+            "teacher": {
+                "id": 5805,
+                "shortName": "HS"
+            }
+        },
+        "duration": 0,
+        "state": 1002
+    },
+    {
+        "lesson": {
+            "id": 190138,
+            "name": "DIC",
+            "date": "2022-12-12T14:45:00",
+            "teacher": {
+                "id": 5813,
+                "shortName": "MA"
+            }
+        },
+        "duration": 0,
+        "state": 1007
+    },
+    {
+        "lesson": {
+            "id": 190140,
+            "name": "DIC",
+            "date": "2022-12-12T15:45:00",
+            "teacher": {
+                "id": 5813,
+                "shortName": "MA"
+            }
+        },
+        "duration": 0,
+        "state": 1007
+    },
+    {
+        "lesson": {
+            "id": 190436,
+            "name": "MAT",
+            "date": "2022-12-14T14:45:00",
+            "teacher": {
+                "id": 5829,
+                "shortName": "TI"
+            }
+        },
+        "duration": 0,
+        "state": 1008
+    },
+    {
+        "lesson": {
+            "id": 190977,
+            "name": "FYZ",
+            "date": "2022-12-19T13:45:00",
+            "teacher": {
+                "id": 5810,
+                "shortName": "LA"
+            }
+        },
+        "duration": 0,
+        "state": -1
+    }
+]

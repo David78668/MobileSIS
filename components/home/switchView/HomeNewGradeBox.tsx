@@ -1,26 +1,29 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../declarations/colors';
+import { Ionicons } from '@expo/vector-icons';
+import icons from '../../../declarations/icons';
 
 import moment from 'moment';
 import "moment/locale/cs";
 
 interface GradeBoxProps {
-	icon?: React.ReactNode,
 	subjectName: string,
 	date: Date,
-	grade: string,
-	last: boolean
+	grade: string
 }
 
 export default function HomeNewGradeBox(props: GradeBoxProps) {
-	moment.locale('cs');
 	const date = moment(props.date).format('D. MMMM').toString();
+	
+	const icon: any = icons.find(e => e.subject == props.subjectName)!.icon;
 
 	return (
-		<View style={{ ...styles.container, marginRight: props.last ? 0 : 20 }}>
+		<View style={styles.container}>
 			<View style={{ alignItems: 'center' }}>
-				<View style={styles.iconBox}>{props.icon}</View>
+				<View style={styles.iconBox}>
+					<Ionicons name={icon} size={20} color={Colors.TertiaryBackgroundColor} />
+				</View>
 				<Text style={styles.header}>{props.subjectName}</Text>
 				<Text style={styles.date}>{date}</Text>
 			</View>
@@ -81,4 +84,4 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		fontSize: 18
 	}
-})
+});

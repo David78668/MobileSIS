@@ -48,7 +48,7 @@ export default function Carousel(props: CarouselProps) {
           data={props.data}
           renderItem={({ item }) => <CarouselItem item={item.item} />}
           showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX }}}], { useNativeDriver: false })}
           horizontal
           scrollEnabled
           snapToInterval={windowWidth}

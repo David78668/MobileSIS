@@ -9,17 +9,17 @@ interface ScheduleChangeBoxProps {
 	ShortName: string,
 	Classroom: string,
 	Teacher: string,
-	Change: string,
-	Last: boolean
+	Change: string
 }
 
 export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 	return (
-		<View style={{ ...styles.change, marginRight: props.Last ? 0 : 20 }}>
+		<View style={styles.change}>
 			<View style={styles.changeleft}>
-				<Text style={styles.classstart}>{moment(props.StartTime).format("H.mm")}</Text>
-				<Text style={styles.classend}>{moment(props.StartTime).add(45, "minutes").format("H.mm")}</Text>
+				<Text style={styles.classstart}>{moment(props.StartTime).format("H:mm")}</Text>
+				<Text style={styles.classend}>{moment(props.StartTime).add(45, "minutes").format("H:mm")}</Text>
 			</View>
+			
 			<View style={styles.changeright}>
 				<View style={styles.top}>
 					<Text style={styles.lesson}>{props.ShortName}</Text>

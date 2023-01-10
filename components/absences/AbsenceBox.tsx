@@ -1,38 +1,41 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { Colors } from '../../declarations/colors';
-import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import "moment/locale/cs";
 
-moment.locale('cs');
+export default function AbsenceBox(props: any) {
+	var absence: any[] = [];
+	
+	props.data.forEach((e: any) => {
+		const start = e.dates[0];
+		const end = moment(e.dates[e.dates.length - 1]).add(45, 'minutes');
 
-interface AbsenceData {
-	date: Date,
-	start: string,
-	end: string,
-	reason: string
-}
-
-interface AbsenceProps {
-	data: Array<AbsenceData>
-}
-
-export default function AbsenceBox(props: AbsenceProps) {
+		absence.push({ date: new Date(e.date), start, end, reason: e.reason });
+	});
+	
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={props.data}
+				data={absence}
 				renderItem={renderAbsence}
 				ItemSeparatorComponent={separator}
 				ListHeaderComponent={header}
+				scrollEnabled={false}
 				keyExtractor={(item, index) => index.toString()}
 			/>
 		</View>
 	);
-};
+}
 
-function renderAbsence({ item }: { item: AbsenceData }) {
+interface AbsenceItem {
+	date: string,
+	start: string,
+	end: string,
+	reason: number
+}
+
+function renderAbsence({ item }: { item: AbsenceItem }) {
 	return (
 		<View style={styles.item}>
 			<View style={styles.wrapper}>
@@ -40,7 +43,7 @@ function renderAbsence({ item }: { item: AbsenceData }) {
 			</View>
 
 			<View style={styles.wrapper}>
-				<Text style={styles.reasonText}>{item.start}-{item.end}</Text>
+				<Text style={styles.reasonText}>{moment(item.start).format('H:mm')}-{moment(item.end).format('H:mm')}</Text>
 			</View>
 
 			<View style={styles.wrapper}>

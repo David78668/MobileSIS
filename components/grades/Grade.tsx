@@ -1,69 +1,142 @@
-import { LayoutAnimation, Platform, UIManager, StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, FlatList, Animated } from 'react-native';
 import { Feather, Ionicons } from "@expo/vector-icons"
-import React from 'react';
+import React, { useRef } from 'react';
 import { Colors } from '../../declarations/colors';
 import moment from 'moment';
-
-//TODO
-//Tidy up grade conversion from string to int using a dictionary
-//Solve longer grade comments dissapearing
-if (
-	Platform.OS === "android" &&
-	UIManager.setLayoutAnimationEnabledExperimental
-) {
-	UIManager.setLayoutAnimationEnabledExperimental(true);
-}
+import icons from '../../declarations/icons';
+import { animation } from '../../declarations/animation';
+	
 export default function Grade(data: any) {
 	const [select, setcheckBoxState] = React.useState(false);
+	const rotateAnim = useRef(new Animated.Value(0)).current;
+
+	const rotate = () => {
+		Animated.timing(rotateAnim, {
+			toValue: select ? 0 : 1,
+			duration: 250,
+			useNativeDriver: true
+		}).start();
+	};
+
+	const arrowTransform = rotateAnim.interpolate({
+		inputRange: [0, 1],
+		outputRange: ['-90deg', '0deg']
+	});
+
+	const icon: any = icons.find(e => e.subject == data.subject.name)!.icon;
 
 	return (
 		<View style={styles.shadow}>
-			<TouchableOpacity
-				style={styles.container}
-				onPress={() => {
-					LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-					setcheckBoxState(!select)
-				}
-				}
-				activeOpacity={0.7}>
+			<View style={styles.inner}>
+				<TouchableOpacity
+					style={styles.container}
+					onPress={() => {
+						animation();
+						setcheckBoxState(!select);
+						rotate();
+					}} activeOpacity={1}>
 
-				<View style={styles.icon}>
-					<Ionicons color={Colors.TertiaryBackgroundColor} size={20} name='shapes' />
-				</View>
+					<View style={styles.subjectBox}>
+						<View style={styles.icon}>
+							<Ionicons color={Colors.TertiaryBackgroundColor} size={20} name={icon} />
+						</View>
 
-				<View style={styles.info}>
-					<Text style={styles.subject}>{data.subject.name}</Text>
-					<Text style={styles.average}>Průměr — {calculateAverage(data.marks)}</Text>
-				</View>
+						<View style={styles.info}>
+							<Text style={styles.subject}>{data.subject.name}</Text>
+							<Text style={styles.average}>Průměr {calculateAverage(data.marks)}</Text>
+						</View>
+					</View>
 
-				<View style={{ marginLeft: 'auto', flexDirection: 'row' }}>
-					<Text style={styles.grades}>{data.marks.length}</Text>
-					<Feather name='chevron-down' color={Colors.TertiaryBackgroundColor} size={20} style={styles.dropdown} />
-				</View>
-			</TouchableOpacity>
-
-			{select && <View style={styles.gradesBox}>{Content(data.marks)}</View>}
+					<Animated.View style={{ transform: [{ rotateZ: arrowTransform }]}}>
+						<Feather name='chevron-down' color={Colors.TertiaryBackgroundColor} size={25} style={styles.dropdown} />
+					</Animated.View>
+				</TouchableOpacity>
+				
+				{select && GradeItems(data.marks)}
+			</View>
 		</View>
 	);
+}
+
+function GradeItems(data: any) {
+	return (
+		<FlatList
+			data={data}
+			renderItem={renderGradeItem}
+			keyExtractor={(item, index) => index.toString()}
+		/>
+	);
+}
+
+function renderGradeItem({ item }: any) {
+	if (item.comment.length != 0) {
+		item.comment = item.comment[0].toUpperCase() + item.comment.slice(1);
+	}
+
+	item.comment = (item.comment.length > 22) ? item.comment.substring(0, 19) + "..." : item.comment;
+
+	return (
+		<View style={styles.gradeItem}>
+			<View style={styles.gradeBox}>
+				<Text style={styles.grade}>{item.value}</Text>
+			</View>
+
+			<View style={styles.gradeInfo}>
+				<View>
+					<Text style={styles.gradeName}>{item.comment.length == 0 ? 'Bez názvu' : item.comment}</Text>
+					<Text style={styles.date}>{moment(item.date).format('D. MMMM')}</Text>
+				</View>
+
+				<Text style={styles.weight}>Váha: {item.weight}</Text>
+			</View>
+		</View>
+	);
+}
+
+function calculateAverage(data: any) {
+	var totalValue = 0;
+	var count = 0;
+
+	data.forEach((item: any) => {
+		let weight = item.weight;
+		
+		if (weight != undefined && item.value != undefined && item.value != 's') {
+			totalValue += weight * gradeToNumber(item.value);
+			count += weight;
+		}
+	});
+
+	return (totalValue / count).toFixed(2).replace('.', ',');
+}
+
+function gradeToNumber(text: string) {
+	if (text[1] == '-') return parseInt(text[0]) + 0.5;
+	if (text == 'n') return 5;
+	if (!Number.isNaN(text)) return parseInt(text);
+	
+	return NaN;
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		justifyContent: 'flex-start',
+		justifyContent: 'space-between',
 		alignItems: 'center',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
-		backgroundColor: Colors.PrimaryBackgroundColor
+		backgroundColor: Colors.PrimaryBackgroundColor,
+		borderRadius: 10
+	},
+	inner: {
+		borderRadius: 10,
+		backgroundColor: Colors.PrimaryBackgroundColor,
+		overflow: 'hidden'
 	},
 	shadow: {
-		borderRadius: 10,
-		overflow: 'hidden',
-		shadowColor: 'rgba(0, 0, 0, 0.1)',
+		shadowColor: 'rgba(0, 0, 0, 0.05)',
 		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
 		shadowOpacity: 1,
-		backgroundColor: Colors.PrimaryBackgroundColor
+		shadowRadius: 10
 	},
 	icon: {
 		height: 40,
@@ -73,16 +146,14 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	subjectBox: {
+		flexDirection: 'row'
+	},
 	subject: {
 		fontSize: 18,
 		fontWeight: 'bold',
 		color: Colors.SecondaryTextColor,
 		opacity: 0.8
-	},
-	gradesBox: {
-		borderTopLeftRadius: 10,
-		overflow: 'hidden',
-		marginTop: 10
 	},
 	info: {
 		flexDirection: 'column',
@@ -98,7 +169,6 @@ const styles = StyleSheet.create({
 		opacity: 0.6
 	},
 	dropdown: {
-		marginLeft: 5,
 		opacity: 0.8
 	},
 	gradeItem: {
@@ -108,9 +178,11 @@ const styles = StyleSheet.create({
 	gradeBox: {
 		backgroundColor: Colors.TertiaryBackgroundColor,
 		paddingVertical: 15,
-		width: 50,
+		width: 60,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		borderTopColor: 'rgba(255, 255, 255, 0.1)',
+		borderTopWidth: 2
 	},
 	grade: {
 		fontSize: 16,
@@ -124,9 +196,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		borderTopColor: 'rgba(0, 0, 0, 0.1)',
-		borderTopWidth: 1
+		borderTopColor: 'rgba(0, 0, 0, 0.05)',
+		borderTopWidth: 2
 	},
 	separator: {
 		height: 1,
@@ -153,63 +224,3 @@ const styles = StyleSheet.create({
 		opacity: 0.6
 	}
 });
-
-function renderGradeItem({ item }: any) {
-	if (item.comment.length != 0) {
-		item.comment = item.comment[0].toUpperCase() + item.comment.slice(1);
-	}
-
-	return (
-		<View style={styles.gradeItem}>
-			<View style={styles.gradeBox}>
-				<Text style={styles.grade}>{item.value}</Text>
-			</View>
-
-			<View style={styles.gradeInfo}>
-				<View>
-					<Text style={styles.gradeName}>{(item.comment.length > 20) ? item.comment.substring(0, 20) + "..." : item.comment}</Text>
-					<Text style={styles.date}>{moment(item.date).format('D. MMMM')}</Text>
-				</View>
-
-				<Text style={styles.weight}>Váha: {item.weight}</Text>
-			</View>
-		</View>
-	);
-}
-
-function Content(data: any) {
-	return (
-		<FlatList
-			data={data}
-			renderItem={renderGradeItem}
-			keyExtractor={(item, index) => index.toString()}
-		/>
-	);
-}
-
-function calculateAverage(data: any) {
-	var totalValue = 0;
-	var count = 0;
-
-	data.forEach((item: any) => {
-		let weight = item.weight;
-
-		if (weight != undefined && item.value != undefined && item.value != 's') {
-			totalValue += weight * gradeToNumber(item.value);
-			count += weight;
-		}
-	});
-
-	return ((totalValue / count).toFixed(2)).replace('.', ',');
-}
-
-function gradeToNumber(text: string) {
-	if (text[1] == '-')
-		return (Number)(text[0]) + 0.5;
-	if (text == 'n') {
-		return 5;
-	}
-	if (!Number.isNaN(text))
-		return (Number)(text);
-	return NaN;
-}
