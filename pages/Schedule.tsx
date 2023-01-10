@@ -44,28 +44,8 @@ function FilterData(data: Array<any>) {
 	return result;
 }
 
-function FilterData(data: Array<any>) {
-	var result: any[][] = [[]];
-	for (var i = 0; i < data.length; i++) {
-		result[i] = [];
-		result[i].push(data[i])
-		while(i < data.length - 1){
-			var dateA = moment(data[i].date);
-			var dateB = moment(data[i + 1].date);
-			console.log(dateA);
-			console.log(dateB);
-			if (i != data.length - 1 && dateB.isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")) {
-				console.log((dateB.add(20, "minutes").isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")));
-				result[i].push(data[i + 1])
-				i++;
-			}
-			else{
-				break;
-			}
-		}
-	}
-	return result;
-}
+
+
 
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
 	UIManager.setLayoutAnimationEnabledExperimental(true);
