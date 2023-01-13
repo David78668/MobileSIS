@@ -100,5 +100,5 @@ function separator() {
         paddingVertical: 5,
         paddingHorizontal: 10,
         borderRadius: 5
-    }
+	}
 });

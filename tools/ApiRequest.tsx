@@ -6,8 +6,7 @@ interface RequestProps {
 	requestUrl: string,
 	setData: Dispatch<SetStateAction<object>>,
 	setError: Dispatch<SetStateAction<boolean>>,
-	setLoaded: Dispatch<SetStateAction<boolean>>,
-	finally?: Function
+	setLoaded: Dispatch<SetStateAction<boolean>>
 }
 
 export default async function ApiRequest(props: RequestProps) {
@@ -21,13 +20,10 @@ export default async function ApiRequest(props: RequestProps) {
 	.then(res => res.json())
 	.then((result) => {
 		props.setData(result);
-		{props.finally && props.finally()}
 		props.setLoaded(true);
 
 		animation();
 	}, (error) => {
-		props.setError(true);
-		{props.finally && props.finally()}
 		props.setLoaded(true);
 
 		animation();

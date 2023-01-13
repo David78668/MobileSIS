@@ -1,8 +1,8 @@
-import React, { useState, useMemo, useRef, useCallback } from "react";
+import React, { useState, useMemo } from "react";
 import { Colors } from "../../declarations/colors";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native";
 import { Feather } from '@expo/vector-icons';
-import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
+import Modal from '../general/Modal';
 
 interface ProfileBoxProps {
 	firstName: string,
@@ -21,52 +21,45 @@ export default function ProfileBox(props: ProfileBoxProps) {
 		class: 'G2'
 	}];
 	
-	const [open, setOpen] = useState(false);
-
-	const modal = useRef<BottomSheetModal>(null);
-	const snapPoints = useMemo(() => [140 + (60 * testData.length)], []);
-
-	function toggleModal() {
-		open ? modal.current?.close() : modal.current?.present();
-		open && setOpen(false);
-	}
-
-	function backdrop(props: any) {
-		return <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />;
-	}
-
 	const [selected, setSelected] = useState(0);
 
 	function renderAccount(account: ProfileBoxProps, index: number) {
 		return (
-			<TouchableOpacity
-				style={[styles.account, index == selected && styles.selected]}
-				activeOpacity={index == selected ? 1 : 0.7}
-				onPress={() => setSelected(index)}>
-				
-				<View style={styles.header}>
-					<View style={[styles.profilePicture, { width: 40, height: 40 }]}>
-						<Text style={[styles.profilePictureText, { fontSize: 16 }]}>{account.firstName[0]}{account.lastName[0]}</Text>
-					</View>
-					
-					<View style={{ marginLeft: 15 }}>
-						<Text style={[styles.studentName, { fontSize: 16 }]}>{account.firstName} {account.lastName}</Text>
-						<Text style={[styles.studentInfo, { fontSize: 13 }]}>Třída {account.class}</Text>
-					</View>
-				</View>
+			<View style={styles.shadow}>
+				<View style={styles.inner}>
+					<TouchableOpacity
+						style={[styles.account, index == selected && styles.selected]}
+						activeOpacity={index == selected ? 1 : 0.7}
+						onPress={() => setSelected(index)}>
+						
+						<View style={styles.header}>
+							<View style={[styles.profilePicture, { width: 40, height: 40 }]}>
+								<Text style={[styles.profilePictureText, { fontSize: 16 }]}>{account.firstName[0]}{account.lastName[0]}</Text>
+							</View>
+							
+							<View style={{ marginLeft: 15 }}>
+								<Text style={[styles.studentName, { fontSize: 16 }]}>{account.firstName} {account.lastName}</Text>
+								<Text style={[styles.studentInfo, { fontSize: 13 }]}>Třída {account.class}</Text>
+							</View>
+						</View>
 
-				{index == selected && <Feather name='check' color={Colors.TertiaryBackgroundColor} size={25} />}
-			</TouchableOpacity>
+						{index == selected && <Feather name='check' color={Colors.TertiaryBackgroundColor} size={25} />}
+						</TouchableOpacity>
+					</View>
+			</View>
 		);
 	}
 
 	function separator() {
-		return <View style={styles.separator}></View>;
+		return <View style={{  height: 10 }}></View>;
 	}
+
+	const [open, setOpen] = useState(false);
+	const snapPoints = useMemo(() => [24 + 60 + 22 + 30 + (testData.length * 60) + ((testData.length - 1) * 10)], []);
 	
 	return (
 		<View>
-			<TouchableOpacity style={styles.profileBox} activeOpacity={0.7} onPress={toggleModal}>
+			<TouchableOpacity style={styles.profileBox} activeOpacity={0.7} onPress={() => setOpen(true)}>
 				<View style={styles.header}>
 					<View style={styles.profilePicture}>
 						<Text style={styles.profilePictureText}>{props.firstName[0]}{props.lastName[0]}</Text>
@@ -81,25 +74,18 @@ export default function ProfileBox(props: ProfileBoxProps) {
 				<Feather name='chevron-down' color={Colors.TertiaryBackgroundColor} size={25} />
 			</TouchableOpacity>
 
-			<BottomSheetModal
-				ref={modal}
+			<Modal
+				title='Změna účtu'
 				snapPoints={snapPoints}
-				backgroundStyle={styles.modal}
-				handleIndicatorStyle={styles.modalHandle}
-				backdropComponent={backdrop}>
+				open={open} setOpen={setOpen}>
 
-				<View style={styles.modalContainer}>
-					<Text style={styles.modalTitle}>Změna účtu</Text>
-
-					<FlatList
-						data={testData}
-						renderItem={({ item, index }) => renderAccount(item, index)}
-						ItemSeparatorComponent={separator}
-						style={styles.accounts}
-						scrollEnabled={false}
-					/>
-				</View>
-			</BottomSheetModal>
+                <FlatList
+                    data={testData}
+                    renderItem={({ item, index }) => renderAccount(item, index)}
+                    ItemSeparatorComponent={separator}
+					scrollEnabled={false}
+					style={styles.accountList} />
+			</Modal>
 		</View>
 	);
 }
@@ -156,27 +142,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
-	modal: {
-		borderRadius: 20
-	},
-	modalHandle: {
-		backgroundColor: 'lightgray',
-		width: 50
-	},
-	modalContainer: {
-		paddingHorizontal: 20,
-		paddingVertical: 10,
-		alignItems: 'center'
-	},
-	modalTitle: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		opacity: 0.8
-	},
-	accounts: {
-		marginTop: 30,
-		width: '100%'
-	},
 	account: {
 		justifyContent: 'space-between',
 		flexDirection: 'row',
@@ -186,11 +151,20 @@ const styles = StyleSheet.create({
 		borderRadius: 20
 	},
 	selected: {
-		backgroundColor: 'whitesmoke'
+		backgroundColor: 'white'
 	},
-	separator: {
-		marginVertical: 5,
-		height: 1,
-		opacity: 0.5
+	inner: {
+		borderRadius: 10,
+		backgroundColor: Colors.PrimaryBackgroundColor,
+		overflow: 'hidden'
+	},
+	shadow: {
+		shadowColor: 'rgba(0, 0, 0, 0.05)',
+		shadowOffset: { width: 0, height: 0 },
+		shadowOpacity: 1,
+		shadowRadius: 10
+	},
+	accountList: {
+		overflow: 'visible'
 	}
 });

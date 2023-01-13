@@ -6,14 +6,17 @@ import Heading from '../components/general/Heading';
 import Datescroll from '../components/absences/DateScroll';
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import AbsenceBox from '../components/absences/AbsenceBox';
-import * as SecureStore from 'expo-secure-store';
+import ApiRequest from '../tools/ApiRequest';
 import moment from 'moment';
 import "moment/locale/cs";
-import { parse } from 'expo-linking';
-import ApiRequest from '../tools/ApiRequest';
 
 export default function Absence() {
-	const [dataStats, setDataStats] = useState<any>(require('../test-data/absence-stats.json'));
+	useEffect(() => {
+		getAbsence();
+	}, []);
+	
+	// get absence
+	const [dataStats, setDataStats] = useState(require('../test-data/absence-stats.json'));
 	const [loadedStats, setLoadedStats] = useState(false);
 	const [errorStats, setErrorStats] = useState(false);
 
@@ -23,69 +26,78 @@ export default function Absence() {
 			setData: setDataStats,
 			setLoaded: setLoadedStats,
 			setError: setErrorStats
-		});
-
-		getAbsenceMonth(monthIndex, moment().get('year'));
+		}); console.log('here')
 	}
 
+	// get absence month
 	const [dataMonth, setDataMonth] = useState<any>(require('../test-data/absence-month.json'));
 	const [loadedMonth, setLoadedMonth] = useState(false);
 	const [errorMonth, setErrorMonth] = useState(false);
 
-	async function getAbsenceMonth(index: number, year: number) {
+	async function getAbsenceMonth() {
+		setLoadedMonth(false);
 
 		await ApiRequest({
-			requestUrl: `https://api.sis.kyberna.cz/api/absence/month?month=${index}&year=${year}`,
+			requestUrl: `https://api.sis.kyberna.cz/api/absence/month?month=${month}&year=${year}`,
 			setData: setDataMonth,
 			setLoaded: setLoadedMonth,
-			setError: setErrorMonth,
-			finally: () => parseAbsence(dataMonth)
+			setError: setErrorMonth
 		});
 	}
 
 	useEffect(() => {
-		getAbsence();
-	}, []);
+		if(loadedMonth) parseAbsence();
+	}, [loadedMonth]);
 
-	const [month, setMonth] = useState<string>();
-	const [monthIndex, setMonthIndex] = useState<number>(moment().get('month') + 1);
-	const months = ['září', 'říjnu', 'listopadu', 'prosinci', 'lednu', 'únoru', 'březnu', 'dubnu', 'květnu', 'červnu'];
-
-	function monthChange(index: number) {
-		setMonth(months[index]);
-
-		const monthIndex = index > 3 ? index - 3 : index + 9;
-		setMonthIndex(monthIndex);
-		getAbsenceMonth(monthIndex, index > 3 ? moment().get('year') + 1 : moment().get('year'));
-	}
-
+	// parsed data
 	const [absenceDays, setAbsenceDays] = useState(0);
-	const [dates, setDates] = useState<object>();
+	const [dates, setDates] = useState<object>([]);
 	const [loadedDates, setLoadedDates] = useState(false);
-
-	function parseAbsence(data: any) {
+	
+	// parse absence
+	function parseAbsence() {
 		var dates: any = [];
 		
-		// get unique days
-		data.forEach((e: any) => {
+		dataMonth.forEach((e: any) => {
 			const date = e.lesson.date.toString().split('T')[0];
 			const reason = e.state;
 			if (!dates.find((e: any) => e.date == date)) {
-				dates.push({ date: date, dates: [], reason });
+				dates.push({ date, reason, dates: [], subjects: [] });
 			}
 		});
 
-		// fill dates
-		data.forEach((e: any) => {
+		dataMonth.forEach((e: any) => {
 			const date = e.lesson.date.toString().split('T')[0];
 			const day = dates.find((e: any) => e.date == date);
 			day.dates.push(e.lesson.date);
+			day.subjects.push(e.lesson.name);
 		});
 		
 		setDates(dates);
 		setLoadedDates(true);
 		setAbsenceDays(dates.length);
 	}
+
+	// position in year
+	const [month, setMonth] = useState(moment().get('month') + 1);
+	const [year, setYear] = useState(moment().get('year'));
+	const [monthText, setMonthText] = useState<string>();
+
+	const months = ['září', 'říjnu', 'listopadu', 'prosinci', 'lednu', 'únoru', 'březnu', 'dubnu', 'květnu', 'červnu'];
+
+	// month change
+	function monthChange(index: number) {
+		setMonthText(months[index]);
+
+		const monthCalc = index > 3 ? index - 3 : index + 9;
+		const yearCalc = monthCalc < 8 ? moment().get('year') : moment().get('year') - 1;
+		setMonth(monthCalc);
+		setYear(yearCalc);
+	}
+
+	useEffect(() => {
+		getAbsenceMonth();
+	}, [month]);
 
 	return (
 		<Container>
@@ -108,7 +120,7 @@ export default function Absence() {
 
 				<View style={styles.dates}>
 					<View style={styles.header}>
-						<Text style={styles.title}>Absence v {month} {loadedMonth ? `(${absenceDays})` : null}</Text>
+						<Text style={styles.title}>Absence v {monthText} {loadedMonth && `(${absenceDays})`}</Text>
 						<ActivityIndicator style={styles.loading} animating={!loadedMonth} />
 					</View>
 
