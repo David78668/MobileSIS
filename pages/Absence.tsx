@@ -10,8 +10,6 @@ import ApiRequest from '../tools/ApiRequest';
 import { animation } from '../declarations/animation';
 import moment from 'moment';
 import "moment/locale/cs";
-import { parse } from 'expo-linking';
-import ApiRequest from '../tools/ApiRequest';
 import { Colors } from '../declarations/colors';
 
 export default function Absence() {
