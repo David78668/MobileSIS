@@ -22,7 +22,7 @@ export default function Settings() {
         name: 'Facebook',
         username: '@kyberna',
         link: 'fb://profile/100063567971513'
-        }];
+    }];
     
     const contact = [{
         name: 'E-mail',

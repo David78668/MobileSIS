@@ -28,18 +28,18 @@ export default function Profile({ navigation }: any) {
 			setData, setLoaded, setError
 		});
 
-		data && ApiRequest({
-			requestUrl: `https://api.sis.kyberna.cz/api/user/subjects/current?userId=${data.id}`,
-			setData: setDataSubjects,
-			setLoaded: setLoadedSubjects,
-			setError: setErrorSubjects
-		});
-			
 		setInfo([
 			{ key: 'Jméno', value: `${data.name} ${data.surname}` },
 			{ key: 'E-mail', value: data.email },
 			//{ key: 'Telefoní číslo', value: data.phone, editable: true }
 		]);
+		
+		ApiRequest({
+			requestUrl: `https://api.sis.kyberna.cz/api/user/subjects/current?userId=${data.id}`,
+			setData: setDataSubjects,
+			setLoaded: setLoadedSubjects,
+			setError: setErrorSubjects
+		});
 
 		const groups = findGroups(dataSubjects);
 		
@@ -105,7 +105,7 @@ export default function Profile({ navigation }: any) {
 						class={data.groups[0].name} />}
 			</Heading>
 
-			<Body>
+			<Body onRefresh={getProfileInfo}>
 				<View style={styles.section}>
 					<View style={styles.header}>
 						<View style={styles.headerBox}>
