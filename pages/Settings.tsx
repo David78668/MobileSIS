@@ -5,6 +5,7 @@ import Container from '../components/general/Container';
 import Heading from '../components/general/Heading';
 import { Colors } from '../declarations/colors';
 import * as Linking from 'expo-linking';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Settings() {
     const [enabled, setEnabled] = useState(false);
@@ -20,7 +21,17 @@ export default function Settings() {
     }, {
         name: 'Facebook',
         username: '@kyberna',
-        link: 'fb://page/kyberna'
+        link: 'fb://profile/100063567971513'
+        }];
+    
+    const contact = [{
+        name: 'E-mail',
+        username: 'info@ssakhk.cz',
+        link: 'mailto:info@ssakhk.cz'
+    }, {
+        name: 'Telefon',
+        username: '+420 495 518 777',
+        link: 'tel:+420 495 518 777'
     }];
     
     function separator() {
@@ -37,6 +48,7 @@ export default function Settings() {
 
                 <View style={styles.wrapper}>
                     <Text style={styles.value}>{item.username}</Text>
+                    <Ionicons name='open-outline' style={styles.siteIcon} />
                 </View>
             </TouchableOpacity>
         );
@@ -50,7 +62,7 @@ export default function Settings() {
                 <View style={styles.section}>
 					<View style={styles.header}>
 						<View style={styles.headerBox}>
-							<Text style={styles.title}>Vzhled aplikace</Text>
+							<Text style={styles.title}>Aplikace</Text>
 						</View>
 
                     </View>
@@ -81,6 +93,23 @@ export default function Settings() {
                     <View style={styles.container}>
                         <FlatList
                             data={sites}
+                            renderItem={renderSite}
+                            ItemSeparatorComponent={separator}
+                            style={styles.sitesList}    
+                            />
+                    </View>
+                </View>
+                
+                <View style={styles.section}>
+					<View style={styles.header}>
+						<View style={styles.headerBox}>
+							<Text style={styles.title}>Kontakt školy</Text>
+						</View>
+                    </View>
+                    
+                    <View style={styles.container}>
+                        <FlatList
+                            data={contact}
                             renderItem={renderSite}
                             ItemSeparatorComponent={separator}
                             style={styles.sitesList}    
@@ -151,5 +180,9 @@ const styles = StyleSheet.create({
     },
     sitesList: {
         overflow: 'visible'
+    },
+    siteIcon: {
+        marginLeft: 5,
+        opacity: 0.5
     }
 });

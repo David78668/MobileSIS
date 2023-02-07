@@ -15,6 +15,10 @@ export default function Profile({ navigation }: any) {
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
 
+	const [dataSubjects, setDataSubjects] = useState<any>();
+	const [loadedSubjects, setLoadedSubjects] = useState(false);
+	const [errorSubjects, setErrorSubjects] = useState(false);
+
 	const [info, setInfo] = useState<any>();
 	const [groups, setGroups] = useState<any>();
 
@@ -23,17 +27,26 @@ export default function Profile({ navigation }: any) {
 			requestUrl: 'https://api.sis.kyberna.cz/api/user',
 			setData, setLoaded, setError
 		});
+
+		data && ApiRequest({
+			requestUrl: `https://api.sis.kyberna.cz/api/user/subjects/current?userId=${data.id}`,
+			setData: setDataSubjects,
+			setLoaded: setLoadedSubjects,
+			setError: setErrorSubjects
+		});
 			
 		setInfo([
 			{ key: 'Jméno', value: `${data.name} ${data.surname}` },
 			{ key: 'E-mail', value: data.email },
-			{ key: 'Telefoní číslo', value: data.phone, editable: true }
+			//{ key: 'Telefoní číslo', value: data.phone, editable: true }
 		]);
 
+		const groups = findGroups(dataSubjects);
+		
 		setGroups([
-			{ key: 'Skupiny', value: '1 / p / r' },
-			{ key: 'Volitelný předmět', value: 'PW1' },
-			{ key: 'Projekt', value: 'P17' }
+			{ key: 'Skupiny', value: groups.groups.join(', ') },
+			{ key: 'Volitelné předměty', value: groups.voluntary.join(', ') },
+			{ key: 'Projekt', value: groups.project.join(', ') }
 		]);
 	}
 
@@ -55,9 +68,36 @@ export default function Profile({ navigation }: any) {
 		);
 	}*/
 
+	function findGroups(data: any) {
+		var groups: string[] = [];
+
+		data.forEach((e: any) => {
+			var group = e.groups[0].name;
+			if (!groups.includes(group)) groups.push(group);
+		});
+
+		var project = /P\d{1,2}/;
+		return {
+			groups: groups.filter(e => e.length == 1),
+			voluntary: groups.filter(e => e.length == 3 && !project.test(e)),
+			project: groups.filter(e => project.test(e)).map(e => `Projekt ${e.substring(1)}`)
+		};
+	}
+
+	function Settings() {
+		return (
+			<TouchableOpacity style={styles.settings}
+				activeOpacity={0.7}
+				onPress={() => navigation.navigate('Settings')}>
+				
+				<Text style={styles.settingsText}>Nastavení</Text>
+			</TouchableOpacity>
+		);
+	}
+	
 	return (
 		<Container>
-			<Heading title='Profil' headerComponent={<Logout />} >
+			<Heading title='Profil' headerComponent={<Settings />} >
 				{loaded &&
 					<ProfileBox
 						firstName={data.name}
@@ -88,20 +128,15 @@ export default function Profile({ navigation }: any) {
 					{loaded && <ProfileInfo data={groups} />}
 				</View>
 
-				<TouchableOpacity style={styles.settings} activeOpacity={0.7} onPress={() => navigation.navigate('Settings')}>
-					<Ionicons name='toggle' size={18} color='white' style={styles.settingsIcon} />
-					<Text style={styles.settingsText}>Nastavení</Text>
+				<TouchableOpacity style={styles.logout}
+					activeOpacity={0.7}
+					onPress={logout}>
+					
+					<Ionicons name='log-out-outline' color={Colors.TertiaryBackgroundColor} size={20} style={styles.logoutIcon} />
+					<Text style={styles.logoutText}>Odhlásit se</Text>
 				</TouchableOpacity>
 			</Body>
 		</Container>
-	);
-}
-
-function Logout() {
-	return (
-		<TouchableOpacity style={styles.logout} activeOpacity={0.7} onPress={logout}>
-			<Text style={styles.logoutText}>Odhlásit se</Text>
-		</TouchableOpacity>
 	);
 }
 
@@ -141,20 +176,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between'
 	},
-	logout: {
+	settings: {
         flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
 		padding: 5
 	},
-	logoutText: {
+	settingsText: {
 		fontSize: 17,
 		color: Colors.PrimaryTextColor,
 		fontWeight: '500'
 	},
 	logoutIcon: {
-		opacity: 0.6,
-		marginLeft: 5
+		marginRight: 5
 	},
 	headerBox: {
 		flexDirection: 'row',
@@ -163,8 +197,8 @@ const styles = StyleSheet.create({
 	loading: {
 		marginLeft: 10
 	},
-	settings: {
-		backgroundColor: '#E9671E',
+	logout: {
+		backgroundColor: '#E9671E33',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
 		marginHorizontal: 20,
@@ -174,13 +208,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		flexDirection: 'row'
 	},
-	settingsText: {
+	logoutText: {
 		fontSize: 17,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500'
-	},
-	settingsIcon: {
-		marginRight: 5,
-		opacity: 0.8
+		color: Colors.TertiaryBackgroundColor,
+		fontWeight: 'bold'
 	}
 });

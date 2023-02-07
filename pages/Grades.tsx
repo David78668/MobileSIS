@@ -49,6 +49,7 @@ export default function Grades() {
 						<ActivityIndicator style={styles.loading} animating={!loaded} />
 					</View>
 
+					{loaded && data.length == 0 && <Text style={styles.none}>Nemátě žádné známky.</Text>}
 					{loaded &&
 						<FlatList
 							data={data}
@@ -88,5 +89,10 @@ const styles = StyleSheet.create({
    		color: Colors.PrimaryTextColor,
 		fontWeight: '500',
 		padding: 5
+	},
+	none: {
+		fontWeight: '500',
+		opacity: 0.6,
+		marginTop: 20
 	}
 });
