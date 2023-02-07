@@ -7,6 +7,7 @@ import Datescroll from '../components/absences/DateScroll';
 import HomeAbsence from '../components/home/switchView/HomeAbsence';
 import AbsenceBox from '../components/absences/AbsenceBox';
 import ApiRequest from '../tools/ApiRequest';
+import { animation } from '../declarations/animation';
 import moment from 'moment';
 import "moment/locale/cs";
 
@@ -26,7 +27,9 @@ export default function Absence() {
 			setData: setDataStats,
 			setLoaded: setLoadedStats,
 			setError: setErrorStats
-		}); console.log('here')
+		});
+
+		animation();
 	}
 
 	// get absence month
@@ -43,6 +46,8 @@ export default function Absence() {
 			setLoaded: setLoadedMonth,
 			setError: setErrorMonth
 		});
+
+		animation();
 	}
 
 	useEffect(() => {

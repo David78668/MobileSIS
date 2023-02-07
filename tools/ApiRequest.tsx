@@ -25,7 +25,7 @@ export default async function ApiRequest(props: RequestProps) {
 		animation();
 	}, (error) => {
 		props.setLoaded(true);
-
+		
 		animation();
 	});
 }
