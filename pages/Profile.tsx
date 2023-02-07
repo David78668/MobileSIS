@@ -111,6 +111,7 @@ function logout() {
 
 const styles = StyleSheet.create({
 	title: {
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18,
 		marginLeft: 20,
