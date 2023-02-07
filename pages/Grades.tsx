@@ -45,7 +45,7 @@ export default function Grades() {
 			<Body onRefresh={getGrades}>
 				<View style={styles.gradesBox}>
 					<View style={styles.header}>
-						<Text style={styles.title}>Předměty</Text>
+						<Text style={styles.title}>Předměty {loaded && `(${data.length})`}</Text>
 						<ActivityIndicator style={styles.loading} animating={!loaded} />
 					</View>
 
@@ -55,8 +55,7 @@ export default function Grades() {
 							renderItem={renderGrade}
 							ItemSeparatorComponent={separator}
 							keyExtractor={(item, index) => index.toString()}
-							style={styles.grades}
-						/>}
+							style={styles.grades} />}
 				</View>
 			</Body>
 		</Container>

@@ -8,8 +8,9 @@ import ProfileBox from '../components/profile/ProfileBox';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import { Colors } from '../declarations/colors';
 import ApiRequest from '../tools/ApiRequest';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function Profile() {
+export default function Profile({ navigation }: any) {
 	const [data, setData] = useState<any>(require('../test-data/profile.json'));
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
@@ -58,7 +59,10 @@ export default function Profile() {
 		<Container>
 			<Heading title='Profil' headerComponent={<Logout />} >
 				{loaded &&
-					<ProfileBox firstName={data.name} lastName={data.surname} class={data.groups[0].name} />}
+					<ProfileBox
+						firstName={data.name}
+						lastName={data.surname}
+						class={data.groups[0].name} />}
 			</Heading>
 
 			<Body>
@@ -83,6 +87,11 @@ export default function Profile() {
 					
 					{loaded && <ProfileInfo data={groups} />}
 				</View>
+
+				<TouchableOpacity style={styles.settings} activeOpacity={0.7} onPress={() => navigation.navigate('Settings')}>
+					<Ionicons name='toggle' size={18} color='white' style={styles.settingsIcon} />
+					<Text style={styles.settingsText}>Nastavení</Text>
+				</TouchableOpacity>
 			</Body>
 		</Container>
 	);
@@ -97,7 +106,7 @@ function Logout() {
 }
 
 function logout() {
-
+	// asi by to chtelo dodelat
 }
 
 const styles = StyleSheet.create({
@@ -154,5 +163,25 @@ const styles = StyleSheet.create({
 	},
 	loading: {
 		marginLeft: 10
+	},
+	settings: {
+		backgroundColor: '#E9671E',
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+		marginHorizontal: 20,
+		borderRadius: 10,
+		marginTop: 20,
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row'
+	},
+	settingsText: {
+		fontSize: 17,
+		color: Colors.PrimaryTextColor,
+		fontWeight: '500'
+	},
+	settingsIcon: {
+		marginRight: 5,
+		opacity: 0.8
 	}
 });

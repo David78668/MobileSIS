@@ -1,10 +1,10 @@
 import { LayoutAnimation, Platform, UIManager } from 'react-native';
 
-export function animation() {
-    if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
+export function animation() {
     LayoutAnimation.configureNext({
         duration: 500,
         create: { type: "linear", property: "opacity" },

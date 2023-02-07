@@ -10,6 +10,7 @@ import Absence from '../pages/Absence';
 import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import FirstPage from '../pages/AAFirstPage';
+import Settings from '../pages/Settings';
 
 const windowWidth = Dimensions.get('window').width;
 export const navbarHeight = 75;
@@ -27,7 +28,9 @@ export default function CustomTabNavigation() {
                 paddingHorizontal: 20
             }}}>
 
-            <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' }}} /> 
+            <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' } }} />
+            <Tab.Screen name="Settings" component={Settings} options={{ tabBarItemStyle: { display: 'none' } }} />
+            
             <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' }}} /> 
             <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
             <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIcon }} />
