@@ -142,6 +142,29 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	modal: {
+		backgroundColor: Colors.SecondaryBackgroundColor,
+		borderRadius: 20
+	},
+	modalHandle: {
+		backgroundColor: 'lightgray',
+		width: 50
+	},
+	modalContainer: {
+		paddingHorizontal: 20,
+		paddingVertical: 10,
+		alignItems: 'center'
+	},
+	modalTitle: {
+		color: Colors.PrimaryTextColor,
+		fontSize: 18,
+		fontWeight: 'bold',
+		opacity: 0.8
+	},
+	accounts: {
+		marginTop: 30,
+		width: '100%'
+	},
 	account: {
 		justifyContent: 'space-between',
 		flexDirection: 'row',

@@ -10,6 +10,7 @@ import ApiRequest from '../tools/ApiRequest';
 import { animation } from '../declarations/animation';
 import moment from 'moment';
 import "moment/locale/cs";
+import { Colors } from '../declarations/colors';
 
 export default function Absence() {
 	useEffect(() => {
@@ -138,6 +139,7 @@ export default function Absence() {
 
 const styles = StyleSheet.create({
 	title: {
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18,
 		marginLeft: 20,

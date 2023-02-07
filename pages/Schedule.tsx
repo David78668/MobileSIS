@@ -22,25 +22,49 @@ function GetSelectedDay(date: string) {
 }
 
 function FilterData(data: Array<any>) {
-	var result: any[][] = [[]];
+	var result: any[][] = [];
 	for (var i = 0; i < data.length; i++) {
-		result[i] = [];
-		result[i].push(data[i])
-		while(i < data.length - 1){
-			var dateA = moment(data[i].date);
-			var dateB = moment(data[i + 1].date);
-			console.log(dateA);
-			console.log(dateB);
-			if (i != data.length - 1 && dateB.isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")) {
-				console.log((dateB.add(20, "minutes").isBetween(dateA, dateA.add(45, "minutes"), "minutes", "[]")));
-				result[i].push(data[i + 1])
+		var timeblock: any[] = [];
+		timeblock.push(data[i]);
+		while (i < data.length - 1) {
+			var dateA = moment(data[i].date).valueOf();
+			var dateAEnd = moment(data[i].date).valueOf() + 2700000;
+			var dateB = moment(data[i + 1].date).valueOf();
+			if (i != data.length - 1 && (dateB == dateA) || (dateB > dateA && dateB < dateAEnd)) {
+				console.log(result.length - 1);
+				timeblock.push(data[i + 1]);
 				i++;
 			}
-			else{
+			else {
 				break;
 			}
 		}
+		var output = [];
+		if (timeblock.length > 1) {
+			var activeClass;
+			var setActiveClass = false;
+			var originalClass;
+			var setOgClass = false;
+			for (var k = 0; k < timeblock.length; k++) {
+				console.log(timeblock[k])
+				if (!setOgClass && timeblock[k].static) {
+					originalClass = timeblock[k];
+					setOgClass = true;
+				}
+				if (!setActiveClass && timeblock[k].active) {
+					activeClass = timeblock[k]
+					setActiveClass = true;
+				}
+			}
+			output.push(originalClass);
+			output.push(activeClass);
+			result.push(output);
+		}
+		else {
+			result.push(timeblock);
+		}
 	}
+	console.log(result);
 	return result;
 }
 
@@ -52,6 +76,7 @@ if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental
 }
 
 export default function Schedule() {
+	console.log("Welcome to the schedule");
 	const testdata = require("../assets/testData.json");
 	const [data, setData] = React.useState<any>();
 	const [loaded, setLoaded] = React.useState(false);
@@ -73,14 +98,14 @@ export default function Schedule() {
 			<Heading
 				title="Rozvrh"
 				headerComponent={<Text style={styles.header}>{GetSelectedDay(testdata[page].date)}</Text>}
-				Pressable = {{
+				Pressable={{
 					delayPressIn: 0,
 					onPressIn(event) {
 						LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 						setIsDaySelect(!isDaySelect);
 					},
 				}}>
-				
+
 				<View style={styles.HeadingContainer}>
 					{isDaySelect &&
 						testdata.map((item: any, index: number) => {
@@ -159,7 +184,7 @@ const styles = StyleSheet.create({
 	},
 	header: {
 		fontSize: 17,
-   		color: Colors.PrimaryTextColor,
+		color: Colors.PrimaryTextColor,
 		fontWeight: '500',
 		padding: 5
 	}
