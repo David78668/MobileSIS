@@ -96,6 +96,7 @@ function separator() {
 		fontSize: 15
 	},
 	reasonText: {
+		color: Colors.SecondaryTextColor,
 		opacity: 0.6,
 		fontWeight: '500'
 	},

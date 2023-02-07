@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		borderTopColor: 'rgba(0, 0, 0, 0.05)',
+		borderTopColor: 'rgba(100, 100, 100, 0.05)',
 		borderTopWidth: 2
 	},
 	separator: {
@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
 		opacity: 0.05
 	},
 	gradeName: {
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold',
 		opacity: 0.8,
 		fontSize: 15
@@ -220,6 +221,7 @@ const styles = StyleSheet.create({
 		fontSize: 13
 	},
 	weight: {
+		color: Colors.SecondaryTextColor,
 		fontWeight: '500',
 		opacity: 0.6
 	}

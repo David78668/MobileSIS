@@ -21,6 +21,7 @@ export default function CustomTabNavigation() {
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                 height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
                 paddingTop: Platform.OS == 'android' ? 0 : 10,
+                backgroundColor: Colors.PrimaryBackgroundColor,
                 borderTopColor: 'rgba(0, 0, 0, 0.05)',
                 borderTopWidth: 5,
                 paddingHorizontal: 20
@@ -39,7 +40,7 @@ export default function CustomTabNavigation() {
 
 const colors = {
     focused: Colors.TertiaryBackgroundColor,
-    unfocused: 'rgba(0, 0, 0, 0.2)'
+    unfocused: Colors.SecondaryTextColor
 }
 
 function HomeIcon({ focused }: any) {
@@ -99,10 +100,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     focused: {
-        color: '#de6830',
+        color: Colors.TertiaryBackgroundColor,
         fontWeight: '900'
     },
     unfocused: {
-        color: 'rgba(0, 0, 0, 0.3)'
+        color: Colors.SecondaryTextColor
     }
 });

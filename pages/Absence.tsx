@@ -11,6 +11,7 @@ import moment from 'moment';
 import "moment/locale/cs";
 import { parse } from 'expo-linking';
 import ApiRequest from '../tools/ApiRequest';
+import { Colors } from '../declarations/colors';
 
 export default function Absence() {
 	const [dataStats, setDataStats] = useState<any>(require('../test-data/absence-stats.json'));
@@ -121,6 +122,7 @@ export default function Absence() {
 
 const styles = StyleSheet.create({
 	title: {
+		color: Colors.PrimaryTextColor,
 		fontWeight: 'bold',
 		fontSize: 18,
 		marginLeft: 20,

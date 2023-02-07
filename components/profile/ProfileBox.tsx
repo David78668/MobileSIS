@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	modal: {
+		backgroundColor: Colors.SecondaryBackgroundColor,
 		borderRadius: 20
 	},
 	modalHandle: {
@@ -169,6 +170,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	modalTitle: {
+		color: Colors.PrimaryTextColor,
 		fontSize: 18,
 		fontWeight: 'bold',
 		opacity: 0.8
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20
 	},
 	selected: {
-		backgroundColor: 'whitesmoke'
+		backgroundColor: Colors.PrimaryBackgroundColor,
 	},
 	separator: {
 		marginVertical: 5,
