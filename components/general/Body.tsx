@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { StyleSheet, ScrollView, ScrollViewProps, TouchableWithoutFeedback, TouchableWithoutFeedbackProps, RefreshControl } from "react-native";
 import { Colors } from '../../declarations/colors';
+
 interface BodyProps {
 	children?: React.ReactNode,
 	ScrollView?: ScrollViewProps,

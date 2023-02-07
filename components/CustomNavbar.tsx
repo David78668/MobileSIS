@@ -10,6 +10,7 @@ import Absence from '../pages/Absence';
 import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import FirstPage from '../pages/AAFirstPage';
+import Settings from '../pages/Settings';
 
 const windowWidth = Dimensions.get('window').width;
 export const navbarHeight = 75;
@@ -21,12 +22,15 @@ export default function CustomTabNavigation() {
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
                 height: Platform.OS == 'android' ? navbarHeight : navbarHeight + 10,
                 paddingTop: Platform.OS == 'android' ? 0 : 10,
+                backgroundColor: Colors.PrimaryBackgroundColor,
                 borderTopColor: 'rgba(0, 0, 0, 0.05)',
                 borderTopWidth: 5,
                 paddingHorizontal: 20
             }}}>
 
-            <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' }}} /> 
+            <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' } }} />
+            <Tab.Screen name="Settings" component={Settings} options={{ tabBarItemStyle: { display: 'none' } }} />
+            
             <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' }}} /> 
             <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
             <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIcon }} />
@@ -39,7 +43,7 @@ export default function CustomTabNavigation() {
 
 const colors = {
     focused: Colors.TertiaryBackgroundColor,
-    unfocused: 'rgba(0, 0, 0, 0.2)'
+    unfocused: Colors.SecondaryTextColor
 }
 
 function HomeIcon({ focused }: any) {
@@ -99,10 +103,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     focused: {
-        color: '#de6830',
+        color: Colors.TertiaryBackgroundColor,
         fontWeight: '900'
     },
     unfocused: {
-        color: 'rgba(0, 0, 0, 0.3)'
+        color: Colors.SecondaryTextColor
     }
 });

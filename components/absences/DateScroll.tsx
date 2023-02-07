@@ -1,20 +1,28 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Colors } from '../../declarations/colors';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
-
 import moment from 'moment';
-import "moment/locale/cs";
 
 interface DateScrollProps {
 	monthChange: Function
 }
-
+  
 export default function Datescroll(props: DateScrollProps) {
-  const [currentDate, setCurrentDate] = useState(monthIndex);
+  var monthIndex = moment().get('month');
+  const [currentDate, setCurrentDate] = useState(monthIndex > 5 ? monthIndex - 8 : monthIndex + 4);
 
-  useEffect(() => props.monthChange(monthIndex), []);
+  var year = moment().get('month') < 8 ? moment().get('year') - 1 : moment().get('year');
+  var startMonth = moment(`${year}-09-01`);
+
+  var dates = [];
+  for (let i = 0; i < 10; i++) {
+    dates[i] = moment(startMonth);
+    startMonth.add(1, 'month');
+  }
+
+  useEffect(() => props.monthChange(monthIndex > 5 ? monthIndex - 8 : monthIndex + 4), []);
   
   return (
     <View style={styles.dateWrapper}>
@@ -30,7 +38,7 @@ export default function Datescroll(props: DateScrollProps) {
       </TouchableOpacity>
       
       <View style={styles.datetextWrapper}>
-        <Text style={styles.headerDate}>{dates[currentDate]}</Text>
+        <Text style={styles.headerDate}>{dates[currentDate].format('MMM. yyyy')}</Text>
       </View>
 
       <TouchableOpacity onPress={() => {
@@ -46,20 +54,6 @@ export default function Datescroll(props: DateScrollProps) {
     </View>
   );
 };
-
-var month = moment(`${moment().get('year')}-09-01`);
-
-var dates: string[] = [];
-for (let i = 0; i < 10; i++) {
-  const date = month.format('MMM. YYYY');
-
-  dates.push(date[0].toUpperCase() + date.slice(1));
-  month.add(1, 'month');
-}
-
-const currentMonth = dates.find(e => e.toLowerCase().includes(moment().format('MMM')))!;
-const monthIndex = dates.indexOf(currentMonth);
-export const longMonth = month.add(monthIndex, 'month').format('MMMM');
 
 const styles = StyleSheet.create({
   dateWrapper:{

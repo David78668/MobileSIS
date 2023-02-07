@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		paddingTop: 3,
 		paddingBottom: 3,
-		backgroundColor: 'white',
+		backgroundColor: Colors.PrimaryBackgroundColor ,
 	},
 	classroom: {
 		flexDirection: 'row',

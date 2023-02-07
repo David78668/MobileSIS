@@ -15,9 +15,7 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 		notExcused: "#a7d533"
 	}
 	
-	const attended = props.absence.attended;
-	const missed = props.absence.missed;
-	const notExcused = props.absence.notExcused;
+	const { attended, missed, notExcused } = props.absence;
 
 	return (
 		<View style={styles.container}>
@@ -79,8 +77,8 @@ const styles = StyleSheet.create({
 	graphContainer: {
 		marginTop: 'auto',
 		marginBottom: 'auto',
-		width: 85,
-		height: 85,
+		width: 80,
+		height: 80
 	},
 	graphLegend: {
 		borderRadius: 3,
