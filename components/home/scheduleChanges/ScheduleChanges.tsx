@@ -1,17 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
-import { Colors } from '../../../declarations/colors';
 import testData from '../../../assets/homeSchedule.json';
+import { ThemeContext } from '../../../App';
+import GetColors from '../../../declarations/colors';
 
 export default function ScheduleChanges() {
 	//const data = require("../../../assets/testData.json");
 	//const filtered = data.filter((e: any) => e.LessonType.length != 0);
-
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
 	function separator() {
 		return <View style={{ width: 20 }}></View>;
 	}
-
+	const styles = StyleSheet.create({
+		container: {
+			padding: 20
+		},
+		title: {
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+			fontSize: 18,
+			opacity: 0.8
+		},
+		changes: {
+			marginTop: 20,
+			overflow: 'visible'
+		}
+	});
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Změny v rozvrhu ({testData.data.length})</Text>
@@ -38,19 +57,3 @@ function renderChange({ item }: any) {
 			Change={item.item.LessonType} />
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		padding: 20
-	},
-	title: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-		fontSize: 18,
-		opacity: 0.8
-	},
-	changes: {
-		marginTop: 20,
-		overflow: 'visible'
-	}
-});

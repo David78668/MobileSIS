@@ -1,8 +1,7 @@
-export const Colors = {
+export const Dark_Colors = {
 	PrimaryBackgroundColor: "#1a1a1a",
 	SecondaryBackgroundColor: "#121212",
 	TertiaryBackgroundColor: "#E9671E",
-	//#EB7221
 	PrimaryTextColor: "white",
 	SecondaryTextColor: "#f4f4f4",
 	TertiaryTextColor: "lightgray",
@@ -11,15 +10,35 @@ export const Colors = {
 	TeacherChangedColor: "#ed4545",
 }
 
-export const Dark_Colors = {
+export const Colors = {
 	PrimaryBackgroundColor: "white",
 	SecondaryBackgroundColor: "#f4f4f4",
 	TertiaryBackgroundColor: "#E9671E",
-	//#EB7221
 	PrimaryTextColor: "white",
 	SecondaryTextColor: "black",
 	TertiaryTextColor: "lightgray",
 	LessonRemovedColor: "#EE5656",
 	ClassroomChangedColor: "#EE5656",
 	TeacherChangedColor: "#EE5656",
+}
+
+export type ColorPallete = {
+	PrimaryBackgroundColor: String,
+	SecondaryBackgroundColor: String,
+	TertiaryBackgroundColor: String,
+	PrimaryTextColor: String,
+	SecondaryTextColor: String,
+	TertiaryTextColor: String,
+	LessonRemovedColor: String,
+	ClassroomChangedColor: String,
+	TeacherChangedColor: String,
+} | undefined;
+
+export default function GetColors(darkMode: boolean){
+	if(darkMode){
+		return Dark_Colors;
+	}
+	else{
+		return Colors;
+	}
 }

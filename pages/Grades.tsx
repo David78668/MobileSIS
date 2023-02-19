@@ -7,15 +7,20 @@ import Grade from '../components/grades/Grade';
 import { userid, bareer, getValueFor} from "../components/Token";
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Colors } from '../declarations/colors';
 import { animation } from '../declarations/animation';
 import ApiRequest from '../tools/ApiRequest';
+import { ThemeContext } from '../App';
+import GetColors from '../declarations/colors';
 
 export default function Grades() {
 	const [data, setData] = useState<any>(require('../test-data/grades.json'));
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
-
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if(context){
+		Colors = GetColors(context?.value);
+	}
 	async function getGrades() {
 		ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/classification/current/marks',
@@ -37,7 +42,34 @@ export default function Grades() {
 
 	var marks = 0;
 	{loaded && data.forEach((e: any) => e.marks.forEach(() => marks++))}
-	
+	const styles = StyleSheet.create({
+		gradesBox: {
+			padding: 20
+		},
+		grades: {
+			overflow: 'visible',
+			marginTop: 20
+		},
+		title: {
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+			fontSize: 18,
+			opacity: 0.8
+		},
+		header: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		loading: {
+			marginLeft: 10
+		},
+		headerBox: {
+			fontSize: 17,
+			   color: Colors.PrimaryTextColor,
+			fontWeight: '500',
+			padding: 5
+		}
+	});
 	return (
 		<Container>
 			<Heading title='Známky' headerComponent={<Text style={styles.headerBox}>{marks} známek</Text>} />
@@ -61,32 +93,3 @@ export default function Grades() {
 		</Container>
 	);
 }
-
-const styles = StyleSheet.create({
-	gradesBox: {
-		padding: 20
-	},
-	grades: {
-		overflow: 'visible',
-		marginTop: 20
-	},
-	title: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-		fontSize: 18,
-		opacity: 0.8
-	},
-	header: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	loading: {
-		marginLeft: 10
-	},
-	headerBox: {
-		fontSize: 17,
-   		color: Colors.PrimaryTextColor,
-		fontWeight: '500',
-		padding: 5
-	}
-});

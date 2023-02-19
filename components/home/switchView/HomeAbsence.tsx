@@ -1,14 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Absences } from '../../../declarations/types';
-import { Colors } from '../../../declarations/colors';
 import DonutChart from './CustomPieChart';
+import { ThemeContext } from '../../../App';
+import GetColors from '../../../declarations/colors';
 
 interface HomeAbsenceProps {
 	absence: Absences
 }
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
 	const colors = {
 		attended: "#DE6830",
 		missed: "#71c1f0",
@@ -16,7 +22,59 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 	}
 	
 	const { attended, missed, notExcused } = props.absence;
-
+	const styles = StyleSheet.create({
+		container: {
+			flexDirection: 'row',
+			paddingVertical: 15,
+			paddingHorizontal: 20,
+			justifyContent: 'space-around',
+			marginTop: 20,
+			borderRadius: 10,
+			marginHorizontal: 20,
+			backgroundColor: Colors.PrimaryBackgroundColor,
+			shadowColor: 'rgba(0, 0, 0, 0.1)',
+			shadowOffset: { width: 0, height: 0 },
+			shadowRadius: 10,
+			shadowOpacity: 1
+		},
+		graphContainer: {
+			marginTop: 'auto',
+			marginBottom: 'auto',
+			width: 80,
+			height: 80
+		},
+		graphLegend: {
+			borderRadius: 3,
+			width: 5,
+			height: 20,
+			marginRight: 8,
+			opacity: 0.8
+		},
+		graphLabel: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		graphLabelText: {
+			fontWeight: 'bold',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor,
+	
+		},
+		graphLabelValue: {
+			opacity: 0.5,
+			fontSize: 13,
+			fontWeight: '500',
+			color: Colors.SecondaryTextColor,
+		},
+		graphLabels: {
+			flexDirection: 'column',
+			justifyContent: 'center'
+		},
+		graphLabelsTop: {
+			flexDirection: 'row',
+			justifyContent: 'space-between'
+		}
+	});
 	return (
 		<View style={styles.container}>
 			<View>
@@ -57,58 +115,3 @@ export default function HomeAbsence(props: HomeAbsenceProps) {
 		</View>
 	);
 }
-
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		paddingVertical: 15,
-		paddingHorizontal: 20,
-		justifyContent: 'space-around',
-		marginTop: 20,
-		borderRadius: 10,
-		marginHorizontal: 20,
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		shadowColor: 'rgba(0, 0, 0, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1
-	},
-	graphContainer: {
-		marginTop: 'auto',
-		marginBottom: 'auto',
-		width: 80,
-		height: 80
-	},
-	graphLegend: {
-		borderRadius: 3,
-		width: 5,
-		height: 20,
-		marginRight: 8,
-		opacity: 0.8
-	},
-	graphLabel: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	graphLabelText: {
-		fontWeight: 'bold',
-		opacity: 0.8,
-		color: Colors.SecondaryTextColor,
-
-	},
-	graphLabelValue: {
-		opacity: 0.5,
-		fontSize: 13,
-		fontWeight: '500',
-		color: Colors.SecondaryTextColor,
-	},
-	graphLabels: {
-		flexDirection: 'column',
-		justifyContent: 'center'
-	},
-	graphLabelsTop: {
-		flexDirection: 'row',
-		justifyContent: 'space-between'
-	}
-});

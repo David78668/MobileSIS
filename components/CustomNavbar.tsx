@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import { Colors } from '../declarations/colors';
 import Home from '../pages/Home';
 import React from 'react';
 import Schedule from '../pages/Schedule';
@@ -11,12 +10,86 @@ import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import FirstPage from '../pages/AAFirstPage';
 import Settings from '../pages/Settings';
+import { ThemeContext } from '../App';
+import GetColors from '../declarations/colors';
 
 const windowWidth = Dimensions.get('window').width;
 export const navbarHeight = 75;
 
 const Tab = createBottomTabNavigator();
 export default function CustomTabNavigation() {
+    const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
+    function HomeIcon({ focused }: any) {
+        return (
+            <View style={styles.iconContainer}>
+                <Feather name='home' size={25} color={focused ? colors.focused : colors.unfocused} />
+                <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Domů</Text>
+            </View>
+        )
+    }
+    
+    function ScheduleIcon({ focused }: any) {
+        return (
+            <View style={styles.iconContainer}>
+                <Feather name='trello' size={25} color={focused ? colors.focused : colors.unfocused} />
+                <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Rozvrh</Text>
+            </View>
+        )
+    }
+    
+    function GradesIcon({ focused }: any) {
+        return (
+            <View style={styles.iconContainer}>
+                <Feather name='bookmark' size={25} color={focused ? colors.focused : colors.unfocused} />
+                <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Známky</Text>
+            </View>
+        )
+    }
+    
+    function AbsenceIcon({ focused }: any) {
+        return (
+            <View style={styles.iconContainer}>
+                <Feather name='calendar' size={25} color={focused ? colors.focused : colors.unfocused} />
+                <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Absence</Text>
+            </View>
+        )
+    }
+    
+    function ProfileIcon({ focused }: any) {
+        return (
+            <View style={styles.iconContainer}>
+                <Feather name='at-sign' size={25} color={focused ? colors.focused : colors.unfocused} />
+                <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Profil</Text>
+            </View>
+        )
+    }
+    const styles = StyleSheet.create({
+        label: {
+            fontSize: 10,
+            marginTop: 3,
+            fontWeight: 'bold',
+            opacity: 0.8
+        },
+        iconContainer: {
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        focused: {
+            color: Colors.TertiaryBackgroundColor,
+            fontWeight: '900'
+        },
+        unfocused: {
+            color: Colors.SecondaryTextColor
+        }
+    });
+    const colors = {
+        focused: Colors.TertiaryBackgroundColor,
+        unfocused: Colors.SecondaryTextColor
+    }
     return (
         <Tab.Navigator screenOptions={{
             headerShown: false, tabBarShowLabel: false, tabBarStyle: {
@@ -41,72 +114,3 @@ export default function CustomTabNavigation() {
     );
 }
 
-const colors = {
-    focused: Colors.TertiaryBackgroundColor,
-    unfocused: Colors.SecondaryTextColor
-}
-
-function HomeIcon({ focused }: any) {
-    return (
-        <View style={styles.iconContainer}>
-            <Feather name='home' size={25} color={focused ? colors.focused : colors.unfocused} />
-            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Domů</Text>
-        </View>
-    )
-}
-
-function ScheduleIcon({ focused }: any) {
-    return (
-        <View style={styles.iconContainer}>
-            <Feather name='trello' size={25} color={focused ? colors.focused : colors.unfocused} />
-            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Rozvrh</Text>
-        </View>
-    )
-}
-
-function GradesIcon({ focused }: any) {
-    return (
-        <View style={styles.iconContainer}>
-            <Feather name='bookmark' size={25} color={focused ? colors.focused : colors.unfocused} />
-            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Známky</Text>
-        </View>
-    )
-}
-
-function AbsenceIcon({ focused }: any) {
-    return (
-        <View style={styles.iconContainer}>
-            <Feather name='calendar' size={25} color={focused ? colors.focused : colors.unfocused} />
-            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Absence</Text>
-        </View>
-    )
-}
-
-function ProfileIcon({ focused }: any) {
-    return (
-        <View style={styles.iconContainer}>
-            <Feather name='at-sign' size={25} color={focused ? colors.focused : colors.unfocused} />
-            <Text style={[styles.label, focused ? styles.focused : styles.unfocused ]}>Profil</Text>
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    label: {
-        fontSize: 10,
-        marginTop: 3,
-        fontWeight: 'bold',
-        opacity: 0.8
-    },
-    iconContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    focused: {
-        color: Colors.TertiaryBackgroundColor,
-        fontWeight: '900'
-    },
-    unfocused: {
-        color: Colors.SecondaryTextColor
-    }
-});

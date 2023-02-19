@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
-import { Colors } from '../../../declarations/colors';
 import moment from 'moment';
+import { ThemeContext } from '../../../App';
+import GetColors from '../../../declarations/colors';
 
 interface ScheduleChangeBoxProps {
 	StartTime: string,
@@ -13,6 +14,79 @@ interface ScheduleChangeBoxProps {
 }
 
 export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
+	const styles = StyleSheet.create({
+		change: {
+			backgroundColor: Colors.PrimaryBackgroundColor,
+			alignSelf: 'center',
+			flexDirection: 'row',
+			borderRadius: 10,
+			shadowColor: 'rgba(0, 0, 0, 0.1)',
+			shadowOffset: { width: 0, height: 0 },
+			shadowRadius: 10,
+			shadowOpacity: 1
+		},
+		changeleft: {
+			borderTopLeftRadius: 10,
+			borderBottomLeftRadius: 10,
+			paddingHorizontal: 20,
+			backgroundColor: Colors.ClassroomChangedColor,
+			justifyContent: 'center',
+			alignItems: 'center',
+			width: 80,
+		},
+		classstart: {
+			color: Colors.PrimaryTextColor,
+			fontWeight: 'bold',
+		},
+		classend: {
+			color: Colors.PrimaryTextColor,
+			opacity: 0.5,
+			fontWeight: 'bold'
+		},
+		changeright: {
+			paddingVertical: 10,
+			paddingHorizontal: 20
+		},
+		top: {
+			width: 150,
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		difference: {
+			fontSize: 14,
+			fontWeight: '400',
+		},
+		lesson: {
+			fontSize: 18,
+			fontWeight: 'bold',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor,
+		},
+		bottom: {
+			marginTop: 10
+		},
+		classroom: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			color: Colors.SecondaryTextColor
+		},
+		value: {
+			marginLeft: 5,
+			fontWeight: '500',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor
+		},
+		teacher: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			marginTop: 3
+		}
+	});
 	return (
 		<View style={styles.change}>
 			<View style={styles.changeleft}>
@@ -49,72 +123,3 @@ export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 		</View>
 	)
 }
-
-const styles = StyleSheet.create({
-	change: {
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		alignSelf: 'center',
-		flexDirection: 'row',
-		borderRadius: 10,
-		shadowColor: 'rgba(0, 0, 0, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1
-	},
-	changeleft: {
-		borderTopLeftRadius: 10,
-		borderBottomLeftRadius: 10,
-		paddingHorizontal: 20,
-		backgroundColor: Colors.ClassroomChangedColor,
-		justifyContent: 'center',
-		alignItems: 'center',
-		width: 80,
-	},
-	classstart: {
-		color: Colors.PrimaryTextColor,
-		fontWeight: 'bold',
-	},
-	classend: {
-		color: Colors.PrimaryTextColor,
-		opacity: 0.5,
-		fontWeight: 'bold'
-	},
-	changeright: {
-		paddingVertical: 10,
-		paddingHorizontal: 20
-	},
-	top: {
-		width: 150,
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	difference: {
-		fontSize: 14,
-		fontWeight: '400',
-	},
-	lesson: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		opacity: 0.8,
-		color: Colors.SecondaryTextColor,
-	},
-	bottom: {
-		marginTop: 10
-	},
-	classroom: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		color: Colors.SecondaryTextColor
-	},
-	value: {
-		marginLeft: 5,
-		fontWeight: '500',
-		opacity: 0.8,
-		color: Colors.SecondaryTextColor
-	},
-	teacher: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginTop: 3
-	}
-});

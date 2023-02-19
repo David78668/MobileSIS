@@ -1,7 +1,8 @@
 import React, { Dispatch, useRef, SetStateAction } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { BottomSheetBackdrop, BottomSheetModal } from '@gorhom/bottom-sheet';
-import { Colors } from "../../declarations/colors";
+import { ThemeContext } from "../../App";
+import GetColors from "../../declarations/colors";
 
 interface ModalProps {
 	title: string,
@@ -12,6 +13,11 @@ interface ModalProps {
 }
 
 export default function Modal(props: ModalProps) {
+    const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
     function backdrop(props: any) {
         return <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />;
     }
@@ -20,7 +26,30 @@ export default function Modal(props: ModalProps) {
 
     props.open ? modal.current?.present() : modal.current?.close();
     props.open && props.setOpen(false);
-    
+    const styles = StyleSheet.create({
+        modal: {
+            borderRadius: 20,
+            backgroundColor: Colors.SecondaryBackgroundColor
+        },
+        modalHandle: {
+            backgroundColor: 'lightgray',
+            width: 50
+        },
+        modalContainer: {
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            alignItems: 'center'
+        },
+        modalTitle: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            opacity: 0.8
+        },
+        children: {
+            marginTop: 30,
+            width: '100%'
+        }
+    });
 	return (
 		<BottomSheetModal
             ref={modal}
@@ -37,28 +66,3 @@ export default function Modal(props: ModalProps) {
         </BottomSheetModal>
 	);
 }
-
-const styles = StyleSheet.create({
-	modal: {
-        borderRadius: 20,
-        backgroundColor: Colors.SecondaryBackgroundColor
-	},
-	modalHandle: {
-		backgroundColor: 'lightgray',
-		width: 50
-	},
-	modalContainer: {
-		paddingHorizontal: 20,
-		paddingVertical: 10,
-		alignItems: 'center'
-	},
-	modalTitle: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		opacity: 0.8
-    },
-    children: {
-        marginTop: 30,
-        width: '100%'
-    }
-});

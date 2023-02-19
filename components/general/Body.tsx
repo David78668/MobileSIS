@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { StyleSheet, ScrollView, ScrollViewProps, TouchableWithoutFeedback, TouchableWithoutFeedbackProps, RefreshControl } from "react-native";
-import { Colors } from '../../declarations/colors';
+import { ThemeContext } from "../../App";
+import GetColors from "../../declarations/colors";
 
 interface BodyProps {
 	children?: React.ReactNode,
@@ -11,14 +12,18 @@ interface BodyProps {
 
 export default function Body(props: BodyProps) {
 	const [refreshing, setRefreshing] = useState(false);
-
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
 	const onRefresh = useCallback(() => {
 		setRefreshing(true);
 		if (props.onRefresh != undefined) props.onRefresh();
 
 		return new Promise(resolve => setTimeout(resolve, 1000)).then(() => setRefreshing(false));
 	}, []);
-	
+
 	const refresh: any = {};
 	if (props.onRefresh != undefined) refresh.refreshControl = refreshControl();
 
@@ -29,7 +34,11 @@ export default function Body(props: BodyProps) {
 				onRefresh={onRefresh} />
 		);
 	}
-
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1
+		}
+	});
 	return (
 		<TouchableWithoutFeedback {...props.Touchable}>
 			<ScrollView
@@ -40,15 +49,10 @@ export default function Body(props: BodyProps) {
 				style={styles.container}
 				{...refresh}
 				{...props.ScrollView}>
-				
+
 				{props.children}
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1
-	}
-});

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Colors } from '../../declarations/colors';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
+import { ThemeContext } from '../../App';
+import GetColors from '../../declarations/colors';
 import moment from 'moment';
 
 interface DateScrollProps {
@@ -12,7 +13,11 @@ interface DateScrollProps {
 export default function Datescroll(props: DateScrollProps) {
   var monthIndex = moment().get('month');
   const [currentDate, setCurrentDate] = useState(monthIndex > 5 ? monthIndex - 8 : monthIndex + 4);
-
+  const context = React.useContext(ThemeContext);
+  let Colors = GetColors(true);
+  if(context){
+    Colors = GetColors(context?.value);
+  }
   var year = moment().get('month') < 8 ? moment().get('year') - 1 : moment().get('year');
   var startMonth = moment(`${year}-09-01`);
 
@@ -23,7 +28,26 @@ export default function Datescroll(props: DateScrollProps) {
   }
 
   useEffect(() => props.monthChange(monthIndex > 5 ? monthIndex - 8 : monthIndex + 4), []);
-  
+  const styles = StyleSheet.create({
+    dateWrapper:{
+      flexDirection:'row',
+      justifyContent:'center',
+      alignItems:'center',
+    },
+    arrowWrapper: {
+      justifyContent: 'center',
+      padding: 5
+    },
+    datetextWrapper: {
+      alignItems: 'center',
+      width: 85
+    },
+    headerDate: {
+      fontSize: 17,
+      color: Colors.PrimaryTextColor,
+      fontWeight: '500'
+    }
+  });
   return (
     <View style={styles.dateWrapper}>
       <TouchableOpacity onPress={() => {
@@ -55,23 +79,3 @@ export default function Datescroll(props: DateScrollProps) {
   );
 };
 
-const styles = StyleSheet.create({
-  dateWrapper:{
-    flexDirection:'row',
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  arrowWrapper: {
-    justifyContent: 'center',
-    padding: 5
-  },
-  datetextWrapper: {
-    alignItems: 'center',
-    width: 85
-  },
-  headerDate: {
-    fontSize: 17,
-    color: Colors.PrimaryTextColor,
-    fontWeight: '500'
-  }
-});

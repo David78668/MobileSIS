@@ -8,7 +8,8 @@ import LessonContainer from '../components/timetable/LessonContainer';
 import Body from '../components/general/Body';
 import moment from 'moment';
 import DayBlock from '../components/timetable/DayBlock';
-import { Colors } from '../declarations/colors';
+import GetColors from '../declarations/colors';
+import { ThemeContext } from '../App';
 
 function GetWeekStart(date: Date) {
 	let result = moment(date).subtract(date.getDay() - 1, "days").format("YYYY/MM/DD");
@@ -46,7 +47,7 @@ function FilterData(data: Array<any>) {
 			var originalClass;
 			var setOgClass = false;
 			for (var k = 0; k < timeblock.length; k++) {
-				console.log(timeblock[k])
+				//console.log(timeblock[k])
 				if (!setOgClass && timeblock[k].static) {
 					originalClass = timeblock[k];
 					setOgClass = true;
@@ -64,7 +65,7 @@ function FilterData(data: Array<any>) {
 			result.push(timeblock);
 		}
 	}
-	console.log(result);
+	//console.log(result);
 	return result;
 }
 
@@ -84,6 +85,11 @@ export default function Schedule() {
 	const [page, setPage] = React.useState(0);
 	const [isDaySelect, setIsDaySelect] = React.useState(true);
 	const filteredData = FilterData(testdata[page].timetable);
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if(context){
+		Colors = GetColors(context?.value);
+	}
 	React.useEffect(() => {
 		ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',
@@ -92,7 +98,47 @@ export default function Schedule() {
 			setError: setError,
 		})
 	});
-
+	const styles = StyleSheet.create({
+		image: {
+			justifyContent: 'center',
+		},
+		HeadText: {
+			padding: 10,
+			color: "white",
+			fontWeight: "700",
+			fontSize: 30,
+		},
+		HeadingContainer: {
+			flexDirection: 'row',
+			paddingHorizontal: 20
+		},
+		column: {
+			padding: 5
+		},
+		currentDayText: {
+			color: Colors.PrimaryTextColor,
+			fontSize: 25,
+			fontWeight: 'bold',
+		},
+		lessonsText: {
+			textAlign: 'center',
+			maxWidth: 50,
+			color: "white",
+			opacity: 0.8,
+			fontWeight: '600'
+		},
+		headingTextContainer: {
+			flexDirection: 'row',
+			flex: 1,
+			justifyContent: 'center',
+		},
+		header: {
+			fontSize: 17,
+			color: Colors.PrimaryTextColor,
+			fontWeight: '500',
+			padding: 5
+		}
+	});
 	return (
 		<Container>
 			<Heading
@@ -148,44 +194,3 @@ export default function Schedule() {
 	);
 }
 
-const styles = StyleSheet.create({
-	image: {
-		justifyContent: 'center',
-	},
-	HeadText: {
-		padding: 10,
-		color: "white",
-		fontWeight: "700",
-		fontSize: 30,
-	},
-	HeadingContainer: {
-		flexDirection: 'row',
-		paddingHorizontal: 20
-	},
-	column: {
-		padding: 5
-	},
-	currentDayText: {
-		color: Colors.PrimaryTextColor,
-		fontSize: 25,
-		fontWeight: 'bold',
-	},
-	lessonsText: {
-		textAlign: 'center',
-		maxWidth: 50,
-		color: "white",
-		opacity: 0.8,
-		fontWeight: '600'
-	},
-	headingTextContainer: {
-		flexDirection: 'row',
-		flex: 1,
-		justifyContent: 'center',
-	},
-	header: {
-		fontSize: 17,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500',
-		padding: 5
-	}
-});

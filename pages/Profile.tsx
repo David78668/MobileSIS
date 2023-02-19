@@ -6,15 +6,20 @@ import Body from '../components/general/Body';
 import Container from '../components/general/Container';
 import ProfileBox from '../components/profile/ProfileBox';
 import ProfileInfo from '../components/profile/ProfileInfo';
-import { Colors } from '../declarations/colors';
 import ApiRequest from '../tools/ApiRequest';
 import { Ionicons } from '@expo/vector-icons';
+import GetColors from '../declarations/colors';
+import { ThemeContext } from '../App';
 
 export default function Profile({ navigation }: any) {
 	const [data, setData] = useState<any>(require('../test-data/profile.json'));
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
-
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if(context){
+		Colors = GetColors(context?.value);
+	}
 	const [info, setInfo] = useState<any>();
 	const [groups, setGroups] = useState<any>();
 
@@ -54,7 +59,82 @@ export default function Profile({ navigation }: any) {
 			</TouchableOpacity>
 		);
 	}*/
-
+	const styles = StyleSheet.create({
+		title: {
+			color: Colors.SecondaryTextColor,
+			fontWeight: 'bold',
+			fontSize: 18,
+			marginLeft: 20,
+			opacity: 0.8
+		},
+		section: {
+			marginVertical: 20
+		},
+		edit: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			marginRight: 20,
+			paddingVertical: 5,
+			paddingHorizontal: 10,
+			borderRadius: 10,
+			backgroundColor: 'cornflowerblue'
+		},
+		editText: {
+			color: 'white',
+			fontWeight: 'bold'
+		},
+		editIcon: {
+			marginLeft: 5,
+			opacity: 0.8
+		},
+		header: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'space-between'
+		},
+		logout: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'center',
+			padding: 5
+		},
+		logoutText: {
+			fontSize: 17,
+			color: Colors.PrimaryTextColor,
+			fontWeight: '500'
+		},
+		logoutIcon: {
+			opacity: 0.6,
+			marginLeft: 5
+		},
+		headerBox: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		loading: {
+			marginLeft: 10
+		},
+		settings: {
+			backgroundColor: '#E9671E',
+			paddingHorizontal: 20,
+			paddingVertical: 10,
+			marginHorizontal: 20,
+			borderRadius: 10,
+			marginTop: 20,
+			justifyContent: 'center',
+			alignItems: 'center',
+			flexDirection: 'row'
+		},
+		settingsText: {
+			fontSize: 17,
+			color: Colors.PrimaryTextColor,
+			fontWeight: '500'
+		},
+		settingsIcon: {
+			marginRight: 5,
+			opacity: 0.8
+		}
+	});
 	return (
 		<Container>
 			<Heading title='Profil' headerComponent={<Logout />} >
@@ -95,93 +175,18 @@ export default function Profile({ navigation }: any) {
 			</Body>
 		</Container>
 	);
+	function Logout() {
+		return (
+			<TouchableOpacity style={styles.logout} activeOpacity={0.7} onPress={logout}>
+				<Text style={styles.logoutText}>Odhlásit se</Text>
+			</TouchableOpacity>
+		);
+	}
 }
 
-function Logout() {
-	return (
-		<TouchableOpacity style={styles.logout} activeOpacity={0.7} onPress={logout}>
-			<Text style={styles.logoutText}>Odhlásit se</Text>
-		</TouchableOpacity>
-	);
-}
+
 
 function logout() {
 	// asi by to chtelo dodelat
 }
 
-const styles = StyleSheet.create({
-	title: {
-		color: Colors.PrimaryTextColor,
-		fontWeight: 'bold',
-		fontSize: 18,
-		marginLeft: 20,
-		opacity: 0.8
-	},
-	section: {
-		marginVertical: 20
-	},
-	edit: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginRight: 20,
-		paddingVertical: 5,
-		paddingHorizontal: 10,
-		borderRadius: 10,
-		backgroundColor: 'cornflowerblue'
-	},
-	editText: {
-		color: 'white',
-		fontWeight: 'bold'
-	},
-	editIcon: {
-		marginLeft: 5,
-		opacity: 0.8
-	},
-	header: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between'
-	},
-	logout: {
-        flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 5
-	},
-	logoutText: {
-		fontSize: 17,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500'
-	},
-	logoutIcon: {
-		opacity: 0.6,
-		marginLeft: 5
-	},
-	headerBox: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	loading: {
-		marginLeft: 10
-	},
-	settings: {
-		backgroundColor: '#E9671E',
-		paddingHorizontal: 20,
-		paddingVertical: 10,
-		marginHorizontal: 20,
-		borderRadius: 10,
-		marginTop: 20,
-		justifyContent: 'center',
-		alignItems: 'center',
-		flexDirection: 'row'
-	},
-	settingsText: {
-		fontSize: 17,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500'
-	},
-	settingsIcon: {
-		marginRight: 5,
-		opacity: 0.8
-	}
-});

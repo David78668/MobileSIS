@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Colors } from '../../../declarations/colors';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native"
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native";
+import { ThemeContext } from '../../../App';
+import GetColors from '../../../declarations/colors';
 
 interface HomeSwitchViewProps {
 	headerTexts: Array<string>,
@@ -9,7 +11,11 @@ interface HomeSwitchViewProps {
 
 export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	const [currentView, setView] = useState(0);
-
+	const context = React.useContext(ThemeContext);
+	let Colors = GetColors(true);
+	if (context) {
+		Colors = GetColors(context?.value);
+	}
 	function renderSwitch({ item, index }: any) {
 		return (
 			<View style={currentView == index ? styles.underline : null}>
