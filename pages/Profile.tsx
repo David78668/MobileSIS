@@ -99,7 +99,77 @@ export default function Profile({ navigation }: any) {
 			</TouchableOpacity>
 		);
 	}
-	
+	const styles = StyleSheet.create({
+		title: {
+			color: Colors.SecondaryTextColor,
+			fontWeight: 'bold',
+			fontSize: 18,
+			marginLeft: 20,
+			opacity: 0.8
+		},
+		section: {
+			marginVertical: 20
+		},
+		edit: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			marginRight: 20,
+			paddingVertical: 5,
+			paddingHorizontal: 10,
+			borderRadius: 10,
+			backgroundColor: 'cornflowerblue'
+		},
+		editText: {
+			color: 'white',
+			fontWeight: 'bold'
+		},
+		editIcon: {
+			marginLeft: 5,
+			opacity: 0.8
+		},
+		header: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'space-between'
+		},
+		settings: {
+			flexDirection: 'row',
+			alignItems: 'center',
+			justifyContent: 'center',
+			padding: 5
+		},
+		settingsText: {
+			fontSize: 17,
+			color: Colors.PrimaryTextColor,
+			fontWeight: '500'
+		},
+		logoutIcon: {
+			marginRight: 5
+		},
+		headerBox: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		loading: {
+			marginLeft: 10
+		},
+		logout: {
+			backgroundColor: '#E9671E33',
+			paddingHorizontal: 20,
+			paddingVertical: 10,
+			marginHorizontal: 20,
+			borderRadius: 10,
+			marginTop: 20,
+			justifyContent: 'center',
+			alignItems: 'center',
+			flexDirection: 'row'
+		},
+		logoutText: {
+			fontSize: 17,
+			color: Colors.TertiaryBackgroundColor,
+			fontWeight: 'bold'
+		}
+	});
 	return (
 		<Container>
 			<Heading title='Profil' headerComponent={<Settings />} >
@@ -149,74 +219,3 @@ function logout() {
 	// asi by to chtelo dodelat
 }
 
-const styles = StyleSheet.create({
-	title: {
-		color: Colors.PrimaryTextColor,
-		fontWeight: 'bold',
-		fontSize: 18,
-		marginLeft: 20,
-		opacity: 0.8
-	},
-	section: {
-		marginVertical: 20
-	},
-	edit: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginRight: 20,
-		paddingVertical: 5,
-		paddingHorizontal: 10,
-		borderRadius: 10,
-		backgroundColor: 'cornflowerblue'
-	},
-	editText: {
-		color: 'white',
-		fontWeight: 'bold'
-	},
-	editIcon: {
-		marginLeft: 5,
-		opacity: 0.8
-	},
-	header: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between'
-	},
-	settings: {
-        flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 5
-	},
-	settingsText: {
-		fontSize: 17,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500'
-	},
-	logoutIcon: {
-		marginRight: 5
-	},
-	headerBox: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	loading: {
-		marginLeft: 10
-	},
-	logout: {
-		backgroundColor: '#E9671E33',
-		paddingHorizontal: 20,
-		paddingVertical: 10,
-		marginHorizontal: 20,
-		borderRadius: 10,
-		marginTop: 20,
-		justifyContent: 'center',
-		alignItems: 'center',
-		flexDirection: 'row'
-	},
-	logoutText: {
-		fontSize: 17,
-		color: Colors.TertiaryBackgroundColor,
-		fontWeight: 'bold'
-	}
-});

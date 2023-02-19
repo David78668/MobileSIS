@@ -72,6 +72,7 @@ export default function Settings() {
         },
         title: {
             fontWeight: 'bold',
+            color: Colors.SecondaryTextColor,
             fontSize: 18,
             marginLeft: 20,
             opacity: 0.8
@@ -116,6 +117,10 @@ export default function Settings() {
         },
         sitesList: {
             overflow: 'visible'
+        },
+        siteIcon: {
+            marginLeft: 5,
+            opacity: 0.5
         }
     });
 	return (
@@ -171,136 +176,3 @@ export default function Settings() {
 		</Container>
 	);
 }
-
-	return (
-		<Container>
-			<Heading title='Nastavení' />
-			
-			<Body>
-                <View style={styles.section}>
-					<View style={styles.header}>
-						<View style={styles.headerBox}>
-							<Text style={styles.title}>Aplikace</Text>
-						</View>
-
-                    </View>
-                    
-                    <View style={styles.container}>
-                        <View style={styles.item}>
-                            <View style={styles.wrapper}>
-                                <Text style={styles.key}>Dark mode</Text>
-                            </View>
-
-                            <View style={styles.wrapper}>
-                                <Switch
-                                    trackColor={{ true: Colors.TertiaryBackgroundColor }}
-                                    onValueChange={() => setEnabled(!enabled)}
-                                    value={enabled} />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-                
-                <View style={styles.section}>
-					<View style={styles.header}>
-						<View style={styles.headerBox}>
-							<Text style={styles.title}>Sociální sítě</Text>
-						</View>
-                    </View>
-                    
-                    <View style={styles.container}>
-                        <FlatList
-                            data={sites}
-                            renderItem={renderSite}
-                            ItemSeparatorComponent={separator}
-                            style={styles.sitesList}    
-                            />
-                    </View>
-                </View>
-                
-                <View style={styles.section}>
-					<View style={styles.header}>
-						<View style={styles.headerBox}>
-							<Text style={styles.title}>Kontakt školy</Text>
-						</View>
-                    </View>
-                    
-                    <View style={styles.container}>
-                        <FlatList
-                            data={contact}
-                            renderItem={renderSite}
-                            ItemSeparatorComponent={separator}
-                            style={styles.sitesList}    
-                            />
-                    </View>
-				</View>
-			</Body>
-		</Container>
-	);
-}
-
-const styles = StyleSheet.create({
-	section: {
-		marginVertical: 20
-    },
-    header: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between'
-    },
-    headerBox: {
-		flexDirection: 'row',
-		alignItems: 'center'
-    },
-    title: {
-		fontWeight: 'bold',
-		fontSize: 18,
-		marginLeft: 20,
-		opacity: 0.8
-    },
-    item: {
-         flexDirection: 'row',
-        justifyContent: 'space-between',
-		paddingVertical: 10
-	},
-	wrapper: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	key: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-		opacity: 0.6
-	},
-	value: {
-		opacity: 0.6,
-		color: Colors.SecondaryTextColor,
-		fontWeight: '500'
-    },
-    container: {
-		marginTop: 20,
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		marginHorizontal: 20,
-		paddingHorizontal: 20,
-		borderRadius: 10,
-		shadowColor: 'rgba(0, 0, 0, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1,
-		overflow: 'visible'
-    },
-    separator: {
-		backgroundColor: Colors.TertiaryTextColor,
-		opacity: 0.5,
-		width: '100%',
-		borderRadius: 1,
-		height: 1
-    },
-    sitesList: {
-        overflow: 'visible'
-    },
-    siteIcon: {
-        marginLeft: 5,
-        opacity: 0.5
-    }
-});
