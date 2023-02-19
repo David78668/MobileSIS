@@ -42,34 +42,7 @@ export default function Grades() {
 
 	var marks = 0;
 	{loaded && data.forEach((e: any) => e.marks.forEach(() => marks++))}
-	const styles = StyleSheet.create({
-		gradesBox: {
-			padding: 20
-		},
-		grades: {
-			overflow: 'visible',
-			marginTop: 20
-		},
-		title: {
-			fontWeight: 'bold',
-			color: Colors.SecondaryTextColor,
-			fontSize: 18,
-			opacity: 0.8
-		},
-		header: {
-			flexDirection: 'row',
-			alignItems: 'center'
-		},
-		loading: {
-			marginLeft: 10
-		},
-		headerBox: {
-			fontSize: 17,
-			   color: Colors.PrimaryTextColor,
-			fontWeight: '500',
-			padding: 5
-		}
-	});
+	
 	return (
 		<Container>
 			<Heading title='Známky' headerComponent={<Text style={styles.headerBox}>{marks} známek</Text>} />
@@ -81,6 +54,7 @@ export default function Grades() {
 						<ActivityIndicator style={styles.loading} animating={!loaded} />
 					</View>
 
+					{loaded && data.length == 0 && <Text style={styles.none}>Nemátě žádné známky.</Text>}
 					{loaded &&
 						<FlatList
 							data={data}
@@ -93,3 +67,37 @@ export default function Grades() {
 		</Container>
 	);
 }
+
+const styles = StyleSheet.create({
+	gradesBox: {
+		padding: 20
+	},
+	grades: {
+		overflow: 'visible',
+		marginTop: 20
+	},
+	title: {
+		fontWeight: 'bold',
+		color: Colors.SecondaryTextColor,
+		fontSize: 18,
+		opacity: 0.8
+	},
+	header: {
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
+	loading: {
+		marginLeft: 10
+	},
+	headerBox: {
+		fontSize: 17,
+   		color: Colors.PrimaryTextColor,
+		fontWeight: '500',
+		padding: 5
+	},
+	none: {
+		fontWeight: '500',
+		opacity: 0.6,
+		marginTop: 20
+	}
+});

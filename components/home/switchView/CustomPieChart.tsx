@@ -76,7 +76,14 @@ export default function DonutChart(props: DonutProps) {
 								originY="95"
 								strokeLinecap="butt"
 							/>
-						</> : null
+						</> : <Circle
+							cx="50%"
+							cy="50%"
+							r={radius}
+							stroke="lightgray"
+							fill="transparent"
+							strokeWidth="45"
+						/>
 					}
 				</G>
 			</Svg>
