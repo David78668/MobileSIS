@@ -148,7 +148,7 @@ export default function Grade(data: any) {
 			opacity: 0.05
 		},
 		gradeName: {
-			color: Colors.PrimaryTextColor,
+			color: Colors.SecondaryTextColor,
 			fontWeight: 'bold',
 			opacity: 0.8,
 			fontSize: 15
