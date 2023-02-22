@@ -4,16 +4,13 @@ import Body from '../components/general/Body';
 import Container from '../components/general/Container';
 import Heading from '../components/general/Heading';
 import GetColors from '../declarations/colors';
-import { ThemeContext } from '../App';
 import * as Linking from 'expo-linking';
 import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Settings() {
-    const context = useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+    const darkMode = useTheme();
+    const Colors = GetColors(darkMode.value);
     const sites = [{
         name: 'Web',
         username: 'www.kyberna.cz',
@@ -27,7 +24,7 @@ export default function Settings() {
         username: '@kyberna',
         link: 'fb://profile/100063567971513'
     }];
-    
+
     const contact = [{
         name: 'E-mail',
         username: 'info@ssakhk.cz',
@@ -37,7 +34,7 @@ export default function Settings() {
         username: '+420 495 518 777',
         link: 'tel:+420 495 518 777'
     }];
-    
+
     function separator() {
         return <View style={styles.separator}></View>;
     }
@@ -78,7 +75,7 @@ export default function Settings() {
             opacity: 0.8
         },
         item: {
-             flexDirection: 'row',
+            flexDirection: 'row',
             justifyContent: 'space-between',
             paddingVertical: 10
         },
@@ -123,18 +120,18 @@ export default function Settings() {
             opacity: 0.5
         }
     });
-	return (
-		<Container>
-			<Heading title='Nastavení' />
-			
-			<Body>
+    return (
+        <Container>
+            <Heading title='Nastavení' />
+
+            <Body>
                 <View style={styles.section}>
-					<View style={styles.header}>
-						<View style={styles.headerBox}>
-							<Text style={styles.title}>Vzhled aplikace</Text>
-						</View>
+                    <View style={styles.header}>
+                        <View style={styles.headerBox}>
+                            <Text style={styles.title}>Vzhled aplikace</Text>
+                        </View>
                     </View>
-                    
+
                     <View style={styles.container}>
                         <View style={styles.item}>
                             <View style={styles.wrapper}>
@@ -142,37 +139,34 @@ export default function Settings() {
                             </View>
 
                             <View style={styles.wrapper}>
-                                {context &&
-                                    <Switch
+                                <Switch
                                     trackColor={{ true: Colors.TertiaryBackgroundColor }}
                                     onValueChange={() => {
-                                        context.setFunction(!context.value);
-                                        console.log(!context.value);
+                                        darkMode.setValue(!darkMode.value);
                                     }}
-                                    value={context.value} />
-                                }
+                                    value={darkMode.value} />
                             </View>
                         </View>
                     </View>
                 </View>
-                
+
                 <View style={styles.section}>
-					<View style={styles.header}>
-						<View style={styles.headerBox}>
-							<Text style={styles.title}>Sociální sítě</Text>
-						</View>
+                    <View style={styles.header}>
+                        <View style={styles.headerBox}>
+                            <Text style={styles.title}>Sociální sítě</Text>
+                        </View>
                     </View>
-                    
+
                     <View style={styles.container}>
                         <FlatList
                             data={sites}
                             renderItem={renderSite}
                             ItemSeparatorComponent={separator}
-                            style={styles.sitesList}    
-                            />
+                            style={styles.sitesList}
+                        />
                     </View>
-				</View>
-			</Body>
-		</Container>
-	);
+                </View>
+            </Body>
+        </Container>
+    );
 }

@@ -12,17 +12,13 @@ import "moment/locale/cs";
 import Carousel from '../components/home/carousel/Carousel';
 import testData from '../assets/homeSchedule.json';
 import GetColors, { ColorPallete } from '../declarations/colors';
-import { ThemeProvider } from '@react-navigation/native';
-import { ThemeContext } from '../App';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Home() {
 	const format = moment().format('D. MMMM').toString();
 	const date = format[0].toUpperCase() + format.slice(1);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const absenceData = require('../test-data/absence-stats.json');
 	const styles = StyleSheet.create({
 		header: {

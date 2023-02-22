@@ -9,7 +9,7 @@ import ProfileInfo from '../components/profile/ProfileInfo';
 import ApiRequest from '../tools/ApiRequest';
 import { Ionicons } from '@expo/vector-icons';
 import GetColors from '../declarations/colors';
-import { ThemeContext } from '../App';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Profile({ navigation }: any) {
 	const [data, setData] = useState<any>(require('../test-data/profile.json'));
@@ -19,11 +19,8 @@ export default function Profile({ navigation }: any) {
 	const [dataSubjects, setDataSubjects] = useState<any>();
 	const [loadedSubjects, setLoadedSubjects] = useState(false);
 	const [errorSubjects, setErrorSubjects] = useState(false);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const [info, setInfo] = useState<any>();
 	const [groups, setGroups] = useState<any>();
 

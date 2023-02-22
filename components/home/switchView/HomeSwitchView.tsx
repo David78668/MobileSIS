@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Colors } from '../../../declarations/colors';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native";
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 interface HomeSwitchViewProps {
 	headerTexts: Array<string>,
@@ -11,11 +11,8 @@ interface HomeSwitchViewProps {
 
 export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	const [currentView, setView] = useState(0);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	function renderSwitch({ item, index }: any) {
 		return (
 			<View style={currentView == index ? styles.underline : null}>
@@ -29,7 +26,25 @@ export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	function separator() {
 		return <View style={{ width: 15 }}></View>;
 	}
-
+	const styles = StyleSheet.create({
+		container: {
+			marginTop: 20
+		},
+		switches: {
+			flexDirection: 'row',
+			paddingHorizontal: 20
+		},
+		text: {
+			color: Colors.SecondaryTextColor,
+			fontWeight: 'bold',
+			fontSize: 18,
+			paddingBottom: 3
+		},
+		underline: {
+			borderBottomWidth: 2,
+			borderBottomColor: Colors.SecondaryTextColor,
+		}
+	});
 	return (
 		<View style={styles.container}>
 			<FlatList
@@ -46,22 +61,3 @@ export default function HomeSwitchView(props: HomeSwitchViewProps) {
 	)
 }
 
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 20
-	},
-	switches: {
-		flexDirection: 'row',
-		paddingHorizontal: 20
-	},
-	text: {
-		color: Colors.SecondaryTextColor,
-		fontWeight: 'bold',
-		fontSize: 18,
-		paddingBottom: 3
-	},
-	underline: {
-		borderBottomWidth: 2,
-		borderBottomColor: Colors.TertiaryTextColor,
-	}
-});

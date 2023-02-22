@@ -10,8 +10,8 @@ import ApiRequest from '../tools/ApiRequest';
 import { animation } from '../declarations/animation';
 import moment from 'moment';
 import "moment/locale/cs";
-import { ThemeContext } from '../App';
 import GetColors from '../declarations/colors';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Absence() {
 	useEffect(() => {
@@ -22,11 +22,8 @@ export default function Absence() {
 	const [dataStats, setDataStats] = useState(require('../test-data/absence-stats.json'));
 	const [loadedStats, setLoadedStats] = useState(false);
 	const [errorStats, setErrorStats] = useState(false);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	async function getAbsence() {
 		await ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/absence/stats',

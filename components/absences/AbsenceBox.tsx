@@ -6,7 +6,7 @@ import "moment/locale/cs";
 import { Ionicons } from '@expo/vector-icons';
 import Modal from '../general/Modal';
 import icons from '../../declarations/icons';
-import { ThemeContext } from '../../App';
+import { useTheme } from '../../context/ThemeProvider';
 import GetColors from '../../declarations/colors';
 
 interface AbsenceItem {
@@ -48,11 +48,8 @@ export default function AbsenceBox(props: any) {
 	function AbsenceItem({ item }: { item: AbsenceItem }) {
 		const [open, setOpen] = useState(false);
 		const snapPoints = [24 + 60 + 22 + 30 + (item.subjects.length * 50) + ((item.subjects.length - 1) * 10)];
-		const context = React.useContext(ThemeContext);
-		let Colors = GetColors(true);
-		if(context){
-			Colors = GetColors(context?.value);
-		}
+		const darkMode = useTheme();
+		const Colors = GetColors(darkMode.value);
 		function separator() {
 			return <View style={{ height: 10 }}></View>;
 		}

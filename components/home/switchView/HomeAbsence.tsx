@@ -2,19 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Absences } from '../../../declarations/types';
 import DonutChart from './CustomPieChart';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
-
+import { useTheme } from '../../../context/ThemeProvider';
 interface HomeAbsenceProps {
 	absence: Absences
 }
 
 export default function HomeAbsence(props: HomeAbsenceProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const colors = {
 		attended: "#DE6830",
 		missed: "#71c1f0",

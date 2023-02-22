@@ -9,7 +9,7 @@ import Body from '../components/general/Body';
 import moment from 'moment';
 import DayBlock from '../components/timetable/DayBlock';
 import GetColors from '../declarations/colors';
-import { ThemeContext } from '../App';
+import { useTheme } from '../context/ThemeProvider';
 
 function GetWeekStart(date: Date) {
 	let result = moment(date).subtract(date.getDay() - 1, "days").format("YYYY/MM/DD");
@@ -85,11 +85,8 @@ export default function Schedule() {
 	const [page, setPage] = React.useState(0);
 	const [isDaySelect, setIsDaySelect] = React.useState(true);
 	const filteredData = FilterData(testdata[page].timetable);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	React.useEffect(() => {
 		ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/timetable/bydate/range?userId=' + userid + `&date=${GetWeekStart(new Date())}` + '&days=5',

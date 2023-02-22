@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View, Dimensions } from "react-native";
 import moment from "moment";
-import { ThemeContext } from "../../App";
 import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 export interface DayBlockProps {
 	item: any,
@@ -12,11 +12,8 @@ export interface DayBlockProps {
 }
 
 export default function DayBlock(props: DayBlockProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		column: {
 			marginRight: 15

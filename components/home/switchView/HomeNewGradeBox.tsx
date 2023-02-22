@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import icons from '../../../declarations/icons';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 import moment from 'moment';
 import "moment/locale/cs";
@@ -17,11 +17,8 @@ interface GradeBoxProps {
 export default function HomeNewGradeBox(props: GradeBoxProps) {
 	const date = moment(props.date).format('D. MMMM').toString();
 	const icon: any = icons.find(e => e.subject == props.subjectName)!.icon;
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		container: {
 			backgroundColor: Colors.PrimaryBackgroundColor,

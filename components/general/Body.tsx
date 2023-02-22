@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { StyleSheet, ScrollView, ScrollViewProps, TouchableWithoutFeedback, TouchableWithoutFeedbackProps, RefreshControl } from "react-native";
-import { ThemeContext } from "../../App";
 import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 interface BodyProps {
 	children?: React.ReactNode,
@@ -12,11 +12,8 @@ interface BodyProps {
 
 export default function Body(props: BodyProps) {
 	const [refreshing, setRefreshing] = useState(false);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const onRefresh = useCallback(() => {
 		setRefreshing(true);
 		if (props.onRefresh != undefined) props.onRefresh();

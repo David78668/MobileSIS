@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { ThemeContext } from "../../../App";
 import GetColors from "../../../declarations/colors";
 import {
   StyleSheet,
@@ -9,6 +8,7 @@ import {
   FlatList
 } from "react-native";
 import CarouselItem, { CarouselItemProps } from './CarouselItem';
+import { useTheme } from "../../../context/ThemeProvider";
 
 export interface CarouselProps {
     data: Array<CarouselItemProps>
@@ -17,11 +17,8 @@ export interface CarouselProps {
 export default function Carousel(props: CarouselProps) {
   const scrollX = useRef(new Animated.Value(0)).current;
   const windowWidth = Dimensions.get('window').width;
-  const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+  const darkMode = useTheme();
+		const Colors = GetColors(darkMode.value);
   function renderDot({ item, index }: any) {
     const width = scrollX.interpolate({
       inputRange: [

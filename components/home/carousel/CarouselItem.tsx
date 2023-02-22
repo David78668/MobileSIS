@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import {  View, Text, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 const width = Dimensions.get('window').width;
 export type CarouselItemProps = {
@@ -19,11 +19,8 @@ export type CarouselItemProps = {
 }
 
 export default function CarouselItem(item: CarouselItemProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if(context){
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		divider: {
 			borderRadius: 10,

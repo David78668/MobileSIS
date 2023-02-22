@@ -2,8 +2,8 @@ import React from 'react';
 import HomeNewGradeBox from './HomeNewGradeBox';
 import { FlatList, StyleSheet, View, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 const date = new Date();
 const windowWidth = Dimensions.get('window').width;
@@ -23,11 +23,8 @@ export default function HomeNewGrades() {
 	//let grades = [];
 	let year = date.getFullYear() - 2000;
 	let currentDate = convertToDays(`${year}-${date.getMonth()}-${date.getDate()}`);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	/*
 	for (let i = 0; i < data.Subjects.length; i++) {
 		for (let k = 0; k < data.Subjects[i].Marks.length; k++) {

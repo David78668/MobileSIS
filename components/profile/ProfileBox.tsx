@@ -2,8 +2,8 @@ import React, { useState, useMemo } from "react";
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, FlatList } from "react-native";
 import { Feather } from '@expo/vector-icons';
 import Modal from '../general/Modal';
-import { ThemeContext } from "../../App";
 import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 interface ProfileBoxProps {
 	firstName: string,
@@ -12,11 +12,8 @@ interface ProfileBoxProps {
 }
 
 export default function ProfileBox(props: ProfileBoxProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const testData = [{
 		firstName: props.firstName,
 		lastName: props.lastName,

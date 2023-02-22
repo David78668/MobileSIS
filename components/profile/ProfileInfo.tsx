@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
-import { ThemeContext } from '../../App';
 import GetColors from '../../declarations/colors';
+import { useTheme } from '../../context/ThemeProvider';
 
 interface ProfilData {
     key: string,
@@ -16,11 +16,8 @@ interface ProfilProps {
 
 export default function ProfileInfo(props: ProfilProps) {
     const [telephone, setTelephone] = useState('123456789');
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	function separator() {
 		return <View style={styles.separator}></View>;
 	}

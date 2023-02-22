@@ -2,17 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import ScheduleChangeBox from './ScheduleChangeBox';
 import testData from '../../../assets/homeSchedule.json';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 export default function ScheduleChanges() {
 	//const data = require("../../../assets/testData.json");
 	//const filtered = data.filter((e: any) => e.LessonType.length != 0);
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	function separator() {
 		return <View style={{ width: 20 }}></View>;
 	}

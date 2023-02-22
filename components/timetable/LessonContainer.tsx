@@ -2,8 +2,8 @@ import { getItemAsync } from 'expo-secure-store';
 import React from 'react';
 import {View, StyleSheet} from 'react-native'
 import Lesson from './Lesson';
-import { ThemeContext } from '../../App';
 import GetColors from '../../declarations/colors';
+import { useTheme } from '../../context/ThemeProvider';
 
 export interface LessonContainerProps {
 	items: Array<any>,
@@ -11,11 +11,8 @@ export interface LessonContainerProps {
 }
 
 export default function LessonContainer(props: LessonContainerProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	console.log(props.items.length);
 	const styles = StyleSheet.create({
 		container: {

@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
-import { ThemeContext } from '../../../App';
 import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 interface ScheduleChangeBoxProps {
 	StartTime: string,
@@ -14,11 +14,8 @@ interface ScheduleChangeBoxProps {
 }
 
 export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		change: {
 			backgroundColor: Colors.PrimaryBackgroundColor,

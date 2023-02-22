@@ -4,17 +4,14 @@ import React, { useRef } from 'react';
 import moment from 'moment';
 import icons from '../../declarations/icons';
 import { animation } from '../../declarations/animation';
-import { ThemeContext } from '../../App';
 import GetColors from '../../declarations/colors';
+import { useTheme } from '../../context/ThemeProvider';
 	
 export default function Grade(data: any) {
 	const [select, setcheckBoxState] = React.useState(false);
 	const rotateAnim = useRef(new Animated.Value(0)).current;
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	function GradeItems(data: any) {
 		return (
 			<FlatList

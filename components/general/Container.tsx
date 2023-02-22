@@ -1,18 +1,15 @@
 import React from 'react';
 import { Colors } from '../../declarations/colors';
 import { View, StyleSheet } from 'react-native';
-import { ThemeContext } from '../../App';
+import { useTheme } from '../../context/ThemeProvider';
 import GetColors from '../../declarations/colors';
 interface ContainerProps {
 	children?: React.ReactNode
 }
 
 export default function Container(props:ContainerProps){
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,

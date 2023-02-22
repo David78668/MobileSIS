@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, ViewStyle, Platform, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ThemeContext } from "../../App";
 import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 interface HeaderProps {
 	title: string,
@@ -13,11 +13,8 @@ interface HeaderProps {
 }
 
 export default function Heading(props: HeaderProps) {
-	const context = React.useContext(ThemeContext);
-	let Colors = GetColors(true);
-	if (context) {
-		Colors = GetColors(context?.value);
-	}
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
 		background: {
 			backgroundColor: Colors.TertiaryBackgroundColor,
