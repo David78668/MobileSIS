@@ -87,7 +87,7 @@ function renderGradeItem({ item }: any) {
 					<Text style={styles.date}>{moment(item.date).format('D. MMMM')}</Text>
 				</View>
 
-				<Text style={styles.weight}>Váha: {item.weight}</Text>
+				<Text style={styles.weight}>Váha {item.weight}</Text>
 			</View>
 		</View>
 	);

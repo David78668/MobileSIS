@@ -38,9 +38,18 @@ export default function Grades() {
 	var marks = 0;
 	{loaded && data.forEach((e: any) => e.marks.forEach(() => marks++))}
 	
+	var marksText = "";
+	if (marks == 1) {
+		marksText = "známka";
+	} else if (marks >= 2 && marks <= 4) {
+		marksText = "známky";
+	} else {
+		marksText = "známek";
+	}
+
 	return (
 		<Container>
-			<Heading title='Známky' headerComponent={<Text style={styles.headerBox}>{marks} známek</Text>} />
+			<Heading title='Známky' headerComponent={<Text style={styles.headerBox}>{marks} {marksText}</Text>} />
 
 			<Body onRefresh={getGrades}>
 				<View style={styles.gradesBox}>
