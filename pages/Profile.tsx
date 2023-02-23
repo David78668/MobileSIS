@@ -19,10 +19,16 @@ export default function Profile({ navigation }: any) {
 	const [dataSubjects, setDataSubjects] = useState<any>();
 	const [loadedSubjects, setLoadedSubjects] = useState(false);
 	const [errorSubjects, setErrorSubjects] = useState(false);
-	const darkMode = useTheme();
-	const Colors = GetColors(darkMode.value);
-	const [info, setInfo] = useState<any>();
+
 	const [groups, setGroups] = useState<any>();
+	const [loadedGroups, setLoadedGroups] = useState(false);
+
+	const [info, setInfo] = useState<any>();
+	const [loadedInfo, setLoadedInfo] = useState(false);
+
+	// color mode
+	const mode = useTheme();
+	const Colors = GetColors(mode.value);
 
 	async function getProfileInfo() {		
 		ApiRequest({
@@ -30,31 +36,43 @@ export default function Profile({ navigation }: any) {
 			setData, setLoaded, setError
 		});
 
-		setInfo([
-			{ key: 'Jméno', value: `${data.name} ${data.surname}` },
-			{ key: 'E-mail', value: data.email },
-			//{ key: 'Telefoní číslo', value: data.phone, editable: true }
-		]);
-		
 		ApiRequest({
 			requestUrl: `https://api.sis.kyberna.cz/api/user/subjects/current?userId=${data.id}`,
 			setData: setDataSubjects,
 			setLoaded: setLoadedSubjects,
 			setError: setErrorSubjects
 		});
-
-		const groups = findGroups(dataSubjects);
-		
-		setGroups([
-			{ key: 'Skupiny', value: groups.groups.join(', ') },
-			{ key: 'Volitelné předměty', value: groups.voluntary.join(', ') },
-			{ key: 'Projekt', value: groups.project.join(', ') }
-		]);
+	
 	}
 
 	useEffect(() => {
 		getProfileInfo();
 	}, []);
+
+		useEffect(() => {
+			if (loaded) {
+				setInfo([
+					{ key: 'Jméno', value: `${data.name} ${data.surname}` },
+					{ key: 'E-mail', value: data.email },
+					//{ key: 'Telefoní číslo', value: data.phone, editable: true }
+				]);
+				setLoadedInfo(true);
+			}
+		}, [loaded]);
+	
+			useEffect(() => {
+			if (loadedSubjects) {
+				const filteredGroups = findGroups(dataSubjects);
+
+				setGroups([
+					{ key: 'Skupiny', value: filteredGroups.groups.join(', ') },
+					{ key: 'Volitelné předměty', value: filteredGroups.voluntary.join(', ') },
+					{ key: 'Projekt', value: filteredGroups.project.join(', ') }
+				]);
+				setLoadedGroups(true);
+				console.log(groups);
+			}
+		}, [loadedSubjects]);
 	
 	/*const [editMode, setEditMode] = useState(false);
 
@@ -96,7 +114,7 @@ export default function Profile({ navigation }: any) {
 			</TouchableOpacity>
 		);
 	}
-	
+
 	const styles = StyleSheet.create({
 		title: {
 			color: Colors.SecondaryTextColor,
@@ -178,7 +196,7 @@ export default function Profile({ navigation }: any) {
 						class={data.groups[0].name} />}
 			</Heading>
 
-			<Body onRefresh={getProfileInfo}>
+			<Body>
 				<View style={styles.section}>
 					<View style={styles.header}>
 						<View style={styles.headerBox}>
@@ -189,7 +207,7 @@ export default function Profile({ navigation }: any) {
 						{/*<Edit />*/}
 					</View>
 
-					{loaded && <ProfileInfo data={info} /*edit={editMode}*/ />}
+					{loadedInfo && <ProfileInfo data={info} /*edit={editMode}*/ />}
 				</View>
 
 				<View style={styles.section}>
@@ -198,7 +216,7 @@ export default function Profile({ navigation }: any) {
 						<ActivityIndicator style={styles.loading} animating={!loaded} />
 					</View>
 					
-					{loaded && <ProfileInfo data={groups} />}
+					{loadedGroups && <ProfileInfo data={groups} />}
 				</View>
 
 				<TouchableOpacity style={styles.logout}

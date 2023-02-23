@@ -22,8 +22,11 @@ export default function Absence() {
 	const [dataStats, setDataStats] = useState(require('../test-data/absence-stats.json'));
 	const [loadedStats, setLoadedStats] = useState(false);
 	const [errorStats, setErrorStats] = useState(false);
-	const darkMode = useTheme();
-	const Colors = GetColors(darkMode.value);
+
+	// color mode
+	const mode = useTheme();
+	const Colors = GetColors(mode.value);
+
 	async function getAbsence() {
 		await ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/absence/stats',
@@ -106,7 +109,7 @@ export default function Absence() {
 	useEffect(() => {
 		getAbsenceMonth();
 	}, [month]);
-	
+
 	const styles = StyleSheet.create({
 		title: {
 			color: Colors.SecondaryTextColor,

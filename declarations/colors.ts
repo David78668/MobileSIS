@@ -21,7 +21,7 @@ export const Colors = {
 	LessonRemovedColor: "#EE5656",
 	ClassroomChangedColor: "#EE5656",
 	TeacherChangedColor: "#EE5656",
-	NavbarColor: "#696969"
+	NavbarColor: "#969696"
 }
 
 export type ColorPallete = {
