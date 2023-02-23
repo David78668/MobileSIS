@@ -10,7 +10,8 @@ import ApiRequest from '../tools/ApiRequest';
 import { animation } from '../declarations/animation';
 import moment from 'moment';
 import "moment/locale/cs";
-import { Colors } from '../declarations/colors';
+import GetColors from '../declarations/colors';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Absence() {
 	useEffect(() => {
@@ -21,7 +22,8 @@ export default function Absence() {
 	const [dataStats, setDataStats] = useState(require('../test-data/absence-stats.json'));
 	const [loadedStats, setLoadedStats] = useState(false);
 	const [errorStats, setErrorStats] = useState(false);
-
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	async function getAbsence() {
 		await ApiRequest({
 			requestUrl: 'https://api.sis.kyberna.cz/api/absence/stats',
@@ -104,7 +106,35 @@ export default function Absence() {
 	useEffect(() => {
 		getAbsenceMonth();
 	}, [month]);
-
+	
+	const styles = StyleSheet.create({
+		title: {
+			color: Colors.SecondaryTextColor,
+			fontWeight: 'bold',
+			fontSize: 18,
+			marginLeft: 20,
+			opacity: 0.8
+		},
+		dates: {
+			marginVertical: 20
+		},
+		graphContainer: {
+			marginVertical: 20
+		},
+		absenceBoxContainer: {
+			justifyContent: 'center',
+			alignItems: 'center',
+			marginTop: 10,
+			marginBottom: 20
+		},
+		header: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		loading: {
+			marginLeft: 10
+		}
+	});
 	return (
 		<Container>
 			<Heading title='Absence' headerComponent={<Datescroll monthChange={monthChange} />} />
@@ -137,31 +167,3 @@ export default function Absence() {
 	);
 }
 
-const styles = StyleSheet.create({
-	title: {
-		color: Colors.PrimaryTextColor,
-		fontWeight: 'bold',
-		fontSize: 18,
-		marginLeft: 20,
-		opacity: 0.8
-	},
-	dates: {
-		marginVertical: 20
-	},
-	graphContainer: {
-		marginVertical: 20
-	},
-	absenceBoxContainer: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 10,
-		marginBottom: 20
-	},
-	header: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	loading: {
-		marginLeft: 10
-	}
-});

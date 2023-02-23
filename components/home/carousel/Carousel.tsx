@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Colors } from "../../../declarations/colors";
+import GetColors from "../../../declarations/colors";
 import {
   StyleSheet,
   View,
@@ -8,6 +8,7 @@ import {
   FlatList
 } from "react-native";
 import CarouselItem, { CarouselItemProps } from './CarouselItem';
+import { useTheme } from "../../../context/ThemeProvider";
 
 export interface CarouselProps {
     data: Array<CarouselItemProps>
@@ -15,9 +16,9 @@ export interface CarouselProps {
 
 export default function Carousel(props: CarouselProps) {
   const scrollX = useRef(new Animated.Value(0)).current;
-
   const windowWidth = Dimensions.get('window').width;
-
+  const darkMode = useTheme();
+		const Colors = GetColors(darkMode.value);
   function renderDot({ item, index }: any) {
     const width = scrollX.interpolate({
       inputRange: [
@@ -41,7 +42,30 @@ export default function Carousel(props: CarouselProps) {
 
     return <Animated.View style={[styles.normalDot, { width, height: width, opacity: opacity }]} />;
   }
-
+  const styles = StyleSheet.create({
+    container: {
+      alignItems: "center",
+      justifyContent: "center"
+    },
+    scrollContainer: {
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: 'visible',
+    },
+    normalDot: {
+      borderRadius: 4,
+      marginHorizontal: 5,
+      backgroundColor: Colors.PrimaryBackgroundColor
+    },
+    indicatorContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      marginTop: 20,
+      height: 8
+    }
+  });
+  
   return (
     <View style={styles.container}>
          <FlatList
@@ -66,27 +90,3 @@ export default function Carousel(props: CarouselProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  scrollContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: 'visible',
-  },
-  normalDot: {
-    borderRadius: 4,
-    marginHorizontal: 5,
-    backgroundColor: Colors.PrimaryBackgroundColor
-  },
-  indicatorContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    height: 8
-  }
-});

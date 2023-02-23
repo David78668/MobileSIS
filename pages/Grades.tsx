@@ -7,14 +7,19 @@ import Grade from '../components/grades/Grade';
 import { userid, bareer, getValueFor} from "../components/Token";
 import { useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { Colors } from '../declarations/colors';
 import { animation } from '../declarations/animation';
 import ApiRequest from '../tools/ApiRequest';
+import GetColors from '../declarations/colors';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Grades() {
 	const [data, setData] = useState<any>(require('../test-data/grades.json'));
 	const [loaded, setLoaded] = useState(false);
 	const [error, setError] = useState(false);
+
+	// color mode
+	const mode = useTheme();
+	const Colors = GetColors(mode.value);
 
 	async function getGrades() {
 		ApiRequest({
@@ -47,6 +52,41 @@ export default function Grades() {
 		marksText = "známek";
 	}
 
+	
+	const styles = StyleSheet.create({
+		gradesBox: {
+			padding: 20
+		},
+		grades: {
+			overflow: 'visible',
+			marginTop: 20
+		},
+		title: {
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+			fontSize: 18,
+			opacity: 0.8
+		},
+		header: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		loading: {
+			marginLeft: 10
+		},
+		headerBox: {
+			fontSize: 17,
+				color: Colors.PrimaryTextColor,
+			fontWeight: '500',
+			padding: 5
+		},
+		none: {
+			fontWeight: '500',
+			opacity: 0.6,
+			marginTop: 20
+		}
+	});
+	
 	return (
 		<Container>
 			<Heading title='Známky' headerComponent={<Text style={styles.headerBox}>{marks} {marksText}</Text>} />
@@ -71,37 +111,3 @@ export default function Grades() {
 		</Container>
 	);
 }
-
-const styles = StyleSheet.create({
-	gradesBox: {
-		padding: 20
-	},
-	grades: {
-		overflow: 'visible',
-		marginTop: 20
-	},
-	title: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-		fontSize: 18,
-		opacity: 0.8
-	},
-	header: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	loading: {
-		marginLeft: 10
-	},
-	headerBox: {
-		fontSize: 17,
-   		color: Colors.PrimaryTextColor,
-		fontWeight: '500',
-		padding: 5
-	},
-	none: {
-		fontWeight: '500',
-		opacity: 0.6,
-		marginTop: 20
-	}
-});

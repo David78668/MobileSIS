@@ -1,8 +1,11 @@
 import React from 'react';
-import { Colors } from '../../declarations/colors';
 import { StyleSheet, Text, View } from 'react-native';
+import GetColors from '../../declarations/colors';
+import { useTheme } from '../../context/ThemeProvider';
 
 export default function LessonView() {
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const data = [
 		{
 			"Hours": 5,
@@ -35,6 +38,19 @@ export default function LessonView() {
 			"To": "12:30"
 		},
 	]
+	const styles = StyleSheet.create({
+		container: {
+			flexDirection: 'row',
+		},
+		column: {
+			padding: 5
+		},
+		lessonsText: {
+			textAlign: 'center',
+			color: Colors.PrimaryTextColor,
+			opacity: 0.8,
+		}
+	});
 	return (
 		<View style={styles.container}>
 			{data.map((item) => (
@@ -48,17 +64,3 @@ export default function LessonView() {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-	},
-	column: {
-		padding: 5
-	},
-	lessonsText: {
-		textAlign: 'center',
-		color: Colors.PrimaryTextColor,
-		opacity: 0.8,
-	}
-});

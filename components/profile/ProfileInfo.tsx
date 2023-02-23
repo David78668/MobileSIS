@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Colors } from '../../declarations/colors';
 import { StyleSheet, Text, View, FlatList, TextInput } from 'react-native';
+import GetColors from '../../declarations/colors';
+import { useTheme } from '../../context/ThemeProvider';
 
 interface ProfilData {
     key: string,
@@ -15,7 +16,12 @@ interface ProfilProps {
 
 export default function ProfileInfo(props: ProfilProps) {
     const [telephone, setTelephone] = useState('123456789');
-
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
+	function separator() {
+		return <View style={styles.separator}></View>;
+	}
+	
 	function renderInfo({ item }: { item: ProfilData }) {
         return (
             <View style={styles.item}>
@@ -37,7 +43,54 @@ export default function ProfileInfo(props: ProfilProps) {
             </View>
         );				
     }
-    
+    const styles = StyleSheet.create({
+		item: {
+			 flexDirection: 'row',
+			justifyContent: 'space-between',
+			paddingVertical: 10
+		},
+		wrapper: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		key: {
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+			opacity: 0.6
+		},
+		value: {
+			opacity: 0.6,
+			color: Colors.SecondaryTextColor,
+			fontWeight: '500'
+		},
+		separator: {
+			backgroundColor: Colors.TertiaryTextColor,
+			opacity: 0.5,
+			width: '100%',
+			borderRadius: 1,
+			height: 1
+		},
+		container: {
+			marginTop: 20,
+			backgroundColor: Colors.PrimaryBackgroundColor,
+			marginHorizontal: 20,
+			paddingHorizontal: 20,
+			borderRadius: 10,
+			shadowColor: 'rgba(0, 0, 0, 0.1)',
+			shadowOffset: { width: 0, height: 0 },
+			shadowRadius: 10,
+			shadowOpacity: 1,
+			overflow: 'visible'
+		},
+		input: {
+			backgroundColor: Colors.PrimaryTextColor,
+			color: Colors.SecondaryTextColor,
+			opacity: 0.05,
+			paddingVertical: 5,
+			paddingHorizontal: 10,
+			borderRadius: 5
+		}
+	});
     return (
 		<View style={styles.container}>
 			<FlatList
@@ -49,56 +102,4 @@ export default function ProfileInfo(props: ProfilProps) {
 		</View>
 	);
 };
-
-function separator() {
-	return <View style={styles.separator}></View>;
-}
-
- const styles = StyleSheet.create({
-	item: {
-         flexDirection: 'row',
-        justifyContent: 'space-between',
-		paddingVertical: 10
-	},
-	wrapper: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	key: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-		opacity: 0.6
-	},
-	value: {
-		opacity: 0.6,
-		color: Colors.SecondaryTextColor,
-		fontWeight: '500'
-	},
-	separator: {
-		backgroundColor: Colors.TertiaryTextColor,
-		opacity: 0.5,
-		width: '100%',
-		borderRadius: 1,
-		height: 1
-	},
-	container: {
-		marginTop: 20,
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		marginHorizontal: 20,
-		paddingHorizontal: 20,
-		borderRadius: 10,
-		shadowColor: 'rgba(0, 0, 0, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1,
-		overflow: 'visible'
-    },
-    input: {
-        backgroundColor: Colors.PrimaryTextColor,
-		color: Colors.SecondaryTextColor,
-		opacity: 0.05,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        borderRadius: 5
-	}
-});
+ 

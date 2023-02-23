@@ -2,7 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import {  View, Text, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import { Colors } from '../../../declarations/colors';
+import GetColors from '../../../declarations/colors';
+import { useTheme } from '../../../context/ThemeProvider';
 
 const width = Dimensions.get('window').width;
 export type CarouselItemProps = {
@@ -17,7 +18,68 @@ export type CarouselItemProps = {
 	}
 }
 
-export default function CarouselItem(item: CarouselItemProps) {	
+export default function CarouselItem(item: CarouselItemProps) {
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
+	const styles = StyleSheet.create({
+		divider: {
+			borderRadius: 10,
+			height: "75%",
+			width: 3,
+			backgroundColor: Colors.TertiaryBackgroundColor,
+			marginHorizontal: 20
+		},
+		paralel: {
+			flexDirection: 'row',
+			alignItems: 'center'
+		},
+		container: {
+			alignItems: "center",
+			flexDirection: 'row',
+			backgroundColor: Colors.PrimaryBackgroundColor,
+			borderRadius: 20,
+			paddingHorizontal: 25,
+			paddingVertical: 15,
+			width: width - 40,
+			marginHorizontal: 20,
+			shadowColor: 'rgba(255, 255, 255, 0.1)',
+			shadowOffset: { width: 0, height: 0 },
+			shadowRadius: 10,
+			shadowOpacity: 1
+		},
+		timeContainer: {
+			alignItems: 'center'
+		},
+		value: {
+			marginLeft: 5,
+			fontWeight: '500',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor,
+		},
+		subjectLabel: {
+			fontSize: 18,
+			fontWeight: 'bold',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor,
+		},
+		endTimeLabel: {
+			opacity: 0.3,
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+		},
+		startTimeLabel: {
+			fontWeight: 'bold',
+			color: Colors.SecondaryTextColor,
+		},
+		cardBody: {
+			justifyContent: 'center',
+		},
+		time: {
+			opacity: 0.3,
+			fontWeight: '500',
+			color: Colors.SecondaryTextColor,
+		}
+	});
 	return (
 		<View style={styles.container}>
 			<View style={styles.timeContainer}>
@@ -41,63 +103,3 @@ export default function CarouselItem(item: CarouselItemProps) {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	divider: {
-		borderRadius: 10,
-		height: "75%",
-		width: 3,
-		backgroundColor: Colors.TertiaryBackgroundColor,
-		marginHorizontal: 20
-	},
-	paralel: {
-		flexDirection: 'row',
-		alignItems: 'center'
-	},
-	container: {
-		alignItems: "center",
-		flexDirection: 'row',
-		backgroundColor: Colors.PrimaryBackgroundColor,
-		borderRadius: 20,
-		paddingHorizontal: 25,
-		paddingVertical: 15,
-		width: width - 40,
-		marginHorizontal: 20,
-		shadowColor: 'rgba(255, 255, 255, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1
-	},
-	timeContainer: {
-		alignItems: 'center'
-	},
-	value: {
-		marginLeft: 5,
-		fontWeight: '500',
-		opacity: 0.8,
-		color: Colors.SecondaryTextColor,
-	},
-	subjectLabel: {
-		fontSize: 18,
-		fontWeight: 'bold',
-		opacity: 0.8,
-		color: Colors.SecondaryTextColor,
-	},
-	endTimeLabel: {
-		opacity: 0.3,
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-	},
-	startTimeLabel: {
-		fontWeight: 'bold',
-		color: Colors.SecondaryTextColor,
-	},
-	cardBody: {
-		justifyContent: 'center',
-	},
-	time: {
-		opacity: 0.3,
-		fontWeight: '500',
-		color: Colors.SecondaryTextColor,
-	}
-});

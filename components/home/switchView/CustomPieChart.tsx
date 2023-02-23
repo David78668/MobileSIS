@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Absences, ChartColors } from '../../../declarations/types';
 import Svg, { G, Circle } from "react-native-svg";
+import { useTheme } from '../../../context/ThemeProvider';
+import GetColors from '../../../declarations/colors';
 
 interface DonutProps {
 	absence: Absences,
@@ -28,6 +30,10 @@ export default function DonutChart(props: DonutProps) {
 	const missedAngle = (missed / total) * 360;
 	const notExcusedAngle = attendedAngle + missedAngle;
 	
+	// color mode
+	const mode = useTheme();
+	const Colors = GetColors(mode.value);
+
 	return (
 		<View style={styles.container}>
 			<Svg height="100%" width="100%" viewBox="0 0 190 190">
@@ -80,7 +86,7 @@ export default function DonutChart(props: DonutProps) {
 							cx="50%"
 							cy="50%"
 							r={radius}
-							stroke="lightgray"
+							stroke={Colors.TertiaryBackgroundColor}
 							fill="transparent"
 							strokeWidth="45"
 						/>

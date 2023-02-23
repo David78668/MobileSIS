@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, ViewStyle, Platform, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from "react-native";
-import { Colors } from '../../declarations/colors';
 import { SafeAreaView } from "react-native-safe-area-context";
+import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 interface HeaderProps {
 	title: string,
@@ -12,6 +13,37 @@ interface HeaderProps {
 }
 
 export default function Heading(props: HeaderProps) {
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
+	const styles = StyleSheet.create({
+		background: {
+			backgroundColor: Colors.TertiaryBackgroundColor,
+			paddingTop: 20,
+			paddingBottom: Platform.OS == 'android' ? 10 : 0
+		},
+		headerText: {
+			fontSize: 30,
+			color: Colors.PrimaryTextColor,
+			fontWeight: '900'
+		},
+		headerContainer: {
+			flexDirection: 'row',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+			paddingHorizontal: 20
+		},
+		subtitle: {
+			color: Colors.PrimaryTextColor,
+			fontWeight: '500',
+			fontSize: 16,
+			opacity: 0.6
+		},
+		headerComponent: {
+			backgroundColor: '#ffffff1a',
+			paddingHorizontal: 10,
+			borderRadius: 10
+		}
+	});
 	return (
 		<SafeAreaView style={styles.background}>
 			<TouchableWithoutFeedback {...props.Pressable}>
@@ -31,32 +63,3 @@ export default function Heading(props: HeaderProps) {
 	);
 }
 
-const styles = StyleSheet.create({
-	background: {
-		backgroundColor: Colors.TertiaryBackgroundColor,
-		paddingTop: 20,
-		paddingBottom: Platform.OS == 'android' ? 10 : 0
-	},
-	headerText: {
-		fontSize: 30,
-		color: Colors.PrimaryTextColor,
-		fontWeight: '900'
-	},
-	headerContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingHorizontal: 20
-	},
-	subtitle: {
-		color: Colors.PrimaryTextColor,
-		fontWeight: '500',
-		fontSize: 16,
-		opacity: 0.6
-	},
-	headerComponent: {
-		backgroundColor: '#ffffff1a',
-		paddingHorizontal: 10,
-		borderRadius: 10
-	}
-});

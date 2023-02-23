@@ -11,14 +11,23 @@ import moment from 'moment';
 import "moment/locale/cs";
 import Carousel from '../components/home/carousel/Carousel';
 import testData from '../assets/homeSchedule.json';
-import { Colors } from '../declarations/colors';
+import GetColors, { ColorPallete } from '../declarations/colors';
+import { useTheme } from '../context/ThemeProvider';
 
 export default function Home() {
 	const format = moment().format('D. MMMM').toString();
 	const date = format[0].toUpperCase() + format.slice(1);
-
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
 	const absenceData = require('../test-data/absence-stats.json');
-
+	const styles = StyleSheet.create({
+		header: {
+			fontSize: 17,
+			   color: Colors.PrimaryTextColor,
+			fontWeight: '500',
+			padding: 5
+		}
+	});
 	return (
 		<Container>
 			<Heading title='Vítejte' headerComponent={<Text style={styles.header}>{date}</Text>}>
@@ -40,11 +49,5 @@ export default function Home() {
 	);
 }
 
-const styles = StyleSheet.create({
-	header: {
-		fontSize: 17,
-   		color: Colors.PrimaryTextColor,
-		fontWeight: '500',
-		padding: 5
-	}
-});
+
+

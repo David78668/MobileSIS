@@ -1,6 +1,8 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View, Dimensions } from "react-native";
 import moment from "moment";
+import GetColors from "../../declarations/colors";
+import { useTheme } from "../../context/ThemeProvider";
 
 export interface DayBlockProps {
 	item: any,
@@ -10,6 +12,34 @@ export interface DayBlockProps {
 }
 
 export default function DayBlock(props: DayBlockProps) {
+	const darkMode = useTheme();
+	const Colors = GetColors(darkMode.value);
+	const styles = StyleSheet.create({
+		column: {
+			marginRight: 15
+		},
+		shape: {
+			width: ((width - 40) - 4 * 15) / 5,
+			backgroundColor: "white",
+			borderRadius: 10
+		},
+		lessonText: {
+			textAlign: 'center',
+			color: "white",
+			opacity: 0.8,
+			fontWeight: 'bold'
+		},
+		dayText: {
+			marginBottom: 5
+		},
+		rangeText: {
+			marginTop: 5
+		},
+		inactive: {
+			opacity: 0.6,
+			fontWeight: '500'
+		}
+	});
 	return (
 		<TouchableOpacity onPress={() => props.onPress(props.index)} style={styles.column} activeOpacity={0.7}>
 			<Text style={[styles.lessonText, styles.dayText, (props.page != props.index) && styles.inactive]}>{(moment(props.item.date).format("Do ddd"))}</Text>
@@ -24,29 +54,3 @@ export default function DayBlock(props: DayBlockProps) {
 
 const width = Dimensions.get('screen').width;
 
-const styles = StyleSheet.create({
-	column: {
-		marginRight: 15
-	},
-	shape: {
-		width: ((width - 40) - 4 * 15) / 5,
-		backgroundColor: "white",
-		borderRadius: 10
-	},
-	lessonText: {
-		textAlign: 'center',
-		color: "white",
-		opacity: 0.8,
-		fontWeight: 'bold'
-	},
-	dayText: {
-		marginBottom: 5
-	},
-	rangeText: {
-		marginTop: 5
-	},
-	inactive: {
-		opacity: 0.6,
-		fontWeight: '500'
-	}
-});

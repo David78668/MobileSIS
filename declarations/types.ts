@@ -9,3 +9,4 @@ export type ChartColors = {
 	missed: string,
 	notExcused: string,
 }
+
