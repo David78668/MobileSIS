@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, } from 'react-native';
 import Container from '../components/Container';
+import HomeAbsence from '../components/HomeAbsence';
 import Heading from '../components/Heading';
 
 export default function Absence() {
 	return (
 		<Container>
-			<Heading headerText='Absence' />
+			<Heading headerText='Absence'/>
+			<HomeAbsence/>
 		</Container>
 	);
 }

@@ -4,7 +4,7 @@
   "packagerPort": 19000,
   "webpackServerPort": null,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerNgrokUrl": "https://jm-thx.anonymous.mobilesis.exp.direct",
+  "packagerNgrokUrl": "https://jm-thx.anonymous.mobilesis.exp.direct",
+  "ngrokPid": 12988
 }

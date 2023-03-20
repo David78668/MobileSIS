@@ -1,17 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ViewStyle } from 'react-native';
 import DonutChart from './CustomPieChart';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 const containerHeight = windowHeight * 0.18;
 
-export default function HomeAbsence() {
+interface HomeAbsenceProps {
+	style?: ViewStyle
+}
+
+export default function HomeAbsence(props:HomeAbsenceProps) {
 	const attended = 413;
 	const missed = 21;
 	const notExcused = 5;
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, props.style]}>
 			<View>
 				<View style={styles.graphContainer}>
 					<DonutChart attended={attended} missed={missed} notExcused={notExcused} />
@@ -50,15 +54,11 @@ const styles = StyleSheet.create({
 		height: containerHeight,
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		marginBottom: 0,
-		marginTop: 'auto',
+		marginTop:10,
 		borderRadius: 10,
 		marginHorizontal: "5.9%",
 		backgroundColor: 'white',
 		shadowColor: 'rgba(0, 0, 0, 0.1)',
-		shadowOffset: { width: 0, height: 0 },
-		shadowRadius: 10,
-		shadowOpacity: 1,
 	},
 	graphContainer: {
 		marginTop: 'auto',
