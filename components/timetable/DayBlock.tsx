@@ -53,4 +53,3 @@ export default function DayBlock(props: DayBlockProps) {
 }
 
 const width = Dimensions.get('screen').width;
-

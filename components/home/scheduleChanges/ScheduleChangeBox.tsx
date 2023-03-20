@@ -65,7 +65,7 @@ export default function ScheduleChangeBox(props: ScheduleChangeBoxProps) {
 			color: Colors.SecondaryTextColor,
 		},
 		bottom: {
-			marginTop: 10
+			marginTop: 5
 		},
 		classroom: {
 			flexDirection: 'row',

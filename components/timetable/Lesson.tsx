@@ -7,12 +7,12 @@ import GetColors from '../../declarations/colors';
 import { useTheme } from '../../context/ThemeProvider';
 
 export interface LessonProps {
-	item: any,
+	item: any
 }
 
 export default function Lesson(props : LessonProps) {
-	let startTime = moment(props.item.date).format("H.mm");
-	let endTime = moment(props.item.date).add(45, "minutes").format("H.mm");
+	let startTime = moment(props.item.date).format("H:mm");
+	let endTime = moment(props.item.date).add(45, "minutes").format("H:mm");
 	const darkMode = useTheme();
 	const Colors = GetColors(darkMode.value);
 	const styles = StyleSheet.create({
@@ -24,30 +24,32 @@ export default function Lesson(props : LessonProps) {
 		},
 		change: {
 			backgroundColor: Colors.PrimaryBackgroundColor,
-			height:80,
 			flexDirection: 'row',
 			borderRadius: 10,
 			flex: 1,
 			overflow: 'hidden',
-			marginHorizontal: 5,
+			marginHorizontal: 0
 		},
 		changeleft: {
-			width: 66,
 			backgroundColor: Colors.TertiaryBackgroundColor,
 			height: "100%",
 			justifyContent: 'center',
 			alignItems: 'center',
+			paddingHorizontal: 20,
+			width: 80,
 		},
 		classstart: {
 			color: Colors.PrimaryTextColor,
+			fontWeight: 'bold'
 		},
 		classend: {
 			color: Colors.PrimaryTextColor,
+			fontWeight: 'bold',
+			opacity: 0.5
 		},
 		changeright: {
-			height: "100%",
-			marginLeft: 10,
-			paddingVertical: 5,
+			paddingHorizontal: 20,
+			paddingVertical: 10
 		},
 		top: {
 			width: "100%",
@@ -59,25 +61,25 @@ export default function Lesson(props : LessonProps) {
 			fontWeight: "400",
 		},
 		lesson: {
-			fontSize: 20,
+			fontSize: 18,
 			color: Colors.SecondaryTextColor,
-			fontWeight: '600',
+			fontWeight: 'bold',
+			opacity: 0.8
 		},
 		bottom: {
 			width: "100%",
-			paddingTop: 3,
-			paddingBottom: 3,
-			backgroundColor: Colors.PrimaryBackgroundColor ,
+			marginTop: 5,
+			backgroundColor: Colors.PrimaryBackgroundColor
 		},
 		classroom: {
 			flexDirection: 'row',
 			alignItems: 'center',
 		},
-		classroomtext: {
-			marginLeft: 4,
-			fontWeight: "500",
-			fontSize: 15,
-			color: Colors.SecondaryTextColor,
+		value: {
+			marginLeft: 5,
+			fontWeight: '500',
+			opacity: 0.8,
+			color: Colors.SecondaryTextColor
 		},
 		fromclassroomtext: {
 			marginLeft: 3,
@@ -89,35 +91,34 @@ export default function Lesson(props : LessonProps) {
 		teacher: {
 			flexDirection: 'row',
 			alignItems: 'center',
-		},
-		teachertext: {
-			marginLeft: 4,
-			fontWeight: "500",
-			fontSize: 15,
-			color: Colors.SecondaryTextColor,
-		},
+			marginTop: 3
+		}
 	});
+
 	return (
-			(<View style={[styles.change, !props.item.active &&  styles.inactiveClass]}>
-				<View style={[styles.changeleft, !props.item.static && styles.suplementaryClass]}>
-					<Text style={styles.classstart}>{startTime}</Text>
-					<Text style={styles.classend}>{endTime}</Text>
+		<View style={[styles.change, !props.item.active && styles.inactiveClass]}>
+			<View style={[styles.changeleft, !props.item.static && styles.suplementaryClass]}>
+				<Text style={styles.classstart}>{startTime}</Text>
+				<Text style={styles.classend}>{endTime}</Text>
+			</View>
+
+			<View style={styles.changeright}>
+				<View style={styles.top}>
+					<Text style={styles.lesson}>{props.item.subject.name}</Text>
 				</View>
-				<View style={styles.changeright}>
-					<View style={styles.top}>
-						<Text style={styles.lesson}>{props.item.subject.name}</Text>
+				
+				<View style={styles.bottom}>
+					<View style={styles.classroom}>
+						<Ionicons color={props.item.static ? Colors.TertiaryBackgroundColor : Colors.ClassroomChangedColor} size={15} name="easel"></Ionicons>
+						<Text style={styles.value}>Učebna {props.item.classroom}</Text>
 					</View>
-					<View style={styles.bottom}>
-						<View style={styles.classroom}>
-							<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="easel"></Ionicons>
-							<Text style={styles.classroomtext}>{props.item.classroom}</Text>
-						</View>
-						<View style={styles.teacher}>
-							<Ionicons color={Colors.TertiaryBackgroundColor} size={15} name="person-circle"></Ionicons>
-							<Text style={styles.teachertext}>{props.item.subject.teacher.shortName}</Text>
-						</View>
+
+					<View style={styles.teacher}>
+						<Ionicons color={props.item.static ? Colors.TertiaryBackgroundColor : Colors.ClassroomChangedColor} size={15} name="person-circle"></Ionicons>
+						<Text style={styles.value}>{props.item.subject.teacher.shortName}</Text>
 					</View>
 				</View>
-			</View>)
+			</View>
+		</View>
 	);
 }
