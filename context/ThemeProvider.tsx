@@ -1,4 +1,6 @@
 import { PropsWithChildren, useContext, createContext, useState } from "react";
+import { useLocalStorage } from "../components/hooks/UseSecureStorage";
+import { KEYS } from "../declarations/keys";
 
 export interface IStateContextValues<T> {
 	value: T,
@@ -12,7 +14,7 @@ const defaultValues: IStateContextValues<boolean> = {
 
 const ThemeContext = createContext<IStateContextValues<boolean>>(defaultValues);
 export function ThemeProvider(props: PropsWithChildren){
-	const [darkMode, setDarkMode] = useState(false);
+	const [darkMode, setDarkMode] = useLocalStorage(KEYS.THEME, false );
 
 	return(
 		<ThemeContext.Provider value={{

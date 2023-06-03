@@ -29,7 +29,7 @@ export const userid = async () => {
 
 export const jwtexpiration = async () => {
 	var jwt = await SecureStore.getItemAsync("kybernaAccessToken");
-
+	console.log(jwt);
 	if (jwt) {
 		return (JSON.parse(jwt_decode(jwt)).exp);
 	} else {

@@ -1,17 +1,21 @@
 import React from 'react';
 import { Text, View, } from 'react-native';
 import { jwtexpiration } from "../components/Token";
+import { KEYS } from '../declarations/keys';
+import * as SecureStore from 'expo-secure-store';
 
 export default function DefaultPage({ navigation }: any) {
     navigation.setOptions({ tabBarStyle: { display: 'none' }});
-
+    console.log("firstPage woohoo");
     var dateexp = new Date(Number(jwtexpiration) * 1000);
-    if (dateexp !== null) {
+    console.log(dateexp);
+    if (dateexp.getDate()) {
         if (dateexp) {
             navigation.navigate("Home");
         }
     } else {
-        navigation.navigate("Home");
+        console.log("No token?");
+        navigation.navigate("Login");
     }
     
     return (

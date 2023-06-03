@@ -62,7 +62,6 @@ function FilterData(data: Array<any>) {
 				}
 			}
 
-			output.push(originalClass);
 			output.push(activeClass);
 			result.push(output);
 		}

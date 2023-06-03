@@ -104,8 +104,7 @@ export default function CustomTabNavigation() {
 
             <Tab.Screen name="FirstPage" component={FirstPage} options={{ tabBarItemStyle: { display: 'none' } }} />
             <Tab.Screen name="Settings" component={Settings} options={{ tabBarItemStyle: { display: 'none' } }} />
-            
-            <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' }}} /> 
+            <Tab.Screen name="Login" component={Login} options={{ tabBarItemStyle: { display: 'none' } }} />
             <Tab.Screen name="Home" component={Home} options={{ tabBarIcon: HomeIcon }} />
             <Tab.Screen name="Schedule" component={Schedule} options={{ tabBarIcon: ScheduleIcon }} />
             <Tab.Screen name="Grades" component={Grades} options={{ tabBarIcon: GradesIcon }} />
